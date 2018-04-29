@@ -380,7 +380,7 @@ $(function () {
     <script type="text/javascript">
         $(function () {
             var pictureLabel = document.createElement("img");
-                pictureLabel.src = '<?php echo base_url('admin-assets/img/markers/marker_blue.png');?>';
+                pictureLabel.src = '<?php echo base_url('assets/img/markers/marker_blue.png');?>';
             $("#mapsProperties").gmap3({
                 defaults:{ 
                     classes:{
@@ -405,15 +405,15 @@ $(function () {
                     // skip if gps is not defined
                     if(empty($estate->gps))continue;
                     
-                    $icon_url = base_url('admin-assets/img/markers/marker_blue.png');
+                    $icon_url = base_url('assets/img/markers/marker_blue.png');
                     $value = $this->estate_m->get_field_from_listing($estate, 6);
                     
                     if(isset($value))
                     {
                         if($value != '' && $value != 'empty')
                         {
-                           /* if(file_exists(FCPATH.'admin-assets/img/markers/'.$value.'.png'))
-                            $icon_url = base_url('admin-assets/img/markers/'.$value.'.png');*/
+                           /* if(file_exists(FCPATH.'assets/img/markers/'.$value.'.png'))
+                            $icon_url = base_url('assets/img/markers/'.$value.'.png');*/
                            if(file_exists(FCPATH.'templates/'.$settings_template.'/assets/img/markers/'.$value.'.png'))
                             $icon_url = base_url('templates/'.$settings_template.'/assets/img/markers/'.$value.'.png');
                            elseif(file_exists(FCPATH.'templates/'.$settings_template.'/assets/img/icons/'.$value.'.png'))

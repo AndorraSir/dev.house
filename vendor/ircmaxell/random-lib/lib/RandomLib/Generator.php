@@ -1,14 +1,4 @@
 <?php
-
-/*
- * The RandomLib library for securely generating random numbers and strings in PHP
- *
- * @author     Anthony Ferrara <ircmaxell@ircmaxell.com>
- * @copyright  2011 The Authors
- * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- * @version    Build @@version@@
- */
-
 /**
  * The Random Number Generator Class
  *
@@ -18,15 +8,16 @@
  *
  * @category   PHPPasswordLib
  * @package    Random
- *
  * @author     Anthony Ferrara <ircmaxell@ircmaxell.com>
  * @author     Timo Hamina
  * @copyright  2011 The Authors
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- *
  * @version    Build @@version@@
  */
+
 namespace RandomLib;
+
+use SecurityLib\BaseConverter;
 
 /**
  * The Random Number Generator Class
@@ -35,12 +26,10 @@ namespace RandomLib;
  *
  * @category   PHPPasswordLib
  * @package    Random
- *
  * @author     Anthony Ferrara <ircmaxell@ircmaxell.com>
  * @author     Timo Hamina
  */
-class Generator
-{
+class Generator {
 
     /**
      * @const Flag for uppercase letters
@@ -116,15 +105,15 @@ class Generator
      * @var array The different characters, by Flag
      */
     protected $charArrays = array(
-        self::CHAR_UPPER     => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-        self::CHAR_LOWER     => 'abcdefghijklmnopqrstuvwxyz',
-        self::CHAR_DIGITS    => '0123456789',
+        self::CHAR_UPPER => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        self::CHAR_LOWER => 'abcdefghijklmnopqrstuvwxyz',
+        self::CHAR_DIGITS => '0123456789',
         self::CHAR_UPPER_HEX => 'ABCDEF',
         self::CHAR_LOWER_HEX => 'abcdef',
-        self::CHAR_BASE64    => '+/',
-        self::CHAR_SYMBOLS   => '!"#$%&\'()* +,-./:;<=>?@[\]^_`{|}~',
-        self::CHAR_BRACKETS  => '()[]{}<>',
-        self::CHAR_PUNCT     => ',.;:',
+        self::CHAR_BASE64 => '+/',
+        self::CHAR_SYMBOLS => '!"#$%&\'()* +,-./:;<=>?@[\]^_`{|}~',
+        self::CHAR_BRACKETS => '()[]{}<>',
+        self::CHAR_PUNCT => ',.;:',
     );
 
     /**
@@ -140,8 +129,7 @@ class Generator
      * @param array $sources An array of random data sources to use
      * @param Mixer $mixer   The mixing strategy to use for this generator
      */
-    public function __construct(array $sources, Mixer $mixer)
-    {
+    public function __construct(array $sources, Mixer $mixer) {
         foreach ($sources as $source) {
             $this->addSource($source);
         }
@@ -155,10 +143,8 @@ class Generator
      *
      * @return Generator $this The current generator instance
      */
-    public function addSource(Source $source)
-    {
+    public function addSource(Source $source) {
         $this->sources[] = $source;
-
         return $this;
     }
 
@@ -169,13 +155,11 @@ class Generator
      *
      * @return string The generated random number (string)
      */
-    public function generate($size)
-    {
+    public function generate($size) {
         $seeds = array();
         foreach ($this->sources as $source) {
             $seeds[] = $source->generate($size);
         }
-
         return $this->mixer->mix($seeds);
     }
 
@@ -187,8 +171,7 @@ class Generator
      *
      * @return int The generated random number within the range
      */
-    public function generateInt($min = 0, $max = PHP_INT_MAX)
-    {
+    public function generateInt($min = 0, $max = PHP_INT_MAX) {
         $tmp   = (int) max($max, $min);
         $min   = (int) min($max, $min);
         $max   = $tmp;
@@ -212,7 +195,6 @@ class Generator
         if ($bits == 63) {
             /**
              * Fixes issue #22
-             *
              * @see https://github.com/ircmaxell/RandomLib/issues/22
              */
             $mask = 0x7fffffffffffffff;
@@ -240,7 +222,6 @@ class Generator
             $test   = $this->generate($bytes);
             $result = hexdec(bin2hex($test)) & $mask;
         } while ($result > $range);
-
         return $result + $min;
     }
 
@@ -250,14 +231,13 @@ class Generator
      * This uses the supplied character list for generating the new result
      * string.
      *
-     * @param int   $length     The length of the generated string
-     * @param mixed $characters String: An optional list of characters to use
-     *                          Integer: Character flags
+     * @param int    $length     The length of the generated string
+     * @param mixed  $characters String: An optional list of characters to use
+     *                           Integer: Character flags
      *
      * @return string The generated random string
      */
-    public function generateString($length, $characters = '')
-    {
+    public function generateString($length, $characters = '') {
         if (is_int($characters)) {
             // Combine character sets
             $characters = $this->expandCharacterSets($characters);
@@ -300,8 +280,7 @@ class Generator
      *
      * @return Mixer the current mixer
      */
-    public function getMixer()
-    {
+    public function getMixer() {
         return $this->mixer;
     }
 
@@ -310,8 +289,7 @@ class Generator
      *
      * @return Source[] the current mixer
      */
-    public function getSources()
-    {
+    public function getSources() {
         return $this->sources;
     }
 
@@ -325,13 +303,11 @@ class Generator
      *
      * @return int The number of bits
      */
-    protected function countBits($number)
-    {
+    protected function countBits($number) {
         $log2 = 0;
         while ($number >>= 1) {
             $log2++;
         }
-
         return $log2;
     }
 
@@ -344,8 +320,7 @@ class Generator
      *
      * @return string The expanded string
      */
-    protected function expandCharacterSets($spec)
-    {
+    protected function expandCharacterSets($spec) {
         $combined = '';
         if ($spec == self::EASY_TO_READ) {
             $spec |= self::CHAR_ALNUM;
@@ -354,16 +329,15 @@ class Generator
             if ($flag == self::EASY_TO_READ) {
                 // handle this later
                 continue;
-            }
-            if (($spec & $flag) === $flag) {
+            } if (($spec & $flag) === $flag) {
                 $combined .= $chars;
             }
         }
         if ($spec & self::EASY_TO_READ) {
             // remove ambiguous characters
             $combined = str_replace(str_split(self::AMBIGUOUS_CHARS), '', $combined);
-        }
-
+        } 
         return count_chars($combined, 3);
     }
+
 }

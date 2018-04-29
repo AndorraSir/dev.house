@@ -27,7 +27,6 @@ use League\OAuth2\Client\Tool\RequestFactory;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use RandomLib\Factory as RandomFactory;
-use RandomLib\Generator as RandomGenerator;
 use UnexpectedValueException;
 
 /**
@@ -303,7 +302,7 @@ abstract class AbstractProvider
             ->getRandomFactory()
             ->getMediumStrengthGenerator();
 
-        return $generator->generateString($length, RandomGenerator::CHAR_ALNUM);
+        return $generator->generateString($length);
     }
 
     /**
@@ -359,7 +358,7 @@ abstract class AbstractProvider
         $options['client_id'] = $this->clientId;
         $options['redirect_uri'] = $this->redirectUri;
         $options['state'] = $this->state;
-
+        
         return $options;
     }
 

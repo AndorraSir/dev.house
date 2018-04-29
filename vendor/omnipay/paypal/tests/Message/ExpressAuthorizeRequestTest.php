@@ -3,7 +3,6 @@
 namespace Omnipay\PayPal\Message;
 
 use Omnipay\Common\CreditCard;
-use Omnipay\PayPal\Message\ExpressAuthorizeRequest;
 use Omnipay\PayPal\Support\InstantUpdateApi\ShippingOption;
 use Omnipay\Tests\TestCase;
 

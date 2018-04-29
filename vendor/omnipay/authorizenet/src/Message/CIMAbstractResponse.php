@@ -12,14 +12,6 @@ use Omnipay\Common\Message\RequestInterface;
  */
 abstract class CIMAbstractResponse extends AbstractResponse
 {
-    /**
-     * The overall transaction result code.
-     */
-    const TRANSACTION_RESULT_CODE_APPROVED = 1;
-    const TRANSACTION_RESULT_CODE_DECLINED = 2;
-    const TRANSACTION_RESULT_CODE_ERROR    = 3;
-    const TRANSACTION_RESULT_CODE_REVIEW   = 4;
-
     protected $responseType = null;
 
     public function __construct(RequestInterface $request, $data)
@@ -48,7 +40,7 @@ abstract class CIMAbstractResponse extends AbstractResponse
 
     public function isSuccessful()
     {
-        return $this->getResultCode() === static::TRANSACTION_RESULT_CODE_APPROVED;
+        return 1 === $this->getResultCode();
     }
 
     /**
@@ -59,12 +51,11 @@ abstract class CIMAbstractResponse extends AbstractResponse
     public function getResultCode()
     {
         $result = (string)$this->data['messages'][0]['resultCode'];
-
         switch ($result) {
             case 'Ok':
-                return static::TRANSACTION_RESULT_CODE_APPROVED;
+                return 1;
             case 'Error':
-                return static::TRANSACTION_RESULT_CODE_ERROR;
+                return 3;
             default:
                 return null;
 
@@ -121,33 +112,24 @@ abstract class CIMAbstractResponse extends AbstractResponse
         return $message;
     }
 
-    /**
-     * Get the reusable card reference from the response.
-     * Used in conjuction with CIMGateway::createCard()
-     *
-     * @return string|null
-     */
     public function getCardReference()
     {
         $cardRef = null;
-
         if ($this->isSuccessful()) {
             $data['customerProfileId'] = $this->getCustomerProfileId();
             $data['customerPaymentProfileId'] = $this->getCustomerPaymentProfileId();
-
             if (!empty($data['customerProfileId']) && !empty($data['customerPaymentProfileId'])) {
                 // For card reference both profileId and payment profileId should exist
                 $cardRef = json_encode($data);
             }
         }
-
         return $cardRef;
     }
 
     /**
      * http://bookofzeus.com/articles/convert-simplexml-object-into-php-array/
      *
-     * Convert a simpleXMLElement into an array
+     * Convert a simpleXMLElement in to an array
      *
      * @param \SimpleXMLElement $xml
      *
@@ -156,11 +138,9 @@ abstract class CIMAbstractResponse extends AbstractResponse
     public function xml2array(\SimpleXMLElement $xml)
     {
         $arr = array();
-
         foreach ($xml as $element) {
             $tag = $element->getName();
             $e = get_object_vars($element);
-
             if (!empty($e)) {
                 $arr[$tag][] = $element instanceof \SimpleXMLElement ? $this->xml2array($element) : $e;
             } else {
@@ -193,10 +173,8 @@ abstract class CIMAbstractResponse extends AbstractResponse
 
         /** @var CreditCard $card */
         $card = $this->request->getCard();
-
         if ($card) {
             $ccString = $card->getNumber() . $card->getExpiryMonth() . $card->getExpiryYear();
-
             $this->data['hash'] = md5($ccString);
             $this->data['brand'] = $card->getBrand();
             $this->data['expiryYear'] = $card->getExpiryYear();

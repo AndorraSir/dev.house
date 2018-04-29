@@ -84,16 +84,6 @@ abstract class SIMAbstractRequest extends AbstractRequest
         return $this->getParameter('developerEndpoint');
     }
 
-    public function setInvoiceNumber($value)
-    {
-        return $this->setParameter('invoiceNumber', $value);
-    }
-
-    public function getInvoiceNumber()
-    {
-        return $this->getParameter('invoiceNumber');
-    }
-
     /**
      * Base data used only for the AIM API.
      */
@@ -117,8 +107,8 @@ abstract class SIMAbstractRequest extends AbstractRequest
         $data = array();
         $data['x_amount'] = $this->getAmount();
 
-        // The invoice number field is properly supported.
-        $data['x_invoice_num'] = $this->getInvoiceNumber();
+        // This is deprecated. The invoice number field is reserved for the invoice number.
+        $data['x_invoice_num'] = $this->getTransactionId();
 
         // A custom field can be used to pass over the merchant site transaction ID.
         $data[static::TRANSACTION_ID_PARAM] = $this->getTransactionId();

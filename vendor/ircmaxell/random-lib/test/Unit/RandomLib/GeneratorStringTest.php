@@ -1,23 +1,13 @@
 <?php
-
-/*
- * The RandomLib library for securely generating random numbers and strings in PHP
- *
- * @author     Anthony Ferrara <ircmaxell@ircmaxell.com>
- * @copyright  2011 The Authors
- * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- * @version    Build @@version@@
- */
 namespace RandomLib;
 
-class GeneratorStringTest extends \PHPUnit_Framework_TestCase
-{
+class GeneratorStringTest extends \PHPUnit_Framework_TestCase {
+
     protected $generator = null;
     protected $mixer = null;
     protected $sources = array();
 
-    public static function provideCharCombinations()
-    {
+    public static function provideCharCombinations() {
         return array(
             array("CHAR_LOWER", implode("", range("a", "z"))),
             array("CHAR_UPPER", implode("", range("A", "Z"))),
@@ -37,8 +27,7 @@ class GeneratorStringTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function setUp()
-    {
+    public function setUp() {
         $source1 = $this->getMock('RandomLib\Source');
         $source1->expects($this->any())
             ->method('generate')
@@ -47,7 +36,6 @@ class GeneratorStringTest extends \PHPUnit_Framework_TestCase
                 for ($i = 0; $i < $size; $i++) {
                     $r .= chr($i % 256);
                 }
-
                 return $r;
             }
         ));
@@ -59,7 +47,6 @@ class GeneratorStringTest extends \PHPUnit_Framework_TestCase
                 for ($i = 0; $i < $size; $i++) {
                     $r .= chr(0);
                 }
-
                 return $r;
             }
         ));
@@ -67,15 +54,12 @@ class GeneratorStringTest extends \PHPUnit_Framework_TestCase
         $this->mixer = $this->getMock('RandomLib\Mixer');
         $this->mixer->expects($this->any())
             ->method('mix')
-            ->will($this->returnCallback(function (array $sources) {
-                if (empty($sources)) {
-                    return '';
-                }
+            ->will($this->returnCallback(function(array $sources) {
+                if (empty($sources)) return '';
                 $start = array_pop($sources);
-
                 return array_reduce(
                     $sources,
-                    function ($el1, $el2) {
+                    function($el1, $el2) {
                         return $el1 ^ $el2;
                     },
                     $start
@@ -89,8 +73,7 @@ class GeneratorStringTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider provideCharCombinations
      */
-    public function testScheme($schemeName, $expected, $scheme = 0)
-    {
+    public function testScheme($schemeName, $expected, $scheme = 0) {
         // test for overspecification by doubling the expected amount
         if (!$scheme) {
             $scheme = constant("RandomLib\Generator::$schemeName");
@@ -98,4 +81,6 @@ class GeneratorStringTest extends \PHPUnit_Framework_TestCase
         $chars = $this->generator->generateString(strlen($expected) * 2, $scheme);
         $this->assertEquals($expected . $expected, $chars, sprintf("Testing Generator::%s failed", $schemeName));
     }
+
+
 }

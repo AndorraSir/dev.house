@@ -1,14 +1,4 @@
 <?php
-
-/*
- * The RandomLib library for securely generating random numbers and strings in PHP
- *
- * @author     Anthony Ferrara <ircmaxell@ircmaxell.com>
- * @copyright  2011 The Authors
- * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- * @version    Build @@version@@
- */
-
 /**
  * The Hash medium strength mixer class
  *
@@ -18,21 +8,18 @@
  * PHP version 5.3
  *
  * @see        http://tools.ietf.org/html/rfc4086#section-5.2
- *
  * @category   PHPCryptLib
  * @package    Random
  * @subpackage Mixer
- *
  * @author     Anthony Ferrara <ircmaxell@ircmaxell.com>
  * @copyright  2011 The Authors
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- *
  * @version    Build @@version@@
  */
+
 namespace RandomLib\Mixer;
 
-use SecurityLib\Strength;
-use SecurityLib\Util;
+use \SecurityLib\Strength;
 
 /**
  * The Hash medium strength mixer class
@@ -41,15 +28,12 @@ use SecurityLib\Util;
  * section 5.2
  *
  * @see        http://tools.ietf.org/html/rfc4086#section-5.2
- *
  * @category   PHPCryptLib
  * @package    Random
  * @subpackage Mixer
- *
  * @author     Anthony Ferrara <ircmaxell@ircmaxell.com>
  */
-class Hash extends \RandomLib\AbstractMixer
-{
+class Hash extends \RandomLib\AbstractMixer {
 
     /**
      * @var string The hash instance to use
@@ -63,28 +47,25 @@ class Hash extends \RandomLib\AbstractMixer
      *
      * @return void
      */
-    public function __construct($hash = 'sha512')
-    {
+    public function __construct($hash = 'sha512') {
         $this->hash = $hash;
     }
 
     /**
      * Return an instance of Strength indicating the strength of the source
      *
-     * @return \SecurityLib\Strength An instance of one of the strength classes
+     * @return Strength An instance of one of the strength classes
      */
-    public static function getStrength()
-    {
+    public static function getStrength() {
         return new Strength(Strength::MEDIUM);
     }
 
     /**
      * Test to see if the mixer is available
      *
-     * @return bool If the mixer is available on the system
+     * @return boolean If the mixer is available on the system
      */
-    public static function test()
-    {
+    public static function test() {
         return true;
     }
 
@@ -93,9 +74,8 @@ class Hash extends \RandomLib\AbstractMixer
      *
      * @return int The block size
      */
-    protected function getPartSize()
-    {
-        return Util::safeStrlen(hash($this->hash, '', true));
+    protected function getPartSize() {
+        return strlen(hash($this->hash, '', true));
     }
 
     /**
@@ -106,8 +86,7 @@ class Hash extends \RandomLib\AbstractMixer
      *
      * @return string The mixed data
      */
-    protected function mixParts1($part1, $part2)
-    {
+    protected function mixParts1($part1, $part2) {
         return hash_hmac($this->hash, $part1, $part2, true);
     }
 
@@ -119,8 +98,8 @@ class Hash extends \RandomLib\AbstractMixer
      *
      * @return string The mixed data
      */
-    protected function mixParts2($part1, $part2)
-    {
+    protected function mixParts2($part1, $part2) {
         return hash_hmac($this->hash, $part2, $part1, true);
     }
+
 }

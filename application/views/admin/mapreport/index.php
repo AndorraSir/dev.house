@@ -130,7 +130,7 @@
                 values:[
                 <?php if(count($estates)): foreach($estates as $estate):
                 
-                    $icon_url = base_url('admin-assets/img/markers/marker_blue.png');
+                    $icon_url = base_url('assets/img/markers/marker_blue.png');
                     $days_between = ceil(abs(strtotime($estate->date_removed) - strtotime($estate->date_submited)) / 86400);
                     $json = json_decode($estate->property_json);
                     
@@ -138,8 +138,8 @@
                     {
                         if($json->{'option6_1'} != '' && $json->{'option6_1'} != 'empty')
                         {
-                            if(file_exists(FCPATH.'admin-assets/img/markers/'.$json->{'option6_1'}.'.png'))
-                            $icon_url = base_url('admin-assets/img/markers/'.$json->{'option6_1'}.'.png');
+                            if(file_exists(FCPATH.'assets/img/markers/'.$json->{'option6_1'}.'.png'))
+                            $icon_url = base_url('assets/img/markers/'.$json->{'option6_1'}.'.png');
                         }
                     }
                 

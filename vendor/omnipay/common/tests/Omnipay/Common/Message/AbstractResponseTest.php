@@ -90,12 +90,6 @@ class AbstractResponseTest extends TestCase
 
         $this->response->getRedirectResponse();
     }
-
-    public function testGetTransactionIdNull()
-    {
-        $this->response = m::mock('\Omnipay\Common\Message\AbstractResponseTest_MockRedirectResponse')->makePartial();
-        $this->assertNull($this->response->getTransactionId());
-    }
 }
 
 class AbstractResponseTest_MockRedirectResponse extends AbstractResponse implements RedirectResponseInterface

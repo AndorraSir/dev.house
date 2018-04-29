@@ -110,10 +110,10 @@ $skip_files = array(
 '.htaccess',
 'README.md',
 'custom_database.php',
-'templates/bootstrap2-responsive/widgets/right_mortgage.php',
-'templates/bootstrap2-responsive/widgets/property_right_currency-conversions.php',
-'templates/bootstrap2-responsive/widgets/property_right_qrcode.php',
-'templates/bootstrap2-responsive/assets/js/places.js',
+'templates/modules/widgets/right_mortgage.php',
+'templates/modules/widgets/property_right_currency-conversions.php',
+'templates/modules/widgets/property_right_qrcode.php',
+'templates/modules/assets/js/places.js',
 
 //'templates/boomerang/widgets/right_mortgage.php',
 //'templates/boomerang/widgets/property_right_currency-conversions.php',
@@ -125,7 +125,6 @@ $skip_files = array(
 'templates/proper/widgets/right_mortgage.php',
 'templates/realocation/widgets/property_right_qrcode.php',
 'templates/realocation/assets/js/places.js',
-'templates/realia/widgets/property_right_currency-conversions.php',
 'templates/realia/widgets/property_right_qrcode.php',
 'templates/realia/assets/js/places.js',
 );
@@ -134,61 +133,26 @@ $skip_folders = array(
 
 // [languages]
 
-'application/language/arabic',
-'application/language/dutch',
-'application/language/german',
-'application/language/italian',
-'application/language/persian',
-'application/language/portuguese',
-'application/language/russian',
-'application/language/serbian',
-'application/language/slovenian',
+
 'application/language/spanish',
-'application/language/turkish',
-'application/language/albanian',
-'application/language/espana',
+'application/language/catalan',
+'application/language/french',
 
-'system/language/arabic',
-'system/language/dutch',
-'system/language/german',
-'system/language/italian',
-'system/language/persian',
-'system/language/portuguese',
-'system/language/russian',
-'system/language/serbian',
-'system/language/slovenian',
+
 'system/language/spanish',
-'system/language/turkish',
-'system/language/albanian',
-'system/language/espana',
+'system/language/catalan',
+'system/language/french',
 
-'templates/realsite/language/arabic',
-'templates/realsite/language/dutch',
-'templates/realsite/language/german',
-'templates/realsite/language/italian',
-'templates/realsite/language/persian',
-'templates/realsite/language/portuguese',
-'templates/realsite/language/russian',
-'templates/realsite/language/serbian',
-'templates/realsite/language/slovenian',
+
 'templates/realsite/language/spanish',
-'templates/realsite/language/turkish',
-'templates/realsite/language/albanian',
-'templates/realsite/language/espana',
+'templates/realsite/language/catalan',
+'templates/realsite/language/french',
 
-'templates/boomerang/language/arabic',
-'templates/boomerang/language/dutch',
-'templates/boomerang/language/german',
-'templates/boomerang/language/italian',
-'templates/boomerang/language/persian',
-'templates/boomerang/language/portuguese',
-'templates/boomerang/language/russian',
-'templates/boomerang/language/serbian',
-'templates/boomerang/language/slovenian',
+
+
 'templates/boomerang/language/spanish',
-'templates/boomerang/language/turkish',
-'templates/boomerang/language/albanian',
-'templates/boomerang/language/espana',
+'templates/boomerang/language/catalan',
+'templates/boomerang/language/french',
 // [/languages]
 
 'exports',
@@ -204,7 +168,7 @@ $skip_folders = array(
         $this->generate_script($template, $skip_files, $skip_folders, 'basic');
     }
     
-    public function generate_script_basic($template = 'bootstrap2-responsive')
+    public function generate_script_basic($template = 'modules')
     {
 $skip_files = array(
 'application/controllers/admin/ads.php',
@@ -235,10 +199,10 @@ $skip_files = array(
 '.htaccess',
 'README.md',
 'custom_database.php',
-'templates/bootstrap2-responsive/widgets/right_mortgage.php',
-'templates/bootstrap2-responsive/widgets/property_right_currency-conversions.php',
-'templates/bootstrap2-responsive/widgets/property_right_qrcode.php',
-'templates/bootstrap2-responsive/assets/js/places.js',
+'templates/modules/widgets/right_mortgage.php',
+'templates/modules/widgets/property_right_currency-conversions.php',
+'templates/modules/widgets/property_right_qrcode.php',
+'templates/modules/assets/js/places.js',
 
 'templates/boomerang/widgets/right_mortgage.php',
 'templates/boomerang/widgets/property_right_currency-conversions.php',
@@ -269,7 +233,7 @@ $skip_folders = array(
         $this->generate_script($template, $skip_files, $skip_folders, 'basic');
     }
     
-    public function generate_script_full($template = 'bootstrap2-responsive')
+    public function generate_script_full($template = 'modules')
     {
 $skip_files = array(
 );
@@ -284,7 +248,7 @@ $skip_folders = array(
         $this->generate_script($template, $skip_files, $skip_folders, 'full');
     }
     
-    public function generate_script($template = 'bootstrap2-responsive', $skip_files, $skip_folders, $suffix='basic')
+    public function generate_script($template = 'modules', $skip_files, $skip_folders, $suffix='basic')
     {
         $this->load->helper('file');
         $zip = new ZipArchive;

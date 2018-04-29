@@ -33,14 +33,9 @@
       <ul class="nav nav-tabs settings-tabs">
         <li><a href="<?php echo site_url('admin/settings/contact')?>"><?php echo lang('Company contact')?></a></li>
         <li><a href="<?php echo site_url('admin/settings/language')?>"><?php echo lang('Languages')?></a></li>
-        <li><a href="<?php echo site_url('admin/settings/template')?>"><?php echo lang('Template')?></a></li>
         <li class="active"><a href="<?php echo site_url('admin/settings/system')?>"><?php echo lang('System settings')?></a></li>
-        <li><a href="<?php echo site_url('admin/settings/addons')?>"><?php echo lang_check('Addons')?></a></li>
         <?php if(config_db_item('slug_enabled') === TRUE): ?>
         <li><a href="<?php echo site_url('admin/settings/slug')?>"><?php echo lang_check('SEO slugs')?></a></li>
-        <?php endif; ?>
-        <?php if(config_db_item('currency_conversions_enabled') === TRUE): ?>
-        <li><a href="<?php echo site_url('admin/settings/currency_conversions')?>"><?php echo lang_check('Currency Conversions')?></a></li>
         <?php endif; ?>
       </ul>
     </div>
@@ -83,21 +78,7 @@
                                     <?php echo form_input('zoom', set_value('zoom', isset($settings['zoom'])?$settings['zoom']:''), 'class="form-control" id="inputAddress" placeholder="'.lang('Zoom index').'"')?>
                                   </div>
                                 </div>
-                                
-                                <div class="form-group">
-                                  <label class="col-lg-2 control-label"><?php echo lang('PayPal payment email')?></label>
-                                  <div class="col-lg-10">
-                                    <?php echo form_input('paypal_email', set_value('paypal_email', isset($settings['paypal_email'])?$settings['paypal_email']:''), 'class="form-control" id="inputPayPalEmail" placeholder="'.lang('PayPal payment email').'"')?>
-                                  </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                  <label class="col-lg-2 control-label"><?php echo lang_check('Enable payments')?></label>
-                                  <div class="col-lg-10">
-                                    <?php echo form_checkbox('payments_enabled', '1', set_value('payments_enabled', isset($settings['payments_enabled'])?$settings['payments_enabled']:'0'), 'id="input_payments_enabled"')?>
-                                  </div>
-                                </div>
-                                
+                              
                                 <div class="form-group">
                                   <label class="col-lg-2 control-label"><?php echo lang_check('Activation price')?></label>
                                   <div class="col-lg-10">
@@ -241,13 +222,6 @@
                                   <label class="col-lg-2 control-label"><?php echo lang_check('AdSense 160x600 code')?></label>
                                   <div class="col-lg-10">
                                     <?php echo form_textarea('adsense160_600', set_value('adsense160_600', isset($settings['adsense160_600'])?$settings['adsense160_600']:''), 'placeholder="'.lang_check('AdSense 160x600 code').'" rows="3" class="form-control"')?>
-                                  </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                  <label class="col-lg-2 control-label"><?php echo lang_check('Withdrawal payment details')?></label>
-                                  <div class="col-lg-10">
-                                    <?php echo form_textarea('withdrawal_details', set_value('withdrawal_details', isset($settings['withdrawal_details'])?$settings['withdrawal_details']:''), 'placeholder="'.lang_check('Withdrawal payment details').'" rows="3" class="form-control"')?>
                                   </div>
                                 </div>
                                 

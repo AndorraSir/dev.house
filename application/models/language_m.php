@@ -17,7 +17,7 @@ class Language_m extends MY_Model {
         'domain' => array('field'=>'domain', 'label'=>'lang:Custom domain', 'rules'=>'trim')
     );
 
-    public $backend_languages = array('hr'=>'Croatian', 'en'=>'English');
+    public $backend_languages = array('es'=>'Spanish', 'en'=>'English');
     public $db_languages_code = array();
     public $db_languages_code_obj = array();
     public $db_languages_id = array();

@@ -1,14 +1,14 @@
 {
-    "name": "facebook/graph-sdk",
+    "name": "facebook/php-sdk-v4",
     "description": "Facebook SDK for PHP",
     "keywords": ["facebook", "sdk"],
     "type": "library",
-    "homepage": "https://github.com/facebook/php-graph-sdk",
+    "homepage": "https://github.com/facebook/facebook-php-sdk-v4",
     "license": "Facebook Platform",
     "authors": [
         {
             "name": "Facebook",
-            "homepage": "https://github.com/facebook/php-graph-sdk/contributors"
+            "homepage": "https://github.com/facebook/facebook-php-sdk-v4/contributors"
         }
     ],
     "require": {
@@ -20,7 +20,6 @@
         "guzzlehttp/guzzle": "~5.0"
     },
     "suggest": {
-        "paragonie/random_compat": "Provides a better CSPRNG option in PHP 5",
         "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client"
     },
     "autoload": {

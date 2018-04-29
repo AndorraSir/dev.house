@@ -383,10 +383,7 @@ abstract class AbstractRequest implements RequestInterface
      */
     public function setCurrency($value)
     {
-        if ($value !== null) {
-            $value = strtoupper($value);
-        }
-        return $this->setParameter('currency', $value);
+        return $this->setParameter('currency', strtoupper($value));
     }
 
     /**

@@ -38,13 +38,6 @@ class Facebook extends AbstractProvider
     const BASE_GRAPH_URL_BETA = 'https://graph.beta.facebook.com/';
 
     /**
-     * Regular expression used to check for graph API version format
-     *
-     * @const string
-     */
-    const GRAPH_API_VERSION_REGEX = '~^v\d+\.\d+$~';
-    
-    /**
      * The Graph API version to use for requests.
      *
      * @var string
@@ -70,9 +63,6 @@ class Facebook extends AbstractProvider
 
         if (empty($options['graphApiVersion'])) {
             $message = 'The "graphApiVersion" option not set. Please set a default Graph API version.';
-            throw new \InvalidArgumentException($message);
-        } elseif (!preg_match(self::GRAPH_API_VERSION_REGEX, $options['graphApiVersion'])) {
-            $message = 'The "graphApiVersion" must start with letter "v" followed by version number, ie: "v2.4".';
             throw new \InvalidArgumentException($message);
         }
 
@@ -100,20 +90,14 @@ class Facebook extends AbstractProvider
 
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        $fields = [
+        $fields = implode(',', [
             'id', 'name', 'first_name', 'last_name',
-            'email', 'hometown', 'picture.type(large){url,is_silhouette}',
-            'cover{source}', 'gender', 'locale', 'link', 'timezone', 'age_range'
-        ];
-
-        // backwards compatibility less than 2.8
-        if (version_compare(substr($this->graphApiVersion, 1), '2.8') < 0) {
-            $fields[] = 'bio';
-        }
-
+            'email', 'hometown', 'bio', 'picture.type(large){url,is_silhouette}',
+            'cover{source}', 'gender', 'locale', 'link', 'timezone'
+        ]);
         $appSecretProof = AppSecretProof::create($this->clientSecret, $token->getToken());
 
-        return $this->getBaseGraphUrl().$this->graphApiVersion.'/me?fields='.implode(',', $fields)
+        return $this->getBaseGraphUrl().$this->graphApiVersion.'/me?fields='.$fields
                         .'&access_token='.$token.'&appsecret_proof='.$appSecretProof;
     }
 

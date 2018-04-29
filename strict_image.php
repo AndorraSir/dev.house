@@ -73,7 +73,7 @@ function output_error_image()
     imagefilledrectangle($img,0,0,500,500,$bg);
     $color = imagecolorallocate($img, 0, 0, 0);
     $text = "Error in image";
-    imagettftext($img, 12, 0, 190, 20, $color, 'admin-assets/font/verdana.ttf', $text);
+    imagettftext($img, 12, 0, 190, 20, $color, 'admin/font/verdana.ttf', $text);
 
     
     header('Content-Type: image/jpg');

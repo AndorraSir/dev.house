@@ -497,7 +497,7 @@ class Files extends Admin_Controller {
     //                    string(6) "DELETE"
     //                }
                     
-                    $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/_blank.png');
+                    $file->thumbnail_url = base_url('assets/img/icons/filetype/_blank.png');
                     $file->zoom_enabled = false;
                     $file->delete_url = site_url_q('files/upload/rep_'.$repository_id, '_method=DELETE&file='.rawurlencode($file->name));
                     if(file_exists(FCPATH.'/files/thumbnail/'.$file->name))
@@ -505,9 +505,9 @@ class Files extends Admin_Controller {
                         $file->thumbnail_url = base_url('files/thumbnail/'.$file->name);
                         $file->zoom_enabled = true;
                     }
-                    else if(file_exists(FCPATH.'admin-assets/img/icons/filetype/'.get_file_extension($file->name).'.png'))
+                    else if(file_exists(FCPATH.'assets/img/icons/filetype/'.get_file_extension($file->name).'.png'))
                     {
-                        $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/'.get_file_extension($file->name).'.png');
+                        $file->thumbnail_url = base_url('assets/img/icons/filetype/'.get_file_extension($file->name).'.png');
                     }
                     
                     $file->short_name = character_hard_limiter($file->name, 20);

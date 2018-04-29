@@ -25,7 +25,7 @@ class DeleteInvoiceItemRequest extends AbstractRequest
     /**
      * Set the set invoice-item reference.
      *
-     * @return DeleteInvoiceItemRequest provides a fluent interface.
+     * @return FetchInvoiceItemLinesRequest provides a fluent interface.
      */
     public function setInvoiceItemReference($value)
     {
