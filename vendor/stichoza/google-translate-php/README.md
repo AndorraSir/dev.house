@@ -39,6 +39,7 @@ Or set/change languages later
 $tr = new TranslateClient(); // Default is from 'auto' to 'en'
 $tr->setSource('en'); // Translate from English
 $tr->setTarget('ka'); // Translate to Georgian
+$tr->setUrlBase('http://translate.google.cn/translate_a/single'); // Set Google Translate URL base (This is not necessary, only for some countries)
 ```
 Translate sentences
 ```php
@@ -84,6 +85,16 @@ $tr = new TranslateClient(null, 'en', [
         ]
     ]
 ]);
+```
+
+You can use `setHttpOption` method configure [guzzle client configuration options](http://docs.guzzlephp.org/en/latest/request-options.html).
+
+```php
+// set proxy to tcp://localhost:8090
+$tr->setHttpOption(['proxy' => 'tcp://localhost:8090'])->translate('Hello');
+
+// set proxy to socks5://localhost:1080
+$tr->setHttpOption(['proxy' => 'socks5://localhost:1080'])->translate('World');
 ```
 
 For more information, see [Creating a Client](http://guzzle.readthedocs.org/en/latest/quickstart.html#creating-a-client) section in Guzzle docs (6.x version).
@@ -136,5 +147,5 @@ In addition `translate()` method will return boolean `FALSE` if there is no tran
 
 This package is developed for educational purposes only. Do not depend on this package as it may break anytime as it is based on crawling the Google Translate website. Consider buying [Official Google Translate API](https://cloud.google.com/translate/) for other types of usage.
 
-Also, Google might ban your server IP or [requre to solve CAPTCHA](https://github.com/Stichoza/google-translate-php/issues/18) if you send unusual traffic (large amount of data/requests).
+Also, Google might ban your server IP or [require to solve CAPTCHA](https://github.com/Stichoza/google-translate-php/issues/18) if you send unusual traffic (large amount of data/requests).
  

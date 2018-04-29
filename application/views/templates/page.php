@@ -1,5 +1,5 @@
 		<!-- Main content -->
- 		<div class="col-9">
+ 		<div class="span9">
  			<article>
  				<h2><?php echo e($page->title); ?></h2>
  				<?php echo $page->body; ?> 

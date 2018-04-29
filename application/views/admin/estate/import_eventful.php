@@ -114,7 +114,7 @@
                                 <div class="col-lg-offset-2 col-lg-10">
                                     <?php echo form_submit('submit', lang_check('Import'), 'class="btn btn-primary"') ?>
                                     <a href="<?php echo site_url('admin/estate/') ?>" class="btn btn-default" type="button"><?php echo lang('Cancel') ?></a>
-                                    <img src="<?php echo base_url('assets/img/loading.gif')?>" id="pre_loading_gif"  style="display:none;height: 20px; margin-left: 5px;" alt="" />
+                                    <img src="<?php echo base_url('admin-assets/img/loading.gif')?>" id="pre_loading_gif"  style="display:none;height: 20px; margin-left: 5px;" alt="" />
                                 </div>
                             </div>
                             <?php echo form_close() ?>

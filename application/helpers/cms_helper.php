@@ -487,7 +487,7 @@ function _simg($filename, $dim = '640x480', $cut_enabled=false)
     
     if(!file_exists('files/'.$filename))
     {
-        $filename_encode = basename('assets/img/no_image.jpg');
+        $filename_encode = basename('admin-assets/img/no_image.jpg');
     }
     
     if($cut_enabled === true)

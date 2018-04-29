@@ -365,7 +365,7 @@ class Frontuser_Controller extends MY_Controller
                 'word' => substr(md5($captcha_hash.config_item('encryption_key')), 0, 5),
                 'img_path' => FCPATH.'files/captcha/',
                 'img_url' => base_url('files/captcha').'/',
-                'font_path' => FCPATH.'assets/font/verdana.ttf',
+                'font_path' => FCPATH.'admin-assets/font/verdana.ttf',
                 'img_width' => 100,
                 'img_height' => 30,
                 'expiration' => 7200
@@ -445,7 +445,7 @@ class Frontuser_Controller extends MY_Controller
         $this->data['page_files'] = array();
         foreach($files as $key=>$file)
         {
-            $file->thumbnail_url = base_url('assets/img/icons/filetype/_blank.png');
+            $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/_blank.png');
             $file->url = base_url('files/'.$file->filename);
 
             if(file_exists(FCPATH.'files/thumbnail/'.$file->filename))
@@ -458,9 +458,9 @@ class Frontuser_Controller extends MY_Controller
 //                    $this->data['page_images'][] = $file;
 //                }
             }
-            else if(file_exists(FCPATH.'assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
+            else if(file_exists(FCPATH.'admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
             {
-                $file->thumbnail_url = base_url('assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
+                $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
                 $this->data['documents_'.$file->repository_id][] = $file;
 //                if($this->temp_data['page']->repository_id == $file->repository_id)
 //                {

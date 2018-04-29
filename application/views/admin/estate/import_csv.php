@@ -114,7 +114,7 @@
         <a class="label label-warning" target="_blank" href="http://iwinter.com.hr/support/?p=7867"><?php _l('Examples and guides'); ?></a>
         <br /><br />
         <pre>
-    <img src='<?php echo base_url('assets/img/example_csv.jpg') ?>' style="max-width: 100%;">
+    <img src='<?php echo base_url('admin-assets/img/example_csv.jpg') ?>' style="max-width: 100%;">
         </pre>
     <?php endif; ?>
             </div>

@@ -266,8 +266,8 @@ foreach($obj_widgets->PRIMARY as $key=>$obj)
                   </div>
                 </div>
                   <div class="widget-foot">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/js/magnific-popup/magnific-popup.css')?>" /> 
-<script src="<?php echo base_url('assets/js/magnific-popup/jquery.magnific-popup.js')?>"></script> 
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('admin-assets/js/magnific-popup/magnific-popup.css')?>" /> 
+<script src="<?php echo base_url('admin-assets/js/magnific-popup/jquery.magnific-popup.js')?>"></script> 
 <script>
 
 var id_autoincrement = 1;
@@ -614,7 +614,7 @@ td.box.SECONDARY
     <div class="control-group">
         <div class="controls">
             <button id="unhide-agent-mask" type="button" class="btn"><?php echo lang_check('Submit'); ?></button>
-            <img id="ajax-indicator-masking" src="<?php echo base_url(); ?>assets/img/loading.gif" style="display: none;" />
+            <img id="ajax-indicator-masking" src="<?php echo base_url(); ?>admin-assets/img/loading.gif" style="display: none;" />
         </div>
     </div>
 </form>

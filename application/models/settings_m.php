@@ -40,6 +40,8 @@ class Settings_m extends MY_Model {
     public $rules_system = array(
         'noreply' => array('field'=>'noreply', 'label'=>'lang:No-reply email', 'rules'=>'trim|required|valid_email'),
         'zoom' => array('field'=>'zoom', 'label'=>'lang:Zoom index', 'rules'=>'trim|less_than[19]|required|is_natural'),
+        'paypal_email' => array('field'=>'paypal_email', 'label'=>'lang:PayPal payment email', 'rules'=>'trim|valid_email'),
+        'payments_enabled'=> array('field'=>'payments_enabled', 'label'=>'lang:Enable payments', 'rules'=>'trim'),
         'walkscore_enabled'=> array('field'=>'walkscore_enabled', 'label'=>'lang:Walkscore enabled', 'rules'=>'trim'),
         'property_subm_disabled'=> array('field'=>'property_subm_disabled', 'label'=>'lang:Property submission disabled', 'rules'=>'trim'),
         'maps_api_key'=> array('field'=>'maps_api_key', 'label'=>'lang:Google Maps API key', 'rules'=>'trim|required'),
@@ -67,6 +69,7 @@ class Settings_m extends MY_Model {
         'reviews_enabled' => array('field'=>'reviews_enabled', 'label'=>'lang:Enable reviews', 'rules'=>'trim'),
         'reviews_public_visible_enabled' => array('field'=>'reviews_public_visible_enabled', 'label'=>'lang:Enable reviews public visible', 'rules'=>'trim'),
         'showroom_slideshow_enabled' => array('field'=>'showroom_slideshow_enabled', 'label'=>'lang:Enable showroom slideshow', 'rules'=>'trim'),
+        'withdrawal_details' => array('field'=>'withdrawal_details', 'label'=>'lang:Withdrawal payment details', 'rules'=>'trim'),
         'booking_fee' => array('field'=>'booking_fee', 'label'=>'lang:Booking fee percentage %', 'rules'=>'trim|is_natural'),
         
         'page_offline' => array('field'=>'page_offline', 'label'=>'lang:Page offline', 'rules'=>'trim'),

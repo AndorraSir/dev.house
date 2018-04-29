@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body style="padding: 10px">
-<a href="<?php echo site_url(); ?>"><img title="website logo" alt="logo png" src="<?php echo base_url('assets/img/stamp.png');?>" /></a>
+<a href="<?php echo site_url(); ?>"><img title="website logo" alt="logo png" src="<?php echo base_url('admin-assets/img/stamp.png');?>" /></a>
 <p><?php _l('You have up to 7 days to review the listing and submit it again'); ?></p>
 <?php foreach($data as $key=>$value): ?>
 <?php if(!empty($value)): ?>

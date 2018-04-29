@@ -117,7 +117,7 @@ class Page extends Admin_Controller
         $files = $this->file_m->get();
         foreach($files as $key=>$file)
         {
-            $file->thumbnail_url = base_url('assets/img/icons/filetype/_blank.png');
+            $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/_blank.png');
             $file->zoom_enabled = false;
             $file->download_url = base_url('files/'.$file->filename);
             $file->delete_url = site_url_q('files/upload/rep_'.$file->repository_id, '_method=DELETE&amp;file='.rawurlencode($file->filename));
@@ -127,9 +127,9 @@ class Page extends Admin_Controller
                 $file->thumbnail_url = base_url('files/thumbnail/'.$file->filename);
                 $file->zoom_enabled = true;
             }
-            else if(file_exists(FCPATH.'assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
+            else if(file_exists(FCPATH.'admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
             {
-                $file->thumbnail_url = base_url('assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
+                $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
             }
             
             $this->data['files'][$file->repository_id][] = $file;

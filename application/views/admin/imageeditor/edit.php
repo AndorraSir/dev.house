@@ -2,10 +2,10 @@
 <html>
   <head>
     <title><?php _l('Image croping'); ?></title>
-    <link href="<?php echo base_url('assets/style/bootstrap.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('admin-assets/style/bootstrap.css')?>" rel="stylesheet">
     
-    <script src="<?php echo base_url('assets/js/cropit/jquery.min.js')?>"></script>
-    <script src="<?php echo base_url('assets/js/cropit/jquery.cropit.js')?>"></script>
+    <script src="<?php echo base_url('admin-assets/js/cropit/jquery.min.js')?>"></script>
+    <script src="<?php echo base_url('admin-assets/js/cropit/jquery.cropit.js')?>"></script>
 
     <style>
       .cropit-image-preview {
