@@ -9,20 +9,17 @@ $config['per_page'] = 8;
 //Last approved estates
 $config['last_estates_limit'] = 4;
 
-$config['version'] = '';
+$config['version'] = '1.6.2';
 
-$config['default_template_css'] = 'assets/css/bootstrap.min.css';
+$config['default_template_css'] = 'assets/style/css/style.css';
 
-$config['installed'] = false;
+$config['hash_function'] = 'hash';
 
-//$config['color_picker'] = true;
+$config['installed'] = true;
 
-$config['color'] = 'purple';
+$config['captcha_disabled'] = false;
 
-$config['def_package'] = 1;
+$config['admin_beginner_enabled'] = true;
 
-$config['captcha_disabled'] = FALSE;
-
-$config['all_results_default'] = TRUE;
-
+$config['all_results_default'] = true;
 

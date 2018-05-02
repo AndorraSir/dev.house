@@ -61,7 +61,7 @@ class Showroom extends Frontend_Controller
         $this->data['page_files'] = array();
         foreach($files as $key=>$file)
         {
-            $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/_blank.png');
+            $file->thumbnail_url = base_url('assets/img/icons/filetype/_blank.png');
             $file->url = base_url('files/'.$file->filename);
             if(file_exists(FCPATH.'files/thumbnail/'.$file->filename))
             {
@@ -75,9 +75,9 @@ class Showroom extends Frontend_Controller
                 }
 
             }
-            else if(file_exists(FCPATH.'admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
+            else if(file_exists(FCPATH.'assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
             {
-                $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
+                $file->thumbnail_url = base_url('assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
                 $this->data['documents_'.$file->repository_id][] = $file;
                 if($showroom_data['repository_id'] == $file->repository_id)
                 {
@@ -549,7 +549,7 @@ class Showroom extends Frontend_Controller
         $this->data['page_files'] = array();
         foreach($files as $key=>$file)
         {
-            $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/_blank.png');
+            $file->thumbnail_url = base_url('assets/img/icons/filetype/_blank.png');
             $file->url = base_url('files/'.$file->filename);
 
             if(file_exists(FCPATH.'files/thumbnail/'.$file->filename))
@@ -562,9 +562,9 @@ class Showroom extends Frontend_Controller
                     $this->data['page_images'][] = $file;
                 }
             }
-            else if(file_exists(FCPATH.'admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
+            else if(file_exists(FCPATH.'assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
             {
-                $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
+                $file->thumbnail_url = base_url('assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
                 $this->data['documents_'.$file->repository_id][] = $file;
                 if($this->temp_data['page']->repository_id == $file->repository_id)
                 {

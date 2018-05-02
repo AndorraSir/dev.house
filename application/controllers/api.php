@@ -234,7 +234,7 @@ class Api extends CI_Controller
 //        $this->data['page_images'] = array();
 //        foreach($files as $key=>$file)
 //        {
-//            $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/_blank.png');
+//            $file->thumbnail_url = base_url('assets/img/icons/filetype/_blank.png');
 //            $file->url = base_url('files/'.$file->filename);
 //            if(file_exists(FCPATH.'files/thumbnail/'.$file->filename))
 //            {

@@ -1252,10 +1252,10 @@ $(function () {
         $('#inputOption_'+key_id_split[1]+'_'+key_id_split[0]).val(part_table.htmlClean().html());
     }
 </script>
-<script src="<?php echo base_url('admin-assets/js/editable_table/mindmup-editabletable.js')?>"></script>
+<script src="<?php echo base_url('assets/js/editable_table/mindmup-editabletable.js')?>"></script>
 
-<link rel="stylesheet" href="<?php echo base_url('admin-assets/js/zebra/css/flat/zebra_dialog.css')?>">
-<script src="<?php echo base_url('admin-assets/js/zebra/javascript/zebra_dialog.src.js')?>"></script>
+<link rel="stylesheet" href="<?php echo base_url('assets/js/zebra/css/flat/zebra_dialog.css')?>">
+<script src="<?php echo base_url('assets/js/zebra/javascript/zebra_dialog.src.js')?>"></script>
 <script>
 
 /* CL Editor */
@@ -1277,9 +1277,9 @@ $(document).ready(function(){
 
 </script>
 
-<link rel="stylesheet" href="<?php echo base_url('admin-assets/js/pedigree/style.css')?>">
-<script src="<?php echo base_url('admin-assets/js/pedigree/jquery-migrate-1.2.1.min.js')?>"></script>
-<script src="<?php echo base_url('admin-assets/js/pedigree/jquery.tree.js')?>"></script>
+<link rel="stylesheet" href="<?php echo base_url('assets/js/pedigree/style.css')?>">
+<script src="<?php echo base_url('assets/js/pedigree/jquery-migrate-1.2.1.min.js')?>"></script>
+<script src="<?php echo base_url('assets/js/pedigree/jquery.tree.js')?>"></script>
 
 <script>
 
@@ -1301,7 +1301,7 @@ function generate_pedigree_tree(id_key)
         'click_to_delete' : '<?php _l('Click for Delete'); ?>',
         'first_name' : '<?php _l('Title'); ?>',
         'submit' : '<?php _l('Submit'); ?>',
-        'base_path': '<?php echo base_url('admin-assets/js/pedigree')?>/',
+        'base_path': '<?php echo base_url('assets/js/pedigree')?>/',
         'on_change': function(){
             var html_structire = $('#id'+id_key+'.tree').parent();
             html_structire.find('img.load').remove();            

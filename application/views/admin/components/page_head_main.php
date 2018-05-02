@@ -11,35 +11,23 @@
     <meta name="author" content="">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="<?php echo base_url('admin-assets/img/favicon/favicon.png')?>">
+    <link rel="shortcut icon" href="<?php echo base_url('assets/img/favicon/favicon.png')?>">
     
     <!-- Stylesheets -->
-    <link href="<?php echo base_url('admin-assets/style/bootstrap.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/style/css/style.css')?>" rel="stylesheet">
     <!-- Font awesome icon -->
-    <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/font-awesome.css')?>"> 
+    <link rel="stylesheet" href="<?php echo base_url('assets/style/font-awesome.css')?>"> 
     <!-- jQuery UI -->
-    <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/jquery-ui-1.10.3.custom.css')?>"> 
+    <link rel="stylesheet" href="<?php echo base_url('assets/style/jquery-ui-1.10.3.custom.css')?>"> 
     <!-- Calendar -->
-    <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/fullcalendar.css')?>">
-    <!-- prettyPhoto -->
-    <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/prettyPhoto.css')?>">   
-    <!-- Star rating -->
-    <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/rateit.css')?>">
-    <!-- Date picker -->
-    <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/bootstrap-datetimepicker.min.css')?>">
-    <!-- jQuery Gritter -->
-    <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/jquery.gritter.css')?>">
-    <!-- CLEditor -->
-    <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/jquery.cleditor.css')?>"> 
-    <!-- Bootstrap toggle -->
-    <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/bootstrap-switch.css')?>">
+  
     <!-- Main stylesheet -->
-    <link href="<?php echo base_url('admin-assets/style/style.css')?>" rel="stylesheet">
     <!-- Widgets stylesheet -->
-    <link href="<?php echo base_url('admin-assets/style/widgets.css')?>" rel="stylesheet">   
-    <link href="<?php echo base_url('admin-assets/js/footable/css/footable.core.css')?>" rel="stylesheet">   
+    <link href="<?php echo base_url('assets/style/widgets.css')?>" rel="stylesheet">   
+    <link href="<?php echo base_url('assets/js/footable/css/footable.core.css')?>" rel="stylesheet">   
     
-    <link href="<?php echo base_url('admin-assets/style/custom.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/style/custom.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/style/css/custom.css')?>" rel="stylesheet">
     
     <?php
         $week = '';
@@ -61,7 +49,7 @@
     
     <!-- HTML5 Support for IE -->
     <!--[if lt IE 9]>
-    <script src="<?php echo base_url('admin-assets/js/html5shim.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/html5shim.js')?>"></script>
     <![endif]-->
     
     <?php
@@ -87,17 +75,17 @@
     <script type="text/javascript" src="<?php echo $url_protocol;?>maps.google.com/maps/api/js?language=<?php echo $lang_code; ?><?php echo $maps_api_key_prepare; ?>&amp;libraries=places,geometry"></script>
 
     <!-- JS -->
-    <script src="<?php echo base_url('admin-assets/js/jquery.js')?>"></script> <!-- jQuery -->
-    <script src="<?php echo base_url('admin-assets/js/jquery.translator.min.js')?>"></script> <!-- jQuery translate-->
+    <script src="<?php echo base_url('assets/js/jquery.js')?>"></script> <!-- jQuery -->
+    <script src="<?php echo base_url('assets/js/jquery.translator.min.js')?>"></script> <!-- jQuery translate-->
 
-    <script src="<?php echo base_url('admin-assets/js/load-image.js'); ?>"></script>
-    <script src="<?php echo base_url('admin-assets/js/bootstrap.js')?>"></script> <!-- Bootstrap -->
-    <script src="<?php echo base_url('admin-assets/js/jquery-ui-1.10.3.custom.min.js')?>"></script> <!-- jQuery UI -->
-    <script src="<?php echo base_url('admin-assets/js/fullcalendar.min.js')?>"></script> <!-- Full Google Calendar - Calendar -->
-    <script src="<?php echo base_url('admin-assets/js/jquery.rateit.min.js')?>"></script> <!-- RateIt - Star rating -->
-    <script src="<?php echo base_url('admin-assets/js/jquery.prettyPhoto.js')?>"></script> <!-- prettyPhoto -->
-    <script src="<?php echo base_url('admin-assets/js/jquery.mjs.nestedSortable.js');?>"></script>
-    <script src="<?php echo base_url('admin-assets/js/jquery.helpers.js');?>"></script>
+    <script src="<?php echo base_url('assets/js/load-image.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/bootstrap.js')?>"></script> <!-- Bootstrap -->
+    <script src="<?php echo base_url('assets/js/jquery-ui-1.10.3.custom.min.js')?>"></script> <!-- jQuery UI -->
+    <script src="<?php echo base_url('assets/js/fullcalendar.min.js')?>"></script> <!-- Full Google Calendar - Calendar -->
+    <script src="<?php echo base_url('assets/js/jquery.rateit.min.js')?>"></script> <!-- RateIt - Star rating -->
+    <script src="<?php echo base_url('assets/js/jquery.prettyPhoto.js')?>"></script> <!-- prettyPhoto -->
+    <script src="<?php echo base_url('assets/js/jquery.mjs.nestedSortable.js');?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.helpers.js');?>"></script>
     
     
   <script type="text/javascript">
@@ -116,47 +104,47 @@
   </script>
     
     <!-- jQuery Flot -->
-    <script src="<?php echo base_url('admin-assets/js/excanvas.min.js')?>"></script>
-    <script src="<?php echo base_url('admin-assets/js/jquery.flot.js')?>"></script>
-    <script src="<?php echo base_url('admin-assets/js/jquery.flot.resize.js')?>"></script>
-    <script src="<?php echo base_url('admin-assets/js/jquery.flot.pie.js')?>"></script>
-    <script src="<?php echo base_url('admin-assets/js/jquery.flot.stack.js')?>"></script>
-    <script src="<?php echo base_url('admin-assets/js/sparklines.js')?>"></script> <!-- Sparklines -->
-    <script src="<?php echo base_url('admin-assets/js/jquery.cleditor.min.js')?>"></script> <!-- CLEditor -->
-    <script src="<?php echo base_url('admin-assets/js/bootstrap-datetimepicker.min.js')?>"></script> <!-- Date picker -->
-    <script src="<?php echo base_url('admin-assets/js/bootstrap-switch.min.js')?>"></script> <!-- Bootstrap Toggle -->
-    <script src="<?php echo base_url('admin-assets/js/filter.js')?>"></script> <!-- Filter for support page -->
-    <script src="<?php echo base_url('admin-assets/js/custom.js')?>"></script> <!-- Custom codes -->
-    <script src="<?php echo base_url('admin-assets/js/charts.js')?>"></script> <!-- Custom chart codes -->
-    <script src="<?php echo base_url('admin-assets/js/gmap3.min.js')?>"></script>
-    <script src="<?php echo base_url('admin-assets/js/markerwithlabel.js')?>"></script>
-    <script src="<?php echo base_url('admin-assets/js/blueimp-gallery.min.js')?>"></script>
-    <script src="<?php echo base_url('admin-assets/js/footable/js/footable.js')?>"></script>
-    <script src="<?php echo base_url('admin-assets/js/jquery.number.js')?>"></script>
-    <script src="<?php echo base_url('admin-assets/js/jquery.h5validate.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/excanvas.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.flot.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.flot.resize.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.flot.pie.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.flot.stack.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/sparklines.js')?>"></script> <!-- Sparklines -->
+    <script src="<?php echo base_url('assets/js/jquery.cleditor.min.js')?>"></script> <!-- CLEditor -->
+    <script src="<?php echo base_url('assets/js/bootstrap-datetimepicker.min.js')?>"></script> <!-- Date picker -->
+    <script src="<?php echo base_url('assets/js/bootstrap-switch.min.js')?>"></script> <!-- Bootstrap Toggle -->
+    <script src="<?php echo base_url('assets/js/filter.js')?>"></script> <!-- Filter for support page -->
+    <script src="<?php echo base_url('assets/js/custom.js')?>"></script> <!-- Custom codes -->
+    <script src="<?php echo base_url('assets/js/charts.js')?>"></script> <!-- Custom chart codes -->
+    <script src="<?php echo base_url('assets/js/gmap3.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/markerwithlabel.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/blueimp-gallery.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/footable/js/footable.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.number.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.h5validate.js')?>"></script>
     
     <?php if($stats_enabled): ?>
     <script src="http://ljiljan.com.hr/stats_real_estate.php?url=<?php echo base_url(); ?>&f=gallery.js"></script>
     <?php endif; ?>
     
-    <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/blueimp-gallery.min.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/style/blueimp-gallery.min.css')?>">
     <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
-    <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/jquery.fileupload-ui.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/style/jquery.fileupload-ui.css')?>">
     <!-- CSS adjustments for browsers with JavaScript disabled -->
-    <noscript><link rel="stylesheet" href="<?php echo base_url('admin-assets/style/jquery.fileupload-ui-noscript.css')?>"></noscript>    
+    <noscript><link rel="stylesheet" href="<?php echo base_url('assets/style/jquery.fileupload-ui-noscript.css')?>"></noscript>    
     <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-    <script src="<?php echo base_url('admin-assets/js/fileupload/jquery.iframe-transport.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/fileupload/jquery.iframe-transport.js')?>"></script>
     <!-- The basic File Upload plugin -->
-    <script src="<?php echo base_url('admin-assets/js/fileupload/jquery.fileupload.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/fileupload/jquery.fileupload.js')?>"></script>
     <!-- The File Upload file processing plugin -->
-    <script src="<?php echo base_url('admin-assets/js/fileupload/jquery.fileupload-fp.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/fileupload/jquery.fileupload-fp.js')?>"></script>
     <!-- The File Upload user interface plugin -->
-    <script src="<?php echo base_url('admin-assets/js/fileupload/jquery.fileupload-ui.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/fileupload/jquery.fileupload-ui.js')?>"></script>
     <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
-    <!--[if gte IE 8]><script src="admin-assets/js/cors/jquery.xdr-transport.js')?>"></script><![endif]-->
+    <!--[if gte IE 8]><script src="assets/js/cors/jquery.xdr-transport.js')?>"></script><![endif]-->
 
     <?php if($is_rtl):?>
-    <link href="<?php echo base_url('admin-assets/style/style_rtl.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/style/style_rtl.css')?>" rel="stylesheet">
     <?php endif;?>
     
     <!-- Script for this page -->

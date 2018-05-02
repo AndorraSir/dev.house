@@ -29,7 +29,7 @@ function __autoload($classname)
 | path to your installation.
 |
 */
-$config['base_url']	= '';
+$config['base_url']	= 'http://pruebas.house.ad/';
 
 /*
 |--------------------------------------------------------------------------
@@ -84,7 +84,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'english';
+$config['language']	= 'spanish';
 
 /*
 |--------------------------------------------------------------------------

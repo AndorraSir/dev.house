@@ -324,7 +324,7 @@ class UploadHandler
             $options['max_height'] / $img_height
         );
         
-        $watermark_filename='admin-assets/img/stamp.png';
+        $watermark_filename='assets/img/stamp.png';
         /* check $watermark_filename from settings */
         $this->CI = &get_instance();
         $this->CI->load->model('settings_m');

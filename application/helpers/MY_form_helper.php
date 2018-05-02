@@ -809,8 +809,8 @@ if ( ! function_exists('form_dropdown_ajax'))
         //load javascript library
         if($called==0)
         {
-            echo '<script src="'.base_url().'/admin-assets/js/winter_dropdown/winter.js"></script>';
-            echo '<link rel="stylesheet" href="'.base_url().'/admin-assets/js/winter_dropdown/winter.css"> </script>';
+            echo '<script src="'.base_url().'/assets/js/winter_dropdown/winter.js"></script>';
+            echo '<link rel="stylesheet" href="'.base_url().'/assets/js/winter_dropdown/winter.css"> </script>';
         }
         
         ?>
