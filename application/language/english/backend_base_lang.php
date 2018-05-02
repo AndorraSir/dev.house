@@ -2,7 +2,7 @@
 
 /* Base translations */
 $lang['lang_shortcode_2ch'] = "en";
-$lang['app_name'] = 'House ad';
+$lang['app_name'] = 'Real Estate Point';
 
 /* Base */
 $lang['View All'] = "View all";
@@ -39,10 +39,14 @@ $lang[''] = "";
 
 
 /* languages */
-$lang['spanish'] = "Spanish";
+$lang['croatian'] = "Croatian";
 $lang['english'] = "English";
-$lang['catalan'] = "Catalan";
+$lang['slovenian'] = "Slovenian";
+$lang['german'] = "German";
 $lang['france'] = "France";
+$lang['dutch'] = "Dutch";
+$lang['serbian'] = "Serbian";
+$lang['turkish'] = "Turkish";
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
@@ -484,6 +488,7 @@ $lang['AdSense 728x90 code'] = "AdSense 728x90 code";
 $lang['AdSense 160x600 code'] = "AdSense 160x600 code";
 $lang['Featured price'] = "Featured price";
 $lang['Featured'] = "Featured";
+$lang['Withdrawal payment details'] = "Bank payment details";
 $lang['Translate with MyMemory API'] = "Translate with MyMemory API";
 $lang['Facebook ID'] = "Facebook ID";
 $lang['Real estates'] = "Real estates";
@@ -868,6 +873,9 @@ $lang[''] = "";
 $lang['Masking submissions'] = "Masking submissions";
 $lang['Hidden on submission'] = "Hidden on submission";
 $lang['Facebook or Social code on Top'] = "Facebook or Social code on Top";
+$lang['Addons'] = "Addons";
+$lang['Addons can be also found here'] = "Addons can be also found here";
+$lang['addons_note'] = "* All plugins are not compatible with all available themes so be sure or ask before purchase!";
 $lang['Data editing disabled because of language permissions'] = "Data editing disabled because of language permissions";
 $lang['Data editing disabled because of chmod permissions'] = "Data editing disabled because of chmod permissions";
 $lang['File is not writable'] = "File is not writable";
@@ -898,6 +906,7 @@ $lang['Embed video code'] = "Embed video code";
 $lang['Affilate package'] = "Affilate package";
 $lang['Already purchased'] = "Already purchased";
 $lang['Available'] = "Available";
+$lang['Payment details'] = "Payment details";
 $lang[''] = "";
 
 $lang['Quick reply'] = "Quick reply";

@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php echo lang_check('configurator')?></title>
 	<!-- Bootstrap -->
+	<link href="<?php echo base_url('configurator-assets/css/bootstrap.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('configurator-assets/css/bootstrap-responsive.css'); ?>" rel="stylesheet">
+	<link href="<?php echo base_url('configurator-assets/css/styles.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('configurator-assets/css/admin.css'); ?>" rel="stylesheet">
+    <script src="<?php echo base_url('configurator-assets/js/jquery-1.9.1.js'); ?>"></script>
+	<script src="<?php echo base_url('configurator-assets/js/bootstrap.js'); ?>"></script>
 </head>
 <body style="background: #555; padding-top:20px; margin:auto;">
 

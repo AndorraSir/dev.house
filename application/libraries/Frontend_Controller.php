@@ -103,7 +103,7 @@ class Frontend_Controller extends MY_Controller
         /* [/Load models] */
         
         /* [START] Fetch logo URL */
-        $this->data['website_logo_url'] = 'assets/img/logos/house-logo.png';
+        $this->data['website_logo_url'] = 'assets/img/logo.png';
         if(isset($this->data['settings']['website_logo']))
         {
             if(is_numeric($this->data['settings']['website_logo']))
@@ -668,7 +668,7 @@ class Frontend_Controller extends MY_Controller
                 'word' => substr(md5($captcha_hash.config_item('encryption_key')), 0, 5),
                 'img_path' => FCPATH.'files/captcha/',
                 'img_url' => base_url('files/captcha').'/',
-                'font_path' => FCPATH.'assets/font/verdana.ttf',
+                'font_path' => FCPATH.'admin-assets/font/verdana.ttf',
                 'img_width' => 120,
                 'img_height' => 35,
                 'expiration' => 7200

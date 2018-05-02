@@ -77,16 +77,16 @@
     </div>
 </div>
 
-<script src="<?php echo base_url('assets/js/codemirror/lib/codemirror.js'); ?>"></script>
-<link rel="stylesheet" href="<?php echo base_url('assets/js/codemirror/lib/codemirror.css'); ?>">
-<script src="<?php echo base_url('assets/js/codemirror/mode/javascript/javascript.js'); ?>"></script>
+<script src="<?php echo base_url('admin-assets/js/codemirror/lib/codemirror.js'); ?>"></script>
+<link rel="stylesheet" href="<?php echo base_url('admin-assets/js/codemirror/lib/codemirror.css'); ?>">
+<script src="<?php echo base_url('admin-assets/js/codemirror/mode/javascript/javascript.js'); ?>"></script>
 
-<script src="<?php echo base_url('assets/js/codemirror/addon/edit/matchbrackets.js'); ?>"></script>
-<script src="<?php echo base_url('assets/js/codemirror/mode/htmlmixed/htmlmixed.js'); ?>"></script>
-<script src="<?php echo base_url('assets/js/codemirror/mode/xml/xml.js'); ?>"></script>
-<script src="<?php echo base_url('assets/js/codemirror/mode/css/css.js'); ?>"></script>
-<script src="<?php echo base_url('assets/js/codemirror/mode/clike/clike.js'); ?>"></script>
-<script src="<?php echo base_url('assets/js/codemirror/mode/php/php.js'); ?>"></script>
+<script src="<?php echo base_url('admin-assets/js/codemirror/addon/edit/matchbrackets.js'); ?>"></script>
+<script src="<?php echo base_url('admin-assets/js/codemirror/mode/htmlmixed/htmlmixed.js'); ?>"></script>
+<script src="<?php echo base_url('admin-assets/js/codemirror/mode/xml/xml.js'); ?>"></script>
+<script src="<?php echo base_url('admin-assets/js/codemirror/mode/css/css.js'); ?>"></script>
+<script src="<?php echo base_url('admin-assets/js/codemirror/mode/clike/clike.js'); ?>"></script>
+<script src="<?php echo base_url('admin-assets/js/codemirror/mode/php/php.js'); ?>"></script>
 
 <script type="text/javascript">
 $(function() {

@@ -10,7 +10,7 @@ class Configurator extends MY_Controller
         error_reporting(E_ALL);
 
         $this->load->library('form_validation');
-        $this->lang->load('configurator', 'spanish');
+        $this->lang->load('configurator', 'english');
         $this->form_validation->set_error_delimiters('<p class="alert alert-error">', '</p>');
         $this->load->model('user_m');
         
@@ -270,7 +270,7 @@ class Configurator extends MY_Controller
         $this->data['config_data'][''] = config_item('');
         
         $this->data['l_lang_options'] = array(
-                  'spanish'    => lang('spanish'),
+                  'croatian'    => lang('croatian'),
                   'english'     => lang('english'),
                 );
 
@@ -310,7 +310,7 @@ class Configurator extends MY_Controller
         $file_content.= '//Last approved estates'."\n";
         $file_content.= '$config[\'last_estates_limit\'] = 4;'."\n\n";
         $file_content.= '$config[\'version\'] = \''.APP_VERSION_REAL_ESTATE.'\';'."\n\n";
-        $file_content.= '$config[\'default_template_css\'] = \'assets/css/style.css\';'."\n\n";
+        $file_content.= '$config[\'default_template_css\'] = \'assets/css/bootstrap.min.css\';'."\n\n";
         $file_content.= '$config[\'codecanyon_username\'] = \''.$_POST['codecanyon_username'].'\';'."\n\n";
         $file_content.= '$config[\'codecanyon_code\'] = \''.$_POST['codecanyon_code'].'\';'."\n\n";
         

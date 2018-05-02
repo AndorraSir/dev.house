@@ -1,5 +1,12 @@
 <?php
 
+/**
+* @author       by sanljiljan
+* @web          http://codecanyon.net/item/real-estate-agency-portal/6539169
+* @date         20th December, 2014
+* @copyright    No Copyrights on that file, but please link back in any way
+*/
+ 
 /*
 |---------------------------------------------------------------
 | CASTING argc AND argv INTO LOCAL VARIABLES
