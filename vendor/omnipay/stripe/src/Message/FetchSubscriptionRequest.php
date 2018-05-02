@@ -3,7 +3,6 @@
 /**
  * Stripe Fetch Subscription Request.
  */
-
 namespace Omnipay\Stripe\Message;
 
 /**
@@ -26,8 +25,7 @@ class FetchSubscriptionRequest extends AbstractRequest
     /**
      * Set the subscription reference.
      *
-     * @param $value
-     * @return \Omnipay\Common\Message\AbstractRequest|FetchSubscriptionRequest
+     * @return FetchSubscriptionRequest provides a fluent interface.
      */
     public function setSubscriptionReference($value)
     {
@@ -37,14 +35,15 @@ class FetchSubscriptionRequest extends AbstractRequest
     public function getData()
     {
         $this->validate('customerReference', 'subscriptionReference');
+        $data = array();
 
-        return array();
+        return $data;
     }
 
     public function getEndpoint()
     {
         return $this->endpoint.'/customers/'.$this->getCustomerReference()
-            .'/subscriptions/'.$this->getSubscriptionReference();
+                                .'/subscriptions/'.$this->getSubscriptionReference();
     }
 
     public function getHttpMethod()

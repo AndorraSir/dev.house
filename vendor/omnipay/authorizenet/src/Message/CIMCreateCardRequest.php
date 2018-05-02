@@ -250,7 +250,7 @@ class CIMCreateCardRequest extends CIMAbstractRequest
     public function makeCreatePaymentProfileRequest($parameters)
     {
         $obj = new CIMCreatePaymentProfileRequest($this->httpClient, $this->httpRequest);
-        $obj->initialize(array_replace($this->getParameters(), $parameters));
+        $obj->initialize($parameters);
         return $obj->send();
     }
 

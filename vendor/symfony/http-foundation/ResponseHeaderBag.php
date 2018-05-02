@@ -54,28 +54,28 @@ class ResponseHeaderBag extends HeaderBag
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function __toString()
+    {
+        $cookies = '';
+        foreach ($this->getCookies() as $cookie) {
+            $cookies .= 'Set-Cookie: '.$cookie."\r\n";
+        }
+
+        ksort($this->headerNames);
+
+        return parent::__toString().$cookies;
+    }
+
+    /**
      * Returns the headers, with original capitalizations.
      *
      * @return array An array of headers
      */
     public function allPreserveCase()
     {
-        $headers = array();
-        foreach ($this->all() as $name => $value) {
-            $headers[isset($this->headerNames[$name]) ? $this->headerNames[$name] : $name] = $value;
-        }
-
-        return $headers;
-    }
-
-    public function allPreserveCaseWithoutCookies()
-    {
-        $headers = $this->allPreserveCase();
-        if (isset($this->headerNames['set-cookie'])) {
-            unset($headers[$this->headerNames['set-cookie']]);
-        }
-
-        return $headers;
+        return array_combine($this->headerNames, $this->headers);
     }
 
     /**
@@ -95,38 +95,12 @@ class ResponseHeaderBag extends HeaderBag
     /**
      * {@inheritdoc}
      */
-    public function all()
-    {
-        $headers = parent::all();
-        foreach ($this->getCookies() as $cookie) {
-            $headers['set-cookie'][] = (string) $cookie;
-        }
-
-        return $headers;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function set($key, $values, $replace = true)
     {
-        $uniqueKey = str_replace('_', '-', strtolower($key));
-
-        if ('set-cookie' === $uniqueKey) {
-            if ($replace) {
-                $this->cookies = array();
-            }
-            foreach ((array) $values as $cookie) {
-                $this->setCookie(Cookie::fromString($cookie));
-            }
-            $this->headerNames[$uniqueKey] = $key;
-
-            return;
-        }
-
-        $this->headerNames[$uniqueKey] = $key;
-
         parent::set($key, $values, $replace);
+
+        $uniqueKey = str_replace('_', '-', strtolower($key));
+        $this->headerNames[$uniqueKey] = $key;
 
         // ensure the cache-control header has sensible defaults
         if (in_array($uniqueKey, array('cache-control', 'etag', 'last-modified', 'expires'))) {
@@ -142,16 +116,10 @@ class ResponseHeaderBag extends HeaderBag
      */
     public function remove($key)
     {
+        parent::remove($key);
+
         $uniqueKey = str_replace('_', '-', strtolower($key));
         unset($this->headerNames[$uniqueKey]);
-
-        if ('set-cookie' === $uniqueKey) {
-            $this->cookies = array();
-
-            return;
-        }
-
-        parent::remove($key);
 
         if ('cache-control' === $uniqueKey) {
             $this->computedCacheControl = array();
@@ -182,7 +150,6 @@ class ResponseHeaderBag extends HeaderBag
     public function setCookie(Cookie $cookie)
     {
         $this->cookies[$cookie->getDomain()][$cookie->getPath()][$cookie->getName()] = $cookie;
-        $this->headerNames['set-cookie'] = 'Set-Cookie';
     }
 
     /**
@@ -207,10 +174,6 @@ class ResponseHeaderBag extends HeaderBag
                 unset($this->cookies[$domain]);
             }
         }
-
-        if (empty($this->cookies)) {
-            unset($this->headerNames['set-cookie']);
-        }
     }
 
     /**
@@ -218,9 +181,9 @@ class ResponseHeaderBag extends HeaderBag
      *
      * @param string $format
      *
-     * @return array
-     *
      * @throws \InvalidArgumentException When the $format is invalid
+     *
+     * @return array
      */
     public function getCookies($format = self::COOKIES_FLAT)
     {
@@ -267,7 +230,7 @@ class ResponseHeaderBag extends HeaderBag
      *                                 is semantically equivalent to $filename. If the filename is already ASCII,
      *                                 it can be omitted, or just copied from $filename
      *
-     * @return string A string suitable for use as a Content-Disposition field-value
+     * @return string A string suitable for use as a Content-Disposition field-value.
      *
      * @throws \InvalidArgumentException
      *
@@ -318,7 +281,7 @@ class ResponseHeaderBag extends HeaderBag
     protected function computeCacheControlValue()
     {
         if (!$this->cacheControl && !$this->has('ETag') && !$this->has('Last-Modified') && !$this->has('Expires')) {
-            return 'no-cache, private';
+            return 'no-cache';
         }
 
         if (!$this->cacheControl) {

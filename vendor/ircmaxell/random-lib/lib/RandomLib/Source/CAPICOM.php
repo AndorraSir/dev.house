@@ -1,14 +1,4 @@
 <?php
-
-/*
- * The RandomLib library for securely generating random numbers and strings in PHP
- *
- * @author     Anthony Ferrara <ircmaxell@ircmaxell.com>
- * @copyright  2011 The Authors
- * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- * @version    Build @@version@@
- */
-
 /**
  * The Capicom Random Number Source
  *
@@ -19,13 +9,12 @@
  * @category   PHPCryptLib
  * @package    Random
  * @subpackage Source
- *
  * @author     Anthony Ferrara <ircmaxell@ircmaxell.com>
  * @copyright  2011 The Authors
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- *
  * @version    Build @@version@@
  */
+
 namespace RandomLib\Source;
 
 use SecurityLib\Strength;
@@ -38,32 +27,18 @@ use SecurityLib\Strength;
  * @category   PHPCryptLib
  * @package    Random
  * @subpackage Source
- *
  * @author     Anthony Ferrara <ircmaxell@ircmaxell.com>
  * @codeCoverageIgnore
  */
-class CAPICOM extends \RandomLib\AbstractSource
-{
+class CAPICOM implements \RandomLib\Source {
 
     /**
      * Return an instance of Strength indicating the strength of the source
      *
-     * @return \SecurityLib\Strength An instance of one of the strength classes
+     * @return Strength An instance of one of the strength classes
      */
-    public static function getStrength()
-    {
+    public static function getStrength() {
         return new Strength(Strength::MEDIUM);
-    }
-
-    /**
-     * If the source is currently available.
-     * Reasons might be because the library is not installed
-     *
-     * @return bool
-     */
-    public static function isSupported()
-    {
-        return class_exists('\\COM', false);
     }
 
     /**
@@ -73,17 +48,18 @@ class CAPICOM extends \RandomLib\AbstractSource
      *
      * @return string A string of the requested size
      */
-    public function generate($size)
-    {
+    public function generate($size) {
+        if (!class_exists('\\COM', false)) {
+            return str_repeat(chr(0), $size);
+        }
         try {
             $util = new \COM('CAPICOM.Utilities.1');
             $data = base64_decode($util->GetRandom($size, 0));
-
             return str_pad($data, $size, chr(0));
         } catch (\Exception $e) {
             unset($e);
-
-            return static::emptyValue($size);
+            return str_repeat(chr(0), $size);
         }
     }
+
 }

@@ -38,7 +38,7 @@ class LanguageDetectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->tr->getLastDetectedSource(), 'uk');
     }
 
-    public function testStaticAndNonStaticDetection()
+    public function testStaticAndNonstaticDetection()
     {
         $this->tr->translate('გამარჯობა');
 

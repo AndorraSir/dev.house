@@ -140,12 +140,12 @@ class RestSearchTransactionRequest extends AbstractRestRequest
     /**
      * Set the request startDate
      *
-     * @param string|DateTime $value
+     * @param string $value
      * @return RestSearchTransactionRequest provides a fluent interface.
      */
     public function setStartDate($value)
     {
-        return $this->setParameter('startDate', is_string($value) ? new \DateTime($value) : $value);
+        return $this->setParameter('startDate', $value);
     }
 
     /**
@@ -161,20 +161,20 @@ class RestSearchTransactionRequest extends AbstractRestRequest
     /**
      * Set the request endDate
      *
-     * @param string|DateTime $value
+     * @param string $value
      * @return RestSearchTransactionRequest provides a fluent interface.
      */
     public function setEndDate($value)
     {
-        return $this->setParameter('endDate', is_string($value) ? new \DateTime($value) : $value);
+        return $this->setParameter('endDate', $value);
     }
 
     public function getData()
     {
-        $this->validate('agreementId', 'startDate', 'endDate');
+        $this->validate('agreementId');
         return array(
-            'start_date' => $this->getStartDate()->format('Y-m-d'),
-            'end_date'   => $this->getEndDate()->format('Y-m-d'),
+            'start_date'        => $this->getStartDate(),
+            'end_date'          => $this->getEndDate(),
         );
     }
 

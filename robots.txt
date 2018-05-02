@@ -1,6 +1,6 @@
 User-agent: *
 Disallow: /admin/
-Disallow: /admin-assets/
+Disallow: /assets/
 Disallow: /frontend/
 
 

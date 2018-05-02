@@ -1,14 +1,4 @@
 <?php
-
-/*
- * The RandomLib library for securely generating random numbers and strings in PHP
- *
- * @author     Anthony Ferrara <ircmaxell@ircmaxell.com>
- * @copyright  2011 The Authors
- * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- * @version    Build @@version@@
- */
-
 /**
  * The Random Factory
  *
@@ -18,13 +8,12 @@
  *
  * @category   PHPPasswordLib
  * @package    Random
- *
  * @author     Anthony Ferrara <ircmaxell@ircmaxell.com>
  * @copyright  2011 The Authors
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- *
  * @version    Build @@version@@
  */
+
 namespace RandomLib;
 
 use SecurityLib\Strength;
@@ -36,11 +25,9 @@ use SecurityLib\Strength;
  *
  * @category   PHPPasswordLib
  * @package    Random
- *
  * @author     Anthony Ferrara <ircmaxell@ircmaxell.com>
  */
-class Factory extends \SecurityLib\AbstractFactory
-{
+class Factory extends \SecurityLib\AbstractFactory {
 
     /**
      * @var array A list of available random number mixing strategies
@@ -57,8 +44,7 @@ class Factory extends \SecurityLib\AbstractFactory
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->loadMixers();
         $this->loadSources();
     }
@@ -68,16 +54,19 @@ class Factory extends \SecurityLib\AbstractFactory
      *
      * @param Strength $strength The requested strength of the random number
      *
-     * @throws RuntimeException If an appropriate mixing strategy isn't found
-     *
      * @return Generator The instantiated generator
+     * @throws RuntimeException If an appropriate mixing strategy isn't found
      */
-    public function getGenerator(\SecurityLib\Strength $strength)
-    {
-        $sources = $this->findSources($strength);
-        $mixer   = $this->findMixer($strength);
-
-        return new Generator($sources, $mixer);
+    public function getGenerator(\SecurityLib\Strength $strength) {
+        $sources    = $this->getSources();
+        $newSources = array();
+        foreach ($sources as $source) {
+            if ($strength->compare($source::getStrength()) <= 0) {
+                $newSources[] = new $source;
+            }
+        }
+        $mixer = $this->findMixer($strength);
+        return new Generator($newSources, $mixer);
     }
 
     /**
@@ -89,8 +78,7 @@ class Factory extends \SecurityLib\AbstractFactory
      *
      * @return Generator The instantiated generator
      */
-    public function getHighStrengthGenerator()
-    {
+    public function getHighStrengthGenerator() {
         return $this->getGenerator(new Strength(Strength::HIGH));
     }
 
@@ -103,8 +91,7 @@ class Factory extends \SecurityLib\AbstractFactory
      *
      * @return Generator The instantiated generator
      */
-    public function getLowStrengthGenerator()
-    {
+    public function getLowStrengthGenerator() {
         return $this->getGenerator(new Strength(Strength::LOW));
     }
 
@@ -117,8 +104,7 @@ class Factory extends \SecurityLib\AbstractFactory
      *
      * @return Generator The instantiated generator
      */
-    public function getMediumStrengthGenerator()
-    {
+    public function getMediumStrengthGenerator() {
         return $this->getGenerator(new Strength(Strength::MEDIUM));
     }
 
@@ -127,8 +113,7 @@ class Factory extends \SecurityLib\AbstractFactory
      *
      * @return array An array of mixers
      */
-    public function getMixers()
-    {
+    public function getMixers() {
         return $this->mixers;
     }
 
@@ -137,8 +122,7 @@ class Factory extends \SecurityLib\AbstractFactory
      *
      * @return array An array of sources
      */
-    public function getSources()
-    {
+    public function getSources() {
         return $this->sources;
     }
 
@@ -150,15 +134,13 @@ class Factory extends \SecurityLib\AbstractFactory
      *
      * @return Factory $this The current factory instance
      */
-    public function registerMixer($name, $class)
-    {
+    public function registerMixer($name, $class) {
         $this->registerType(
             'mixers',
             __NAMESPACE__ . '\\Mixer',
             $name,
             $class
         );
-
         return $this;
     }
 
@@ -172,41 +154,14 @@ class Factory extends \SecurityLib\AbstractFactory
      *
      * @return Factory $this The current factory instance
      */
-    public function registerSource($name, $class)
-    {
+    public function registerSource($name, $class) {
         $this->registerType(
             'sources',
             __NAMESPACE__ . '\\Source',
             $name,
             $class
         );
-
         return $this;
-    }
-
-    /**
-     * Find a sources based upon the requested strength
-     *
-     * @param Strength $strength The strength mixer to find
-     *
-     * @throws RuntimeException if a valid source cannot be found
-     *
-     * @return Source The found source
-     */
-    protected function findSources(\SecurityLib\Strength $strength)
-    {
-        $sources = array();
-        foreach ($this->getSources() as $source) {
-            if ($strength->compare($source::getStrength()) <= 0 && $source::isSupported()) {
-                $sources[] = new $source();
-            }
-        }
-
-        if (0 === count($sources)) {
-            throw new \RuntimeException('Could not find sources');
-        }
-
-        return $sources;
     }
 
     /**
@@ -214,32 +169,25 @@ class Factory extends \SecurityLib\AbstractFactory
      *
      * @param Strength $strength The strength mixer to find
      *
-     * @throws RuntimeException if a valid mixer cannot be found
-     *
      * @return Mixer The found mixer
+     * @throws RuntimeException if a valid mixer cannot be found
      */
-    protected function findMixer(\SecurityLib\Strength $strength)
-    {
+    protected function findMixer(\SecurityLib\Strength $strength) {
         $newMixer = null;
         $fallback = null;
         foreach ($this->getMixers() as $mixer) {
-            if (!$mixer::test()) {
-                continue;
-            }
             if ($strength->compare($mixer::getStrength()) == 0) {
-                $newMixer = new $mixer();
+                $newMixer = new $mixer;
             } elseif ($strength->compare($mixer::getStrength()) == 1) {
-                $fallback = new $mixer();
+                $fallback = new $mixer;
             }
         }
         if (is_null($newMixer)) {
             if (is_null($fallback)) {
                 throw new \RuntimeException('Could not find mixer');
             }
-
             return $fallback;
         }
-
         return $newMixer;
     }
 
@@ -248,8 +196,7 @@ class Factory extends \SecurityLib\AbstractFactory
      *
      * @return void
      */
-    protected function loadMixers()
-    {
+    protected function loadMixers() {
         $this->loadFiles(
             __DIR__ . '/Mixer',
             __NAMESPACE__ . '\\Mixer\\',
@@ -262,12 +209,13 @@ class Factory extends \SecurityLib\AbstractFactory
      *
      * @return void
      */
-    protected function loadSources()
-    {
+    protected function loadSources() {
         $this->loadFiles(
             __DIR__ . '/Source',
             __NAMESPACE__ . '\\Source\\',
             array($this, 'registerSource')
         );
     }
+
 }
+

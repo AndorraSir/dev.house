@@ -21,10 +21,6 @@ use UnexpectedValueException;
  * @link        http://stichoza.com/
  *
  * @license     MIT
- *
- * @method string getLastDetectedSource() Can be called statically too.
- * @method string translate(string $text) Can be called statically with signature
- *                                        string translate(string $source, string $target, string $text)
  */
 class TranslateClient
 {
@@ -56,20 +52,15 @@ class TranslateClient
     /**
      * @var string Google Translate URL base
      */
-    private $urlBase = 'https://translate.google.com/translate_a/single';
-
-    /**
-     * @var array Dynamic guzzleHTTP client options
-     */
-    private $httpOptions = [];
+    private $urlBase = 'http://translate.google.com/translate_a/t';
 
     /**
      * @var array URL Parameters
      */
     private $urlParams = [
-        'client'   => 't',
+        'client'   => 'webapp',
         'hl'       => 'en',
-        'dt'       => 't',
+        'dt'       => null,
         'sl'       => null, // Source language
         'tl'       => null, // Target language
         'q'        => null, // String to translate
@@ -209,25 +200,9 @@ class TranslateClient
             self::$staticInstance = new self();
         }
     }
-    
-    /**
-     * Set the api we are used to translete.
-     *
-     * @param string $source Google translate api, default is https://translate.google.com/translate_a/single
-     *
-     * @return TranslateClient
-     */
-    public function setApi($api = null)
-    {
-        if ($api) {
-            $this->urlBase = $api;
-        }
-
-        return $this;
-    }
 
     /**
-     * Set source language we are translating from.
+     * Set source language we are transleting from.
      *
      * @param string $source Language code
      *
@@ -241,7 +216,7 @@ class TranslateClient
     }
 
     /**
-     * Set translation language we are translating to.
+     * Set translation language we are transleting to.
      *
      * @param string $target Language code
      *
@@ -250,34 +225,6 @@ class TranslateClient
     public function setTarget($target)
     {
         $this->targetLanguage = $target;
-
-        return $this;
-    }
-
-    /**
-     * Set Google Translate URL base
-     *
-     * @param string $urlBase  Google Translate URL base
-     *
-     * @return TranslateClient
-     */
-    public function setUrlBase($urlBase)
-    {
-        $this->urlBase = $urlBase;
-
-        return $this;
-    }
-
-    /**
-     * Set guzzleHttp client options.
-     *
-     * @param array $options guzzleHttp client options.
-     *
-     * @return TranslateClient
-     */
-    public function setHttpOption(array $options)
-    {
-        $this->httpOptions = $options;
 
         return $this;
     }
@@ -302,6 +249,7 @@ class TranslateClient
         $tokenData = is_array($data) ? implode('', $data) : $data;
 
         $queryArray = array_merge($this->urlParams, [
+            'text' => $data,
             'sl'   => $this->sourceLanguage,
             'tl'   => $this->targetLanguage,
             'tk'   => $this->tokenProvider->generateToken($this->sourceLanguage, $this->targetLanguage, $tokenData),
@@ -309,17 +257,8 @@ class TranslateClient
 
         $queryUrl = preg_replace('/%5B(?:[0-9]|[1-9][0-9]+)%5D=/', '=', http_build_query($queryArray));
 
-        $queryBodyArray = [
-            'q' => $data,
-        ];
-
-        $queryBodyEncoded = preg_replace('/%5B(?:[0-9]|[1-9][0-9]+)%5D=/', '=', http_build_query($queryBodyArray));
-
         try {
-            $response = $this->httpClient->post($this->urlBase, [
-                    'query' => $queryUrl,
-                    'body'  => $queryBodyEncoded,
-                ] + $this->httpOptions);
+            $response = $this->httpClient->post($this->urlBase, ['body' => $queryUrl]);
         } catch (GuzzleRequestException $e) {
             throw new ErrorException($e->getMessage());
         }
@@ -377,8 +316,8 @@ class TranslateClient
         // Detect languages
         $detectedLanguages = [];
 
-        // the response contains only single translation, don't create loop that will end with
-        // invalid foreach and warning
+        // the response contains only single translation, dont create loop that will end with
+        // invalide foreach and warning
         if ($isArray || !is_string($responseArray)) {
             $responseArrayForLanguages = ($isArray) ? $responseArray[0] : [$responseArray];
             foreach ($responseArrayForLanguages as $itemArray) {
