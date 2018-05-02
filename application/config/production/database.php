@@ -50,7 +50,7 @@ $active_group = 'mysql';
 $active_record = TRUE;
 
 //MySQL example
-$db['mysql']['hostname'] = 'localhost';
+$db['mysql']['hostname'] = '10.50.10.33';
 $db['mysql']['username'] = 'admin_1';
 $db['mysql']['password'] = 'oUgj!566';
 $db['mysql']['database'] = 'pruebasDB';

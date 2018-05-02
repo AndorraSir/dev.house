@@ -44,13 +44,7 @@
     </div>
     
     <div style="padding:  10px;">
-    <p>
-        <a href="http://codecanyon.net/downloads" target="_blank"><img src="http://i1283.photobucket.com/albums/a559/sandiwinter/rating-we_zps2cd7af1c.png" /></a>
-        <strong>Thanks you for buying my application!</strong><br />
-        If you enjoy this application please rate &amp; share it, this will <b>motivate me for more and more updates!</b> If you are rating it with less than 5 stars 
-        please drop me a mail why it didn't achieve a full score and what could be improved in your opinion.<br />
-        <a href="http://codecanyon.net/downloads" target="_blank">Link to application rating page</a>
-    </p>
+   
     </div>
 <?php endif;?>
 </div>
