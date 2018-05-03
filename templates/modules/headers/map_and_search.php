@@ -1,1 +1,0 @@
-<?php _widget('top_mapsearch');?>
