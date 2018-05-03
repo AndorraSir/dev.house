@@ -168,7 +168,7 @@
                                     <li class="pull-right"><a href="#" id="translate-lang" rel="<?php echo site_url('api/translate/');  ?>" class="btn btn-default" type="button"><?php echo lang_check('Translate to other languages')?></a></li>
                                     <?php endif; ?>
                                   </ul>
-                                  <div style="padding-top: 9px; border-bottom: 1px solid #ddd;" class="tab-content">
+                                  <div style="padding-top: 9px; border-bottom: 1px solid #1a1a1a;" class="tab-content">
                                     <?php $i=0;foreach($this->option_m->languages as $key=>$val):$i++;?>
                                     <div id="<?php echo $key?>" class="tab-pane <?php echo $i==1?'active':''?>">
                                     

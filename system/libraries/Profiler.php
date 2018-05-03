@@ -137,7 +137,7 @@ class CI_Profiler {
 		foreach ($profile as $key => $val)
 		{
 			$key = ucwords(str_replace(array('_', '-'), ' ', $key));
-			$output .= "<tr><td style='padding:5px;width:50%;color:#000;font-weight:bold;background-color:#ddd;'>".$key."&nbsp;&nbsp;</td><td style='padding:5px;width:50%;color:#900;font-weight:normal;background-color:#ddd;'>".$val."</td></tr>\n";
+			$output .= "<tr><td style='padding:5px;width:50%;color:#000;font-weight:bold;background-color:#1a1a1a;'>".$key."&nbsp;&nbsp;</td><td style='padding:5px;width:50%;color:#900;font-weight:normal;background-color:#1a1a1a;'>".$val."</td></tr>\n";
 		}
 
 		$output .= "</table>\n";
@@ -227,7 +227,7 @@ class CI_Profiler {
 						$val = str_replace($bold, '<strong>'.$bold.'</strong>', $val);
 					}
 
-					$output .= "<tr><td style='padding:5px; vertical-align: top;width:1%;color:#900;font-weight:normal;background-color:#ddd;'>".$time."&nbsp;&nbsp;</td><td style='padding:5px; color:#000;font-weight:normal;background-color:#ddd;'>".$val."</td></tr>\n";
+					$output .= "<tr><td style='padding:5px; vertical-align: top;width:1%;color:#900;font-weight:normal;background-color:#1a1a1a;'>".$time."&nbsp;&nbsp;</td><td style='padding:5px; color:#000;font-weight:normal;background-color:#1a1a1a;'>".$val."</td></tr>\n";
 				}
 			}
 
@@ -270,7 +270,7 @@ class CI_Profiler {
 					$key = "'".$key."'";
 				}
 
-				$output .= "<tr><td style='width:50%;color:#000;background-color:#ddd;padding:5px'>&#36;_GET[".$key."]&nbsp;&nbsp; </td><td style='width:50%;padding:5px;color:#cd6e00;font-weight:normal;background-color:#ddd;'>";
+				$output .= "<tr><td style='width:50%;color:#000;background-color:#1a1a1a;padding:5px'>&#36;_GET[".$key."]&nbsp;&nbsp; </td><td style='width:50%;padding:5px;color:#cd6e00;font-weight:normal;background-color:#1a1a1a;'>";
 				if (is_array($val))
 				{
 					$output .= "<pre>" . htmlspecialchars(stripslashes(print_r($val, true))) . "</pre>";
@@ -319,7 +319,7 @@ class CI_Profiler {
 					$key = "'".$key."'";
 				}
 
-				$output .= "<tr><td style='width:50%;padding:5px;color:#000;background-color:#ddd;'>&#36;_POST[".$key."]&nbsp;&nbsp; </td><td style='width:50%;padding:5px;color:#009900;font-weight:normal;background-color:#ddd;'>";
+				$output .= "<tr><td style='width:50%;padding:5px;color:#000;background-color:#1a1a1a;'>&#36;_POST[".$key."]&nbsp;&nbsp; </td><td style='width:50%;padding:5px;color:#009900;font-weight:normal;background-color:#1a1a1a;'>";
 				if (is_array($val))
 				{
 					$output .= "<pre>" . htmlspecialchars(stripslashes(print_r($val, TRUE))) . "</pre>";
@@ -442,7 +442,7 @@ class CI_Profiler {
 		foreach (array('HTTP_ACCEPT', 'HTTP_USER_AGENT', 'HTTP_CONNECTION', 'SERVER_PORT', 'SERVER_NAME', 'REMOTE_ADDR', 'SERVER_SOFTWARE', 'HTTP_ACCEPT_LANGUAGE', 'SCRIPT_NAME', 'REQUEST_METHOD',' HTTP_HOST', 'REMOTE_HOST', 'CONTENT_TYPE', 'SERVER_PROTOCOL', 'QUERY_STRING', 'HTTP_ACCEPT_ENCODING', 'HTTP_X_FORWARDED_FOR') as $header)
 		{
 			$val = (isset($_SERVER[$header])) ? $_SERVER[$header] : '';
-			$output .= "<tr><td style='vertical-align: top;width:50%;padding:5px;color:#900;background-color:#ddd;'>".$header."&nbsp;&nbsp;</td><td style='width:50%;padding:5px;color:#000;background-color:#ddd;'>".$val."</td></tr>\n";
+			$output .= "<tr><td style='vertical-align: top;width:50%;padding:5px;color:#900;background-color:#1a1a1a;'>".$header."&nbsp;&nbsp;</td><td style='width:50%;padding:5px;color:#000;background-color:#1a1a1a;'>".$val."</td></tr>\n";
 		}
 
 		$output .= "</table>\n";
@@ -477,7 +477,7 @@ class CI_Profiler {
 				$val = print_r($val, TRUE);
 			}
 
-			$output .= "<tr><td style='padding:5px; vertical-align: top;color:#900;background-color:#ddd;'>".$config."&nbsp;&nbsp;</td><td style='padding:5px; color:#000;background-color:#ddd;'>".htmlspecialchars($val)."</td></tr>\n";
+			$output .= "<tr><td style='padding:5px; vertical-align: top;color:#900;background-color:#1a1a1a;'>".$config."&nbsp;&nbsp;</td><td style='padding:5px; color:#000;background-color:#1a1a1a;'>".htmlspecialchars($val)."</td></tr>\n";
 		}
 
 		$output .= "</table>\n";
@@ -511,7 +511,7 @@ class CI_Profiler {
 				$val = print_r($val, TRUE);
 			}
 
-			$output .= "<tr><td style='padding:5px; vertical-align: top;color:#900;background-color:#ddd;'>".$key."&nbsp;&nbsp;</td><td style='padding:5px; color:#000;background-color:#ddd;'>".htmlspecialchars($val)."</td></tr>\n";
+			$output .= "<tr><td style='padding:5px; vertical-align: top;color:#900;background-color:#1a1a1a;'>".$key."&nbsp;&nbsp;</td><td style='padding:5px; color:#000;background-color:#1a1a1a;'>".htmlspecialchars($val)."</td></tr>\n";
 		}
 
 		$output .= '</table>';

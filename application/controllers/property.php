@@ -1129,7 +1129,7 @@ class Property extends Frontend_Controller
             
             if($this->data['settings_template'] == 'realia')
             {
-                echo str_replace('assets/', base_url('templates/bootstrap2-responsive').'/assets/', $output);
+                echo str_replace('assets/', base_url('templates/modules').'/assets/', $output);
                 exit();
             }
         }

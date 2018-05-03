@@ -271,7 +271,7 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 .nav.nav-tabs li.pull-right a
 {
     line-height:1;
-    border: 1px solid #DDDDDD;
+    border: 1px solid #1a1a1aDDD;
 }
 
 /* Progressbar from bootstrap 2, for upload */
@@ -397,7 +397,7 @@ p.help-block
 {
     margin:0px;
     padding:10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #1a1a1a;
     background: #F9F9F9;
 }
 
@@ -565,7 +565,7 @@ div.highlight
 }
 
 select option:disabled {
-    background: #dddddd;
+    background: #1a1a1addd;
 } 
 
 
@@ -621,7 +621,7 @@ select option:disabled {
     box-sizing: border-box;
     transition: all .55s;
     -webkit-transition: all .55s;
-    border: 2px solid #ddd;
+    border: 2px solid #1a1a1a;
     overflow: hidden;
 }
 

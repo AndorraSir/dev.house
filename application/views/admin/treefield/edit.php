@@ -235,7 +235,7 @@
                                 <li class="<?php echo $i == 1 ? 'active' : '' ?>"><a data-toggle="tab" href="#<?php echo $key ?>"><?php echo $val ?></a></li>
 <?php endforeach; ?>
                         </ul>
-                        <div style="padding-top: 9px; border-bottom: 1px solid #ddd;" class="tab-content">
+                        <div style="padding-top: 9px; border-bottom: 1px solid #1a1a1a;" class="tab-content">
 <?php $i = 0;
 foreach ($this->option_m->languages as $key => $val):$i++; ?>
                                 <div id="<?php echo $key ?>" class="tab-pane <?php echo $i == 1 ? 'active' : '' ?>">
