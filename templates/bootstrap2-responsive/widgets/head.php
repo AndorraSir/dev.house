@@ -24,7 +24,7 @@
     <?php endif;endforeach;endif; ?>
 
     <!-- Le styles -->
-    <link rel="stylesheet" href="assets/style/style.css" type="text/css">
+    <link rel="stylesheet" href="style.css" type="text/css">
 
     <link href="assets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
@@ -37,9 +37,7 @@
     <link href="assets/css/styles_rtl.css" rel="stylesheet">
     {/is_rtl}
     
-    
-    <link href="assets/css/custom.css" rel="stylesheet">
-   
+    <link href="../assets/css/custom.css" rel="stylesheet">
     
     <?php 
     $config_base_url = config_item('base_url');
