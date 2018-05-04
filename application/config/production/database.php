@@ -51,12 +51,12 @@ $active_record = TRUE;
 
 //MySQL example
 $db['mysql']['hostname'] = 'localhost';
-$db['mysql']['username'] = 'house_admin';
-$db['mysql']['password'] = 'Npz4b5?1';
+$db['mysql']['username'] = 'house_username';
+$db['mysql']['password'] = 'hGlq7*46';
 $db['mysql']['database'] = 'pruebasDB';
-$db['mysql']['dbdriver'] = 'mysqli';
+$db['mysql']['dbdriver'] = 'mysql';
 $db['mysql']['dbprefix'] = '';
-$db['mysql']['pconnect'] = FALSE;
+$db['mysql']['pconnect'] = TRUE;
 $db['mysql']['db_debug'] = FALSE;
 $db['mysql']['cache_on'] = FALSE;
 $db['mysql']['cachedir'] = '';

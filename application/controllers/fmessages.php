@@ -193,18 +193,18 @@ class Fmessages extends Frontuser_Controller
             $this->data['estate_data_printurl'] = 
                 site_url_q($this->data['listing_uri'].'/'.$estate_data['id'].'/'.$this->data['lang_code'].'/'.$url_title, 'v=print');
 
-            $this->data['estate_data_icon'] = 'assets/img/markers/'.$this->data['color_path'].'marker_blue.png';
+            $this->data['estate_data_icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].'marker_blue.png';
             if(isset($this->data['estate_data_option_6']))
             {
                 if($this->data['estate_data_option_6'] != '' && $this->data['estate_data_option_6'] != 'empty')
                 {
                     if(file_exists(FCPATH.'templates/'.$this->data['settings_template'].
                                    '/assets/img/markers/'.$this->data['color_path'].$this->data['estate_data_option_6'].'.png'))
-                    $this->data['estate_data_icon'] = 'assets/img/markers/'.$this->data['color_path'].$this->data['estate_data_option_6'].'.png';
+                    $this->data['estate_data_icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].$this->data['estate_data_option_6'].'.png';
 
                     if(file_exists(FCPATH.'templates/'.$this->data['settings_template'].
                                        '/assets/img/markers/'.$this->data['color_path'].'selected/'.$this->data['estate_data_option_6'].'.png'))
-                    $this->data['estate_data_icon'] = 'assets/img/markers/'.$this->data['color_path'].'selected/'.$this->data['estate_data_option_6'].'.png';
+                    $this->data['estate_data_icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].'selected/'.$this->data['estate_data_option_6'].'.png';
                 }
             }
 
@@ -227,14 +227,14 @@ class Fmessages extends Frontuser_Controller
                 if(substr_count($tempFile, $template_prefix) == 0)
                 {
                     $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
-                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
+                    //$template_output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
                     $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
                 }
             }
         }
 
         $output = $this->parser->parse($this->data['settings_template'].'/messenger.php', $this->data, TRUE);
-        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        echo str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
     }
 
 
@@ -267,14 +267,14 @@ class Fmessages extends Frontuser_Controller
                 if(substr_count($tempFile, $template_prefix) == 0)
                 {
                     $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
-                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
+                    //$template_output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
                     $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
                 }
             }
         }
 
         $output = $this->parser->parse($this->data['settings_template'].'/mymessages.php', $this->data, TRUE);
-        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        echo str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
     }
 
 	public function edit()
@@ -350,14 +350,14 @@ class Fmessages extends Frontuser_Controller
                 if(substr_count($tempFile, $template_prefix) == 0)
                 {
                     $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
-                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
+                    //$template_output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
                     $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
                 }
             }
         }
 
         $output = $this->parser->parse($this->data['settings_template'].'/editmessage.php', $this->data, TRUE);
-        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        echo str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
     }
     
     public function reply()

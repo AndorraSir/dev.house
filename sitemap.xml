@@ -5,193 +5,415 @@
   	xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
 			    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
-	<loc>http://localhost:8888/house.ad.test/index.php/es/1/inicio</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-    <xhtml:link
-        rel="alternate"
-        hreflang="en"
-        href="http://localhost:8888/house.ad.test/index.php/en/1/inicio"
-    />
-</url>
-<url>
-	<loc>http://localhost:8888/house.ad.test/index.php/en/1/homepage</loc>
+	<loc>http://localhost:8888/dev.house/index.php/en/1/homepage</loc>
 	<changefreq>monthly</changefreq>
 	<priority>0.5</priority>
     <xhtml:link
         rel="alternate"
         hreflang="es"
-        href="http://localhost:8888/house.ad.test/index.php/es/1/homepage"
+        href="http://localhost:8888/dev.house/index.php/es/1/homepage"
     />
-</url>
-<url>
-	<loc>http://localhost:8888/house.ad.test/index.php/en/6/map</loc>
-	<lastmod>2013-12-29T12:06:05+01:00</lastmod>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
     <xhtml:link
         rel="alternate"
-        hreflang="es"
-        href="http://localhost:8888/house.ad.test/index.php/es/6/map"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/1/homepage"
     />
-</url>
-<url>
-	<loc>http://localhost:8888/house.ad.test/index.php/es/6/karta</loc>
-	<lastmod>2013-12-29T12:06:05+01:00</lastmod>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
     <xhtml:link
         rel="alternate"
-        hreflang="en"
-        href="http://localhost:8888/house.ad.test/index.php/en/6/karta"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/1/homepage"
     />
 </url>
 <url>
-	<loc>http://localhost:8888/house.ad.test/index.php/en/169/agents</loc>
-	<lastmod>2014-08-01T19:02:31+02:00</lastmod>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-    <xhtml:link
-        rel="alternate"
-        hreflang="es"
-        href="http://localhost:8888/house.ad.test/index.php/es/169/agents"
-    />
-</url>
-<url>
-	<loc>http://localhost:8888/house.ad.test/index.php/es/169/agenti</loc>
-	<lastmod>2014-08-01T19:02:31+02:00</lastmod>
+	<loc>http://localhost:8888/dev.house/index.php/es/1/pagina_principal</loc>
 	<changefreq>monthly</changefreq>
 	<priority>0.5</priority>
     <xhtml:link
         rel="alternate"
         hreflang="en"
-        href="http://localhost:8888/house.ad.test/index.php/en/169/agenti"
+        href="http://localhost:8888/dev.house/index.php/en/1/pagina_principal"
     />
-</url>
-<url>
-	<loc>http://localhost:8888/house.ad.test/index.php/es/147/izdvojene</loc>
-	<lastmod>2014-04-05T10:33:02+02:00</lastmod>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
     <xhtml:link
         rel="alternate"
-        hreflang="en"
-        href="http://localhost:8888/house.ad.test/index.php/en/147/izdvojene"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/1/pagina_principal"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/1/pagina_principal"
     />
 </url>
 <url>
-	<loc>http://localhost:8888/house.ad.test/index.php/en/147/featured</loc>
-	<lastmod>2014-04-05T10:33:02+02:00</lastmod>
+	<loc>http://localhost:8888/dev.house/index.php/fr/1/pagina_principal</loc>
 	<changefreq>monthly</changefreq>
 	<priority>0.5</priority>
     <xhtml:link
         rel="alternate"
         hreflang="es"
-        href="http://localhost:8888/house.ad.test/index.php/es/147/featured"
+        href="http://localhost:8888/dev.house/index.php/es/1/pagina_principal"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="http://localhost:8888/dev.house/index.php/en/1/pagina_principal"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/1/pagina_principal"
     />
 </url>
 <url>
-	<loc>http://localhost:8888/house.ad.test/index.php/en/5/about_us</loc>
+	<loc>http://localhost:8888/dev.house/index.php/cat/1/pagina_principal</loc>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="es"
+        href="http://localhost:8888/dev.house/index.php/es/1/pagina_principal"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="http://localhost:8888/dev.house/index.php/en/1/pagina_principal"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/1/pagina_principal"
+    />
+</url>
+<url>
+	<loc>http://localhost:8888/dev.house/index.php/en/157/articles</loc>
+	<lastmod>2014-04-08T22:08:34+02:00</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="es"
+        href="http://localhost:8888/dev.house/index.php/es/157/articles"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/157/articles"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/157/articles"
+    />
+</url>
+<url>
+	<loc>http://localhost:8888/dev.house/index.php/es/157/articulos</loc>
+	<lastmod>2014-04-08T22:08:34+02:00</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="http://localhost:8888/dev.house/index.php/en/157/articulos"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/157/articulos"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/157/articulos"
+    />
+</url>
+<url>
+	<loc>http://localhost:8888/dev.house/index.php/fr/157/articulos</loc>
+	<lastmod>2014-04-08T22:08:34+02:00</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="es"
+        href="http://localhost:8888/dev.house/index.php/es/157/articulos"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="http://localhost:8888/dev.house/index.php/en/157/articulos"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/157/articulos"
+    />
+</url>
+<url>
+	<loc>http://localhost:8888/dev.house/index.php/cat/157/articulos</loc>
+	<lastmod>2014-04-08T22:08:34+02:00</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="es"
+        href="http://localhost:8888/dev.house/index.php/es/157/articulos"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="http://localhost:8888/dev.house/index.php/en/157/articulos"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/157/articulos"
+    />
+</url>
+<url>
+	<loc>http://localhost:8888/dev.house/index.php/en/5/about_us</loc>
 	<lastmod>2013-12-12T16:01:35+01:00</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.5</priority>
     <xhtml:link
         rel="alternate"
         hreflang="es"
-        href="http://localhost:8888/house.ad.test/index.php/es/5/about_us"
+        href="http://localhost:8888/dev.house/index.php/es/5/about_us"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/5/about_us"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/5/about_us"
     />
 </url>
 <url>
-	<loc>http://localhost:8888/house.ad.test/index.php/es/5/o_nama</loc>
+	<loc>http://localhost:8888/dev.house/index.php/es/5/sobre_nosotros</loc>
 	<lastmod>2013-12-12T16:01:35+01:00</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.5</priority>
     <xhtml:link
         rel="alternate"
         hreflang="en"
-        href="http://localhost:8888/house.ad.test/index.php/en/5/o_nama"
+        href="http://localhost:8888/dev.house/index.php/en/5/sobre_nosotros"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/5/sobre_nosotros"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/5/sobre_nosotros"
     />
 </url>
 <url>
-	<loc>http://localhost:8888/house.ad.test/index.php/en/3/rent</loc>
+	<loc>http://localhost:8888/dev.house/index.php/fr/5/sobre_nosotros</loc>
+	<lastmod>2013-12-12T16:01:35+01:00</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.5</priority>
     <xhtml:link
         rel="alternate"
         hreflang="es"
-        href="http://localhost:8888/house.ad.test/index.php/es/3/rent"
+        href="http://localhost:8888/dev.house/index.php/es/5/sobre_nosotros"
     />
-</url>
-<url>
-	<loc>http://localhost:8888/house.ad.test/index.php/es/3/najam</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
     <xhtml:link
         rel="alternate"
         hreflang="en"
-        href="http://localhost:8888/house.ad.test/index.php/en/3/najam"
+        href="http://localhost:8888/dev.house/index.php/en/5/sobre_nosotros"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/5/sobre_nosotros"
     />
 </url>
 <url>
-	<loc>http://localhost:8888/house.ad.test/index.php/en/2/sale</loc>
+	<loc>http://localhost:8888/dev.house/index.php/cat/5/sobre_nosotros</loc>
+	<lastmod>2013-12-12T16:01:35+01:00</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.5</priority>
     <xhtml:link
         rel="alternate"
         hreflang="es"
-        href="http://localhost:8888/house.ad.test/index.php/es/2/sale"
+        href="http://localhost:8888/dev.house/index.php/es/5/sobre_nosotros"
     />
-</url>
-<url>
-	<loc>http://localhost:8888/house.ad.test/index.php/es/2/prodaja</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
     <xhtml:link
         rel="alternate"
         hreflang="en"
-        href="http://localhost:8888/house.ad.test/index.php/en/2/prodaja"
+        href="http://localhost:8888/dev.house/index.php/en/5/sobre_nosotros"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/5/sobre_nosotros"
     />
 </url>
 <url>
-	<loc>http://localhost:8888/house.ad.test/index.php/en/158/test_article_2</loc>
-	<lastmod>2014-04-08T22:30:56+02:00</lastmod>
+	<loc>http://localhost:8888/dev.house/index.php/en/142/blog_page</loc>
+	<lastmod>2014-01-04T22:19:49+01:00</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.5</priority>
     <xhtml:link
         rel="alternate"
         hreflang="es"
-        href="http://localhost:8888/house.ad.test/index.php/es/158/test_article_2"
+        href="http://localhost:8888/dev.house/index.php/es/142/blog_page"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/142/blog_page"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/142/blog_page"
     />
 </url>
 <url>
-	<loc>http://localhost:8888/house.ad.test/index.php/es/158/test_clanak_2</loc>
-	<lastmod>2014-04-08T22:30:56+02:00</lastmod>
+	<loc>http://localhost:8888/dev.house/index.php/es/142/pagina_blog</loc>
+	<lastmod>2014-01-04T22:19:49+01:00</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.5</priority>
     <xhtml:link
         rel="alternate"
         hreflang="en"
-        href="http://localhost:8888/house.ad.test/index.php/en/158/test_clanak_2"
+        href="http://localhost:8888/dev.house/index.php/en/142/pagina_blog"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/142/pagina_blog"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/142/pagina_blog"
     />
 </url>
 <url>
-	<loc>http://localhost:8888/house.ad.test/index.php/en/4/contact</loc>
+	<loc>http://localhost:8888/dev.house/index.php/fr/142/pagina_blog</loc>
+	<lastmod>2014-01-04T22:19:49+01:00</lastmod>
 	<changefreq>monthly</changefreq>
 	<priority>0.5</priority>
     <xhtml:link
         rel="alternate"
         hreflang="es"
-        href="http://localhost:8888/house.ad.test/index.php/es/4/contact"
+        href="http://localhost:8888/dev.house/index.php/es/142/pagina_blog"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="http://localhost:8888/dev.house/index.php/en/142/pagina_blog"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/142/pagina_blog"
     />
 </url>
 <url>
-	<loc>http://localhost:8888/house.ad.test/index.php/es/4/kontakt</loc>
+	<loc>http://localhost:8888/dev.house/index.php/cat/142/pagina_blog</loc>
+	<lastmod>2014-01-04T22:19:49+01:00</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="es"
+        href="http://localhost:8888/dev.house/index.php/es/142/pagina_blog"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="http://localhost:8888/dev.house/index.php/en/142/pagina_blog"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/142/pagina_blog"
+    />
+</url>
+<url>
+	<loc>http://localhost:8888/dev.house/index.php/en/4/contact</loc>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="es"
+        href="http://localhost:8888/dev.house/index.php/es/4/contact"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/4/contact"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/4/contact"
+    />
+</url>
+<url>
+	<loc>http://localhost:8888/dev.house/index.php/es/4/contactanos</loc>
 	<changefreq>monthly</changefreq>
 	<priority>0.5</priority>
     <xhtml:link
         rel="alternate"
         hreflang="en"
-        href="http://localhost:8888/house.ad.test/index.php/en/4/kontakt"
+        href="http://localhost:8888/dev.house/index.php/en/4/contactanos"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/4/contactanos"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/4/contactanos"
+    />
+</url>
+<url>
+	<loc>http://localhost:8888/dev.house/index.php/fr/4/contactanos</loc>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="es"
+        href="http://localhost:8888/dev.house/index.php/es/4/contactanos"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="http://localhost:8888/dev.house/index.php/en/4/contactanos"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/4/contactanos"
+    />
+</url>
+<url>
+	<loc>http://localhost:8888/dev.house/index.php/cat/4/contactanos</loc>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="es"
+        href="http://localhost:8888/dev.house/index.php/es/4/contactanos"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="http://localhost:8888/dev.house/index.php/en/4/contactanos"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/4/contactanos"
     />
 </url>
 </urlset>

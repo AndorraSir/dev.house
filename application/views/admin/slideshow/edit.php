@@ -127,8 +127,8 @@
         </div>
 		  </div>
 
-<link rel="stylesheet" href="<?php echo base_url('assets/js/zebra/css/flat/zebra_dialog.css')?>">
-<script src="<?php echo base_url('assets/js/zebra/javascript/zebra_dialog.src.js')?>"></script>
+<link rel="stylesheet" href="<?php echo base_url('admin-assets/js/zebra/css/flat/zebra_dialog.css')?>">
+<script src="<?php echo base_url('admin-assets/js/zebra/javascript/zebra_dialog.src.js')?>"></script>
 <script>
 
 /* CL Editor */

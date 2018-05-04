@@ -215,18 +215,18 @@ class Property extends Frontend_Controller
         $this->data['estate_data_printurl'] = 
             site_url_q($this->data['listing_uri'].'/'.$estate_data['id'].'/'.$lang_code.'/'.$url_title, 'v=print');
         
-        $this->data['estate_data_icon'] = 'assets/img/markers/'.$this->data['color_path'].'marker_blue.png';
+        $this->data['estate_data_icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].'marker_blue.png';
         if(isset($this->data['estate_data_option_6']))
         {
             if($this->data['estate_data_option_6'] != '' && $this->data['estate_data_option_6'] != 'empty')
             {
                 if(file_exists(FCPATH.'templates/'.$this->data['settings_template'].
                                '/assets/img/markers/'.$this->data['color_path'].$this->data['estate_data_option_6'].'.png'))
-                $this->data['estate_data_icon'] = 'assets/img/markers/'.$this->data['color_path'].$this->data['estate_data_option_6'].'.png';
+                $this->data['estate_data_icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].$this->data['estate_data_option_6'].'.png';
                 
                 if(file_exists(FCPATH.'templates/'.$this->data['settings_template'].
                                    '/assets/img/markers/'.$this->data['color_path'].'selected/'.$this->data['estate_data_option_6'].'.png'))
-                $this->data['estate_data_icon'] = 'assets/img/markers/'.$this->data['color_path'].'selected/'.$this->data['estate_data_option_6'].'.png';
+                $this->data['estate_data_icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].'selected/'.$this->data['estate_data_option_6'].'.png';
             }
         }
         
@@ -270,7 +270,7 @@ class Property extends Frontend_Controller
         
         foreach($files as $key=>$file)
         {
-            $file->thumbnail_url = base_url('assets/img/icons/filetype/_blank.png');
+            $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/_blank.png');
             $file->url = base_url('files/'.$file->filename);
             if(file_exists(FCPATH.'files/thumbnail/'.$file->filename))
             {
@@ -282,9 +282,9 @@ class Property extends Frontend_Controller
                     $this->data['page_images'][] = $file;
                 }
             }
-            else if(file_exists(FCPATH.'assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
+            else if(file_exists(FCPATH.'admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
             {
-                $file->thumbnail_url = base_url('assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
+                $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
                 $this->data['documents_'.$file->repository_id][] = $file;
                 if($estate_data['repository_id'] == $file->repository_id)
                 {
@@ -316,7 +316,7 @@ class Property extends Frontend_Controller
             $this->data['page_description'] = character_limiter(strip_tags($json_obj->field_8), 160);
             $this->data['page_keywords']= character_limiter(strip_tags($json_obj->field_78), 160);
             
-            $this->data['estate_image_url'] = 'assets/img/no_image.jpg';
+            $this->data['estate_image_url'] = 'admin-assets/img/no_image.jpg';
             if(isset($this->data['page_images'][0]))
             {
                 $this->data['estate_image_url'] = $this->data['page_images'][0]->url;
@@ -375,7 +375,7 @@ class Property extends Frontend_Controller
         }
         else
         {
-            $this->data['agent_image_url'] = 'assets/img/user-agent.png';
+            $this->data['agent_image_url'] = 'admin-assets/img/user-agent.png';
         }
         
         $this->data['agency_image_url'] = '';
@@ -533,7 +533,7 @@ class Property extends Frontend_Controller
             }
             else
             {
-                $estate['thumbnail_url'] = 'assets/img/no_image.jpg';
+                $estate['thumbnail_url'] = 'admin-assets/img/no_image.jpg';
             }
 
             $this->data['last_estates'][] = $estate;
@@ -1117,7 +1117,7 @@ class Property extends Frontend_Controller
                 if(substr_count($tempFile, $template_prefix) == 0)
                 {
                     $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
-                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
+                    //$template_output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
                     $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
                 }
             }
@@ -1129,7 +1129,7 @@ class Property extends Frontend_Controller
             
             if($this->data['settings_template'] == 'realia')
             {
-                echo str_replace('assets/', base_url('templates/modules').'/assets/', $output);
+                echo str_replace('admin-assets/', base_url('templates/bootstrap2-responsive').'/assets/', $output);
                 exit();
             }
         }
@@ -1156,7 +1156,7 @@ class Property extends Frontend_Controller
                 $output = $this->parser->parse($this->data['settings_template'].'/property.php', $this->data, TRUE);
         }
         
-        $output =  str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        $output =  str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
         
         if(config_item('litecache_enabled') === TRUE)
         {

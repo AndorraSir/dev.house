@@ -1,7 +1,7 @@
 <?php
 
-$lang['imglib_source_image_required'] = "Tiene que especificar una ruta de imagen en sus preferencias.";
-$lang['imglib_gd_required'] = "La librearia de imagen GD es obligatoria en este campo.";
+$lang['imglib_source_image_required'] = "You must specify a source image in your preferences.";
+$lang['imglib_gd_required'] = "The GD image library is required for this feature.";
 $lang['imglib_gd_required_for_props'] = "Your server must support the GD image library in order to determine the image properties.";
 $lang['imglib_unsupported_imagecreate'] = "Your server does not support the GD function required to process this type of image.";
 $lang['imglib_gif_not_supported'] = "GIF images are often not supported due to licensing restrictions.  You may have to use JPG or PNG images instead.";

@@ -17,8 +17,8 @@ class AIMAuthorizeRequest extends AIMAbstractRequest
         $data = $this->getBaseData();
         $data->transactionRequest->amount = $this->getAmount();
         $this->addPayment($data);
-        $this->addCustomerIP($data);
         $this->addBillingData($data);
+        $this->addCustomerIP($data);
         $this->addTransactionSettings($data);
 
         return $data;
@@ -26,6 +26,15 @@ class AIMAuthorizeRequest extends AIMAbstractRequest
 
     protected function addPayment(\SimpleXMLElement $data)
     {
+        /**
+         * @link http://developer.authorize.net/api/reference/features/acceptjs.html Documentation on opaque data
+         */
+        if ($this->getOpaqueDataDescriptor() && $this->getOpaqueDataValue()) {
+            $data->transactionRequest->payment->opaqueData->dataDescriptor = $this->getOpaqueDataDescriptor();
+            $data->transactionRequest->payment->opaqueData->dataValue = $this->getOpaqueDataValue();
+            return;
+        }
+
         $this->validate('card');
         /** @var CreditCard $card */
         $card = $this->getCard();

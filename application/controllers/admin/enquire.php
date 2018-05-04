@@ -458,18 +458,18 @@ class Enquire extends Admin_Controller
             $this->data['estate_data_printurl'] = 
                 site_url_q($this->data['listing_uri'].'/'.$estate_data['id'].'/'.$this->data['lang_code'].'/'.$url_title, 'v=print');
 
-            $this->data['estate_data_icon'] = 'assets/img/markers/'.$this->data['color_path'].'marker_blue.png';
+            $this->data['estate_data_icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].'marker_blue.png';
             if(isset($this->data['estate_data_option_6']))
             {
                 if($this->data['estate_data_option_6'] != '' && $this->data['estate_data_option_6'] != 'empty')
                 {
                     if(file_exists(FCPATH.'templates/'.$this->data['settings_template'].
                                    '/assets/img/markers/'.$this->data['color_path'].$this->data['estate_data_option_6'].'.png'))
-                    $this->data['estate_data_icon'] = 'assets/img/markers/'.$this->data['color_path'].$this->data['estate_data_option_6'].'.png';
+                    $this->data['estate_data_icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].$this->data['estate_data_option_6'].'.png';
 
                     if(file_exists(FCPATH.'templates/'.$this->data['settings_template'].
                                        '/assets/img/markers/'.$this->data['color_path'].'selected/'.$this->data['estate_data_option_6'].'.png'))
-                    $this->data['estate_data_icon'] = 'assets/img/markers/'.$this->data['color_path'].'selected/'.$this->data['estate_data_option_6'].'.png';
+                    $this->data['estate_data_icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].'selected/'.$this->data['estate_data_option_6'].'.png';
                 }
             }
 

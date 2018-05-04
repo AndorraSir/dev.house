@@ -108,7 +108,7 @@ class Treefield extends Frontend_Controller
         $this->data['page_images'] = array();
         foreach($files as $key=>$file)
         {
-            $file->thumbnail_url = base_url('assets/img/icons/filetype/_blank.png');
+            $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/_blank.png');
             $file->url = base_url('files/'.$file->filename);
             if(file_exists(FCPATH.'files/thumbnail/'.$file->filename))
             {
@@ -120,9 +120,9 @@ class Treefield extends Frontend_Controller
                     $this->data['page_images'][] = $file;
                 }
             }
-            else if(file_exists(FCPATH.'assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
+            else if(file_exists(FCPATH.'admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
             {
-                $file->thumbnail_url = base_url('assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
+                $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
                 $this->data['documents_'.$file->repository_id][] = $file;
                 if($this->data['treefield_data']->repository_id == $file->repository_id)
                 {
@@ -217,7 +217,7 @@ class Treefield extends Frontend_Controller
             }
             else
             {
-                $estate['thumbnail_url'] = 'assets/img/no_image.jpg';
+                $estate['thumbnail_url'] = 'admin-assets/img/no_image.jpg';
             }
 
             $this->data['last_estates'][] = $estate;
@@ -528,14 +528,14 @@ class Treefield extends Frontend_Controller
                 if(substr_count($tempFile, $template_prefix) == 0)
                 {
                     $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
-                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
+                    //$template_output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
                     $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
                 }
             }
         }
 
         $output = $this->parser->parse($this->data['settings_template'].'/'.$this->data['treefield_data']->template.'.php', $this->data, TRUE);
-        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        echo str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
     }
 
 }

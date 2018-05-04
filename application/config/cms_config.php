@@ -11,7 +11,11 @@ $config['last_estates_limit'] = 4;
 
 $config['version'] = '1.6.2';
 
-$config['default_template_css'] = 'assets/style/css/style.css';
+$config['default_template_css'] = 'admin-assets/style/css/style.css';
+
+$config['codecanyon_username'] = 'fmonkey';
+
+$config['codecanyon_code'] = '3b0c84d6-9854-4fb0-a078-24d45208cc80';
 
 $config['hash_function'] = 'hash';
 

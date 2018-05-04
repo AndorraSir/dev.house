@@ -79,19 +79,19 @@
                                   </div>
                                 </div>
                               
-                                <div class="form-group">
+                               <!--  <div class="form-group">
                                   <label class="col-lg-2 control-label"><?php echo lang_check('Activation price')?></label>
                                   <div class="col-lg-10">
                                     <?php echo form_input('activation_price', set_value('activation_price', isset($settings['activation_price'])?$settings['activation_price']:''), 'class="form-control" id="inputActivationPrice" placeholder="'.lang_check('Activation price').'"')?>
                                   </div>
-                                </div>
+                                </div> -->
                                 
-                                <div class="form-group">
+                               <!--  <div class="form-group">
                                   <label class="col-lg-2 control-label"><?php echo lang_check('Featured price')?></label>
                                   <div class="col-lg-10">
                                     <?php echo form_input('featured_price', set_value('featured_price', isset($settings['featured_price'])?$settings['featured_price']:''), 'class="form-control" id="inputFeaturedPrice" placeholder="'.lang_check('Activation price').'"')?>
                                   </div>
-                                </div>
+                                </div> -->
                                 
                                 <?php if(file_exists(APPPATH.'controllers/paymentconsole.php')): ?>
                                 
@@ -156,20 +156,15 @@
                                 
                                 <?php endif; ?>
                                 
-                                <div class="form-group">
-                                  <label class="col-lg-2 control-label"><?php echo lang_check('Default PayPal currency code')?></label>
-                                  <div class="col-lg-10">
-                                    <?php echo form_dropdown('default_currency', $currencies, set_value('default_currency', isset($settings['default_currency'])?$settings['default_currency']:''), 'class="form-control"')?>
-                                  </div>
-                                </div>
+                              
                                 
-                                <div class="form-group">
+                              <!--  <div class="form-group">
                                   <label class="col-lg-2 control-label"><?php echo lang('Listing expiry days')?></label>
                                   <div class="col-lg-10">
                                     <?php echo form_input('listing_expiry_days', set_value('listing_expiry_days', isset($settings['listing_expiry_days'])?$settings['listing_expiry_days']:''), 'class="form-control" id="inputListingExpiry" placeholder="'.lang('Listing expiry days').'"')?>
                                   </div>
-                                </div>
-                                <div class="form-group">
+                                </div> -->
+                               <!--  <div class="form-group">
                                   <label class="col-lg-2 control-label" for="inputJs_date_format">
                                       <?php echo lang_check('Js date format')?>
                                   </label>
@@ -194,14 +189,14 @@
                                     <?php echo form_dropdown('js_date_format',$available_formats, set_value('js_date_format', isset($settings['js_date_format'])?$settings['js_date_format']:'yyyy-MM-dd'), 'class="form-control" id="inputJs_date_format" placeholder="'.lang_check('Js date format').'"')?>
                                   
                                   </div>
-                                </div>
+                                </div> -->
                     
-                                <div class="form-group">
+                              <!--   <div class="form-group">
                                     <label class="col-lg-2 control-label" for="inputPhp_date_format"><?php echo lang_check('Php date format')?></label>
                                   <div class="col-lg-10">
                                     <?php echo form_input('php_date_format',  set_value('php_date_format', isset($settings['php_date_format'])?$settings['php_date_format']:''), 'class="form-control" id="inputPhp_date_format" placeholder="'.lang_check('Php date format').'"')?>
                                   </div>
-                                </div>
+                                </div> -->
                     
                                 
                                 <div class="form-group">

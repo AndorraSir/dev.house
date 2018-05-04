@@ -487,7 +487,7 @@ function _simg($filename, $dim = '640x480', $cut_enabled=false)
     
     if(!file_exists('files/'.$filename))
     {
-        $filename_encode = basename('assets/img/no_image.jpg');
+        $filename_encode = basename('admin-assets/img/no_image.jpg');
     }
     
     if($cut_enabled === true)
@@ -1084,7 +1084,7 @@ function get_lang_menu ($array, $lang_code, $extra_ul_attributes = '')
             $template_name = $CI->data['settings_template'];
             if(file_exists(FCPATH.'templates/'.$template_name.'/assets/img/flags/'.$item['code'].'.png'))
             {
-                $flag_icon = '&nbsp; <img src="'.'assets/img/flags/'.$item['code'].'.png" alt="" />';
+                $flag_icon = '&nbsp; <img src="'.'admin-assets/img/flags/'.$item['code'].'.png" alt="" />';
             }
         }
 

@@ -1,6 +1,8 @@
 var gulp = require('gulp');
 // var browserSync = require('browser-sync');
 var sass = require('gulp-sass');
+var uglify     = require('gulp-uglify');
+
 // var reload = browserSync.reload;
 
 // Html task
@@ -18,15 +20,12 @@ gulp.task('html', function(){
 
 
 gulp.task('styles', function(){
-  return gulp.src('assets/style/sass/*.scss')
+  return gulp.src('admin-assets/style/sass/*.scss')
     .pipe(sass())
-    .pipe(gulp.dest('assets/style/css/'))
+    .pipe(gulp.dest('admin-assets/style/css/'))
+    .pipe(gulp.dest('templates/bootstrap2-responsive/assets/style/'))
 });
  
-// gulp.task('html', function(){
-//   return gulp.src('src/index.html')
-//     .pipe(gulp.dest('dist'))
-// });
 
 
 // Watch task

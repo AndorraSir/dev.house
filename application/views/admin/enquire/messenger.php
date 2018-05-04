@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="<?php echo base_url('assets/js/jnicol-trackpad-scroll-emulator/css/trackpad-scroll-emulator.css')?>" />
-<script src="<?php echo base_url('assets/js/jnicol-trackpad-scroll-emulator/jquery.trackpad-scroll-emulator.js')?>"></script>
+<link rel="stylesheet" href="<?php echo base_url('admin-assets/js/jnicol-trackpad-scroll-emulator/css/trackpad-scroll-emulator.css')?>" />
+<script src="<?php echo base_url('admin-assets/js/jnicol-trackpad-scroll-emulator/jquery.trackpad-scroll-emulator.js')?>"></script>
 
 <div class="page-head">
     <!-- Page heading -->

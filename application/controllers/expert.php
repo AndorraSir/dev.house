@@ -52,7 +52,7 @@ class Expert extends Frontend_Controller
         $this->data['page_files'] = array();
         foreach($files as $key=>$file)
         {
-            $file->thumbnail_url = base_url('assets/img/icons/filetype/_blank.png');
+            $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/_blank.png');
             $file->url = base_url('files/'.$file->filename);
             if(file_exists(FCPATH.'files/thumbnail/'.$file->filename))
             {
@@ -66,9 +66,9 @@ class Expert extends Frontend_Controller
                 }
 
             }
-            else if(file_exists(FCPATH.'assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
+            else if(file_exists(FCPATH.'admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
             {
-                $file->thumbnail_url = base_url('assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
+                $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
                 $this->data['documents_'.$file->repository_id][] = $file;
                 if($this->temp_data['page']->repository_id == $file->repository_id)
                 {
@@ -106,7 +106,7 @@ class Expert extends Frontend_Controller
             $this->data['page_description'] = character_limiter(strip_tags($showroom_data['description']), 160);
             $this->data['page_keywords']  = '';
 
-            $this->data['showroom_image_url'] = 'assets/img/no_image.jpg';
+            $this->data['showroom_image_url'] = 'admin-assets/img/no_image.jpg';
             if(isset($this->data['page_images'][0]))
             {
                 $this->data['showroom_image_url'] = $this->data['page_images'][0]->thumbnail_url;
@@ -151,14 +151,14 @@ class Expert extends Frontend_Controller
             }
             
             
-            $estate['icon'] = 'assets/img/markers/'.$this->data['color_path'].'marker_blue.png';
+            $estate['icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].'marker_blue.png';
             if(isset($estate['option_6']))
             {
                 if($estate['option_6'] != '' && $estate['option_6'] != 'empty')
                 {
                     if(file_exists(FCPATH.'templates/'.$this->data['settings_template'].
                                    '/assets/img/markers/'.$this->data['color_path'].$estate['option_6'].'.png'))
-                    $estate['icon'] = 'assets/img/markers/'.$this->data['color_path'].$estate['option_6'].'.png';
+                    $estate['icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].$estate['option_6'].'.png';
                 }
             }
             
@@ -169,7 +169,7 @@ class Expert extends Frontend_Controller
 //                {
 //                    if(file_exists(FCPATH.'templates/'.$this->data['settings_template'].
 //                                   '/assets/img/markers/'.$this->data['color_path'].'selected/'.$estate['option_6'].'.png'))
-//                    $estate['icon'] = 'assets/img/markers/'.$this->data['color_path'].'selected/'.$estate['option_6'].'.png';
+//                    $estate['icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].'selected/'.$estate['option_6'].'.png';
 //                }
 //            }
 //            }
@@ -191,7 +191,7 @@ class Expert extends Frontend_Controller
             }
             else
             {
-                $estate['thumbnail_url'] = 'assets/img/no_image.jpg';
+                $estate['thumbnail_url'] = 'admin-assets/img/no_image.jpg';
             }
 
             $this->data['all_estates'][] = $estate;
@@ -425,14 +425,14 @@ class Expert extends Frontend_Controller
                 if(substr_count($tempFile, $template_prefix) == 0)
                 {
                     $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
-                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
+                    //$template_output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
                     $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
                 }
             }
         }
         
         $output = $this->parser->parse($this->data['settings_template'].'/expert.php', $this->data, TRUE);
-        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        echo str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
     }
     
     public function ajax ($lang_code, $page_id)
@@ -449,7 +449,7 @@ class Expert extends Frontend_Controller
         $this->data['page_files'] = array();
         foreach($files as $key=>$file)
         {
-            $file->thumbnail_url = base_url('assets/img/icons/filetype/_blank.png');
+            $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/_blank.png');
             $file->url = base_url('files/'.$file->filename);
 
             if(file_exists(FCPATH.'files/thumbnail/'.$file->filename))
@@ -462,9 +462,9 @@ class Expert extends Frontend_Controller
                     $this->data['page_images'][] = $file;
                 }
             }
-            else if(file_exists(FCPATH.'assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
+            else if(file_exists(FCPATH.'admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
             {
-                $file->thumbnail_url = base_url('assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
+                $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
                 $this->data['documents_'.$file->repository_id][] = $file;
                 if($this->temp_data['page']->repository_id == $file->repository_id)
                 {
@@ -569,7 +569,7 @@ class Expert extends Frontend_Controller
             }
             else
             {
-                $agent['image_url'] = 'assets/img/no_image.jpg';
+                $agent['image_url'] = 'admin-assets/img/no_image.jpg';
             }
 
             $this->data['all_experts'][$expert_obj->id] = $agent;
@@ -578,7 +578,7 @@ class Expert extends Frontend_Controller
         /* {/MODULE_Q&A} */
         
         $output = $this->parser->parse($this->data['settings_template'].'/results_expert.php', $this->data, TRUE);
-        $output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        $output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
         
         echo json_encode(array('print' => $output, 'lang_id'=>$lang_id, 'total_rows'=>$config_2['total_rows']));
         exit();

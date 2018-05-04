@@ -101,13 +101,13 @@
                     
                     <!--
                     <p> - <?php _l('For active place only add attribute data-name, with value on default lang'); ?>:</p>
-                    <img src="<?php echo base_url('assets/img/example_svg.jpg');?>" alt="" style="max-width: 100%" />
+                    <img src="<?php echo base_url('admin-assets/img/example_svg.jpg');?>" alt="" style="max-width: 100%" />
                     -->
                     
                     <div class="row preload-box">
                         <div class="col-sm-7" id="map_preload"></div>
                         <div class="col-sm-5" id="region_list_preload"></div>
-                        <img src="<?php echo base_url('assets/img/loading.gif')?>"  style="display: none;" alt="" />
+                        <img src="<?php echo base_url('admin-assets/img/loading.gif')?>"  style="display: none;" alt="" />
                     </div>
                   </div>
               </div>  

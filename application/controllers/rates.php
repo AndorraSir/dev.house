@@ -43,7 +43,7 @@ class Rates extends Frontuser_Controller
                 if(substr_count($tempFile, $template_prefix) == 0)
                 {
                     $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
-                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
+                    //$template_output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
                     $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
                 }
             }
@@ -51,7 +51,7 @@ class Rates extends Frontuser_Controller
         
 
         $output = $this->parser->parse($this->data['settings_template'].'/myrates.php', $this->data, TRUE);
-        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        echo str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
     }
     
     public function make_withdrawal($lang_code_u = 'en')
@@ -145,14 +145,14 @@ class Rates extends Frontuser_Controller
                 if(substr_count($tempFile, $template_prefix) == 0)
                 {
                     $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
-                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
+                    //$template_output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
                     $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
                 }
             }
         }
 
         $output = $this->parser->parse($this->data['settings_template'].'/make_withdrawal.php', $this->data, TRUE);
-        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        echo str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
     }
     
     public function payments($lang_code_u = 'en', $pagination_offset=0)
@@ -208,7 +208,7 @@ class Rates extends Frontuser_Controller
                 if(substr_count($tempFile, $template_prefix) == 0)
                 {
                     $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
-                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
+                    //$template_output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
                     $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
                 }
             }
@@ -216,7 +216,7 @@ class Rates extends Frontuser_Controller
         
 
         $output = $this->parser->parse($this->data['settings_template'].'/mypayments.php', $this->data, TRUE);
-        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        echo str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
     }
     
 	public function rate_edit()
@@ -329,7 +329,7 @@ class Rates extends Frontuser_Controller
                 if(substr_count($tempFile, $template_prefix) == 0)
                 {
                     $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
-                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
+                    //$template_output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
                     $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
                 }
             }
@@ -337,7 +337,7 @@ class Rates extends Frontuser_Controller
         
 
         $output = $this->parser->parse($this->data['settings_template'].'/editrate.php', $this->data, TRUE);
-        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        echo str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
     }
     
 	public function rate_delete()

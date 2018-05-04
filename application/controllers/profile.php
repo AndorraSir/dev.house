@@ -126,7 +126,7 @@ class Profile extends Frontend_Controller
         /* [/Get agent estates] */
         
         $output = $this->parser->parse($this->data['settings_template'].'/results_profile.php', $this->data, TRUE);
-        $output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        $output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
         
         header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/json');
@@ -233,7 +233,7 @@ class Profile extends Frontend_Controller
         $this->data['page_images'] = array();
         foreach($files as $key=>$file)
         {
-            $file->thumbnail_url = base_url('assets/img/icons/filetype/_blank.png');
+            $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/_blank.png');
             $file->url = base_url('files/'.$file->filename);
             if(file_exists(FCPATH.'files/thumbnail/'.$file->filename))
             {
@@ -245,9 +245,9 @@ class Profile extends Frontend_Controller
                     $this->data['page_images'][] = $file;
                 }
             }
-            else if(file_exists(FCPATH.'assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
+            else if(file_exists(FCPATH.'admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
             {
-                $file->thumbnail_url = base_url('assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
+                $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
                 $this->data['documents_'.$file->repository_id][] = $file;
                 if($agent['repository_id'] == $file->repository_id)
                 {
@@ -264,7 +264,7 @@ class Profile extends Frontend_Controller
         }
         else
         {
-            $this->data['agent_image_url'] = 'assets/img/user-agent.png';
+            $this->data['agent_image_url'] = 'admin-assets/img/user-agent.png';
         }
         
         if(count($agent) && !empty($agent['image_agency_filename']))
@@ -606,14 +606,14 @@ class Profile extends Frontend_Controller
                 if(substr_count($tempFile, $template_prefix) == 0)
                 {
                     $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
-                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
+                    //$template_output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
                     $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
                 }
             }
         }
         
         $output = $this->parser->parse($this->data['settings_template'].'/profile.php', $this->data, TRUE);
-        $output =  str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        $output =  str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
         
         if(config_item('litecache_enabled') === TRUE)
         {

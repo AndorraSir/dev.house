@@ -39,9 +39,9 @@
 
 
 
-<script src="<?php echo base_url('assets/js/ckeditor_4.6.2_standard/ckeditor/ckeditor.js')?>"></script>
+<script src="<?php echo base_url('admin-assets/js/ckeditor_4.6.2_standard/ckeditor/ckeditor.js')?>"></script>
 <script>
-CKEDITOR.config.contentsCss =[ "<?php echo base_url('templates/'.$settings['template'].'/assets/css/style.css')?>" <?php if(isset($template_css) && !empty($template_css)):?>, "<?php echo $template_css?>"<?php endif;?> ];  
+CKEDITOR.config.contentsCss =[ "<?php echo base_url('templates/'.$settings['template'].'/assets/style/style.css')?>" <?php if(isset($template_css) && !empty($template_css)):?>, "<?php echo $template_css?>"<?php endif;?> ];  
 CKEDITOR.config.baseHref =  "<?php echo base_url('templates/'.$settings['template'])?>/"
 CKEDITOR.addCss(
             '.row {' +

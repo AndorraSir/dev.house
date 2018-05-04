@@ -288,8 +288,8 @@ foreach($obj_widgets->center as $key=>$row)
                 </div>
                   <div class="widget-foot">
 
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/js/magnific-popup/magnific-popup.css')?>" /> 
-<script src="<?php echo base_url('assets/js/magnific-popup/jquery.magnific-popup.js')?>"></script> 
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('admin-assets/js/magnific-popup/magnific-popup.css')?>" /> 
+<script src="<?php echo base_url('admin-assets/js/magnific-popup/jquery.magnific-popup.js')?>"></script> 
 
 <script>
 

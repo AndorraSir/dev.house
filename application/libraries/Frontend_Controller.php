@@ -103,7 +103,7 @@ class Frontend_Controller extends MY_Controller
         /* [/Load models] */
         
         /* [START] Fetch logo URL */
-        $this->data['website_logo_url'] = 'assets/img/logos/house-logo.png';
+        $this->data['website_logo_url'] = 'admin-assets/img/logo.png';
         if(isset($this->data['settings']['website_logo']))
         {
             if(is_numeric($this->data['settings']['website_logo']))
@@ -119,7 +119,7 @@ class Frontend_Controller extends MY_Controller
         
         if(config_item('secondary_logo_support')){
             /* [START] Fetch logo secondary URL */
-            $this->data['website_logo_secondary_url'] = 'assets/img/logo_secondary.png';
+            $this->data['website_logo_secondary_url'] = 'admin-assets/img/logo_secondary.png';
             if(isset($this->data['settings']['website_logo_secondary']))
             {
                 if(is_numeric($this->data['settings']['website_logo_secondary']))
@@ -135,7 +135,7 @@ class Frontend_Controller extends MY_Controller
         }
          
         /* [START] Fetch favicon URL */
-        $this->data['website_favicon_url'] = 'assets/img/favicon.png';
+        $this->data['website_favicon_url'] = 'admin-assets/img/favicon.png';
         if(isset($this->data['settings']['website_favicon']))
         {
             if(is_numeric($this->data['settings']['website_favicon']))
@@ -291,7 +291,7 @@ class Frontend_Controller extends MY_Controller
 
         if(file_exists(FCPATH.'templates/'.$this->data['settings_template'].'/assets/img/logo_'.$this->data['lang_code'].'.png'))
         {
-            $this->data['website_logo_url'] = 'assets/img/logo_'.$this->data['lang_code'].'.png';
+            $this->data['website_logo_url'] = 'admin-assets/img/logo_'.$this->data['lang_code'].'.png';
         }
 
         
@@ -668,7 +668,7 @@ class Frontend_Controller extends MY_Controller
                 'word' => substr(md5($captcha_hash.config_item('encryption_key')), 0, 5),
                 'img_path' => FCPATH.'files/captcha/',
                 'img_url' => base_url('files/captcha').'/',
-                'font_path' => FCPATH.'assets/font/verdana.ttf',
+                'font_path' => FCPATH.'admin-assets/font/verdana.ttf',
                 'img_width' => 120,
                 'img_height' => 35,
                 'expiration' => 7200
@@ -765,7 +765,7 @@ class Frontend_Controller extends MY_Controller
                 $estate['custom_price'].=$this->data['options_prefix_56'].$estate['option_56'].$this->data['options_suffix_56'];
             }
             // [END] custom price field
-            $estate['icon'] = 'assets/img/markers/'.$this->data['color_path'].'marker_blue.png';
+            $estate['icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].'marker_blue.png';
             if(isset($estate['option_6']))
             {
                 if($estate['option_6'] != '' && $estate['option_6'] != 'empty')
@@ -786,15 +786,15 @@ class Frontend_Controller extends MY_Controller
                     if(!$uloaded_set)
                     if(file_exists(FCPATH.'templates/'.$this->data['settings_template'].
                                    '/assets/img/markers/'.$this->data['color_path'].$estate['option_6'].'.png'))
-                    $estate['icon'] = 'assets/img/markers/'.$this->data['color_path'].$estate['option_6'].'.png';
+                    $estate['icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].$estate['option_6'].'.png';
                     elseif (file_exists(FCPATH.'templates/'.$this->data['settings_template'].
                                    '/assets/img/markers/'.$estate['option_6'].'.png'))
-                    $estate['icon'] = 'assets/img/markers/'.$estate['option_6'].'.png';
+                    $estate['icon'] = 'admin-assets/img/markers/'.$estate['option_6'].'.png';
                 }
             }
             
             /* [badgets] */
-            $estate['badget'] = 'assets/img/badgets/empty.png';
+            $estate['badget'] = 'admin-assets/img/badgets/empty.png';
             if(isset($estate['option_38']))
             {
                 if($estate['option_38'] != '' && $estate['option_38'] != 'empty')
@@ -815,7 +815,7 @@ class Frontend_Controller extends MY_Controller
                     if(!$uloaded_set)
                     if(file_exists(FCPATH.'templates/'.$this->data['settings_template'].
                                    '/assets/img/badgets/'.$estate['option_38'].'.png'))
-                    $estate['badget'] = 'assets/img/badgets/'.$estate['option_38'].'.png';
+                    $estate['badget'] = 'admin-assets/img/badgets/'.$estate['option_38'].'.png';
                     
                 }
             }
@@ -861,7 +861,7 @@ class Frontend_Controller extends MY_Controller
             }
             else
             {
-                $estate['thumbnail_url'] = 'assets/img/no_image.jpg';
+                $estate['thumbnail_url'] = 'admin-assets/img/no_image.jpg';
             }
             
             // [agent second image]

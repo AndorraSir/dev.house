@@ -142,7 +142,7 @@ class Fquick extends Frontend_Controller
             $files = $this->file_m->get_by(array('repository_id'=>$repository_id));
             foreach($files as $key=>$file)
             {
-                $file->thumbnail_url = base_url('assets/img/icons/filetype/_blank.png');
+                $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/_blank.png');
                 $file->zoom_enabled = false;
                 $file->download_url = base_url('files/'.$file->filename);
                 $file->delete_url = site_url_q('files/upload/rep_'.$file->repository_id, '_method=DELETE&amp;file='.rawurlencode($file->filename));
@@ -152,9 +152,9 @@ class Fquick extends Frontend_Controller
                     $file->thumbnail_url = base_url('files/thumbnail/'.$file->filename);
                     $file->zoom_enabled = true;
                 }
-                else if(file_exists(FCPATH.'assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
+                else if(file_exists(FCPATH.'admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
                 {
-                    $file->thumbnail_url = base_url('assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
+                    $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
                 }
                 
                 $this->data['files'][$file->repository_id][] = $file;
@@ -376,7 +376,7 @@ class Fquick extends Frontend_Controller
                 if(substr_count($tempFile, $template_prefix) == 0)
                 {
                     $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
-                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
+                    //$template_output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
                     $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
                 }
             }
@@ -384,7 +384,7 @@ class Fquick extends Frontend_Controller
         
 
         $output = $this->parser->parse($this->data['settings_template'].'/quicklisting.php', $this->data, TRUE);
-        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        echo str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
     }
     
     
