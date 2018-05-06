@@ -14,11 +14,7 @@
                 <?php if(config_item('property_slider_enabled')===TRUE&&!empty($item['property_details'])):?>
                     <div class="slider-info">
                         <div class='container'>
-                             <span class="title c-white text-uppercase strong-700"><?php _che($item['property_details']['title']);?></span>
-                             <span class="subtitle-sm"><?php _che($item['property_details']['option_chlimit_8']);?></span>
-                             <a href="<?php _che($item['property_details']['link']);?>" class="btn btn-lg">
-                                 <span><?php echo _l('Seen enough');?></span>
-                             </a>
+                             TEXTO 
                          </div>
                     </div> 
                 <?php elseif(!empty($item['title'])): ?>

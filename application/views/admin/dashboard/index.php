@@ -150,19 +150,7 @@
 
                   <div class="widget-content">
 
-                    <table class="table table-bordered footable">
-                      <thead>
-                        <tr>
-                        	<th data-hide="phone"><?php _l('Date');?></th>
-                            <th><?php _l('Title');?></th>
-                        </tr>
-                      </thead>
-                      <tbody id="script_news_table">
-                        <tr>
-                        	<td colspan="5"><?php _l('Loading in progress');?></td>
-                        </tr>      
-                      </tbody>
-                    </table>
+                
 <script type="text/javascript">
 $(function () {
     
