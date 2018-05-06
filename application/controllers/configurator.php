@@ -310,7 +310,7 @@ class Configurator extends MY_Controller
         $file_content.= '//Last approved estates'."\n";
         $file_content.= '$config[\'last_estates_limit\'] = 4;'."\n\n";
         $file_content.= '$config[\'version\'] = \''.APP_VERSION_REAL_ESTATE.'\';'."\n\n";
-        $file_content.= '$config[\'default_template_css\'] = \'admin-assets/css/bootstrap.min.css\';'."\n\n";
+        $file_content.= '$config[\'default_template_css\'] = \'assets/css/bootstrap.min.css\';'."\n\n";
         $file_content.= '$config[\'codecanyon_username\'] = \''.$_POST['codecanyon_username'].'\';'."\n\n";
         $file_content.= '$config[\'codecanyon_code\'] = \''.$_POST['codecanyon_code'].'\';'."\n\n";
         

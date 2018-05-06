@@ -3,13 +3,13 @@
 class Expert extends Frontend_Controller
 {
 
-	public function __construct ()
-	{
-		parent::__construct();
+    public function __construct ()
+    {
+        parent::__construct();
         
         $this->load->model('showroom_m');
         $this->load->model('qa_m');
-	}
+    }
     
     public function _remap($method, $params = array())
     {
@@ -106,7 +106,7 @@ class Expert extends Frontend_Controller
             $this->data['page_description'] = character_limiter(strip_tags($showroom_data['description']), 160);
             $this->data['page_keywords']  = '';
 
-            $this->data['showroom_image_url'] = 'admin-assets/img/no_image.jpg';
+            $this->data['showroom_image_url'] = 'assets/img/no_image.jpg';
             if(isset($this->data['page_images'][0]))
             {
                 $this->data['showroom_image_url'] = $this->data['page_images'][0]->thumbnail_url;
@@ -151,14 +151,14 @@ class Expert extends Frontend_Controller
             }
             
             
-            $estate['icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].'marker_blue.png';
+            $estate['icon'] = 'assets/img/markers/'.$this->data['color_path'].'marker_blue.png';
             if(isset($estate['option_6']))
             {
                 if($estate['option_6'] != '' && $estate['option_6'] != 'empty')
                 {
                     if(file_exists(FCPATH.'templates/'.$this->data['settings_template'].
                                    '/assets/img/markers/'.$this->data['color_path'].$estate['option_6'].'.png'))
-                    $estate['icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].$estate['option_6'].'.png';
+                    $estate['icon'] = 'assets/img/markers/'.$this->data['color_path'].$estate['option_6'].'.png';
                 }
             }
             
@@ -169,7 +169,7 @@ class Expert extends Frontend_Controller
 //                {
 //                    if(file_exists(FCPATH.'templates/'.$this->data['settings_template'].
 //                                   '/assets/img/markers/'.$this->data['color_path'].'selected/'.$estate['option_6'].'.png'))
-//                    $estate['icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].'selected/'.$estate['option_6'].'.png';
+//                    $estate['icon'] = 'assets/img/markers/'.$this->data['color_path'].'selected/'.$estate['option_6'].'.png';
 //                }
 //            }
 //            }
@@ -191,7 +191,7 @@ class Expert extends Frontend_Controller
             }
             else
             {
-                $estate['thumbnail_url'] = 'admin-assets/img/no_image.jpg';
+                $estate['thumbnail_url'] = 'assets/img/no_image.jpg';
             }
 
             $this->data['all_estates'][] = $estate;
@@ -285,7 +285,7 @@ class Expert extends Frontend_Controller
             
             $message='';
             foreach($data as $key=>$value){
-            	$message.="$key:\n$value\n";
+                $message.="$key:\n$value\n";
             }
             
             $message = $this->load->view('email/expert_message', array('data'=>$data), TRUE);
@@ -425,14 +425,14 @@ class Expert extends Frontend_Controller
                 if(substr_count($tempFile, $template_prefix) == 0)
                 {
                     $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
-                    //$template_output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
+                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
                     $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
                 }
             }
         }
         
         $output = $this->parser->parse($this->data['settings_template'].'/expert.php', $this->data, TRUE);
-        echo str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
     }
     
     public function ajax ($lang_code, $page_id)
@@ -530,16 +530,16 @@ class Expert extends Frontend_Controller
         $config_2['total_rows'] = count($this->data['expert_module_all']);
         $config_2['per_page'] = config_item('per_page');
         $config_2['uri_segment'] = 5;
-    	$config_2['num_tag_open'] = '<li>';
-    	$config_2['num_tag_close'] = '</li>';
+        $config_2['num_tag_open'] = '<li>';
+        $config_2['num_tag_close'] = '</li>';
         $config_2['full_tag_open'] = '<ul>';
         $config_2['full_tag_close'] = '</ul>';
         $config_2['cur_tag_open'] = '<li class="active"><span>';
         $config_2['cur_tag_close'] = '</span></li>';
-    	$config_2['next_tag_open'] = '<li>';
-    	$config_2['next_tag_close'] = '</li>';
-    	$config_2['prev_tag_open'] = '<li>';
-    	$config_2['prev_tag_close'] = '</li>';
+        $config_2['next_tag_open'] = '<li>';
+        $config_2['next_tag_close'] = '</li>';
+        $config_2['prev_tag_open'] = '<li>';
+        $config_2['prev_tag_close'] = '</li>';
         /* End Pagination */
 
         //$this->pagination->initialize($config_2);
@@ -569,7 +569,7 @@ class Expert extends Frontend_Controller
             }
             else
             {
-                $agent['image_url'] = 'admin-assets/img/no_image.jpg';
+                $agent['image_url'] = 'assets/img/no_image.jpg';
             }
 
             $this->data['all_experts'][$expert_obj->id] = $agent;
@@ -578,7 +578,7 @@ class Expert extends Frontend_Controller
         /* {/MODULE_Q&A} */
         
         $output = $this->parser->parse($this->data['settings_template'].'/results_expert.php', $this->data, TRUE);
-        $output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        $output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
         
         echo json_encode(array('print' => $output, 'lang_id'=>$lang_id, 'total_rows'=>$config_2['total_rows']));
         exit();

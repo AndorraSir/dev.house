@@ -11,7 +11,7 @@ $config['last_estates_limit'] = 4;
 
 $config['version'] = '1.6.2';
 
-$config['default_template_css'] = 'admin-assets/style/css/style.css';
+$config['default_template_css'] = 'assets/css/style.css';
 
 $config['codecanyon_username'] = 'fmonkey';
 
