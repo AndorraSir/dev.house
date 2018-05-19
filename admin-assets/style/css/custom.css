@@ -25,6 +25,9 @@ a, span, p {
 .collapse:not(.show) {
   display: block !important; }
 
+.fade:not(.show) {
+  opacity: 1; }
+
 .navbar-nav > li {
   float: left; }
 

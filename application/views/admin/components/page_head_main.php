@@ -86,14 +86,14 @@
     <script src="<?php echo base_url('admin-assets/js/jquery.prettyPhoto.js')?>"></script> <!-- prettyPhoto -->
     <script src="<?php echo base_url('admin-assets/js/jquery.mjs.nestedSortable.js');?>"></script>
     <script src="<?php echo base_url('admin-assets/js/jquery.helpers.js');?>"></script>
-    
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    
   <script type="text/javascript">
     // Calendar translation start //
         
@@ -125,6 +125,7 @@
     <script src="<?php echo base_url('admin-assets/js/gmap3.min.js')?>"></script>
     <script src="<?php echo base_url('admin-assets/js/markerwithlabel.js')?>"></script>
     <script src="<?php echo base_url('admin-assets/js/blueimp-gallery.min.js')?>"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.21.0/js/jquery.fileupload-jquery-ui.js" crossorigin="anonymous"></script>
     <script src="<?php echo base_url('admin-assets/js/footable/js/footable.js')?>"></script>
     <script src="<?php echo base_url('admin-assets/js/jquery.number.js')?>"></script>
     <script src="<?php echo base_url('admin-assets/js/jquery.h5validate.js')?>"></script>
