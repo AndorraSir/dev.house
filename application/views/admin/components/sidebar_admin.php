@@ -19,97 +19,112 @@
 
             <li class="nred<?php echo (strpos($this->uri->uri_string(),'dashboard')!==FALSE || $this->uri->uri_string() == 'admin')?' current':'';?>"><a href="<?php echo site_url('admin/dashboard')?>"><i class="icon-desktop"></i> <?php echo lang_check('Dashboard');?></a></li>
             
-            <?php if(check_acl('page') && config_db_item('frontend_disabled') === FALSE):?>
-            <li class="ngreen<?php echo (strpos($this->uri->uri_string(),'page')!==FALSE)?' current':'';?>"><a href="<?php echo site_url('admin/page')?>"><i class="icon-sitemap"></i> <?php echo lang_check('Pages & menu');?></a></li>
-            <?php endif;?>
-            
-            <!-- Menu with sub menu -->
-            <li class="has_submenu nlightblue<?php echo (strpos($this->uri->uri_string(),'estate')!==FALSE || strpos($this->uri->uri_string(),'reports')==TRUE || strpos($this->uri->uri_string(),'treefield')==TRUE)?' current open':'';?>">
-              <a href="#">
-                <!-- Menu name with icon -->
-                <i class="icon-map-marker"></i> <?php echo lang_check('Real estates');?> 
-                <!-- Icon for dropdown -->
-                <span class="pull-right"><i class="icon-angle-right"></i></span>
-              </a>
+              <?php if(check_acl('settings')):?>
+                    <li class="has_submenu nred<?php echo (strpos($this->uri->uri_string(),'settings')!==FALSE)?' current open':'';?>">
+                      <a href="#">
+                        <!-- Menu name with icon -->
+                        <i class="icon-cogs"></i> <?php echo lang_check('Settings');?> 
+                        <!-- Icon for dropdown -->
+                        <span class="pull-right"><i class="icon-angle-right"></i></span>
+                      </a>
+                    
+                      <ul>
+                        <?php if(check_acl('page') && config_db_item('frontend_disabled') === FALSE):?>
+                        <li class="ngreen<?php echo (strpos($this->uri->uri_string(),'page')!==FALSE)?' current':'';?>"><a href="<?php echo site_url('admin/page')?>"><i class="icon-sitemap"></i> <?php echo lang_check('Pages & menu');?></a></li>
+                        <?php endif;?>
+                         <!-- Menu with sub menu -->
+                        <li class="has_submenu nlightblue<?php echo (strpos($this->uri->uri_string(),'estate')!==FALSE || strpos($this->uri->uri_string(),'reports')==TRUE || strpos($this->uri->uri_string(),'treefield')==TRUE)?' current open':'';?>">
+                          <a href="#">
+                            <!-- Menu name with icon -->
+                            <i class="icon-map-marker"></i> <?php echo lang_check('Real estates');?> 
+                            <!-- Icon for dropdown -->
+                            <span class="pull-right"><i class="icon-angle-right"></i></span>
+                          </a>
 
-              <ul>
-                <li><a href="<?php echo site_url('admin/estate')?>"><?php echo lang_check('Manage');?></a></li>
-                <?php if(check_acl('estate/options')):?>
-                <li><a href="<?php echo site_url('admin/estate/options')?>"><?php echo lang_check('Options');?></a></li>
-                <li><a href="<?php echo site_url('admin/estate/dependent_fields')?>"><?php echo lang_check('Dependent fields');?></a></li>
-                <?php endif;?>
-                <?php if(check_acl('estate/forms') && config_item('search_forms_editor_enabled') == TRUE):?>
-                <li><a href="<?php echo site_url('admin/estate/forms')?>"><?php echo lang_check('Search forms');?></a></li>
-                <?php endif;?>
-                
-                <?php
-                    if(file_exists(APPPATH.'controllers/admin/treefield.php') && $this->session->userdata('type') == 'ADMIN')
-                    {
-                        $CI =& get_instance();
-                        $CI->load->model('option_m');
-                        $option_treefield = $CI->option_m->get(64);
-                        if(!empty($option_treefield) && $option_treefield->type == 'TREE')
-                        {
-                echo '<li><a href="'.site_url('admin/treefield/edit/64').'">'.lang_check('Treefield values').'</a></li>';        
-                        }
-                        
-                        $option_treefield = $CI->option_m->get(79);
-                        if(!empty($option_treefield) && $option_treefield->type == 'TREE')
-                        {
-                echo '<li><a href="'.site_url('admin/treefield/edit/79').'">'.lang_check('Categories').'</a></li>';        
-                        }
-                    }
-                
-                ?>
-                <?php if(config_item('admin_beginner_enabled') === TRUE):?>
-                <?php
-                    if($this->session->userdata('type') == 'ADMIN')
-                    {
-                        $CI =& get_instance();
-                        $CI->load->model('option_m');
-                        $option_treefield = $CI->option_m->get(2);
-                        if(!empty($option_treefield) && $option_treefield->type == 'DROPDOWN')
-                        {
-                echo '<li><a href="'.site_url('admin/estate/edit_option/2').'">'.lang_check('Type values').'</a></li>';        
-                        }
-                    }
-                
-                ?>
-                
-                <?php
-                    if($this->session->userdata('type') == 'ADMIN')
-                    {
-                        $CI =& get_instance();
-                        $CI->load->model('option_m');
-                        $option_treefield = $CI->option_m->get(4);
-                        if(!empty($option_treefield) && $option_treefield->type == 'DROPDOWN')
-                        {
-                echo '<li><a href="'.site_url('admin/estate/edit_option/4').'">'.lang_check('Purpose values').'</a></li>';        
-                        }
-                    }
-                
-                ?>
-                <?php endif;?>
-                <?php if(config_item('report_property_enabled') == TRUE && $this->session->userdata('type') == 'ADMIN'):?>
-                <li><a href="<?php echo site_url('admin/reports')?>"><?php echo lang_check('Reported');?></a></li>
-                <?php endif;?>
-                <?php if(config_item('status_enabled') === TRUE && 
-                         $this->session->userdata('type') == 'AGENT_COUNTY_AFFILIATE'):?>
-                <li><a href="<?php echo site_url('admin/estate/contracted')?>"><?php echo lang_check('Contracted');?></a></li>
-                <li><a href="<?php echo site_url('admin/estate/statuses')?>"><?php echo lang_check('Statuses');?></a></li>
-                <?php endif;?>
-                <?php if(config_item('removed_reports_enabled') === TRUE && 
-                         ( $this->session->userdata('type') == 'AGENT_COUNTY_AFFILIATE' ||
-                           $this->session->userdata('type') == 'ADMIN' )
-                         ):?>
-                <li><a href="<?php echo site_url('admin/estate/removed')?>"><?php echo lang_check('Removed');?></a></li>
-                <?php endif;?>
-              </ul>
-            </li>
+                            <ul>
+                            <li><a href="<?php echo site_url('admin/estate')?>"><?php echo lang_check('Manage');?></a></li>
+                            <?php if(check_acl('estate/options')):?>
+                            <li><a href="<?php echo site_url('admin/estate/options')?>"><?php echo lang_check('Options');?></a></li>
+                            <li><a href="<?php echo site_url('admin/estate/dependent_fields')?>"><?php echo lang_check('Dependent fields');?></a></li>
+                            <?php endif;?>
+                            <?php if(check_acl('estate/forms') && config_item('search_forms_editor_enabled') == TRUE):?>
+                            <li><a href="<?php echo site_url('admin/estate/forms')?>"><?php echo lang_check('Search forms');?></a></li>
+                            <?php endif;?>
+                            
+                            <?php
+                                if(file_exists(APPPATH.'controllers/admin/treefield.php') && $this->session->userdata('type') == 'ADMIN')
+                                {
+                                    $CI =& get_instance();
+                                    $CI->load->model('option_m');
+                                    $option_treefield = $CI->option_m->get(64);
+                                    if(!empty($option_treefield) && $option_treefield->type == 'TREE')
+                                    {
+                            echo '<li><a href="'.site_url('admin/treefield/edit/64').'">'.lang_check('Treefield values').'</a></li>';        
+                                    }
+                                    
+                                    $option_treefield = $CI->option_m->get(79);
+                                    if(!empty($option_treefield) && $option_treefield->type == 'TREE')
+                                    {
+                            echo '<li><a href="'.site_url('admin/treefield/edit/79').'">'.lang_check('Categories').'</a></li>';        
+                                    }
+                                }
+                            
+                            ?>
+                            <?php if(config_item('admin_beginner_enabled') === TRUE):?>
+                            <?php
+                                if($this->session->userdata('type') == 'ADMIN')
+                                {
+                                    $CI =& get_instance();
+                                    $CI->load->model('option_m');
+                                    $option_treefield = $CI->option_m->get(2);
+                                    if(!empty($option_treefield) && $option_treefield->type == 'DROPDOWN')
+                                    {
+                            echo '<li><a href="'.site_url('admin/estate/edit_option/2').'">'.lang_check('Type values').'</a></li>';        
+                                    }
+                                }
+                            
+                            ?>
+                            
+                            <?php
+                                if($this->session->userdata('type') == 'ADMIN')
+                                {
+                                    $CI =& get_instance();
+                                    $CI->load->model('option_m');
+                                    $option_treefield = $CI->option_m->get(4);
+                                    if(!empty($option_treefield) && $option_treefield->type == 'DROPDOWN')
+                                    {
+                            echo '<li><a href="'.site_url('admin/estate/edit_option/4').'">'.lang_check('Purpose values').'</a></li>';        
+                                    }
+                                }
+                            
+                            ?>
+                            <?php endif;?>
+                            <?php if(config_item('report_property_enabled') == TRUE && $this->session->userdata('type') == 'ADMIN'):?>
+                            <li><a href="<?php echo site_url('admin/reports')?>"><?php echo lang_check('Reported');?></a></li>
+                            <?php endif;?>
+                            <?php if(config_item('status_enabled') === TRUE && 
+                                     $this->session->userdata('type') == 'AGENT_COUNTY_AFFILIATE'):?>
+                            <li><a href="<?php echo site_url('admin/estate/contracted')?>"><?php echo lang_check('Contracted');?></a></li>
+                            <li><a href="<?php echo site_url('admin/estate/statuses')?>"><?php echo lang_check('Statuses');?></a></li>
+                            <?php endif;?>
+                            <?php if(config_item('removed_reports_enabled') === TRUE && 
+                                     ( $this->session->userdata('type') == 'AGENT_COUNTY_AFFILIATE' ||
+                                       $this->session->userdata('type') == 'ADMIN' )
+                                     ):?>
+                            <li><a href="<?php echo site_url('admin/estate/removed')?>"><?php echo lang_check('Removed');?></a></li>
+                            <?php endif;?>
+                        </ul>
+                        </li>
             
+                        <li><a href="<?php echo site_url('admin/settings')?>"><?php echo lang_check('Company details');?></a></li>
+                        <li><a href="<?php echo site_url('admin/settings/language')?>"><?php echo lang_check('Languages');?></a></li>
+                        <li><a href="<?php echo site_url('admin/settings/system')?>"><?php echo lang_check('System');?></a></li>
+                      </ul>
+                    </li>
+                <?php endif;?>
             <?php if(config_item('admin_beginner_enabled') === TRUE):?>
                 <?php if(check_acl('user')):?>
-                <li class="norange<?php echo (strpos($this->uri->uri_string(),'user')!==FALSE && strpos($this->uri->uri_string(),'user/edit/'.$this->session->userdata('id'))===FALSE)?' current':'';?>"><a href="<?php echo site_url('admin/user')?>"><i class="icon-list-alt"></i> <?php echo lang_check('Agents & Users');?></a></li>
+                <li class="norange<?php echo (strpos($this->uri->uri_string(),'user')!==FALSE && strpos($this->uri->uri_string(),'user/edit/'.$this->session->userdata('id'))===FALSE)?' current':'';?>"><a href="<?php echo site_url('admin/user')?>"><i class="icon-list-alt"></i> <?php echo lang_check('Real estates & Users');?></a></li>
                 <?php endif;?>
                 
                 
@@ -133,22 +148,6 @@
                 
                 <li class="nblue<?php echo (strpos($this->uri->uri_string(),'user/edit/'.$this->session->userdata('id'))!==FALSE)?' current':'';?>"><a href="<?php echo site_url('admin/user/edit/'.$this->session->userdata('id'))?>"><i class="icon-user"></i> <?php echo lang_check('Profile');?></a></li>
                 
-                <?php if(check_acl('settings')):?>
-                    <li class="has_submenu nred<?php echo (strpos($this->uri->uri_string(),'settings')!==FALSE)?' current open':'';?>">
-                      <a href="#">
-                        <!-- Menu name with icon -->
-                        <i class="icon-cogs"></i> <?php echo lang_check('Settings');?> 
-                        <!-- Icon for dropdown -->
-                        <span class="pull-right"><i class="icon-angle-right"></i></span>
-                      </a>
-                    
-                      <ul>
-                        <li><a href="<?php echo site_url('admin/settings')?>"><?php echo lang_check('Company details');?></a></li>
-                        <li><a href="<?php echo site_url('admin/settings/language')?>"><?php echo lang_check('Languages');?></a></li>
-                        <li><a href="<?php echo site_url('admin/settings/system')?>"><?php echo lang_check('System');?></a></li>
-                      </ul>
-                    </li>
-                <?php endif;?>
 
             <?php endif;?>
 
