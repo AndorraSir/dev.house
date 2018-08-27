@@ -51,12 +51,12 @@
         <!-- SHOWROOM -->
         <div id="expert" class="news_content">
         <div class="row-fluid">
-        <div class="col-9">
+        <div class="span9">
         <div class="property_content_position">
         <div class="row-fluid"
         <ul class="thumbnails">
             <?php foreach($expert_module_all as $key=>$row):?>
-              <li class="col-12 li-list">
+              <li class="span12 li-list">
                   <div class="caption span12">
                     <p class="bottom-border">
                         <i class="qmark">?</i>
@@ -84,7 +84,7 @@
         </div>
         </div>
         </div>
-        <div class="col-3">
+        <div class="span3">
         
             <input type="text" placeholder="{lang_Search}" id="search_expert" autocomplete="off"/>
         

@@ -13,20 +13,20 @@
                 </div>
             <?php else:?>
                 <div class="row">
-                    <div class="col-12">
-                        <input style="" option_id="19" type="text" class="col-12 input_am id_19" placeholder="{options_name_19}" />
-                        <input style="" option_id="20" type="text" class="col-12 input_am id_20" placeholder="{options_name_20}" />
+                    <div class="span12">
+                        <input style="" option_id="19" type="text" class="span12 input_am id_19" placeholder="{options_name_19}" />
+                        <input style="" option_id="20" type="text" class="span12 input_am id_20" placeholder="{options_name_20}" />
                     </div>
-                    <div class="col-12">
-                        <input style="" option_id="36" type="text" rel="from" class="col-12 input_am_from id_36_from DECIMAL" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" />
+                    <div class="span12">
+                        <input style="" option_id="36" type="text" rel="from" class="span12 input_am_from id_36_from DECIMAL" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" />
                     </div>
-                    <div class="col-12">
-                        <input style="" option_id="36" type="text" rel="to" class="col-12 input_am_to id_36_to DECIMAL" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" />
+                    <div class="span12">
+                        <input style="" option_id="36" type="text" rel="to" class="span12 input_am_to id_36_to DECIMAL" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" />
                     </div>
 
                     <?php if(config_db_item('search_energy_efficient_enabled') === TRUE): ?>
-                    <div class="col-12">
-                    <select option_id="59" rel="to" class="col-12 nomargin input_am_to id_59_to" placeholder="{options_name_59}">
+                    <div class="span12">
+                    <select option_id="59" rel="to" class="span12 nomargin input_am_to id_59_to" placeholder="{options_name_59}">
                         <option value="">{options_name_59}</option>
                         <option value="50">A</option>
                         <option value="90">B</option>
@@ -40,7 +40,7 @@
                     <?php endif; ?>
                 </div>
                 <div class="row filter-checkbox-row">
-                    <div class="col-6">
+                    <div class="span6">
                         <label class="checkbox">
                             <input option_id="11" class="checkbox_am" type="checkbox" value="true{options_name_11}" <?php echo search_value('11', 'checked'); ?>/>{options_name_11}<span></span>
                         </label>
@@ -57,7 +57,7 @@
                         <input option_id="28" class="checkbox_am" type="checkbox" value="true{options_name_28}" <?php echo search_value('28', 'checked'); ?>/>{options_name_28}<span></span>
                         </label>
                     </div>
-                    <div class="col-6">
+                    <div class="span6">
                         <label class="checkbox">
                         <input option_id="29" class="checkbox_am" type="checkbox" value="true{options_name_29}" <?php echo search_value('29', 'checked'); ?>/>{options_name_29}<span></span>
                         </label>
@@ -80,7 +80,7 @@
                 </div>
             <?php endif;?>
             <div class="row">
-                <div class="col-12">
+                <div class="span12">
                 <button type="submit" class="btn span12 refresh_filters">{lang_RefreshResults}</button>
                 </div>
             </div>

@@ -25,5 +25,5 @@
     
 ?>
 <label class="checkbox">
-<input rel="<?php _che(${'options_name_'.$f_id}); ?>" id="search_option_<?php echo $f_id; ?>" name="search_option_<?php echo $f_id; ?>" type="checkbox" class="col-1" value="true<?php _che(${'options_name_'.$f_id});?>" <?php echo search_value($f_id, 'checked'); ?>/><?php _che(${'options_name_'.$f_id}); ?>
+<input rel="<?php _che(${'options_name_'.$f_id}); ?>" id="search_option_<?php echo $f_id; ?>" name="search_option_<?php echo $f_id; ?>" type="checkbox" class="span1" value="true<?php _che(${'options_name_'.$f_id});?>" <?php echo search_value($f_id, 'checked'); ?>/><?php _che(${'options_name_'.$f_id}); ?>
 </label>

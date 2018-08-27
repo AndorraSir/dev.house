@@ -3,7 +3,7 @@
     <a class="view-type {view_grid_selected}" ref="grid" href="#"><img src="assets/img/glyphicons/glyphicons_156_show_thumbnails.png" /></a>
     <a class="view-type {view_list_selected}" ref="list" href="#"><img src="assets/img/glyphicons/glyphicons_157_show_thumbnails_with_lines.png" /></a>
 
-    <select class="col-3 selectpicker-small pull-right" placeholder="{lang_Sort}">
+    <select class="span3 selectpicker-small pull-right" placeholder="{lang_Sort}">
         <option value="id ASC" {order_dateASC_selected}>{lang_DateASC}</option>
         <option value="id DESC" {order_dateDESC_selected}>{lang_DateDESC}</option>
         <option value="price ASC" {order_priceASC_selected}>{lang_PriceASC}</option>
@@ -17,7 +17,7 @@
     
     {has_no_results}
     <ul class="thumbnails">
-    <li class="col-12">
+    <li class="span12">
     <div class="alert alert-success">
     {lang_Noestates}
     </div>
@@ -42,7 +42,7 @@
     {has_view_list}
     <ul class="thumbnails">
     <?php foreach($results as $key=>$item): ?>
-      <li class="col-12 li-list">
+      <li class="span12 li-list">
         <div class="thumbnail span4 f_<?php echo _ch($item['is_featured']); ?>">
            <h3><?php echo _ch($item['option_10']); ?>&nbsp;</h3>
            <img alt="" data-src=""  style="width: 300px; height: 200px;"  src="<?php echo _simg($item['thumbnail_url'], '260x191'); ?>" />

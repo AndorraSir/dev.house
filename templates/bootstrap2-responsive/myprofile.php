@@ -17,7 +17,7 @@
 <div class="wrap-content">
     <div class="container">
         <div class="row-fluid">
-            <div class="col-12">
+            <div class="span12">
             <h2>{lang_Myprofile}</h2>
             <div class="property_content">
                     <?php echo validation_errors()?>
@@ -134,7 +134,7 @@ custom_fields_print_f('custom_fields_code');
         <noscript><input type="hidden" name="redirect" value="<?php echo site_url('frontend/myprofile/'.$lang_code);?>"></noscript>
         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
         <div class="fileupload-buttonbar">
-            <div class="col-7 col-md-7">
+            <div class="span7 col-md-7">
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button">
                     <i class="icon-plus icon-white"></i>
@@ -152,7 +152,7 @@ custom_fields_print_f('custom_fields_code');
                 <input type="checkbox" class="toggle" />
             </div>
             <!-- The global progress information -->
-            <div class="col-5 col-md-5 fileupload-progress fade">
+            <div class="span5 col-md-5 fileupload-progress fade">
                 <!-- The global progress bar -->
                 <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
                     <div class="bar" style="width:0%;"></div>

@@ -17,7 +17,7 @@
 <div class="wrap-content">
     <div class="container">
         <div class="row-fluid">
-            <div class="col-12">
+            <div class="span12">
             <h2><?php _l('Edit message'); ?> #<?php echo $enquire->id; ?></h2>
             <div class="property_content">
                     <?php echo validation_errors()?>

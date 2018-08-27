@@ -19,7 +19,7 @@
 <div class="wrap-content">
     <div class="container">
         <div class="row-fluid">
-            <div class="col-12">
+            <div class="span12">
             <a name="content" id="content"></a>
             <h2>{lang_Myproperties}</h2>
             <div class="property_content">
@@ -168,7 +168,7 @@
         <?php if(config_db_item('events_qr_confirmation') === TRUE): ?>
         
         <div class="row-fluid">
-            <div class="col-12">
+            <div class="span12">
             <h2><?php _l('Attend on events'); ?></h2>
             <div class="property_content">
                 <div class="widget-content">
@@ -207,7 +207,7 @@
         <?php if(file_exists(APPPATH.'controllers/admin/packages.php') && config_item('def_package') !== FALSE): ?>
         
         <div class="row-fluid">
-            <div class="col-12">
+            <div class="span12">
             <h2>{lang_Mypackage}</h2>
             <div class="property_content">
                 <div class="widget-content">
@@ -328,7 +328,7 @@
         
         <?php if(!empty($settings_withdrawal_details)):?>
         <div class="row-fluid">
-            <div class="col-12">
+            <div class="span12">
             <h2>{lang_WithdrawalDetails}</h2>
             <div class="property_content">
             <?php echo $settings_withdrawal_details; ?><br />
@@ -341,7 +341,7 @@
         <?php if(isset($settings_activation_price) && isset($settings_featured_price) &&
                  $settings_activation_price > 0 || $settings_featured_price > 0): ?>
         <div class="row-fluid">
-            <div class="col-12">
+            <div class="span12">
             <div class="property_content">
                 <div class="widget-content">
                 <?php if($settings_activation_price > 0): ?>

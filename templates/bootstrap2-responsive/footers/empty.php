@@ -1,6 +1,6 @@
 <?php
 /* [START] Search background settings */
-$this->data['search_background'] = 'admin-assets/img/texture22.jpg';
+$this->data['search_background'] = 'assets/img/texture.jpg';
 if(isset($this->data['settings']['search_background']))
 {
     if(is_numeric($this->data['settings']['search_background']))

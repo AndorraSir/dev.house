@@ -68,7 +68,7 @@ class JsonResponseTest extends TestCase
         $this->assertSame('foo', $response->headers->get('ETag'));
     }
 
-    public function testConstructorWithCustomContentType()
+    public function testConstructorWithbootstrap2-responsiveType()
     {
         $headers = array('Content-Type' => 'application/vnd.acme.blog-v1+json');
 
@@ -157,7 +157,7 @@ class JsonResponseTest extends TestCase
         $this->assertSame('foo', $response->headers->get('ETag'));
     }
 
-    public function testStaticCreateWithCustomContentType()
+    public function testStaticCreateWithbootstrap2-responsiveType()
     {
         $headers = array('Content-Type' => 'application/vnd.acme.blog-v1+json');
 

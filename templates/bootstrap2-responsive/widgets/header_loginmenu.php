@@ -1,6 +1,7 @@
 <div class="top-wrapper">
       <div class="container">
-        <div class="masthead">
+        <div class="row">
+        <div class="col-12 masthead">
         {not_logged}
         <ul class="nav pull-left top-small">
           <li><span><i class="icon-phone"></i> {settings_phone}</span></li>
@@ -45,6 +46,7 @@
         </ul>
         {/is_logged_other}
         <?php echo print_breadcrump(null, ' > ', 'class="breadcrumb nav pull-right"');?>
+        </div>
         </div>
       </div> <!-- /.container -->
 </div>

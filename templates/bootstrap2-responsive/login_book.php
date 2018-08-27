@@ -17,7 +17,7 @@
 <div class="wrap-content">
     <div class="container">
         <div class="row-fluid">
-            <div class="col-6 register-form">
+            <div class="span6 register-form">
             <h2 id="form">{lang_Register}</h2>
             <div class="property_content">
                 <?php if($this->session->flashdata('error_registration') != ''):?>
@@ -92,7 +92,7 @@
         
         
         
-            <div class="col-6 login-form">
+            <div class="span6 login-form">
             <h2>{lang_ReservationInfo}</h2>
             <div class="property_content">
                 <table class="table table-striped">

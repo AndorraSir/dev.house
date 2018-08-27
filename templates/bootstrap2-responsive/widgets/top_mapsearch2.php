@@ -104,22 +104,22 @@
         </ul>
         <div class="search-form">
             <form class="form-inline">
-                <input id="search_option_smart" type="text" class="col-6" placeholder="{lang_CityorCounty}" />
-                <select id="search_option_2" class="col-3 selectpicker" placeholder="{options_name_2}">
+                <input id="search_option_smart" type="text" class="span6" placeholder="{lang_CityorCounty}" />
+                <select id="search_option_2" class="span3 selectpicker" placeholder="{options_name_2}">
                     {options_values_2}
                 </select>
                 
-                <select id="search_option_3" class="col-3 selectpicker nomargin" placeholder="{options_name_3}">
+                <select id="search_option_3" class="span3 selectpicker nomargin" placeholder="{options_name_3}">
                     {options_values_3}
                 </select>
                 <div class="form-row-space"></div>
-                <input id="search_option_36_from" type="text" class="col-3 mPrice" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" />
-                <input id="search_option_36_to" type="text" class="col-3 xPrice" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" />
-                <input id="search_option_19" type="text" class="col-3 Bathrooms" placeholder="{options_name_19}" />
-                <input id="search_option_20" type="text" class="col-3" placeholder="{options_name_20}" />
+                <input id="search_option_36_from" type="text" class="span3 mPrice" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" />
+                <input id="search_option_36_to" type="text" class="span3 xPrice" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" />
+                <input id="search_option_19" type="text" class="span3 Bathrooms" placeholder="{options_name_19}" />
+                <input id="search_option_20" type="text" class="span3" placeholder="{options_name_20}" />
                 <div class="form-row-space"></div>
                 
-                <select id="search_category_21" class="col-7 selectpicker" title="{options_name_21}" multiple>
+                <select id="search_category_21" class="span7 selectpicker" title="{options_name_21}" multiple>
                     <option value="true{options_name_11}">{options_name_11}</option>
                     <option value="true{options_name_22}">{options_name_22}</option>
                     <option value="true{options_name_25}">{options_name_25}</option>

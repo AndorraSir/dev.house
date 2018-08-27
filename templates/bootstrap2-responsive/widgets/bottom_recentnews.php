@@ -6,7 +6,7 @@
         <div class="row-fluid">
         <ul class="thumbnails">
             <?php foreach($news_module_latest_5 as $key=>$row):?>
-              <li class="col-12 li-list">
+              <li class="span12 li-list">
                 <div class="thumbnail span4">
                 <?php if(isset($row->image_filename)):?>
                   <img alt="300x200" data-src="holder.js/300x200" style="width: 300px; height: 200px;" src="<?php echo base_url('files/thumbnail/'.$row->image_filename)?>" />

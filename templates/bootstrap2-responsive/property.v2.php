@@ -374,7 +374,7 @@ if(!empty($estate_data_option_59) && !is_numeric($estate_data_option_59))
 <div class="wrap-content">
     <div class="container container-property">
         <div class="row-fluid">
-            <div class="col-9">
+            <div class="span9">
             <h2>{page_title}, #{estate_data_id}</h2>
             {has_page_images}
             <div class="propertyCarousel">
@@ -745,7 +745,7 @@ if(!empty($estate_data_option_59) && !is_numeric($estate_data_option_59))
 
               </div>
             </div>
-            <div class="col-3">
+            <div class="span3">
                   <h2>{lang_Overview}</h2>
                   <div class="property_options">
                     <p class="bottom-border"><strong>

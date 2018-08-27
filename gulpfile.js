@@ -1,9 +1,8 @@
 var gulp = require('gulp');
-// var browserSync = require('browser-sync');
+var browserSync = require('browser-sync');
 var sass = require('gulp-sass');
 var uglify     = require('gulp-uglify');
-
-// var reload = browserSync.reload;
+var connect = require('gulp-connect');
 
 // Html task
 gulp.task('html', function(){
@@ -12,12 +11,16 @@ gulp.task('html', function(){
 })
 
 // Browser task
-// gulp.task('browser-sync', function() {
-//   browserSync.init({
-//     proxy : 'http://192.168.1.111/',
-//   });
-// });
-
+gulp.task('browser-sync', function() {
+  browserSync.init({
+    proxy : 'http://192.168.1.111/',
+  });
+});
+ 
+gulp.task('connect', function() {
+  connect.server();
+});
+ 
 
 gulp.task('styles', function(){
   return gulp.src('admin-assets/style/sass/*.scss')
@@ -26,11 +29,9 @@ gulp.task('styles', function(){
     .pipe(gulp.dest('templates/bootstrap2-responsive/assets/style/'))
 });
  
-
-
 // Watch task
 gulp.task('watch', function(){
   gulp.watch('application/views/**/*.php', ['html'])
 });
 
-gulp.task('default', ['watch']);
+gulp.task('default', ['watch', 'connect']);

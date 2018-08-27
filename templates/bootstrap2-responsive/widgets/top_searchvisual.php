@@ -1,11 +1,10 @@
 <div class="wrap-search widget-searchvisual">
     <div class="container">
-        
-        <div class="search-form">
+        <div class="search-form p-3">
             <form class="form-inline">
             
-                <input id="rectangle_ne" type="text" class="hide" />
-                <input id="rectangle_sw" type="text" class="hide" />
+                <input id="rectangle_ne" type="text" class="hide" style="display:none;"/>
+                <input id="rectangle_sw" type="text" class="hide" style="display:none;"/>
             
             <?php
             $CI =& get_instance();
@@ -17,7 +16,7 @@
                     <?php if(config_db_item('property_subm_disabled')==FALSE):  ?>
                     
                     <?php if(config_db_item('enable_qs') == 1): ?>
-                    <li class="list-property-button"><a href="<?php echo site_url('fquick/submission/'.$lang_code); ?>"><?php _l('Quick add listing'); ?></a></li>
+        
                     <?php else: ?>
                     <li class="list-property-button"><a href="{myproperties_url}">{lang_Listproperty}</a></li>
                     <?php endif; ?>
@@ -110,7 +109,7 @@
 
                 </script>
                 <?php endif; ?>
-                <ul id="search_option_4" class="menu-onmap tabbed-selector container">
+                 <ul id="search_option_4" class="menu-onmap tabbed-selector container">
                     <li class="all-button"><a href="#"><?php echo lang_check('All'); ?></a></li>
                     {options_values_li_4}
                     <?php if(config_db_item('property_subm_disabled')==FALSE):  ?>
@@ -232,8 +231,8 @@
     
                 </div>
                 
-                <button id="search-start" type="submit" class="btn btn-info btn-large">&nbsp;&nbsp;{lang_Search}&nbsp;&nbsp;</button>
-                <a id="search-start-map" href="#wrap-map" class="scroll"><button type="button" class="btn btn-success btn-large">{lang_ShowOnMap}</button></a>
+                <button id="search-start" type="submit" class="btn btn-custom btn-default">&nbsp;&nbsp;{lang_Search}&nbsp;&nbsp;</button>
+                <a id="search-start-map" href="#wrap-map" class="scroll"><button type="button" class="btn btn-success btn-large" style="display:none;">{lang_ShowOnMap}</button></a>
                 
                 <?php if(file_exists(APPPATH.'controllers/admin/savesearch.php')): ?>
                 <button id="search-save" type="button" class="btn btn-warning btn-large">{lang_SaveResearch}</button>
@@ -245,85 +244,3 @@
     </div>
 </div>
 
-
-
-<style type="text/css">
-    
-.widget-searchvisual {
-    position: relative;
-}
-
-.widget-searchvisual  .menu-onmap {
-    position: absolute;
-    margin-top: 0;
-    top: -53px;
-    height: 0 !important;
-}
-    
-.widget-searchvisual .search-form .tree {
-    float: left;
-}
-
-.widget-searchvisual .search-form .tree .field-tree {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-    
-.widget-searchvisual .form-control {
-    margin-bottom: 5px !important;
-}
-
-.widget-searchvisual .search-form .tree .form-control {
-    margin-bottom: 0 !important;
-}
-.hidden {
-    display: none !important;
-}
-
-.widget-searchvisual .search-form {
-    margin-top: 25px;
-}
-
-.widget-searchvisual .form-inline .checkbox {
-    padding: 12px 0;
-    height: 45px;
-    box-sizing: border-box;
-    margin-bottom: 5px;
-    float: left;
-    display: block;
-}
-
-.widget-searchvisual .search-form .tree .field-tree {
-    margin: 0;
-}
-.widget-searchvisual #search_option_smart {
-    height: 34px;
-}
-.widget-searchvisual input {
-    margin-right: 6px;
-}
-
-.widget-searchvisual input.span6,
-.widget-searchvisual textarea.span6, .widget-searchvisual .uneditable-input.span6 {
-    width: 536px;
-}
-
-
-@media (max-width: 767px) {
-    .widget-searchvisual  ul.menu-onmap {
-        position: relative;
-        padding: 0;
-        margin: 0;
-        margin-bottom: 10px;
-        margin-top: -10px;
-        left: 0;
-        top: 0;
-        width: 100%;
-    }
-    
-    .widget-searchvisual  .menu-onmap {
-        height: initial !important;
-    }
-}
-
-</style>

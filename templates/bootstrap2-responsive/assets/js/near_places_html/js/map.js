@@ -93,15 +93,15 @@ function LoadMap_main(color) {
         };
         /* markers info ( ltng, icon, image, title) */
         var markers_map = new Array(
-                [34.05843, -118.491046, 'admin-assets/img/markers/'+prefix+'house.png', 'admin-assets/img/real_estate/outdoor-restaurant.jpg', 'Restaurant'],
-                [34.066673, -118.486562, 'admin-assets/img/markers/'+prefix+'comercial.png', 'admin-assets/img/real_estate/swimming-pool-in-hotel-s.jpg', 'Swimming pool'],
-                [34.009714, -118.480296, 'admin-assets/img/markers/'+prefix+'house.png', 'admin-assets/img/real_estate/tropical-villa-m.jpg', 'Tropical villa'],
-                [34.010408, -118.473215, 'admin-assets/img/markers/'+prefix+'land.png', 'admin-assets/img/real_estate/house-interior-m.jpg', 'House'],
-                [34.01521, -118.474889, 'admin-assets/img/markers/'+prefix+'apartment.png', 'admin-assets/img/real_estate/modern-bed-room-interior-m.jpg', 'Modern room'],
-                [34.022502, -118.480124, 'admin-assets/img/markers/'+prefix+'house.png', 'admin-assets/img/real_estate/modern-villa-s.jpg', 'Modern villa'],
-                [34.024423, -118.459868, 'admin-assets/img/markers/'+prefix+'land.png', 'admin-assets/img/real_estate/modern-backyard-with-pool-s.jpg', 'Modern backyard'],
-                [34.024885, -118.44871, 'admin-assets/img/markers/'+prefix+'comercial.png', 'admin-assets/img/real_estate/modern-lounge-room.jpg', 'Modern lounge room'],
-                [34.002368, -118.482828, 'admin-assets/img/markers/'+prefix+'apartment.png', 'admin-assets/img/real_estate/hotel-room-m.jpg', 'Hotel']
+                [34.05843, -118.491046, 'assets/img/markers/'+prefix+'house.png', 'assets/img/real_estate/outdoor-restaurant.jpg', 'Restaurant'],
+                [34.066673, -118.486562, 'assets/img/markers/'+prefix+'comercial.png', 'assets/img/real_estate/swimming-pool-in-hotel-s.jpg', 'Swimming pool'],
+                [34.009714, -118.480296, 'assets/img/markers/'+prefix+'house.png', 'assets/img/real_estate/tropical-villa-m.jpg', 'Tropical villa'],
+                [34.010408, -118.473215, 'assets/img/markers/'+prefix+'land.png', 'assets/img/real_estate/house-interior-m.jpg', 'House'],
+                [34.01521, -118.474889, 'assets/img/markers/'+prefix+'apartment.png', 'assets/img/real_estate/modern-bed-room-interior-m.jpg', 'Modern room'],
+                [34.022502, -118.480124, 'assets/img/markers/'+prefix+'house.png', 'assets/img/real_estate/modern-villa-s.jpg', 'Modern villa'],
+                [34.024423, -118.459868, 'assets/img/markers/'+prefix+'land.png', 'assets/img/real_estate/modern-backyard-with-pool-s.jpg', 'Modern backyard'],
+                [34.024885, -118.44871, 'assets/img/markers/'+prefix+'comercial.png', 'assets/img/real_estate/modern-lounge-room.jpg', 'Modern lounge room'],
+                [34.002368, -118.482828, 'assets/img/markers/'+prefix+'apartment.png', 'assets/img/real_estate/hotel-room-m.jpg', 'Hotel']
                 );
 
         var map = new google.maps.Map(document.getElementById('main-map'), mapOptions);
@@ -197,7 +197,7 @@ function LoadMap_main(color) {
             styles: [
                 {
                     height: 42,
-                    url: 'admin-assets/img/cluster/'+prefix+'cluster.png',
+                    url: 'assets/img/cluster/'+prefix+'cluster.png',
                     width: 42,
                     textColor: '#46616B'
                 }
@@ -254,7 +254,7 @@ function map_property() {
         var marker1 = new google.maps.Marker({
             position: new google.maps.LatLng(45.812231, 15.920618),
             map: map,
-            icon: 'admin-assets/img/markers/house.png'
+            icon: 'assets/img/markers/house.png'
         });
 
         var myOptions2 = {
@@ -343,7 +343,7 @@ function contactMap() {
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(45.812231, 15.920618),
             map: map,
-            icon: 'admin-assets/img/markers/house.png'
+            icon: 'assets/img/markers/house.png'
         });
 
         var myOptions = {

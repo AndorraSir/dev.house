@@ -19,7 +19,7 @@
 <div class="wrap-content">
     <div class="container container-property">
         <div class="row-fluid">
-            <div class="col-9">
+            <div class="span9">
                 <h2>{page_title}</h2>
                 <div class="property_content">
                 {page_body}
@@ -36,7 +36,7 @@
                 {/has_page_documents}
                 </div>
             </div>
-            <div class="col-3">
+            <div class="span3">
                 <?php _widget('right_agents'); ?>  
             </div>
         </div>

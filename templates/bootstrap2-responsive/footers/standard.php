@@ -1,6 +1,6 @@
 <div class="wrap-bottom">
     <div class="container">
-      <div class="row-fluid footer-row">
+      <div class="row footer-row">
           <?php _widget('footer_logo');?>
           <?php _widget('footer_contactus');?>
           <?php _widget('footer_share');?>
@@ -67,7 +67,7 @@
 
 <?php
 /* [START] Search background settings */
-$this->data['search_background'] = 'admin-assets/img/texture22.jpg';
+$this->data['search_background'] = 'assets/img/texture.jpg';
 if(isset($this->data['settings']['search_background']))
 {
     if(is_numeric($this->data['settings']['search_background']))

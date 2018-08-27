@@ -1,5 +1,5 @@
 <?php
-    $col=3;
+    $col=2;
 
     $direction = $field->direction;
     if($direction == 'NONE'){
@@ -10,10 +10,10 @@
     $f_id = $field->id;
     $class_add = $field->class;
     if(empty($class_add))
-        $class_add = ' span'.$col;
+        $class_add = ' col-2';
     
     //bootstrap 2
-    $class_add = str_replace(array('col-md-','col-sm-','col-xl-','col-xs-'), 'span', $class_add);
+    $class_add = str_replace(array('col-md-','col-sm-','col-xl-','col-xs-'), 'col-', $class_add);
     
 ?>
 <select id="search_option_<?php echo $f_id; ?>_multi" class="<?php echo $class_add; ?> selectpicker form-control" style="<?php _che($field->style); ?>"  title="<?php echo _l('Choose');?> <?php _che(${'options_name_'.$f_id}); ?>" multiple="multiple" placeholder="<?php _che(${'options_name_'.$f_id}); ?>">

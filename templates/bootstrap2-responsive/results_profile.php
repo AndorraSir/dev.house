@@ -1,6 +1,6 @@
                 <ul class="thumbnails agent-property">
                 {agent_estates}
-                      <li class="col-4">
+                      <li class="span4">
                         <div class="thumbnail f_{is_featured}">
                           <h3>{option_10}&nbsp;</h3>
                           <img alt="300x200" data-src="holder.js/300x200" style="width: 300px; height: 200px;" src="{thumbnail_url}" />

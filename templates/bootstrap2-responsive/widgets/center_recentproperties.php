@@ -1,5 +1,5 @@
-<div class="results-properties-list with-sidebar">
-    <h2>{lang_Realestates}: <?php echo $total_rows; ?></h2>
+<div class="results-properties-list with-sidebar" style="margin-top:250px;">
+    <h2 class="text-center">{lang_Realestates}: <?php echo $total_rows; ?> Favoritos</h2>
     <div class="options">
         <a class="view-type active hidden-phone" ref="grid" href="#"><img src="assets/img/glyphicons/glyphicons_156_show_thumbnails.png" /></a>
         <a class="view-type hidden-phone" ref="list" href="#"><img src="assets/img/glyphicons/glyphicons_157_show_thumbnails_with_lines.png" /></a>
@@ -12,10 +12,8 @@
         </select>
         <span class="pull-right" style="padding-top: 5px;">{lang_OrderBy}&nbsp;&nbsp;&nbsp;</span>
     </div>
-
-    <br style="clear:both;" />
-
-    <div class="row-fluid">
+<br style="clear:both;">
+    <div class="row">
         {has_no_results}
         <ul class="thumbnails">
         <li class="col-12">
@@ -28,13 +26,13 @@
 
         <?php foreach($results as $key=>$item): ?>
         <?php
-           if($key==0)echo '<ul class="thumbnails">';
+           if($key==0)echo '<ul class="cards row">';
         ?>
             <?php _generate_results_item(array('key'=>$key, 'item'=>$item)); ?>
         <?php
-           if( ($key+1)%4==0 )
+           if( ($key+1)%3==0 )
             {
-                echo '</ul><ul class="thumbnails">';
+                echo '</ul><ul class="cards row">';
             }
             if( ($key+1)==count($results) ) echo '</ul>';
             endforeach;

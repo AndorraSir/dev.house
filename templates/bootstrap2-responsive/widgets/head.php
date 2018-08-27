@@ -24,43 +24,32 @@
     <?php endif;endforeach;endif; ?>
 
     <!-- Le styles -->
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <link href="assets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     
-    <?php if(config_item('disable_responsive') === TRUE): ?>
-    <?php else: ?>
-    <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <?php endif; ?>
-
     <link href="assets/css/styles.css" rel="stylesheet">
-    
-    <?php if(config_item('disable_responsive') === TRUE): ?>
-    <?php else: ?>
-    <link href="assets/css/enable-responsive.css" rel="stylesheet">
-    <?php endif; ?>
+    <link href="assets/css/custom.css" rel="stylesheet">
+
+
+    <link href="assets/style/style.css" rel="stylesheet">
+    <link href="assets/style/custom.css" rel="stylesheet">
+    <link href="assets/style/cards.css" rel="stylesheet">
+    <link href="assets/style/footer.css" rel="stylesheet">
+    <link href="assets/style/searchform.css" rel="stylesheet">
+    <link href="assets/style/navbar.css" rel="stylesheet">
+    <link href="assets/style/carousel.css" rel="stylesheet">
+
+
+   <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/css/mdb.min.css" rel="stylesheet">
+        
+
     
     <link href="assets/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="assets/css/blueimp-gallery.min.css" rel="stylesheet">
     <link href="assets/css/jquery.cleditor.css" rel="stylesheet">
     <link href="assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-    {is_rtl}
-    <link href="assets/css/styles_rtl.css" rel="stylesheet">
-    {/is_rtl}
-    {has_color}
-    <link href="assets/css/styles_{color}.css" rel="stylesheet">
-    {/has_color}
-    
-    <?php if(config_item('disable_responsive') === TRUE): ?>
-    <link href="assets/css/disable-responsive.css" rel="stylesheet">
-    <?php else: ?>
-    <?php endif; ?>
-    
-    <link href="assets/css/custom.css" rel="stylesheet">
-   
-   
+
     
     <?php 
     $config_base_url = config_item('base_url');
@@ -87,6 +76,9 @@
     <script src="assets/js/jquery.helpers.js"></script>
     <script src="assets/js/jquery.placeholder.min.js"></script>
     
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i,900,900i|Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet">
+
     <script type="text/javascript" src="assets/js/jquery.number.js"></script>
     <script type="text/javascript" src="assets/js/jquery.h5validate.js"></script>
     
@@ -100,30 +92,30 @@
         <script type="text/javascript">
         
         $(document).ready(function($){
-            $('#contact-tabs').dcContactTabs({
-                    tabs: [{
-                        form: {
-                            intro: {type: 'textblock', text: 'This is an example of a contact form with phone.'},
-                            name: {type: 'text', label: 'Your name', validate: 'required,fake'},
-                            emailfrom: {type: 'emailfrom', label: 'Your email'},
-                            phone: {type: 'text', label: 'Your phone', validate: 'required'},
-                            message: {type: 'textarea', label: 'Your message', validate: 'required'},
-                            url: {type: 'url'},
-                            ip: {type: 'ip'},
-                            submit: {type: 'submit', text: 'Submit'}
-                        },
-                        title: 'Contact Form',
-                        subject: 'Contact Form',
-                        icon: 'mail.png',
-                        success: 'Thank you! Your message has been received'
-                    }],
+        	$('#contact-tabs').dcContactTabs({
+            		tabs: [{
+            			form: {
+            				intro: {type: 'textblock', text: 'This is an example of a contact form with phone.'},
+            				name: {type: 'text', label: 'Your name', validate: 'required,fake'},
+            				emailfrom: {type: 'emailfrom', label: 'Your email'},
+            				phone: {type: 'text', label: 'Your phone', validate: 'required'},
+            				message: {type: 'textarea', label: 'Your message', validate: 'required'},
+            				url: {type: 'url'},
+            				ip: {type: 'ip'},
+            				submit: {type: 'submit', text: 'Submit'}
+            			},
+            			title: 'Contact Form',
+            			subject: 'Contact Form',
+            			icon: 'mail.png',
+            			success: 'Thank you! Your message has been received'
+            		}],
                     errors: {
-                        required: 'required',
-                        email: 'enter a valid email',
-                        numeric: 'numbers only',
-                        fake: 'valid text only',
-                        send: 'There has been an error processing your email. Please try again'
-                    },
+    					required: 'required',
+    					email: 'enter a valid email',
+    					numeric: 'numbers only',
+    					fake: 'valid text only',
+    					send: 'There has been an error processing your email. Please try again'
+				    },
                     height: 500,
                     location: 'left',
                     align: 'top',
@@ -289,12 +281,12 @@
             // Calendar translation start //
             
             var translated_cal = {
-                days: ["{lang_cal_sunday}", "{lang_cal_monday}", "{lang_cal_tuesday}", "{lang_cal_wednesday}", "{lang_cal_thursday}", "{lang_cal_friday}", "{lang_cal_saturday}", "{lang_cal_sunday}"],
-                daysShort: ["{lang_cal_sun}", "{lang_cal_mon}", "{lang_cal_tue}", "{lang_cal_wed}", "{lang_cal_thu}", "{lang_cal_fri}", "{lang_cal_sat}", "{lang_cal_sun}"],
-                daysMin: ["{lang_cal_su}", "{lang_cal_mo}", "{lang_cal_tu}", "{lang_cal_we}", "{lang_cal_th}", "{lang_cal_fr}", "{lang_cal_sa}", "{lang_cal_su}"],
-                months: ["{lang_cal_january}", "{lang_cal_february}", "{lang_cal_march}", "{lang_cal_april}", "{lang_cal_may}", "{lang_cal_june}", "{lang_cal_july}", "{lang_cal_august}", "{lang_cal_september}", "{lang_cal_october}", "{lang_cal_november}", "{lang_cal_december}"],
-                monthsShort: ["{lang_cal_jan}", "{lang_cal_feb}", "{lang_cal_mar}", "{lang_cal_apr}", "{lang_cal_may}", "{lang_cal_jun}", "{lang_cal_jul}", "{lang_cal_aug}", "{lang_cal_sep}", "{lang_cal_oct}", "{lang_cal_nov}", "{lang_cal_dec}"]
-            };
+    			days: ["{lang_cal_sunday}", "{lang_cal_monday}", "{lang_cal_tuesday}", "{lang_cal_wednesday}", "{lang_cal_thursday}", "{lang_cal_friday}", "{lang_cal_saturday}", "{lang_cal_sunday}"],
+    			daysShort: ["{lang_cal_sun}", "{lang_cal_mon}", "{lang_cal_tue}", "{lang_cal_wed}", "{lang_cal_thu}", "{lang_cal_fri}", "{lang_cal_sat}", "{lang_cal_sun}"],
+    			daysMin: ["{lang_cal_su}", "{lang_cal_mo}", "{lang_cal_tu}", "{lang_cal_we}", "{lang_cal_th}", "{lang_cal_fr}", "{lang_cal_sa}", "{lang_cal_su}"],
+    			months: ["{lang_cal_january}", "{lang_cal_february}", "{lang_cal_march}", "{lang_cal_april}", "{lang_cal_may}", "{lang_cal_june}", "{lang_cal_july}", "{lang_cal_august}", "{lang_cal_september}", "{lang_cal_october}", "{lang_cal_november}", "{lang_cal_december}"],
+    			monthsShort: ["{lang_cal_jan}", "{lang_cal_feb}", "{lang_cal_mar}", "{lang_cal_apr}", "{lang_cal_may}", "{lang_cal_jun}", "{lang_cal_jul}", "{lang_cal_aug}", "{lang_cal_sep}", "{lang_cal_oct}", "{lang_cal_nov}", "{lang_cal_dec}"]
+    		};
             
             if(typeof(DPGlobal) != 'undefined'){
                 DPGlobal.dates = translated_cal;
@@ -324,21 +316,21 @@
                 $('.hidden-agent-details,.hidden-file-details').css('display','block');
                 
                 $('.popup-with-form').magnificPopup({
-                    type: 'inline',
-                    preloader: false,
-                    focus: '#name',
+                	type: 'inline',
+                	preloader: false,
+                	focus: '#name',
                                     
-                    // When elemened is focused, some mobile browsers in some cases zoom in
-                    // It looks not nice, so we disable it:
-                    callbacks: {
-                        beforeOpen: function() {
-                            if($(window).width() < 700) {
-                                this.st.focus = false;
-                            } else {
-                                this.st.focus = '#name';
-                            }
-                        }
-                    }
+                	// When elemened is focused, some mobile browsers in some cases zoom in
+                	// It looks not nice, so we disable it:
+                	callbacks: {
+                		beforeOpen: function() {
+                			if($(window).width() < 700) {
+                				this.st.focus = false;
+                			} else {
+                				this.st.focus = '#name';
+                			}
+                		}
+                	}
                 });
                 
                 
@@ -1243,7 +1235,7 @@
                 if(data.page_num)
                     data.page_num = data.page_num.replace("#content", "");
                     
-                var json_string=JSON.stringify(data);
+            	var json_string=JSON.stringify(data);
                 json_string = json_string.replace("&amp;", "%26"); 
                 
                 if(window.history && history.pushState)
@@ -1525,11 +1517,11 @@
         var modelName = $(this).parent().parent().parent().attr('rel');
         
         $.fn.startLoading();
-        $.post('<?php echo site_url('files/order'); ?>/'+pageId+'/'+modelName, 
+		$.post('<?php echo site_url('files/order'); ?>/'+pageId+'/'+modelName, 
         { 'page_id': pageId, 'order': filesOrder }, 
         function(data){
             $.fn.endLoading();
-        }, "json");
+		}, "json");
     }
     
     {/has_extra_js}

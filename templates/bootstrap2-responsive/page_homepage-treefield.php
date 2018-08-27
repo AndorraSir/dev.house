@@ -40,8 +40,8 @@ foreach ($_treefields as $val) {
     }
     else
     {
-        $treefield['thumbnail_url'] = 'admin-assets/img/no_image.jpg';
-        $treefield['image_url'] = 'admin-assets/img/no_image.jpg';
+        $treefield['thumbnail_url'] = 'assets/img/no_image.jpg';
+        $treefield['image_url'] = 'assets/img/no_image.jpg';
     }
     
     $childs = array();
@@ -96,7 +96,7 @@ foreach ($_treefields as $val) {
         <div class="wrap-content">
             <div class="container">
                 <div class="row-fluid">
-                    <div class="col-9">
+                    <div class="span9">
                         <div class="results-properties-list with-sidebar clearfix">
                             <h2><?php echo lang_check('Treefield');?></h2>
                             <div class="row-fluid  treefield-list clearfix" style="margin-top: -0.5%;">

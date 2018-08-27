@@ -1,4 +1,4 @@
-<div class="col-6">
+<div class="col-4">
     <br />
     <table>
         <tr>

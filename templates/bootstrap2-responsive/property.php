@@ -383,7 +383,7 @@ if (!empty($lang_facebook_code))
 <div class="wrap-content">
     <div class="container container-property">
         <div class="row-fluid">
-            <div class="col-9">
+            <div class="span9">
             <h2>{page_title}, #{estate_data_id}</h2>
             {has_page_images}
             <div class="propertyCarousel">
@@ -945,7 +945,7 @@ if (!empty($lang_facebook_code))
 
               </div>
             </div>
-            <div class="col-3">
+            <div class="span3">
                 <div class="hidden-phone">
                     <?php _widget('property_right_overview');?>
                 </div>

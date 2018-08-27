@@ -29,13 +29,13 @@
 <div class="wrap-content" id="content-position">
     <div class="container container-property">
     <div class="row-fluid">
-    <div class="col-9">
+    <div class="span9">
         <h2>{page_title}</h2>
         <div class="property_content_position">
             <div class="row-fluid"
             <ul class="thumbnails">
                 <?php foreach($expert_module_all as $key=>$row):?>
-                  <li class="col-12 li-list">
+                  <li class="span12 li-list">
                       <div class="caption span12">
                         <p class="bottom-border">
                             <i class="qmark">?</i>
@@ -54,7 +54,7 @@
             </div>
         </div>
     </div>
-    <div class="col-3">
+    <div class="span3">
           <h2>{lang_Expert}</h2>
           <div class="agent">
             <div class="image"><img src="{showroom_image_url}" alt="<?php echo $expert_data['name_surname']; ?>" /></div>

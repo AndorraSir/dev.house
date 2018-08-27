@@ -18,7 +18,7 @@
 <div class="wrap-content">
     <div class="container">
         <div class="row-fluid">
-            <div class="col-12">
+            <div class="span12">
                     <?php if($switch_messenger == TRUE):?>
                     <h2 id="content">
                        <a href="<?php echo site_url($listing_uri.'/'.$property_id.'/'.$lang_code);?>"><?php echo $estate_data_address; ?></a>
@@ -29,7 +29,7 @@
                         </div>
                         <div class="widget-content">
                             <div class="clearfix">
-                                <div class="col-4 hidden-md-down">
+                                <div class="span4 hidden-md-down">
                                     <div class="interlocutor-card">
                                         <div class="interlocutor-thumbnail">
                                             <a href="<?php echo $speakers[$sel]->user_url;?>" class="interlocutor img-circle-cover">
@@ -62,7 +62,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-8">
+                                <div class="span8">
                                     <div class="dialog-section load-box">
                                         <div class="dialog-box tse-scrollable" id="dialog-box" data-latest_id='<?php _che($latest_id);?>'>
                                             <ul class="dialog-box-list tse-content">

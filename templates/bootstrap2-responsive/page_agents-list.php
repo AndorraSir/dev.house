@@ -19,7 +19,7 @@
 <div class="wrap-content">
     <div class="container container-property">
         <div class="row-fluid">
-            <div class="col-9">
+            <div class="span9">
                 <h2>{page_title}</h2>
                 <div class="property_content">
                 {page_body}
@@ -68,7 +68,7 @@
                 <?php echo $agents_pagination; ?>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="span3">
                 <h2>{lang_Search}</h2>
                 <form class="form-search agents" action="<?php echo current_url().'#content'; ?>" method="get">
                 <input name="search-agent" type="text" placeholder="{lang_CityorName}" value="<?php echo $this->input->get('search-agent'); ?>" class="input-medium" />

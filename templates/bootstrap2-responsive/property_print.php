@@ -14,8 +14,9 @@
     <meta property="og:image" content="assets/img/logo.png" />
 
     <!-- Le styles -->
-    <link rel="stylesheet" href="assets/style/style.css" type="text/css">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/styles.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="assets/css/blueimp-gallery.min.css" rel="stylesheet">
     <link href="assets/css/jquery.cleditor.css" rel="stylesheet">
     <link href="assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
@@ -1088,7 +1089,7 @@
 <div class="wrap-content-print">
     <div class="container container-property">
         <div class="row-fluid">
-            <div class="col-9">
+            <div class="span9">
             <h2>{page_title}</h2>
             <?php if(isset($slideshow_property_images[0])): ?>
             <img src="<?php echo $slideshow_property_images[0]['url']; ?>" />
@@ -1196,7 +1197,7 @@
 
               </div>
             </div>
-            <div class="col-3">
+            <div class="span3">
                   <h2>{lang_Overview}</h2>
                   <div class="property_options">
                     <?php if(!empty($estate_data_address)): ?>
@@ -1242,7 +1243,7 @@
 <div class="wrap-bottom-print">
     <div class="container">
       <div class="row-fluid">
-        <div class="col-3">
+        <div class="span3">
             <table>
                 <tr>
                     <td><i class="icon-map-marker"></i></td>
@@ -1252,7 +1253,7 @@
                 </tr>
             </table>
         </div>
-        <div class="col-3">
+        <div class="span3">
             <table>
                 <tr>
                     <td><i class="icon-phone"></i></td>

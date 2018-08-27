@@ -12,7 +12,6 @@
 <body>
 <a name="top-page"></a>
     <div class="always-top">
-
     <?php if(config_item('cookie_warning_enabled') === TRUE): ?>
 
     <script type="text/javascript">
@@ -79,14 +78,14 @@
     <div class="wrap-content">
     <div class="container">
         <div class="row-fluid">
-            <div class="col-9">
+            <div class="span9">
                 <?php 
                     foreach($widgets_order->center as $widget_filename){
                         _widget($widget_filename);
                     } 
                 ?>
             </div>
-            <div class="col-3">
+            <div class="span3">
                 <?php 
                  foreach($widgets_order->right as $widget_filename){
                      _widget($widget_filename);
@@ -170,7 +169,7 @@
 
     <?php
     /* [START] Search background settings */
-    $this->data['search_background'] = 'admin-assets/img/texture22.jpg';
+    $this->data['search_background'] = 'assets/img/texture.jpg';
     if(isset($this->data['settings']['search_background']))
     {
         if(is_numeric($this->data['settings']['search_background']))
@@ -183,7 +182,11 @@
         }
     }
     ?>
-   
+    <style>
+    .wrap-search {
+        background-image: url('<?php echo $this->data['search_background']; ?>');   
+    }
+    </style>
     <?php
     /* [END] Search background settings */
     ?>

@@ -51,7 +51,7 @@
 <div class="wrap-content">
     <div class="container">
         <div class="row-fluid">
-            <div class="col-12">
+            <div class="span12">
             <h2 id="content">{lang_Myfavorites}</h2>
             <div class="property_content">
                 <div class="widget-content">

@@ -23,7 +23,7 @@
 
         <?php if(file_exists(APPPATH.'controllers/admin/packages.php') && config_item('def_package') !== FALSE): ?>
         <div class="row-fluid">
-            <div class="col-12">
+            <div class="span12">
             <h2>{lang_AvailablePackages}</h2>
             <div class="property_content">
                 <div class="widget-content">
@@ -77,7 +77,7 @@
         <?php if(isset($settings_activation_price) && isset($settings_featured_price) &&
                  $settings_activation_price > 0 || $settings_featured_price > 0): ?>
         <div class="row-fluid">
-            <div class="col-12">
+            <div class="span12">
             <div class="property_content">
                 <div class="widget-content">
                 <?php if($settings_activation_price > 0): ?>
@@ -93,7 +93,7 @@
         <?php endif;?>
         
         <div class="row-fluid">
-            <div class="col-6 login-form">
+            <div class="span6 login-form">
             <h2>{lang_Login}</h2>
             <div class="property_content">
                 <?php if($is_login):?>
@@ -152,7 +152,7 @@
                 <?php endif;?>
                 
             </div></div>
-            <div class="col-6 register-form">
+            <div class="span6 register-form">
             <h2>{lang_Register}</h2>
             <a name="content" id="content"></a>
             <div class="property_content">

@@ -124,11 +124,11 @@
         </ul>
         <div class="search-form">
             <form class="form-inline">
-                <input id="search_option_smart" type="text" class="col-6" placeholder="{lang_CityorCounty}" />
-                <select id="search_option_2" class="col-3 selectpicker" placeholder="{options_name_2}">
+                <input id="search_option_smart" type="text" class="span6" placeholder="{lang_CityorCounty}" />
+                <select id="search_option_2" class="span3 selectpicker" placeholder="{options_name_2}">
                     {options_values_2}
                 </select>
-                <select id="search_category_21" class="col-3 selectpicker custom-select nomargin" title="{options_name_21}" multiple style="margin-top:5px;">
+                <select id="search_category_21" class="span3 selectpicker custom-select nomargin" title="{options_name_21}" multiple style="margin-top:5px;">
                     <option value="true{options_name_11}">{options_name_11}</option>
                     <option value="true{options_name_22}">{options_name_22}</option>
                     <option value="true{options_name_25}">{options_name_25}</option>
@@ -141,21 +141,21 @@
                 </select>
                 <div class="form-row-space"></div>
                 <div class='custom-scale custom-scale-conteiner span6' style="margin:0;">
-                <div class="col-4 scale-conteiner scale-price custom-span4" id="scale-price" style="">
+                <div class="span4 scale-conteiner scale-price custom-span4" id="scale-price" style="">
                     <div class='row-fluid'>
                         <span>{options_name_36} ({options_prefix_36}{options_suffix_36})</span>
                     </div>
                     <div class='row-fluid scale-form'>
-                        <input id="search_option_36_from" type="text" class="col-5 minScale mPrice scale-input" data-suffix='{options_suffix_36}' data-prefix='{options_prefix_36}'  value="<?php echo search_value('36_from'); ?>"  placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})"/>
+                        <input id="search_option_36_from" type="text" class="span5 minScale mPrice scale-input" data-suffix='{options_suffix_36}' data-prefix='{options_prefix_36}'  value="<?php echo search_value('36_from'); ?>"  placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})"/>
                         <img src="assets/img/glyphicons/glyphicons-434-minus.png" class="scale-icon-minus"/>
-                        <input id="search_option_36_to" type="text" class="col-5 maxScale xPrice scale-input" data-suffix='{options_suffix_36}' data-prefix='{options_prefix_36}' value="<?php echo search_value('36_to'); ?>"  placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})"/>
+                        <input id="search_option_36_to" type="text" class="span5 maxScale xPrice scale-input" data-suffix='{options_suffix_36}' data-prefix='{options_prefix_36}' value="<?php echo search_value('36_to'); ?>"  placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})"/>
                     </div>
                     <div class='row-fluid'>
-                        <div class="col-12 scale scale-price" id="slide-scale"></div>
+                        <div class="span12 scale scale-price" id="slide-scale"></div>
                     </div>
                 </div>
                 </div>
-                <select id="search_option_19_from" class="col-3 selectpicker  " placeholder="{options_name_19}">
+                <select id="search_option_19_from" class="span3 selectpicker  " placeholder="{options_name_19}">
                         <option value="">{options_name_19}</option>
                         <option value="1">1+</option>
                         <option value="2">2+</option>
@@ -164,7 +164,7 @@
                         <option value="5">5+</option>
                         <option value="6">6+</option>
                 </select>
-                <select id="search_option_20_from" class="col-3 selectpicker  " placeholder="{options_name_20}">
+                <select id="search_option_20_from" class="span3 selectpicker  " placeholder="{options_name_20}">
                         <option value="">{options_name_20}</option>
                         <option value="1">1+</option>
                         <option value="2">2+</option>

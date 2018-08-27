@@ -92,7 +92,7 @@
             this.$marker = new google.maps.Marker({
                 position: new google.maps.LatLng(param.ltng[0], param.ltng[1]),
                 map: this.$map,
-                //icon: 'admin-assets/img/markers/house.png'
+                //icon: 'assets/img/markers/house.png'
             });
 
             var myOptions2 = {

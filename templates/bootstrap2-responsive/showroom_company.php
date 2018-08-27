@@ -111,7 +111,7 @@
 <div class="wrap-content" id="content-position">
     <div class="container container-property">
     <div class="row-fluid">
-    <div class="col-9">
+    <div class="span9">
         <h2>{page_title}</h2>
         <div class="property_content">
         <?php if(isset($showroom_image_url)): ?>
@@ -143,7 +143,7 @@
         {/has_page_documents}
         </div>
     </div>
-            <div class="col-3">
+            <div class="span3">
                   <h2>{lang_Overview}</h2>
                   <div class="property_options">
                     <p class="bottom-border"><strong>

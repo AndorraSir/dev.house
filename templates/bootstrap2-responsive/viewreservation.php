@@ -18,14 +18,14 @@
 <div class="wrap-content">
     <div class="container">
         <div class="row-fluid">
-            <div class="col-12">
+            <div class="span12">
             <h2><?php echo $page_title; ?></h2>
             <div class="property_content">
                 <div class="widget-content">
                     <table class="table table-striped">
                       <thead>
                         <tr>
-                        	<th class="col-5">#</th>
+                        	<th class="span5">#</th>
                             <th><?php echo lang_check('Info');?></th>
                         </tr>
                       </thead>

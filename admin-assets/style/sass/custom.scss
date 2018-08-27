@@ -1,13 +1,13 @@
-.navbar{
-	background:#fff;
-	color:#000;
+
+body, input, button, select, textarea  {
+	font-family: 'Lato', sans-serif;
 }
-.navi{
-	li a{
-		font-size:13px;
-		color:grey;
-	}
+
+h1, h2, h3, h4, h5, h6
+{
+	font-family: 'Playfair Display', serif;
 }
+
 a, span, p{
 	font-size:13px;
 	color:grey;
@@ -35,23 +35,22 @@ a, span, p{
 .fade:not(.show){
 	opacity:1;
 }
-.navbar-nav>li {
-    float: left;
-}
-.nav>li {
-    position: relative;
-    display: block;
-}
-.navbar-right {
-    float: right!important;
+
+
+.ownership-badget{
+	background: white;
 }
 
-.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-    border-color: #101010;
+ul.cards{
+	padding-left:0px;
 }
-.navbar-collapse.collapse {
-    display: block!important;
-    height: auto!important;
-    padding-bottom: 0;
-    overflow: visible!important;
+
+
+.mt150{
+	margin-top:150px;
+}
+
+
+li.dropdown.active > .dropdown-toggle{
+	background-color:white;
 }

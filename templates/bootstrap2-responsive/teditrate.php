@@ -16,7 +16,7 @@
 <div class="wrap-content">
     <div class="container">
         <div class="row-fluid">
-            <div class="col-12">
+            <div class="span12">
             <?php if(!empty($rate->id)):?>
             <h2><?php echo lang_check('Edit dates'); ?>, #<?php echo $rate->id; ?></h2>
             <?php else: ?>
@@ -235,7 +235,7 @@ table.av_calender a.disabled
 }
 
 select option:disabled {
-    background: #1a1a1addd;
+    background: #dddddd;
 } 
 
 .form-inline .form-group{

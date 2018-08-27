@@ -13,8 +13,15 @@
   
 <a name="top-page"></a>
 <div class="always-top">
+<?php $c_code = config_item('codecanyon_code'); if(empty($c_code)): ?>
 <div class="top-wrapper">
-     
+      <div class="container">
+            Please insert:
+            <pre>$config['codecanyon_username'] = 'your_codecanyon_username';<br />$config['codecanyon_code'] = 'your_purchase_code';</pre>
+            Into your application/config/cms_config.php to remove this message.<br />
+            <a target="_blank" href="https://help.market.envato.com/hc/en-us/articles/202822600-Where-can-I-find-my-Purchase-Code-"><em>Where to find purchase code?</em></a>
+            <br /><br />
+      </div> <!-- /.container -->
 </div>
 <?php endif; ?>
 

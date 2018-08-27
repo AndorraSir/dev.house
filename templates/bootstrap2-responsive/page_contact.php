@@ -79,7 +79,7 @@
             <input type="hidden" name="form" value="contact" />
 
                     <div class="row-fluid">
-                    <div class="col-5">
+                    <div class="span5">
                         <div class="control-group {form_error_firstname}">
                             <div class="controls">
                                 <div class="input-prepend input-block-level">
@@ -121,8 +121,8 @@
                             </div>
                         <?php endif; ?>
                     </div>
-                    <div class="col--mini"></div>
-                    <div class="col-6">
+                    <div class="span-mini"></div>
+                    <div class="span6">
                         <div class="control-group {form_error_message}">
                             <div class="controls">
                                 <textarea id="message" name="message" rows="4" class="input-block-level" type="text" placeholder="{lang_Message}">{form_value_message}</textarea>

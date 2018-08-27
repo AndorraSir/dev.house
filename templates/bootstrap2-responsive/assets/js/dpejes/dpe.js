@@ -37,7 +37,7 @@ function get_img_folder(document_url){
 	if(method == 'http'){
 		var http_regex = new RegExp("^(http://[^/]+)(/.*)?$");
 		var m = http_regex.exec(document_url);
-		var path = m[1] + '/estatepointdev/templates/modules/assets/js/dpejes';
+		var path = m[1] + '/estatepointdev/templates/bootstrap2-responsive/assets/js/dpejes';
 		return path;
 	}
 	throw("unhandled document URL: should begin with http:// or file://");

@@ -1,0 +1,17 @@
+ul.cards li {
+  list-style: none; }
+
+.card img {
+  width: 100%; }
+
+.card .prop-description {
+  min-height: 20px;
+  height: auto;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.card .btn {
+  margin: 0px; }
+
+.card .prop-details {
+  margin-bottom: 0px; }

@@ -76,7 +76,7 @@
 <div class="wrap-content">
     <div class="container">
     <div class="row-fluid">
-        <div class="col-12">
+        <div class="span12">
             <?php _widget('center_recentproperties');?>
         </div>
     </div>

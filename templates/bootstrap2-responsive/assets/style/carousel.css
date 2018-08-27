@@ -1,0 +1,19 @@
+#myCarousel {
+  height: 600px;
+  overflow: hidden; }
+  #myCarousel .carousel-inner > .item > img {
+    width: 100%;
+    min-height: 100%; }
+
+.wrap-map {
+  width: 100%; }
+
+.carousel-inner {
+  height: 100%; }
+
+.li-list .prop-description {
+  min-height: 32px; }
+
+.carousel .item .cont img {
+  height: 100%;
+  max-height: 700px; }

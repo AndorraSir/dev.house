@@ -1,7 +1,7 @@
         <div class="row-fluid">
         <ul class="thumbnails">
             <?php foreach($showroom_module_all as $key=>$row):?>
-              <li class="col-12 li-list">
+              <li class="span12 li-list">
                 <div class="thumbnail span4">
                 <?php if(isset(${'images_'.$row->repository_id})):?>
                   <img alt="300x200" data-src="holder.js/300x200" style="width: 300px; height: 200px;" src="<?php echo ${'images_'.$row->repository_id}[0]->thumbnail_url?>" />

@@ -16,7 +16,7 @@
 <div class="wrap-content">
     <div class="container">
         <div class="row-fluid">
-            <div class="col-12">
+            <div class="span12">
             <?php if(!empty($rate->id)):?>
             <h2><?php echo lang_check('Edit rate'); ?>, #<?php echo $rate->id; ?></h2>
             <?php else: ?>
@@ -83,7 +83,7 @@
                                     <li class="<?php echo $i==1?'active':''?>"><a data-toggle="tab" href="#<?php echo $key_lang?>"><?php echo $val_lang?></a></li>
                                     <?php endforeach;?>
                                   </ul>
-                                  <div style="padding-top: 9px; border-bottom: 1px solid #1a1a1a;" class="tab-content">
+                                  <div style="padding-top: 9px; border-bottom: 1px solid #ddd;" class="tab-content">
                                     <?php $i=0;foreach($this->rates_m->languages as $key_lang=>$val_lang):$i++;?>
                                     <div id="<?php echo $key_lang?>" class="tab-pane <?php echo $i==1?'active':''?>">
                                         <div class="form-group control-group">

@@ -14,7 +14,7 @@
         <div class="row-fluid">
 
         
-        <div class="col-8">
+        <div class="span8">
         <h2><?php _l('Quick add listing'); ?></h2>
         <div class="property_content">
         <?php if($this->user_m->loggedin()): ?>
@@ -320,7 +320,7 @@
         
         </div>
         
-        <div class="col-4">
+        <div class="span4">
             <h2><?php echo _l('Location based on address'); ?></h2>
             <div class="property_content">
               <div class="gmap" id="mapsAddress_nondefault">
@@ -333,7 +333,7 @@
             <div class="filter-checkbox-container">
             <form method="get" action="#" id="mortgage_calculator">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="span12">
                         <ul>
                             <li><?php _l('Populate address, title and description'); ?></li>
                             <li><?php _l('Make sure you select right type and map marker icon'); ?></li>
@@ -361,7 +361,7 @@
         <noscript><input type="hidden" name="redirect" value="<?php echo site_url('fquick/submission/'.$lang_code)?>"></noscript>
         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
         <div class="fileupload-buttonbar">
-            <div class="col-7 col-md-7">
+            <div class="span7 col-md-7">
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button">
                     <i class="icon-plus icon-white"></i>
@@ -379,7 +379,7 @@
                 <input type="checkbox" class="toggle" />
             </div>
             <!-- The global progress information -->
-            <div class="col-5 col-md-5 fileupload-progress fade">
+            <div class="span5 col-md-5 fileupload-progress fade">
                 <!-- The global progress bar -->
                 <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
                     <div class="bar" style="width:0%;"></div>
