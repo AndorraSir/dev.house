@@ -54,3 +54,20 @@ ul.cards{
 li.dropdown.active > .dropdown-toggle{
 	background-color:white;
 }
+
+
+.carousel .item .slider-info {
+    position: absolute;
+    z-index: 5;
+    border-bottom: none;
+    padding: 11px 30px 11px 30px;
+    display: block;
+    font-weight: normal;
+    color: white;
+    width: 100%;
+    bottom: 315px;
+}
+
+.carousel .item .slider-info .container {
+     background: rgba(0, 0, 0,0) !important;
+}
