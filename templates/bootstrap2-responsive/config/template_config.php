@@ -2,7 +2,7 @@
 
 $config['loaded_template_config'] = 'bootstrap2-responsive';
 $config['pseudo_varialbes_disabled'] = FALSE;
-$config['per_page'] = 3;
+$config['per_page'] = 6;
 
 $config['secondary_disabled'] = FALSE;
 $config['search_forms_editor_enabled'] = TRUE;
@@ -16,7 +16,7 @@ $config['dropdown_menu_enabled'] = TRUE;
 
 $config['field_file_upload_enabled'] = TRUE;
 $config['visual_templates_enabled'] = TRUE;
-$config['search_listing_page'] = 13;  
+$config['search_listing_page'] = 2;  
 
 $config['field_dropdown_multiple_enabled'] = TRUE;
 $config['field_datetime_enabled'] = TRUE;
