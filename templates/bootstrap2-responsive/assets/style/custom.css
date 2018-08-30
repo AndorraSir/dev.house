@@ -38,6 +38,9 @@ ul.cards {
 li.dropdown.active > .dropdown-toggle {
   background-color: white; }
 
+.hide {
+  display: none; }
+
 .carousel .item .slider-info {
   position: absolute;
   z-index: 5;

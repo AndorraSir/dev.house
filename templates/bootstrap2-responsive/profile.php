@@ -64,7 +64,7 @@
                 
               </div>
             </div>
-            <div class="span3">
+            <div class="col-3">
                   {has_agent}
                   <h2>{lang_Agent}</h2>
                   <div class="agent">

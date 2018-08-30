@@ -125,10 +125,10 @@
         <div class="search-form">
             <form class="form-inline">
                 <input id="search_option_smart" type="text" class="span6" placeholder="{lang_CityorCounty}" />
-                <select id="search_option_2" class="span3 selectpicker" placeholder="{options_name_2}">
+                <select id="search_option_2" class="col-3 selectpicker" placeholder="{options_name_2}">
                     {options_values_2}
                 </select>
-                <select id="search_category_21" class="span3 selectpicker custom-select nomargin" title="{options_name_21}" multiple style="margin-top:5px;">
+                <select id="search_category_21" class="col-3 selectpicker custom-select nomargin" title="{options_name_21}" multiple style="margin-top:5px;">
                     <option value="true{options_name_11}">{options_name_11}</option>
                     <option value="true{options_name_22}">{options_name_22}</option>
                     <option value="true{options_name_25}">{options_name_25}</option>
@@ -155,7 +155,7 @@
                     </div>
                 </div>
                 </div>
-                <select id="search_option_19_from" class="span3 selectpicker  " placeholder="{options_name_19}">
+                <select id="search_option_19_from" class="col-3 selectpicker  " placeholder="{options_name_19}">
                         <option value="">{options_name_19}</option>
                         <option value="1">1+</option>
                         <option value="2">2+</option>
@@ -164,7 +164,7 @@
                         <option value="5">5+</option>
                         <option value="6">6+</option>
                 </select>
-                <select id="search_option_20_from" class="span3 selectpicker  " placeholder="{options_name_20}">
+                <select id="search_option_20_from" class="col-3 selectpicker  " placeholder="{options_name_20}">
                         <option value="">{options_name_20}</option>
                         <option value="1">1+</option>
                         <option value="2">2+</option>

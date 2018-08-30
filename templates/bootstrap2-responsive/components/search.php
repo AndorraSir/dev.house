@@ -82,12 +82,11 @@
 
 </script>
 <?php endif; ?>
-<div class="wrap-search">
+<div class="wrap-search fdfdfdf">
     <div class="container">
-
-        <ul id="search_option_4" class="menu-onmap tabbed-selector">
-            <li class="all-button"><a href="#"><?php echo lang_check('All'); ?></a></li>
-            {options_values_li_4}
+        <div id="search_option_4" class="menu-onmap tabbed-selector row input-group">
+            <li class="all-button" style="display:none"><a href="#"><?php echo lang_check('All'); ?></a></li>
+            {options_values_radio_4}
             <?php if(config_db_item('property_subm_disabled')==FALSE):  ?>
                 <?php if(config_db_item('enable_qs') == 1): ?>
                 <li class="list-property-button"><a href="<?php echo site_url('fquick/submission/'.$lang_code); ?>"><?php _l('Quick add listing'); ?></a></li>
@@ -95,10 +94,10 @@
                 <li class="list-property-button"><a href="{myproperties_url}">{lang_Listproperty}</a></li>
                 <?php endif; ?>
             <?php endif;?>
-        </ul>
+        </div>
         
-        <div class="search-form">
-            <form class="form-inline">
+        <div class="search-form row">
+            <form class="form-inline col-xs-12">
                 <input id="rectangle_ne" type="text" class="hide" />
                 <input id="rectangle_sw" type="text" class="hide" />
             
@@ -154,28 +153,28 @@
                 <?php endif; ?>
                 <!-- [END] TreeSearch -->
             
-                <input id="search_option_smart" type="text" class="col-4" value="{search_query}" placeholder="{lang_CityorCounty}" autocomplete="off" />
-                <select id="search_option_2" class="col-4 selectpicker" placeholder="{options_name_2}">
+                <input id="search_option_smart" type="text" class="col-4 form-control" value="{search_query}" placeholder="{lang_CityorCounty}" autocomplete="off" />
+                <select id="search_option_2" class="col-2 selectpicker form-control" placeholder="{options_name_2}">
                     {options_values_2}
                 </select>
-                <select id="search_option_3dddddd" class="col-4 selectpicker nomargin" placeholder="{options_name_3}">
+                <select id="search_option_3" class="col-2 selectpicker nomargin form-control" placeholder="{options_name_3}">
                     {options_values_3}
                 </select>
                 
                 <div class="advanced-form-part">
                 <div class="form-row-space"></div>
-                <input id="search_option_36_from" type="text" class="span3 mPrice DECIMAL" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_from'); ?>" />
-                <input id="search_option_36_to" type="text" class="span3 xPrice DECIMAL" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_to'); ?>" />
-                <input id="search_option_19" type="text" class="span3 Bathrooms INTEGER" placeholder="{options_name_19}"  value="<?php echo search_value(19); ?>" />
-                <input id="search_option_20" type="text" class="span3 INTEGER" placeholder="{options_name_20}"  value="<?php echo search_value(20); ?>" />
+                <input id="search_option_36_from" type="text" class="col-3 mPrice DECIMAL form-control" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_from'); ?>" />
+                <input id="search_option_36_to" type="text" class="col-3 xPrice DECIMAL form-control" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_to'); ?>" />
+                <input id="search_option_19" type="text" class="col-3 Bathrooms INTEGER form-control" placeholder="{options_name_19}"  value="<?php echo search_value(19); ?>" />
+                <input id="search_option_20" type="text" class="col-3 INTEGER form-control" placeholder="{options_name_20}"  value="<?php echo search_value(20); ?>" />
                 <div class="form-row-space"></div>
                 <?php if(file_exists(APPPATH.'controllers/admin/booking.php')):?>
-                <input id="booking_date_from" type="text" class="span3 mPrice" placeholder="{lang_Fromdate}" value="<?php echo search_value('date_from'); ?>" />
-                <input id="booking_date_to" type="text" class="span3 xPrice" placeholder="{lang_Todate}" value="<?php echo search_value('date_to'); ?>" />
+                <input id="booking_date_from" type="text" class="col-3 mPrice form-control" placeholder="{lang_Fromdate}" value="<?php echo search_value('date_from'); ?>" />
+                <input id="booking_date_to" type="text" class="col-3 xPrice form-control" placeholder="{lang_Todate}" value="<?php echo search_value('date_to'); ?>" />
                 <div class="form-row-space"></div>
                 <?php endif; ?>
                 <?php if(config_db_item('search_energy_efficient_enabled') === TRUE): ?>
-                <select id="search_option_59_to" class="span3 selectpicker nomargin" placeholder="{options_name_59}">
+                <select id="search_option_59_to" class="col-3 selectpicker nomargin" placeholder="{options_name_59}">
                     <option value="">{options_name_59}</option>
                     <option value="50">A</option>
                     <option value="90">B</option>

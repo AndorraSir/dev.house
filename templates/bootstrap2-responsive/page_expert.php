@@ -84,7 +84,7 @@
         </div>
         </div>
         </div>
-        <div class="span3">
+        <div class="col-3">
         
             <input type="text" placeholder="{lang_Search}" id="search_expert" autocomplete="off"/>
         

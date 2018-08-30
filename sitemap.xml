@@ -5,26 +5,6 @@
   	xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
 			    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
-	<loc>http://localhost:8888/dev.house/index.php/en/1/homepage</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-    <xhtml:link
-        rel="alternate"
-        hreflang="es"
-        href="http://localhost:8888/dev.house/index.php/es/1/homepage"
-    />
-    <xhtml:link
-        rel="alternate"
-        hreflang="fr"
-        href="http://localhost:8888/dev.house/index.php/fr/1/homepage"
-    />
-    <xhtml:link
-        rel="alternate"
-        hreflang="cat"
-        href="http://localhost:8888/dev.house/index.php/cat/1/homepage"
-    />
-</url>
-<url>
 	<loc>http://localhost:8888/dev.house/index.php/es/1/pagina_principal</loc>
 	<changefreq>monthly</changefreq>
 	<priority>0.5</priority>
@@ -42,6 +22,26 @@
         rel="alternate"
         hreflang="cat"
         href="http://localhost:8888/dev.house/index.php/cat/1/pagina_principal"
+    />
+</url>
+<url>
+	<loc>http://localhost:8888/dev.house/index.php/en/1/homepage</loc>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="es"
+        href="http://localhost:8888/dev.house/index.php/es/1/homepage"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/1/homepage"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/1/homepage"
     />
 </url>
 <url>

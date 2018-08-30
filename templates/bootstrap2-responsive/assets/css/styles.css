@@ -594,22 +594,9 @@ div.simple-languages ul li.active
 
 /* wrap-search */
 
-.wrap-search
-{
-    /*height: 140px;*/
-    width: 100%;
-    border-top: 3px solid #ccc;
-    z-index: 999;
-}
-
-.search-form
-{
-    margin-top: 78px;
-}
 
 .wrap-search select, 
 .wrap-search textarea, 
-.wrap-search input[type="text"], 
 .wrap-search input[type="password"], 
 .wrap-search input[type="datetime"], 
 .wrap-search input[type="datetime-local"], 
@@ -999,7 +986,7 @@ a.over-image:hover
     color: white;
 }
 
-.wrap-bottom .span3 .footer-title
+.wrap-bottom .col-3 .footer-title
 {
     text-transform: uppercase;
     border-bottom:1px solid #1a1a1aDDD;
@@ -1529,18 +1516,18 @@ div.facebook_top_share
     position: relative;
 }
 
-input.span3.mPrice
+input.col-3.mPrice
 {
     /* width:254px;*/
 }
 
-input.span3.xPrice
+input.col-3.xPrice
 {
     /* width:254px; */
     margin-right:6px;
 }
 
-input.span3.Bathrooms
+input.col-3.Bathrooms
 {
     margin-right:6px;
 }
@@ -1726,7 +1713,7 @@ ul.thumbnails
     height:100%;
 }
 
-.container-property .row-fluid .span3 {
+.container-property .row-fluid .col-3 {
     margin-left:5px;
 }
 
@@ -2411,7 +2398,7 @@ div.lang_menu_wrapper .dropdown-menu li a img {
 
 @media (max-width: 767px) {
     
-    .wrap-bottom .span3  {
+    .wrap-bottom .col-3  {
         height : auto;
     }
     
@@ -2532,7 +2519,7 @@ div.month_container
         -webkit-transform: translateX(-50%);
     }
     
-    .footer-row .span3 {
+    .footer-row .col-3 {
         text-align: center;
     }
     

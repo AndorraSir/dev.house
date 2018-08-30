@@ -143,7 +143,7 @@
         {/has_page_documents}
         </div>
     </div>
-            <div class="span3">
+            <div class="col-3">
                   <h2>{lang_Overview}</h2>
                   <div class="property_options">
                     <p class="bottom-border"><strong>

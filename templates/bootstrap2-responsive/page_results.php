@@ -23,7 +23,7 @@
     <a class="view-type {view_grid_selected}" ref="grid" href="#"><img src="assets/img/glyphicons/glyphicons_156_show_thumbnails.png" /></a>
     <a class="view-type {view_list_selected}" ref="list" href="#"><img src="assets/img/glyphicons/glyphicons_157_show_thumbnails_with_lines.png" /></a>
 
-    <select class="span3 selectpicker-small pull-right" placeholder="{lang_Sort}">
+    <select class="col-3 selectpicker-small pull-right" placeholder="{lang_Sort}">
         <option value="id ASC" {order_dateASC_selected}>{lang_DateASC}</option>
         <option value="id DESC" {order_dateDESC_selected}>{lang_DateDESC}</option>
         <option value="price ASC" {order_priceASC_selected}>{lang_PriceASC}</option>

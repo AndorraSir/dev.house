@@ -745,7 +745,7 @@ if(!empty($estate_data_option_59) && !is_numeric($estate_data_option_59))
 
               </div>
             </div>
-            <div class="span3">
+            <div class="col-3">
                   <h2>{lang_Overview}</h2>
                   <div class="property_options">
                     <p class="bottom-border"><strong>

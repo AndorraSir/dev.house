@@ -13,12 +13,12 @@ body {
     margin-left: 10px;
 }
 
-input.span3.xPrice {
+input.col-3.xPrice {
     margin-right: 0;
 }
 
 
-input.span3.Bathrooms {
+input.col-3.Bathrooms {
     margin-left: 6px;
 }
 

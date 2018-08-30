@@ -945,7 +945,7 @@ if (!empty($lang_facebook_code))
 
               </div>
             </div>
-            <div class="span3">
+            <div class="col-3">
                 <div class="hidden-phone">
                     <?php _widget('property_right_overview');?>
                 </div>

@@ -68,7 +68,7 @@
                 <?php echo $agents_pagination; ?>
                 </div>
             </div>
-            <div class="span3">
+            <div class="col-3">
                 <h2>{lang_Search}</h2>
                 <form class="form-search agents" action="<?php echo current_url().'#content'; ?>" method="get">
                 <input name="search-agent" type="text" placeholder="{lang_CityorName}" value="<?php echo $this->input->get('search-agent'); ?>" class="input-medium" />

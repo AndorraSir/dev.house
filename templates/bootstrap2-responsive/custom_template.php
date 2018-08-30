@@ -85,7 +85,7 @@
                     } 
                 ?>
             </div>
-            <div class="span3">
+            <div class="col-3">
                 <?php 
                  foreach($widgets_order->right as $widget_filename){
                      _widget($widget_filename);

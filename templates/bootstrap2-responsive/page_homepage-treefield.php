@@ -178,7 +178,7 @@ foreach ($_treefields as $val) {
                             </div>
                         </div>
                     </div>
-                    <div class='span3'>
+                    <div class='col-3'>
                         <?php _widget('right_featuredproperties');?>
                     </div>
                 </div>

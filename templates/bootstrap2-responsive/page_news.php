@@ -71,7 +71,7 @@
         </div>
         </div>
         </div>
-        <div class="span3">
+        <div class="col-3">
             <ul class="nav nav-tabs nav-stacked">
             <?php foreach($categories as $id=>$category_name):?>
             <?php if($id != 0): ?>

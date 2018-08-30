@@ -36,7 +36,7 @@
                 {/has_page_documents}
                 </div>
             </div>
-            <div class="span3">
+            <div class="col-3">
                 <?php _widget('right_agents'); ?>  
             </div>
         </div>

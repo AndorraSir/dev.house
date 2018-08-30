@@ -1197,7 +1197,7 @@
 
               </div>
             </div>
-            <div class="span3">
+            <div class="col-3">
                   <h2>{lang_Overview}</h2>
                   <div class="property_options">
                     <?php if(!empty($estate_data_address)): ?>
@@ -1243,7 +1243,7 @@
 <div class="wrap-bottom-print">
     <div class="container">
       <div class="row-fluid">
-        <div class="span3">
+        <div class="col-3">
             <table>
                 <tr>
                     <td><i class="icon-map-marker"></i></td>
@@ -1253,7 +1253,7 @@
                 </tr>
             </table>
         </div>
-        <div class="span3">
+        <div class="col-3">
             <table>
                 <tr>
                     <td><i class="icon-phone"></i></td>

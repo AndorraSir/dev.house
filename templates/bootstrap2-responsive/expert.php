@@ -54,7 +54,7 @@
             </div>
         </div>
     </div>
-    <div class="span3">
+    <div class="col-3">
           <h2>{lang_Expert}</h2>
           <div class="agent">
             <div class="image"><img src="{showroom_image_url}" alt="<?php echo $expert_data['name_surname']; ?>" /></div>
