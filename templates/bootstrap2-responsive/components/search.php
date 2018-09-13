@@ -82,22 +82,131 @@
 
 </script>
 <?php endif; ?>
-<div class="wrap-search fdfdfdf">
-    <div class="container">
-        <div id="search_option_4" class="menu-onmap tabbed-selector row input-group">
-            <li class="all-button" style="display:none"><a href="#"><?php echo lang_check('All'); ?></a></li>
+
+<div class="wrap-search scentered">
+    <div class="container center-search">
+
+        <ul id="search_option_4" class="menu-onmap tabbed-selector">
+            <li class="all-button" style="display:none;"><a href="#"><?php echo lang_check('All'); ?></a></li>
             {options_values_radio_4}
-            <?php if(config_db_item('property_subm_disabled')==FALSE):  ?>
-                <?php if(config_db_item('enable_qs') == 1): ?>
-                <li class="list-property-button"><a href="<?php echo site_url('fquick/submission/'.$lang_code); ?>"><?php _l('Quick add listing'); ?></a></li>
-                <?php else: ?>
-                <li class="list-property-button"><a href="{myproperties_url}">{lang_Listproperty}</a></li>
+        </ul>
+        
+        <div class="search-form custom-search-form">
+            <form class="form-inline col-12 pl-0 pr-0">
+            
+                <input id="rectangle_ne" type="text" class="hide" />
+                <input id="rectangle_sw" type="text" class="hide" />
+            
+            
+                <input id="search_option_smart" type="text" class="col-4 form-control custom-input" value="{search_query}" placeholder="{lang_CityorCounty}" autocomplete="off" />
+                <select id="search_option_2" class="col-3 selectpicker" placeholder="{options_name_2}">
+                    {options_values_2}
+                </select>
+                 <select id="search_option_3" class="col-3 selectpicker nomargin" placeholder="{options_name_3}">
+                    {options_values_3}
+                </select>
+                
+                <button id="search-start" type="submit" class="btn btn-info btn-large">&nbsp;&nbsp;{lang_Search}&nbsp;&nbsp;</button>
+                <img id="ajax-indicator-1" class="ajax-indicator" src="assets/img/ajax-loader.gif"/>
+                
+                <div class="advanced-form-part hidden">
+                <div class="form-row-space"></div>
+                <input id="search_option_36_from" type="text" class="col-3 mPrice" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_from'); ?>" />
+                <input id="search_option_36_to" type="text" class="col-3 xPrice" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_to'); ?>" />
+                <input id="search_option_19" type="text" class="col-3 Bathrooms" placeholder="{options_name_19}" value="<?php echo search_value(19); ?>" />
+                <input id="search_option_20" type="text" class="col-3" placeholder="{options_name_20}" value="<?php echo search_value(20); ?>" />
+                
+                <div class="form-row-space"></div>
+                <?php if(file_exists(APPPATH.'controllers/admin/booking.php')):?>
+                <input id="booking_date_from" type="text" class="col-3 mPrice" placeholder="{lang_Fromdate}" value="<?php echo search_value('date_from'); ?>" />
+                <input id="booking_date_to" type="text" class="col-3 xPrice" placeholder="{lang_Todate}" value="<?php echo search_value('date_to'); ?>" />
+                <div class="form-row-space"></div>
                 <?php endif; ?>
-            <?php endif;?>
+                <?php if(config_db_item('search_energy_efficient_enabled') === TRUE): ?>
+                <select id="search_option_59_to" class="col-3 selectpicker nomargin" placeholder="{options_name_59}">
+                    <option value="">{options_name_59}</option>
+                    <option value="50">A</option>
+                    <option value="90">B</option>
+                    <option value="150">C</option>
+                    <option value="230">D</option>
+                    <option value="330">E</option>
+                    <option value="450">F</option>
+                    <option value="999999">G</option>
+                </select>
+                <div class="form-row-space"></div>
+                <?php endif; ?>
+                
+                <div class="form-row-space"></div>
+                <label class="checkbox">
+                <input id="search_option_11" type="checkbox" class="span1" value="true{options_name_11}" <?php echo search_value('11', 'checked'); ?>/>{options_name_11}
+                </label>
+                <label class="checkbox">
+                <input id="search_option_22" type="checkbox" class="span1" value="true{options_name_22}" <?php echo search_value('22', 'checked'); ?>/>{options_name_22}
+                </label>
+                <label class="checkbox">
+                <input id="search_option_25" type="checkbox" class="span1" value="true{options_name_25}" <?php echo search_value('25', 'checked'); ?>/>{options_name_25}
+                </label>
+                <label class="checkbox">
+                <input id="search_option_27" type="checkbox" class="span1" value="true{options_name_27}" <?php echo search_value('27', 'checked'); ?>/>{options_name_27}
+                </label>
+                <label class="checkbox">
+                <input id="search_option_28" type="checkbox" class="span1" value="true{options_name_28}" <?php echo search_value('28', 'checked'); ?>/>{options_name_28}
+                </label>
+                <label class="checkbox">
+                <input id="search_option_29" type="checkbox" class="span1" value="true{options_name_29}" <?php echo search_value('29', 'checked'); ?>/>{options_name_29}
+                </label>
+                <label class="checkbox">
+                <input id="search_option_32" type="checkbox" class="span1" value="true{options_name_32}" <?php echo search_value('32', 'checked'); ?>/>{options_name_32}
+                </label>
+                <label class="checkbox">
+                <input id="search_option_30" type="checkbox" class="span1" value="true{options_name_30}" <?php echo search_value('30', 'checked'); ?>/>{options_name_30}
+                </label>
+                <label class="checkbox">
+                <input id="search_option_33" type="checkbox" class="span1" value="true{options_name_33}" <?php echo search_value('33', 'checked'); ?>/>{options_name_33}
+                </label>
+                <label class="checkbox">
+                <input id="search_option_23" type="checkbox" class="span1" value="true{options_name_23}" <?php echo search_value('23', 'checked'); ?>/>{options_name_23}
+                </label>
+                
+                <label class="checkbox">
+                <input id="search_option_is_featured" type="checkbox" class="span1" value="true<?php _l('is_featured'); ?>" <?php echo search_value('is_featured', 'checked'); ?>/><?php _l('is_featured'); ?>
+                </label>
+                
+                </div>
+                <br style="clear:both;" />
+                <div id="tags-filters-disabled">
+                </div>
+            </form>
         </div>
+    <?php if(file_exists(APPPATH.'controllers/admin/savesearch.php')): ?>
+    <button id="search-save" type="button" class="btn btn-info"><i class="icon-bookmark"></i>{lang_SaveResearch}</button>
+    <?php endif; ?>
+    </div>
+    
+</div>
+
+
+
+
+<div class="wrap-search " style="display: none;">
+    <div class="container">
+        <div class="row">
+            <div id="search_option_4" class="menu-onmap tabbed-selector row input-group">
+                <li class="all-button" style="display:none"><a href="#"><?php echo lang_check('All'); ?></a></li>
+                {options_values_radio_4}
+                <?php if(config_db_item('property_subm_disabled')==FALSE):  ?>
+                    <?php if(config_db_item('enable_qs') == 1): ?>
+                    <li class="list-property-button"><a href="<?php echo site_url('fquick/submission/'.$lang_code); ?>"><?php _l('Quick add listing'); ?></a></li>
+                    <?php else: ?>
+                    <li class="list-property-button"><a href="{myproperties_url}">{lang_Listproperty}</a></li>
+                    <?php endif; ?>
+                <?php endif;?>
+            </div>
+        </div>
+
         
         <div class="search-form row">
-            <form class="form-inline col-xs-12">
+            <form class="form-inline col-sm-12">
                 <input id="rectangle_ne" type="text" class="hide" />
                 <input id="rectangle_sw" type="text" class="hide" />
             
@@ -152,75 +261,78 @@
                 </script>
                 <?php endif; ?>
                 <!-- [END] TreeSearch -->
-            
-                <input id="search_option_smart" type="text" class="col-6 form-control" value="{search_query}" placeholder="{lang_CityorCounty}" autocomplete="off" />
-                <select id="search_option_2" class="col-3 selectpicker form-control" placeholder="{options_name_2}">
-                    {options_values_2}
-                </select>
-                <select id="search_option_3" class="col-2 selectpicker nomargin form-control" placeholder="{options_name_3}">
-                    {options_values_3}
-                </select>
-                
-                <div class="advanced-form-part row">
-                <div class="form-row-space"></div>
-                <input id="search_option_36_from" type="text" class="col-2 mPrice DECIMAL form-control" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_from'); ?>" />
-                <input id="search_option_36_to" type="text" class="col-2 xPrice DECIMAL form-control" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_to'); ?>" />
-                <input id="search_option_19" type="text" class="col-2 Bathrooms INTEGER form-control" placeholder="{options_name_19}"  value="<?php echo search_value(19); ?>" />
-                <input id="search_option_20" type="text" class="col-2 INTEGER form-control" placeholder="{options_name_20}"  value="<?php echo search_value(20); ?>" />
-                <div class="form-row-space"></div>
-                <?php if(file_exists(APPPATH.'controllers/admin/booking.php')):?>
-                <input id="booking_date_from" type="text" class="col-2 mPrice form-control" placeholder="{lang_Fromdate}" value="<?php echo search_value('date_from'); ?>" />
-                <input id="booking_date_to" type="text" class="col-2 xPrice form-control" placeholder="{lang_Todate}" value="<?php echo search_value('date_to'); ?>" />
-                <div class="form-row-space"></div>
-                <?php endif; ?>
-                <?php if(config_db_item('search_energy_efficient_enabled') === TRUE): ?>
-                <select id="search_option_59_to" class="col-3 selectpicker nomargin" placeholder="{options_name_59}">
-                    <option value="">{options_name_59}</option>
-                    <option value="50">A</option>
-                    <option value="90">B</option>
-                    <option value="150">C</option>
-                    <option value="230">D</option>
-                    <option value="330">E</option>
-                    <option value="450">F</option>
-                    <option value="999999">G</option>
-                </select>
-                <div class="form-row-space row"></div><br>
-                <?php endif; ?>
-                <label class="checkbox">
-                <input id="search_option_11" type="checkbox" class="col-1 form-control" value="true{options_name_11}" <?php echo search_value('11', 'checked'); ?>/>{options_name_11}
-                </label>
-                <label class="checkbox">
-                <input id="search_option_22" type="checkbox" class="col-1 form-control" value="true{options_name_22}" <?php echo search_value('22', 'checked'); ?>/>{options_name_22}
-                </label>
-                <label class="checkbox">
-                <input id="search_option_25" type="checkbox" class="col-1 form-control" value="true{options_name_25}" <?php echo search_value('25', 'checked'); ?>/>{options_name_25}
-                </label>
-                <label class="checkbox">
-                <input id="search_option_27" type="checkbox" class="col-1 form-control" value="true{options_name_27}" <?php echo search_value('27', 'checked'); ?>/>{options_name_27}
-                </label>
-                <label class="checkbox">
-                <input id="search_option_28" type="checkbox" class="col-1 form-control"" value="true{options_name_28}" <?php echo search_value('28', 'checked'); ?>/>{options_name_28}
-                </label>
-                <label class="checkbox">
-                <input id="search_option_29" type="checkbox" class="col-1 form-control" value="true{options_name_29}" <?php echo search_value('29', 'checked'); ?>/>{options_name_29}
-                </label>
-                <label class="checkbox">
-                <input id="search_option_32" type="checkbox" class="col-1 form-control" value="true{options_name_32}" <?php echo search_value('32', 'checked'); ?>/>{options_name_32}
-                </label>
-                <label class="checkbox">
-                <input id="search_option_30" type="checkbox" class="col-1 form-control" value="true{options_name_30}" <?php echo search_value('30', 'checked'); ?>/>{options_name_30}
-                </label>
-                <label class="checkbox">
-                <input id="search_option_33" type="checkbox" class="col-1 form-control" value="true{options_name_33}" <?php echo search_value('33', 'checked'); ?>/>{options_name_33}
-                </label>
-                
-                <label class="checkbox">
-                <input id="search_option_is_featured" type="checkbox" class="col-1 form-control" value="true<?php _l('is_featured'); ?>" <?php echo search_value('is_featured', 'checked'); ?>/><?php _l('is_featured'); ?>
-                </label>
-                
+
+                <div class="row">
+
+                    <input id="search_option_smart" type="text" class="col-6 form-control" value="{search_query}" placeholder="{lang_CityorCounty}" autocomplete="off" />
+                    <select id="search_option_2" class="col-3 selectpicker form-control" placeholder="{options_name_2}">
+                        {options_values_2}
+                    </select>
+                    <select id="search_option_3" class="col-3 selectpicker nomargin form-control" placeholder="{options_name_3}">
+                        {options_values_3}
+                    </select>
+                    <button id="search-start" type="submit" class="btn btn-info btn-large">&nbsp;&nbsp;{lang_Search}&nbsp;&nbsp;</button>
+                </div>
+                <div class="advanced-form-part row" style="display:none;">
+                    <div class="form-row-space"></div>
+                    <input id="search_option_36_from" type="text" class="col-2 mPrice DECIMAL form-control" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_from'); ?>" />
+                    <input id="search_option_36_to" type="text" class="col-2 xPrice DECIMAL form-control" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_to'); ?>" />
+                    <input id="search_option_19" type="text" class="col-2 Bathrooms INTEGER form-control" placeholder="{options_name_19}"  value="<?php echo search_value(19); ?>" />
+                    <input id="search_option_20" type="text" class="col-2 INTEGER form-control" placeholder="{options_name_20}"  value="<?php echo search_value(20); ?>" />
+                    <div class="form-row-space"></div>
+                    <?php if(file_exists(APPPATH.'controllers/admin/booking.php')):?>
+                    <input id="booking_date_from" type="text" class="col-2 mPrice form-control" placeholder="{lang_Fromdate}" value="<?php echo search_value('date_from'); ?>" />
+                    <input id="booking_date_to" type="text" class="col-2 xPrice form-control" placeholder="{lang_Todate}" value="<?php echo search_value('date_to'); ?>" />
+                    <div class="form-row-space"></div>
+                    <?php endif; ?>
+                    <?php if(config_db_item('search_energy_efficient_enabled') === TRUE): ?>
+                    <select id="search_option_59_to" class="col-3 selectpicker nomargin" placeholder="{options_name_59}">
+                        <option value="">{options_name_59}</option>
+                        <option value="50">A</option>
+                        <option value="90">B</option>
+                        <option value="150">C</option>
+                        <option value="230">D</option>
+                        <option value="330">E</option>
+                        <option value="450">F</option>
+                        <option value="999999">G</option>
+                    </select>
+                    <div class="form-row-space row"></div><br>
+                    <?php endif; ?>
+                    <label class="checkbox">
+                    <input id="search_option_11" type="checkbox" class="col-1 form-control" value="true{options_name_11}" <?php echo search_value('11', 'checked'); ?>/>{options_name_11}
+                    </label>
+                    <label class="checkbox">
+                    <input id="search_option_22" type="checkbox" class="col-1 form-control" value="true{options_name_22}" <?php echo search_value('22', 'checked'); ?>/>{options_name_22}
+                    </label>
+                    <label class="checkbox">
+                    <input id="search_option_25" type="checkbox" class="col-1 form-control" value="true{options_name_25}" <?php echo search_value('25', 'checked'); ?>/>{options_name_25}
+                    </label>
+                    <label class="checkbox">
+                    <input id="search_option_27" type="checkbox" class="col-1 form-control" value="true{options_name_27}" <?php echo search_value('27', 'checked'); ?>/>{options_name_27}
+                    </label>
+                    <label class="checkbox">
+                    <input id="search_option_28" type="checkbox" class="col-1 form-control"" value="true{options_name_28}" <?php echo search_value('28', 'checked'); ?>/>{options_name_28}
+                    </label>
+                    <label class="checkbox">
+                    <input id="search_option_29" type="checkbox" class="col-1 form-control" value="true{options_name_29}" <?php echo search_value('29', 'checked'); ?>/>{options_name_29}
+                    </label>
+                    <label class="checkbox">
+                    <input id="search_option_32" type="checkbox" class="col-1 form-control" value="true{options_name_32}" <?php echo search_value('32', 'checked'); ?>/>{options_name_32}
+                    </label>
+                    <label class="checkbox">
+                    <input id="search_option_30" type="checkbox" class="col-1 form-control" value="true{options_name_30}" <?php echo search_value('30', 'checked'); ?>/>{options_name_30}
+                    </label>
+                    <label class="checkbox">
+                    <input id="search_option_33" type="checkbox" class="col-1 form-control" value="true{options_name_33}" <?php echo search_value('33', 'checked'); ?>/>{options_name_33}
+                    </label>
+                    
+                    <label class="checkbox">
+                    <input id="search_option_is_featured" type="checkbox" class="col-1 form-control" value="true<?php _l('is_featured'); ?>" <?php echo search_value('is_featured', 'checked'); ?>/><?php _l('is_featured'); ?>
+                    </label>
+                    
                 </div>
                 <br style="clear:both;" />
-                <button id="search-start" type="submit" class="btn btn-info btn-large">&nbsp;&nbsp;{lang_Search}&nbsp;&nbsp;</button>
+             
                 <img id="ajax-indicator-1" src="assets/img/ajax-loader.gif" />
             </form>
         </div>

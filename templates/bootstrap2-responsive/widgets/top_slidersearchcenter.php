@@ -1,7 +1,7 @@
 <div class="wrap-map" id="wrap-map-1">
     {template_searchcenter}
 
-    <div id="myCarousel" class="carousel slide search-senter">
+    <div id="myCarousel" class="carousel slide search-senter" data-ride="carousel">
     <ol class="carousel-indicators">
     {slideshow_images}
     <li data-target="#myCarousel" data-slide-to="{num}" class="{first_active}"></li>
@@ -10,7 +10,7 @@
     <!-- Carousel items -->
     <div class="carousel-inner">
         <?php foreach ($slideshow_images as $key => $item):?>
-            <div class="item <?php _che($item['first_active']);?>">
+            <div class="carousel-item <?php _che($item['first_active']);?>">
             <div class="cont">
                 <img alt="" src="<?php _che($item['url']);?>" />
                 <?php if(config_item('property_slider_enabled')===TRUE&&!empty($item['property_details'])):?>
@@ -38,8 +38,10 @@
         <?php endforeach;?>
     </div>
     <!-- Carousel nav -->
-    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    <a class="carousel-control-prev" href="#myCarousel" data-slide="prev"><i class="fa fa-chevron-left" aria-hidden="true"></i>
+</a>
+    <a class="carousel-control-next" href="#myCarousel" data-slide="next"><i class="fa fa-chevron-right" aria-hidden="true"></i>
+</a>
     </div>
     
 </div>

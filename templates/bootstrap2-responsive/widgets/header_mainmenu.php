@@ -22,7 +22,7 @@
                               $lang_array = $this->language_m->get_array_by(array('is_frontend'=>1));
                               if(count($lang_array) > 1):
                           ?>
-                          <a type="button" class=""><?php   
+                          <a class=""><?php   
                             $flag_icon = '';
                             if(file_exists(FCPATH.'templates/'.$settings_template.'/assets/img/flags/'.$this->data['lang_code'].'.png'))
                             {
@@ -31,7 +31,7 @@
                             echo $this->data['lang_code'].' '.$flag_icon;
 
                             ?></a>
-                          <a type="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                          <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             <span class="caret"></span>
                             <span class="sr-only">Toggle Dropdown</span>
                           </a>

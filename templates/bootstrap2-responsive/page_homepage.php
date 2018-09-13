@@ -15,8 +15,8 @@
 
 <?php _subtemplate('headers', _ch($subtemplate_header, 'map_and_search')); ?>
 <a name="content" id="content"></a>
-<div class="wrap-content mt150" style="margin-top:150px;">
-    <div class="container">
+<div class="wrap-content homepage-content">
+    <div class="container pt-5">
       <div class="row">
           <div class="col-12">
               <?php _widget('center_recentproperties');?>

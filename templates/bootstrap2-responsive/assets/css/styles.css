@@ -576,13 +576,6 @@ div.simple-languages ul li.active
 
 /* wrap-map */
 
-.wrap-map
-{
-    height:400px;
-    width:100%;
-    z-index: 10;
-}
-
 .wrap-map img { 
   max-width: none;
 }

@@ -37,13 +37,23 @@
     <link href="assets/style/navbar.css" rel="stylesheet">
     <link href="assets/style/carousel.css" rel="stylesheet">
 
+    <script src="assets/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+
 
    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/css/mdb.min.css" rel="stylesheet">
-        
+            
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.10/js/mdb.min.js"></script>
     
     <link href="assets/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="assets/css/blueimp-gallery.min.css" rel="stylesheet">
@@ -66,9 +76,9 @@
     
     ?>
     <script type="text/javascript" src="<?php echo $url_protocol;?>maps.google.com/maps/api/js?libraries=places,geometry<?php echo $maps_api_key_prepare; ?>&amp;language={lang_code}"></script>
-    
-    <script src="assets/js/jquery-1.8.3.min.js" type="text/javascript"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+
+
+
     <script src="assets/js/gmap3.js"></script>
     <script src="assets/js/bootstrap-select.js"></script>
     <script src="assets/js/bootstrap-datetimepicker.min.js"></script>

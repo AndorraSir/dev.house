@@ -76,7 +76,7 @@
 
 <?php if(file_exists(FCPATH.'templates/'.$settings_template.'/assets/js/dpejes/dpe.js')): ?>
 /* start impl�ment dpe-->   */
-	
+  
     dpe.show_numbers = true;
 <?php
 if(!empty($estate_data_option_59) && !is_numeric($estate_data_option_59))
@@ -85,32 +85,32 @@ if(!empty($estate_data_option_59) && !is_numeric($estate_data_option_59))
 }
 ?>
     dpe.energy_title1 = "{options_name_59}";
-	dpe.energy_title2 = "{options_suffix_59}";
-	dpe.energy_title3 = "{lang_Logement}";
+  dpe.energy_title2 = "{options_suffix_59}";
+  dpe.energy_title3 = "{lang_Logement}";
     dpe.gg_title2 = "{options_suffix_60}";
-	dpe.gg_title1 = "{options_name_60}";
-	
+  dpe.gg_title1 = "{options_name_60}";
+  
     if(!dpe.show_numbers)
     {
-    	dpe.energy_title2 = "";
+      dpe.energy_title2 = "";
         dpe.gg_title2 = "";
     }
     
-	/* adjusts the height of the large thumbnails (the width is automatically adjusted proportionally)
-	 * possible values: de 180 a 312 
-	 */
-	dpe.canvas_height = 250;
-	/*not to display the unit gas emissions greenhouse in the right column: */
-	dpe.gg_unit = '';
-	/*  adjusts the height of the small thumbnails
-	 * possible values: 35
-	 */
-	dpe.sticker_height = 35;
-	/* can change the attribute of div tags that indicates it is a tag */
-	dpe.tag_attribute = 'attributdpe';
-	dpe.tag_attribute = 'title';
-	/* Launches replacing the contents of the div right by good vignettes */
-	dpe.all();
+  /* adjusts the height of the large thumbnails (the width is automatically adjusted proportionally)
+   * possible values: de 180 a 312 
+   */
+  dpe.canvas_height = 250;
+  /*not to display the unit gas emissions greenhouse in the right column: */
+  dpe.gg_unit = '';
+  /*  adjusts the height of the small thumbnails
+   * possible values: 35
+   */
+  dpe.sticker_height = 35;
+  /* can change the attribute of div tags that indicates it is a tag */
+  dpe.tag_attribute = 'attributdpe';
+  dpe.tag_attribute = 'title';
+  /* Launches replacing the contents of the div right by good vignettes */
+  dpe.all();
 /* end implement dpe-->   */
 <?php endif; ?>
 
@@ -945,7 +945,7 @@ if (!empty($lang_facebook_code))
 
               </div>
             </div>
-            <div class="col-3">
+            <div class="span3">
                 <div class="hidden-phone">
                     <?php _widget('property_right_overview');?>
                 </div>
@@ -1190,18 +1190,18 @@ if (!empty($lang_facebook_code))
 
 <script language="javascript">
 $(document).ready(function(){
-	
-	var content = $('#content');
-	var pos = content.offset();
-	var top_content = $('#top_content');
-	
-	$(window).scroll(function(){
-		if($(this).scrollTop() > pos.top){
+  
+  var content = $('#content');
+  var pos = content.offset();
+  var top_content = $('#top_content');
+  
+  $(window).scroll(function(){
+    if($(this).scrollTop() > pos.top){
           top_content.fadeIn('fast');
-		} else if($(this).scrollTop() <= pos.top){
+    } else if($(this).scrollTop() <= pos.top){
           top_content.fadeOut('fast');
-		}
-	});
+    }
+  });
     
 });
 </script>
