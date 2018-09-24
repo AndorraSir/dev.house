@@ -2,7 +2,7 @@
     <!-- Page heading -->
       <h2 class="pull-left"><?php echo lang('Page')?>
           <!-- page meta -->
-          <span class="page-meta"><?php echo empty($page->id) ? lang('Add a page') : lang('Edit page').' "' . $page->id.'"'?></span>
+          <span class="page-meta"><?php echo empty($page->id) ? lang('Add a page') : lang('Edit page').' "' . $page->id.'" <a href="'._ch($edit_page_url).'">('.lang_check('View page').')</a>';?> </span>
         </h2>
     
     
@@ -130,7 +130,7 @@ $(function() {
                                 
                                 <hr />
                                 <h5><?php echo lang('Translation data')?></h5>
-                               <div style="margin-bottom: 0px;" class="tabbable">
+                                <div style="margin-bottom: 0px;" class="tabbable">
                                   <ul class="nav nav-tabs">
                                     <?php $i=0;foreach($this->page_m->languages as $key_lang=>$val_lang):$i++;?>
                                     <li class="<?php echo $i==1?'active':''?> lang"><a data-toggle="tab" href="#<?php echo $key_lang?>"><?php echo $val_lang?></a></li>
@@ -142,7 +142,7 @@ $(function() {
                                     <?php endif; ?>
                                     
                                   </ul>
-                                  <div style="padding-top: 9px; border-bottom: 1px solid #1a1a1a;" class="tab-content">
+                                  <div style="padding-top: 9px; border-bottom: 1px solid #ddd;" class="tab-content">
                                     <?php $i=0;foreach($this->page_m->languages as $key_lang=>$val_lang):$i++;?>
                                     <div id="<?php echo $key_lang?>" class="tab-pane <?php echo $i==1?'active':''?>">
                                         <div class="form-group">

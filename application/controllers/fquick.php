@@ -115,7 +115,7 @@ class Fquick extends Frontend_Controller
         // Add rules for dynamic options
         $rules_dynamic = array();
         foreach($this->option_m->languages as $key_lang=>$val_lang){
-            if(config_item('multilang_on_qs') == 0 && $this->language_m->get_default_id() != $key_lang)
+            if(config_db_item('multilang_on_qs') == 0 && $this->language_m->get_default_id() != $key_lang)
             {
                 continue;
             }
@@ -376,7 +376,7 @@ class Fquick extends Frontend_Controller
                 if(substr_count($tempFile, $template_prefix) == 0)
                 {
                     $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
-                    //$template_output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
+                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
                     $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
                 }
             }
@@ -384,7 +384,7 @@ class Fquick extends Frontend_Controller
         
 
         $output = $this->parser->parse($this->data['settings_template'].'/quicklisting.php', $this->data, TRUE);
-        echo str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
     }
     
     

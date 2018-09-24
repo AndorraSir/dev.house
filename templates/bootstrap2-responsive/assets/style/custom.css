@@ -93,3 +93,7 @@ li.dropdown.active > .dropdown-toggle {
 
 .btn-group.bootstrap-select.col-3.-small.pull-left.hide {
   display: none; }
+
+/* LOGO */
+.head-wrapper a.logo img {
+  max-width: 125px; }

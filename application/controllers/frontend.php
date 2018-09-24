@@ -3,10 +3,10 @@
 class Frontend extends Frontend_Controller
 {
 
-    public function __construct ()
-    {
-        parent::__construct();
-    }
+	public function __construct ()
+	{
+		parent::__construct();
+	}
     
     private function _get_purpose()
     {
@@ -200,7 +200,7 @@ class Frontend extends Frontend_Controller
         }
         else
         {
-            $dashboard = 'admin/dashboard';
+    	    $dashboard = 'admin/dashboard';
             
             if($this->session->userdata('type') == 'USER')
             {
@@ -370,7 +370,7 @@ class Frontend extends Frontend_Controller
                     if($this->_get_purpose() == strtolower($val))$selected = 'selected';
                     if(empty($val))
                     {
-                        $options.='<option value="'.$val.'" '.$selected.'>'.lang_check('Any').'</option>';
+                        $options='<option value="'.$val.'" '.$selected.'>'.lang_check('Any').'</option>';
                     }
                     else
                     {
@@ -396,6 +396,283 @@ class Frontend extends Frontend_Controller
         }
     }
     
+    public function myvisits()
+    {
+        $this->check_login();
+        $this->load_head_data();
+        
+         if(file_exists(APPPATH.'controllers/admin/visits.php')) {
+            $this->session->set_flashdata('error', 
+                    lang_check('Visits module not install'));
+            redirect('frontend');
+            exit();
+         }
+        
+        $this->data['user'] = $this->user_m->get_array($this->session->userdata('id'));
+        
+        // Main page data
+        $this->data['page_navigation_title'] = lang_check('My submited visits');
+        $this->data['page_title'] = lang_check('My submited visits');
+        $this->data['page_body']  = '';
+        $this->data['page_description']  = '';
+        $this->data['page_keywords']  = '';
+        
+        $this->data['content_language_id'] = $this->data['lang_id'];
+        $this->load->model('visits_m');
+	    // Fetch all estates
+        $this->data['estates'] = $this->estate_m->get_join();
+        $this->data['languages'] = $this->language_m->get_form_dropdown('language');
+        $this->data['available_agent'] = $this->user_m->get_form_dropdown('name_surname', array('type'=>'USER'));
+        
+        // For compatibility with old template versions
+        $this->data['options'] = $this->option_m->get_options($this->data['content_language_id'], array(), array(), $this->data['estates']);
+        
+        // filter for show only confirmed
+        
+        $this->data['visits'] = $this->visits_m->get_myout(NULL,0, array('date_visit >'=> date('Y-m-d H:i:s'),'date_confirmed !='=> 'NULL'));
+        
+        
+        // Get templates
+        $templatesDirectory = opendir(FCPATH.'templates/'.$this->data['settings_template'].'/components');
+        // get each template
+        $template_prefix = 'page_';
+        while($tempFile = readdir($templatesDirectory)) {
+            if ($tempFile != "." && $tempFile != ".." && strpos($tempFile, '.php') !== FALSE) {
+                if(substr_count($tempFile, $template_prefix) == 0)
+                {
+                    $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
+                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
+                    $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
+                }
+            }
+        }
+
+        $output = $this->parser->parse($this->data['settings_template'].'/myvisits.php', $this->data, TRUE);
+        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+    }
+    
+    public function myvisits_inbox()
+    {
+        $this->check_login();
+        $this->load_head_data();
+        
+        $this->data['user'] = $this->user_m->get_array($this->session->userdata('id'));
+        
+        // Main page data
+        $this->data['page_navigation_title'] = lang_check('My submited visits');
+        $this->data['page_title'] = lang_check('My submited visits');
+        $this->data['page_body']  = '';
+        $this->data['page_description']  = '';
+        $this->data['page_keywords']  = '';
+        
+        $this->data['content_language_id'] = $this->data['lang_id'];
+        $this->load->model('visits_m');
+	    // Fetch all estates
+        $this->data['estates'] = $this->estate_m->get_join();
+        $this->data['languages'] = $this->language_m->get_form_dropdown('language');
+        $this->data['available_agent'] = $this->user_m->get_form_dropdown('name_surname', array('type'=>'USER'));
+        
+        // For compatibility with old template versions
+        $this->data['options'] = $this->option_m->get_options($this->data['content_language_id'], array(), array(), $this->data['estates']);
+        
+        $this->data['visits'] = $this->visits_m->get(NULL,0, array('date_visit >'=> date('Y-m-d H:i:s')));
+        
+        
+        // Get templates
+        $templatesDirectory = opendir(FCPATH.'templates/'.$this->data['settings_template'].'/components');
+        // get each template
+        $template_prefix = 'page_';
+        while($tempFile = readdir($templatesDirectory)) {
+            if ($tempFile != "." && $tempFile != ".." && strpos($tempFile, '.php') !== FALSE) {
+                if(substr_count($tempFile, $template_prefix) == 0)
+                {
+                    $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
+                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
+                    $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
+                }
+            }
+        }
+
+        $output = $this->parser->parse($this->data['settings_template'].'/myvisits_inbox.php', $this->data, TRUE);
+        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+    }
+    
+    public function edit_visit()
+    {
+        
+        $this->check_login();
+        $this->load_head_data();
+        $this->load->model('visits_m');
+        $this->load->model('estate_m');
+        $this->load->model('user_m');
+        
+        $this->data['user'] = $this->user_m->get_array($this->session->userdata('id'));
+        
+        // Main page data
+        $this->data['page_navigation_title'] = lang_check('Edit visit');
+        $this->data['page_title'] = lang_check('Edit visit');
+        $this->data['page_body']  = '';
+        $this->data['page_description']  = '';
+        $this->data['page_keywords']  = '';
+        
+        $this->data['content_language_id'] = $this->data['lang_id'];
+	    // Fetch all estates
+        $this->data['estates'] = $this->estate_m->get_join();
+        $this->data['languages'] = $this->language_m->get_form_dropdown('language');
+        $this->data['available_agent'] = $this->user_m->get_form_dropdown('name_surname', array('type'=>'USER'));
+        
+        $estates = $this->estate_m->get_by(array());
+        $this->data['estates_list'] = array();
+        foreach($estates as $key=>$estate)
+        {
+            $this->data['estates_list'][$estate->id] = $estate->id.'. '.$this->estate_m->get_field_from_listing($estate, 10);
+        }
+        
+        $users_list = $this->user_m->get_by(array());
+        $this->data['users_list'] = array();
+        foreach($users_list as $key=>$user)
+        {
+            $this->data['users_list'][$user->id] = $user->name_surname;
+        }
+        
+        // Fetch a user or set a new one
+        $id = NULL;
+        if($this->uri->segment(4) != '')
+        {
+            $id = $this->uri->segment(4);
+        }
+        
+        
+        if($id)
+        {
+            $this->data['listing'] = $this->visits_m->get($id);
+            
+            if(count($this->data['listing']) == 0)
+            {
+                $this->session->set_flashdata('error', 
+                        lang_check('Visit could not be found'));
+                redirect('frontend/myvisits');
+                exit();
+            }
+
+            if(!empty($this->data['listing']->date_confirmed))
+                $this->data['listing']->confirmed = '1';
+            else
+                $this->data['listing']->confirmed = '';
+                
+            //Check if user have permissions
+            if($this->session->userdata('type') != 'ADMIN' && $this->session->userdata('type') != 'AGENT_ADMIN')
+            {
+                if($this->estate_m->check_user_permission($this->data['listing']->property_id, 
+                                         $this->session->userdata('id')) > 0)
+                {
+                }
+                else
+                {
+                    
+                    redirect('frontend/myvisits');
+                }
+            }
+        }
+        else
+        {
+            /*$this->data['listing'] = $this->visits_m->get_new();
+            $this->data['listing']->confirmed = '';*/
+            
+            $this->session->set_flashdata('error', 
+                    lang_check('You can only edit'));
+            redirect('frontend/myvisits');
+            exit();
+        }
+        $this->data['content_language_id'] = $this->language_m->get_content_lang();
+        
+        // Set up the form
+        $rules = $this->visits_m->rules_admin;
+
+        $this->form_validation->set_rules($rules);
+
+        // Process the form
+        if($this->form_validation->run() == TRUE)
+        {
+            if($this->config->item('app_type') == 'demo')
+            {
+                $this->session->set_flashdata('error', 
+                        lang('Visits editing disabled in demo'));
+                redirect('frontend/edit_visit/'.$this->data['lang_code'].'/'.$id);
+                exit();
+            }
+            
+            $data = $this->visits_m->array_from_post(array('property_id', 'message', 
+                                                         'client_id','confirmed'));
+            
+            if($id == NULL)
+                $data['date_created'] = date('Y-m-d H:i:s');
+            
+            if($data['confirmed'] == '1')
+                $data['date_confirmed'] = date('Y-m-d H:i:s');
+            
+            unset($data['confirmed']);
+            
+            $insert_id=$this->visits_m->save($data, $id);
+            
+            if(empty($insert_id)) {
+                echo 'QUERY: '.$this->db->last_query();
+                echo '<br />';
+                echo 'ERROR: '.$this->db->_error_message();
+                exit();
+            }
+            
+            $this->session->set_flashdata('message', 
+                    '<p class="alert alert-success validation">'.lang_check('Changes saved').'</p>');
+            //redirect('admin/visits');
+        }
+        
+        // Get templates
+        $templatesDirectory = opendir(FCPATH.'templates/'.$this->data['settings_template'].'/components');
+        // get each template
+        $template_prefix = 'page_';
+        while($tempFile = readdir($templatesDirectory)) {
+            if ($tempFile != "." && $tempFile != ".." && strpos($tempFile, '.php') !== FALSE) {
+                if(substr_count($tempFile, $template_prefix) == 0)
+                {
+                    $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
+                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
+                    $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
+                }
+            }
+        }
+
+        $output = $this->parser->parse($this->data['settings_template'].'/edit_visit.php', $this->data, TRUE);
+        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+    }
+    
+        
+    public function cancel_visit()
+    {
+        $this->check_login();
+        
+        if($this->config->item('app_type') == 'demo')
+        {
+            $this->session->set_flashdata('error', 
+                    lang_check('Editing disabled in demo'));
+            redirect('frontend/myvisits/'.$this->data['lang_code']);
+            exit();
+        }
+        
+        $id = NULL;
+        if($this->uri->segment(4) != '')
+        {
+            $id = $this->uri->segment(4);
+        }
+         $this->load->model('visits_m');
+        // Fetch a page or set a new one
+        if($id)
+        {
+            $this->visits_m->cancel($id);
+        }           
+
+        redirect('frontend/myvisits_inbox/'.$this->data['lang_code']);
+    }
     
     public function myproperties()
     {
@@ -413,7 +690,7 @@ class Frontend extends Frontend_Controller
         
         $this->data['content_language_id'] = $this->data['lang_id'];
         
-        // Fetch all estates
+	    // Fetch all estates
         $this->data['estates'] = $this->estate_m->get_join();
         $this->data['languages'] = $this->language_m->get_form_dropdown('language');
         $this->data['available_agent'] = $this->user_m->get_form_dropdown('name_surname', array('type'=>'USER'));
@@ -476,7 +753,7 @@ class Frontend extends Frontend_Controller
         
         $this->data['content_language_id'] = $this->data['lang_id'];
         
-        // Fetch all estates
+	    // Fetch all estates
         $this->data['estates'] = $this->reservations_m->get_by(array('user_id' => $this->session->userdata('id'), 'date_to >'=>date("Y-m-d")));
         $this->data['languages'] = $this->language_m->get_form_dropdown('language');
         $this->data['available_agent'] = $this->user_m->get_form_dropdown('name_surname', array('type'=>'USER'));
@@ -525,7 +802,7 @@ class Frontend extends Frontend_Controller
         
         $this->data['content_language_id'] = $this->data['lang_id'];
         
-        // Fetch all rates
+	    // Fetch all rates
         $this->data['page_languages'] = $this->language_m->get_form_dropdown('language');
         $this->data['properties'] = $this->estate_m->get_form_dropdown('address');
         $this->data['rates'] = $this->rates_m->get_by_check(array());
@@ -572,8 +849,8 @@ class Frontend extends Frontend_Controller
             $id = $this->uri->segment(4);
         }
                         
-        // Fetch a page or set a new one
-        if($id)
+	    // Fetch a page or set a new one
+	    if($id)
         {
             $this->data['rate'] = $this->rates_m->get_lang($id, FALSE, $this->data['content_language_id']);
             count($this->data['rate']) || $this->data['errors'][] = 'Could not be found';
@@ -592,7 +869,7 @@ class Frontend extends Frontend_Controller
             $this->data['rate'] = $this->rates_m->get_new();
         }
         
-        // Pages for dropdown
+		// Pages for dropdown
         $this->data['page_languages'] = $this->language_m->get_form_dropdown('language');
         
         //Simple way to featch only address:        
@@ -692,8 +969,8 @@ class Frontend extends Frontend_Controller
             $id = $this->uri->segment(4);
         }
         
-        // Fetch a page or set a new one
-        if($id)
+	    // Fetch a page or set a new one
+	    if($id)
         {
 
             $rate = $this->rates_m->get($id);
@@ -706,7 +983,7 @@ class Frontend extends Frontend_Controller
             if($num_found == 0)
                 redirect('frontend/myrates/'.$this->data['lang_code']);
            
-            $this->rates_m->delete($id);
+    		$this->rates_m->delete($id);
         }           
 
         redirect('frontend/myrates/'.$this->data['lang_code']);
@@ -730,8 +1007,8 @@ class Frontend extends Frontend_Controller
             $id = $this->uri->segment(4);
         }
         
-        // Fetch a page or set a new one
-        if($id)
+	    // Fetch a page or set a new one
+	    if($id)
         {
             $this->load->model('reservations_m');
             $reservation = $this->reservations_m->get($id);
@@ -764,10 +1041,10 @@ class Frontend extends Frontend_Controller
             $id = $this->uri->segment(4);
         }
         
-        // Fetch a page or set a new one
-        if($id)
+	    // Fetch a page or set a new one
+	    if($id)
         {
-            // Fetch all estates
+    	    // Fetch all estates
             $this->data['reservation'] = $this->reservations_m->get_array_by(array('user_id' => $this->session->userdata('id'), 'id'=>$id), TRUE);
             $this->data['languages'] = $this->language_m->get_form_dropdown('language');
             $this->data['available_agent'] = $this->user_m->get_form_dropdown('name_surname', array('type'=>'USER'));
@@ -850,8 +1127,8 @@ class Frontend extends Frontend_Controller
             $id = $this->uri->segment(4);
         }
         
-        // Fetch a page or set a new one
-        if($id)
+	    // Fetch a page or set a new one
+	    if($id)
         {
             $this->data['estate'] = $this->estate_m->get_dynamic_array($id);
             
@@ -861,6 +1138,80 @@ class Frontend extends Frontend_Controller
                 if($this->data['estate']['agent'] == $this->session->userdata('id'))
                 {
                     $this->estate_m->delete($id);
+                }
+            }
+        }           
+
+        redirect('frontend/myproperties/'.$this->data['lang_code']);
+    }
+    
+    public function pause_property()
+    {
+        
+        $this->check_login();
+        
+        if($this->config->item('app_type') == 'demo')
+        {
+            $this->session->set_flashdata('error', 
+                    lang_check('Data editing disabled in demo'));
+            redirect('frontend/myproperties/'.$this->data['lang_code']);
+            exit();
+        }
+        
+        $id = NULL;
+        if($this->uri->segment(4) != '')
+        {
+            $id = $this->uri->segment(4);
+        }
+        
+	    // Fetch a page or set a new one
+	    if($id)
+        {
+            $this->data['estate'] = $this->estate_m->get_dynamic_array($id);
+            
+            if(count($this->data['estate']) > 0)
+            {
+                //Check if user have permissions
+                if($this->data['estate']['agent'] == $this->session->userdata('id'))
+                {
+                    $this->estate_m->change_visible_properties($id, 0);
+                }
+            }
+        }           
+
+        redirect('frontend/myproperties/'.$this->data['lang_code']);
+    }
+    
+    public function unpause_property()
+    {
+        
+        $this->check_login();
+        
+        if($this->config->item('app_type') == 'demo')
+        {
+            $this->session->set_flashdata('error', 
+                    lang_check('Data editing disabled in demo'));
+            redirect('frontend/myproperties/'.$this->data['lang_code']);
+            exit();
+        }
+        
+        $id = NULL;
+        if($this->uri->segment(4) != '')
+        {
+            $id = $this->uri->segment(4);
+        }
+        
+	    // Fetch a page or set a new one
+	    if($id)
+        {
+            $this->data['estate'] = $this->estate_m->get_dynamic_array($id);
+            
+            if(count($this->data['estate']) > 0)
+            {
+                //Check if user have permissions
+                if($this->data['estate']['agent'] == $this->session->userdata('id'))
+                {
+                    $this->estate_m->change_visible_properties($id, 1);
                 }
             }
         }           
@@ -893,8 +1244,8 @@ class Frontend extends Frontend_Controller
             $id = $this->uri->segment(4);
         }
         
-        // Fetch a page or set a new one
-        if($id)
+	    // Fetch a page or set a new one
+	    if($id)
         {
             $this->data['estate'] = $this->estate_m->get_dynamic_array($id);
 
@@ -1063,7 +1414,7 @@ class Frontend extends Frontend_Controller
             }
             
             if($this->data['user_data']['phone'] != $data['phone'] && !empty($data['phone']) &&
-               config_db_item('clickatell_api_id') != FALSE && config_db_item('phone_verification_enabled') === TRUE &&
+               (config_db_item('clickatell_api_id') != FALSE || config_db_item('clickatell_api_key') != FALSE) && config_db_item('phone_verification_enabled') === TRUE &&
                file_exists(APPPATH.'libraries/Clickatellapi.php'))
             {
                 $data['phone_verified'] = 0;
@@ -1170,8 +1521,8 @@ class Frontend extends Frontend_Controller
             }
         }
         
-        // Fetch a page or set a new one
-        if($id)
+	    // Fetch a page or set a new one
+	    if($id)
         {
             $this->data['estate'] = $this->estate_m->get_dynamic_array($id);
             
@@ -1204,6 +1555,21 @@ class Frontend extends Frontend_Controller
                 // Update page with new repository_id
                 $this->estate_m->save(array('repository_id'=>$repository_id), $this->data['estate']['id']);
             }
+            
+            
+                        
+            if(config_item('plan_gallery_enabled') == TRUE){
+                $planimages_repository_id = $this->data['estate']['planimages_repository_id'];
+                if(empty($planimages_repository_id))
+                {
+                    // Create repository
+                    $planimages_repository_id = $this->repository_m->save(array('name'=>'estate_m'));
+
+                    // Update page with new repository_id
+                    $this->estate_m->save(array('planimages_repository_id'=>$planimages_repository_id), $this->data['estate']['id']);
+                    $this->data['estate']['planimages_repository_id'] = $planimages_repository_id;
+                }
+            }
         }
         else
         {            
@@ -1218,7 +1584,7 @@ class Frontend extends Frontend_Controller
         $this->data['page_description']  = '';
         $this->data['page_keywords']  = '';
 
-        // Pages for dropdown
+		// Pages for dropdown
         $this->data['languages'] = $this->language_m->get_form_dropdown('language');
         
         // Get available agents
@@ -1274,6 +1640,7 @@ class Frontend extends Frontend_Controller
             
             $this->data['files'][$file->repository_id][] = $file;
         }
+        
         
         // Set up the form
         $rules = $this->estate_m->rules;
@@ -1619,7 +1986,7 @@ class Frontend extends Frontend_Controller
                 $data_m = array();
                 $data_m['subject'] = lang_check('New not-activated property from user');
                 $data_m['name_surname'] = $this->session->userdata('username');
-                $data_m['link'] = '<a href="'.site_url('frontend/editproperty/'.$this->data['lang_code'].'/'.$insert_id).'">'.lang_check('Property edit link').'</a>';
+                $data_m['link'] = '<a href="'. slug_url('frontend/'.$this->data['listing_uri'].'/'.$this->data['lang_code'].'/'.$insert_id).'">'.lang_check('Property edit link').'</a>';
                 $message = $this->load->view('email/waiting_for_activation_user', array('data'=>$data_m), TRUE);
                 
                 $this->email->message($message);
@@ -1688,7 +2055,7 @@ class Frontend extends Frontend_Controller
     {
         if($this->user_m->loggedin() == TRUE)
         {
-            $dashboard = 'admin/dashboard';
+    	    $dashboard = 'admin/dashboard';
             
             if($this->session->userdata('type') == 'USER')
             {
@@ -1727,8 +2094,8 @@ class Frontend extends Frontend_Controller
             $user_facebook = FALSE;
             if($this->config->item('appId') != '')
             {   
-                $this->load->library('facebook/Facebook'); // Automatically picks appId and secret from config
-                $user_facebook = $this->facebook->getUser();
+        		$this->load->library('facebook/Facebook'); // Automatically picks appId and secret from config
+        		$user_facebook = $this->facebook->getUser();
             }
 
             if ($user_facebook !== FALSE) {
@@ -1753,14 +2120,20 @@ class Frontend extends Frontend_Controller
                         // Check if email already exists
                         if($this->user_m->if_exists($data['user_profile']['email']) === TRUE)
                         {
-                            exit('Email already exists in database, please contact administrator or reset password');
+                            $this->facebook->destroySession();
+                            
+                            $this->session->set_flashdata('error', 
+                                    lang_check('Email already exists in database, please contact administrator or reset password'));
+                            
+                            redirect('frontend/login/'.$this->data['lang_code']); 
+                            exit();
                         }
                         
                         // Register user
                         $data_f['username'] = $data['user_profile']['email'];
                         $data_f['mail'] = $data['user_profile']['email'];
                         $data_f['password'] = $this->user_m->hash($data['user_profile']['id']);
-                        $data_f['facebook_id'] = $data['user_profile']['link'];
+                        $data_f['facebook_id'] = $data['user_profile']['id'];
                         $data_f['type'] = 'USER';
                         $data_f['name_surname'] = $data['user_profile']['name'];
                         $data_f['activated'] = '1';
@@ -1900,8 +2273,8 @@ class Frontend extends Frontend_Controller
             $user_facebook = FALSE;
             if($this->config->item('appId') != '')
             {
-                $this->load->library('facebook'); // Automatically picks appId and secret from config
-                $user_facebook = $this->facebook->getUser();
+        		$this->load->library('facebook'); // Automatically picks appId and secret from config
+        		$user_facebook = $this->facebook->getUser();
             }   
             
             if ($user_facebook) {
@@ -2187,7 +2560,7 @@ class Frontend extends Frontend_Controller
                 }
 
                 if(!empty($data['phone']) && !empty($user_id) &&
-                   config_db_item('clickatell_api_id') != FALSE && config_db_item('phone_verification_enabled') === TRUE &&
+                   (config_db_item('clickatell_api_id') != FALSE || config_db_item('clickatell_api_key') != FALSE) && config_db_item('phone_verification_enabled') === TRUE &&
                    file_exists(APPPATH.'libraries/Clickatellapi.php'))
                 {
                     $data['phone_verified'] = 0;
@@ -2237,7 +2610,7 @@ class Frontend extends Frontend_Controller
         {
             $this->data['is_login'] = true;
             
-            $dashboard = 'admin/dashboard';
+    	    $dashboard = 'admin/dashboard';
                        
             // Set form
             $rules = $this->user_m->rules;
@@ -2329,10 +2702,10 @@ class Frontend extends Frontend_Controller
             $price_pay = $this->uri->segment(5);
         }
 
-        // Fetch a page or set a new one
-        if(!empty($id) && !empty($price_pay))
+	    // Fetch a page or set a new one
+	    if(!empty($id) && !empty($price_pay))
         {
-            // Fetch all estates
+    	    // Fetch all estates
             $this->data['reservation'] = $this->reservations_m->get_array_by(array('user_id' => $this->session->userdata('id'), 'id'=>$id), TRUE);
             $this->data['languages'] = $this->language_m->get_form_dropdown('language');
             $this->data['available_agent'] = $this->user_m->get_form_dropdown('name_surname', array('type'=>'USER'));
@@ -2350,14 +2723,14 @@ class Frontend extends Frontend_Controller
 
             /* [Payment configuration] */
             
-            $config['business']             = $this->data['settings_paypal_email'];
-            $config['cpp_header_image']     = ''; //Image header url [750 pixels wide by 90 pixels high]
-            $config['return']               = site_url('frontend/myreservations/'.$this->data['lang_code']);
-            $config['cancel_return']        = site_url('frontend/cancel_payment/'.$this->data['lang_code']);
-            $config['notify_url']           = site_url('frontend/notify_payment/'.$this->data['lang_code']); //IPN Post
-            $config['production']           = (ENVIRONMENT == 'production'); //Its false by default and will use sandbox
-            //$config['discount_rate_cart']     = 0; //This means 20% discount
-            $config["invoice"]              = $this->data['reservation']['id'].'_RES_'.$price_pay;//.rand(1,10000); //The invoice id
+    		$config['business'] 			= $this->data['settings_paypal_email'];
+    		$config['cpp_header_image'] 	= ''; //Image header url [750 pixels wide by 90 pixels high]
+    		$config['return'] 				= site_url('frontend/myreservations/'.$this->data['lang_code']);
+    		$config['cancel_return'] 		= site_url('frontend/cancel_payment/'.$this->data['lang_code']);
+    		$config['notify_url'] 			= site_url('frontend/notify_payment/'.$this->data['lang_code']); //IPN Post
+    		$config['production'] 			= (ENVIRONMENT == 'production'); //Its false by default and will use sandbox
+    		//$config['discount_rate_cart'] 	= 0; //This means 20% discount
+    		$config["invoice"]				= $this->data['reservation']['id'].'_RES_'.$price_pay;//.rand(1,10000); //The invoice id
             $config["currency_code"]        = $this->data['reservation']['currency_code'];
             
             if(empty($config['business']))
@@ -2366,15 +2739,15 @@ class Frontend extends Frontend_Controller
                 exit();
             }
             
-            $this->load->library('paypal', $config);
-            
-            #$this->paypal->add(<name>,<price>,<quantity>[Default 1],<code>[Optional]);
-            
-            $this->paypal->add('Reservation #'.$id, $price_pay, 1); //First item
-            //$this->paypal->add('Pants',1.99, 1);    //Second item
-            //$this->paypal->add('Blowse',10,10,'B-199-26'); //Third item with code
-            
-            $this->paypal->pay(); //Proccess the payment
+    		$this->load->library('paypal', $config);
+    		
+    		#$this->paypal->add(<name>,<price>,<quantity>[Default 1],<code>[Optional]);
+    		
+    		$this->paypal->add('Reservation #'.$id, $price_pay, 1); //First item
+    		//$this->paypal->add('Pants',1.99, 1); 	  //Second item
+    		//$this->paypal->add('Blowse',10,10,'B-199-26'); //Third item with code
+    		
+    		$this->paypal->pay(); //Proccess the payment
             
             /* [/Payment configuration] */
         }
@@ -2430,23 +2803,23 @@ class Frontend extends Frontend_Controller
         
         $this->data['user'] = $this->user_m->get_array($this->session->userdata('id'));
 
-        // Fetch a page or set a new one
-        if(!empty($id) && !empty($price_pay))
+	    // Fetch a page or set a new one
+	    if(!empty($id) && !empty($price_pay))
         {
-            // Fetch all estates
+    	    // Fetch all estates
             $this->data['package'] = $this->packages_m->get_array($id);
             $this->data['languages'] = $this->language_m->get_form_dropdown('language');
 
             /* [Payment configuration] */
             
-            $config['business']             = $this->data['settings_paypal_email'];
-            $config['cpp_header_image']     = ''; //Image header url [750 pixels wide by 90 pixels high]
-            $config['return']               = site_url('frontend/myproperties/'.$this->data['lang_code']);
-            $config['cancel_return']        = site_url('frontend/cancel_payment/'.$this->data['lang_code']);
-            $config['notify_url']           = site_url('frontend/notify_payment/'.$this->data['lang_code']); //IPN Post
-            $config['production']           = (ENVIRONMENT == 'production'); //Its false by default and will use sandbox
-            //$config['discount_rate_cart']     = 0; //This means 20% discount
-            $config["invoice"]              = $this->data['package']['id'].'_PAC_'.$this->data['user']['id'].'_'.$price_pay.'_'.date('w');//.rand(1,10000); //The invoice id
+    		$config['business'] 			= $this->data['settings_paypal_email'];
+    		$config['cpp_header_image'] 	= ''; //Image header url [750 pixels wide by 90 pixels high]
+    		$config['return'] 				= site_url('frontend/myproperties/'.$this->data['lang_code']);
+    		$config['cancel_return'] 		= site_url('frontend/cancel_payment/'.$this->data['lang_code']);
+    		$config['notify_url'] 			= site_url('frontend/notify_payment/'.$this->data['lang_code']); //IPN Post
+    		$config['production'] 			= (ENVIRONMENT == 'production'); //Its false by default and will use sandbox
+    		//$config['discount_rate_cart'] 	= 0; //This means 20% discount
+    		$config["invoice"]				= $this->data['package']['id'].'_PAC_'.$this->data['user']['id'].'_'.$price_pay.'_'.date('w');//.rand(1,10000); //The invoice id
             $config["currency_code"]        = $this->data['package']['currency_code'];
             
             if(empty($config['business']))
@@ -2455,15 +2828,15 @@ class Frontend extends Frontend_Controller
                 exit();
             }
 
-            $this->load->library('paypal', $config);
-            
-            #$this->paypal->add(<name>,<price>,<quantity>[Default 1],<code>[Optional]);
-            
-            $this->paypal->add('Package '.$this->data['package']['package_name'].'', $price_pay, 1); //First item
-            //$this->paypal->add('Pants',1.99, 1);    //Second item
-            //$this->paypal->add('Blowse',10,10,'B-199-26'); //Third item with code
-            
-            $this->paypal->pay(); //Proccess the payment
+    		$this->load->library('paypal', $config);
+    		
+    		#$this->paypal->add(<name>,<price>,<quantity>[Default 1],<code>[Optional]);
+    		
+    		$this->paypal->add('Package '.$this->data['package']['package_name'].'', $price_pay, 1); //First item
+    		//$this->paypal->add('Pants',1.99, 1); 	  //Second item
+    		//$this->paypal->add('Blowse',10,10,'B-199-26'); //Third item with code
+    		
+    		$this->paypal->pay(); //Proccess the payment
             
             /* [/Payment configuration] */
         }
@@ -2489,22 +2862,22 @@ class Frontend extends Frontend_Controller
         
         $this->data['user'] = $this->user_m->get_array($this->session->userdata('id'));
 
-        // Fetch a page or set a new one
-        if(!empty($id) && !empty($price_pay))
+	    // Fetch a page or set a new one
+	    if(!empty($id) && !empty($price_pay))
         {
-            // Fetch all estates
+    	    // Fetch all estates
             $this->data['languages'] = $this->language_m->get_form_dropdown('language');
 
             /* [Payment configuration] */
             
-            $config['business']             = $this->data['settings_paypal_email'];
-            $config['cpp_header_image']     = ''; //Image header url [750 pixels wide by 90 pixels high]
-            $config['return']               = site_url('frontend/myproperties/'.$this->data['lang_code']);
-            $config['cancel_return']        = site_url('frontend/cancel_payment/'.$this->data['lang_code']);
-            $config['notify_url']           = site_url('frontend/notify_payment/'.$this->data['lang_code']); //IPN Post
-            $config['production']           = (ENVIRONMENT == 'production'); //Its false by default and will use sandbox
-            //$config['discount_rate_cart']     = 0; //This means 20% discount
-            $config["invoice"]              = $id.'_ACT_'.$this->data['user']['id'].'_'.$price_pay.'_'.date('w');//.rand(1,10000); //The invoice id
+    		$config['business'] 			= $this->data['settings_paypal_email'];
+    		$config['cpp_header_image'] 	= ''; //Image header url [750 pixels wide by 90 pixels high]
+    		$config['return'] 				= site_url('frontend/myproperties/'.$this->data['lang_code']);
+    		$config['cancel_return'] 		= site_url('frontend/cancel_payment/'.$this->data['lang_code']);
+    		$config['notify_url'] 			= site_url('frontend/notify_payment/'.$this->data['lang_code']); //IPN Post
+    		$config['production'] 			= (ENVIRONMENT == 'production'); //Its false by default and will use sandbox
+    		//$config['discount_rate_cart'] 	= 0; //This means 20% discount
+    		$config["invoice"]				= $id.'_ACT_'.$this->data['user']['id'].'_'.$price_pay.'_'.date('w');//.rand(1,10000); //The invoice id
             
             if(isset($this->data['settings_default_currency']))
             {
@@ -2521,15 +2894,15 @@ class Frontend extends Frontend_Controller
                 exit();
             }
 
-            $this->load->library('paypal', $config);
-            
-            #$this->paypal->add(<name>,<price>,<quantity>[Default 1],<code>[Optional]);
-            
-            $this->paypal->add('Activation property #'.$id.'', $price_pay, 1); //First item
-            //$this->paypal->add('Pants',1.99, 1);    //Second item
-            //$this->paypal->add('Blowse',10,10,'B-199-26'); //Third item with code
-            
-            $this->paypal->pay(); //Proccess the payment
+    		$this->load->library('paypal', $config);
+    		
+    		#$this->paypal->add(<name>,<price>,<quantity>[Default 1],<code>[Optional]);
+    		
+    		$this->paypal->add('Activation property #'.$id.'', $price_pay, 1); //First item
+    		//$this->paypal->add('Pants',1.99, 1); 	  //Second item
+    		//$this->paypal->add('Blowse',10,10,'B-199-26'); //Third item with code
+    		
+    		$this->paypal->pay(); //Proccess the payment
             
             /* [/Payment configuration] */
         }
@@ -2555,22 +2928,22 @@ class Frontend extends Frontend_Controller
         
         $this->data['user'] = $this->user_m->get_array($this->session->userdata('id'));
 
-        // Fetch a page or set a new one
-        if(!empty($id) && !empty($price_pay))
+	    // Fetch a page or set a new one
+	    if(!empty($id) && !empty($price_pay))
         {
-            // Fetch all estates
+    	    // Fetch all estates
             $this->data['languages'] = $this->language_m->get_form_dropdown('language');
 
             /* [Payment configuration] */
             
-            $config['business']             = $this->data['settings_paypal_email'];
-            $config['cpp_header_image']     = ''; //Image header url [750 pixels wide by 90 pixels high]
-            $config['return']               = site_url('frontend/myproperties/'.$this->data['lang_code']);
-            $config['cancel_return']        = site_url('frontend/cancel_payment/'.$this->data['lang_code']);
-            $config['notify_url']           = site_url('frontend/notify_payment/'.$this->data['lang_code']); //IPN Post
-            $config['production']           = (ENVIRONMENT == 'production'); //Its false by default and will use sandbox
-            //$config['discount_rate_cart']     = 0; //This means 20% discount
-            $config["invoice"]              = $id.'_FEA_'.$this->data['user']['id'].'_'.$price_pay.'_'.date('w');//.rand(1,10000); //The invoice id
+    		$config['business'] 			= $this->data['settings_paypal_email'];
+    		$config['cpp_header_image'] 	= ''; //Image header url [750 pixels wide by 90 pixels high]
+    		$config['return'] 				= site_url('frontend/myproperties/'.$this->data['lang_code']);
+    		$config['cancel_return'] 		= site_url('frontend/cancel_payment/'.$this->data['lang_code']);
+    		$config['notify_url'] 			= site_url('frontend/notify_payment/'.$this->data['lang_code']); //IPN Post
+    		$config['production'] 			= (ENVIRONMENT == 'production'); //Its false by default and will use sandbox
+    		//$config['discount_rate_cart'] 	= 0; //This means 20% discount
+    		$config["invoice"]				= $id.'_FEA_'.$this->data['user']['id'].'_'.$price_pay.'_'.date('w');//.rand(1,10000); //The invoice id
             
             if(isset($this->data['settings_default_currency']))
             {
@@ -2587,15 +2960,15 @@ class Frontend extends Frontend_Controller
                 exit();
             }
 
-            $this->load->library('paypal', $config);
-            
-            #$this->paypal->add(<name>,<price>,<quantity>[Default 1],<code>[Optional]);
-            
-            $this->paypal->add('Featured property #'.$id.'', $price_pay, 1); //First item
-            //$this->paypal->add('Pants',1.99, 1);    //Second item
-            //$this->paypal->add('Blowse',10,10,'B-199-26'); //Third item with code
-            
-            $this->paypal->pay(); //Proccess the payment
+    		$this->load->library('paypal', $config);
+    		
+    		#$this->paypal->add(<name>,<price>,<quantity>[Default 1],<code>[Optional]);
+    		
+    		$this->paypal->add('Featured property #'.$id.'', $price_pay, 1); //First item
+    		//$this->paypal->add('Pants',1.99, 1); 	  //Second item
+    		//$this->paypal->add('Blowse',10,10,'B-199-26'); //Third item with code
+    		
+    		$this->paypal->pay(); //Proccess the payment
             
             /* [/Payment configuration] */
         }
@@ -2834,7 +3207,7 @@ class Frontend extends Frontend_Controller
     {
         if($this->user_m->loggedin() == TRUE)
         {
-            $dashboard = 'admin/dashboard';
+    	    $dashboard = 'admin/dashboard';
             
             if($this->session->userdata('type') == 'USER')
             {
@@ -2854,6 +3227,10 @@ class Frontend extends Frontend_Controller
         $this->session->keep_flashdata('data_r');
         
         $this->data['reservation'] = $data_r;
+        
+        $data_contact_r = unserialize($this->session->flashdata('data_contact_r'));
+        $this->session->keep_flashdata('data_contact_r');
+        $this->data['data_contact_r'] = $data_contact_r;
         
         $this->load_head_data();
         $this->data['content_language_id'] = $this->data['lang_id'];
@@ -3146,6 +3523,14 @@ class Frontend extends Frontend_Controller
         $this->data['order_livingarea_selected'] = '';
         if($order=='livingArea')
             $this->data['order_livingarea_selected'] = 'selected';
+            
+        $this->data['order_viewsASC_selected'] = '';
+        if($order=='counter_views ASC')
+            $this->data['order_viewsASC_selected'] = 'selected';
+            
+        $this->data['order_viewsDESC_selected'] = '';
+        if($order=='counter_views DESC')
+            $this->data['order_viewsDESC_selected'] = 'selected';
         /* End define order */
         
         /* Define view */
@@ -3478,15 +3863,16 @@ class Frontend extends Frontend_Controller
         
         $output = $this->parser->parse($this->data['settings_template'].'/results.php', $this->data, TRUE);
         $output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
-        
+        if(function_exists('mb_convert_encoding'))
+            $output = mb_convert_encoding($output, "UTF-8", "auto");
         header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/json');
         echo json_encode(array('results'=>$this->data['results_json'], 'results_center'=>$results_center, 'print' => $output, 'order'=>$order, 'lang_id'=>$lang_id, 'total_rows'=>$config['total_rows']));
         exit();
     }
     
-    public function index ()
-    {
+	public function index ()
+	{
         $lang_id = $this->data['lang_id'];
         
         $this->_page_offline();
@@ -3572,7 +3958,7 @@ class Frontend extends Frontend_Controller
         // [JSON_SEARCH]
         // Example: ?search={"search_option_smart": "zagreb"}
         $search_json = NULL;
-        if(isset($_GET['search']))$search_json = json_decode($_GET['search']);
+        if(isset($_GET['search']))$search_json = json_decode($this->input->get_post('search', TRUE));
         
         if($search_json !== FALSE && $search_json !== NULL)
         {
@@ -3583,7 +3969,7 @@ class Frontend extends Frontend_Controller
             {
                 foreach($search_json as $key=>$val)
                 {
-                    $tmp_post = $val;
+                    $tmp_post = htmlentities($val);
                     if(!empty($tmp_post) && strrpos($key, 'tion_') > 0){
                         $post_option[substr($key, strrpos($key, 'tion_')+5)] = $tmp_post;
                         $post_option_sum.=$tmp_post.' ';
@@ -3609,6 +3995,10 @@ class Frontend extends Frontend_Controller
             $this->data['search_query'] = '';
             if(!empty($post_option['smart']))
                 $this->data['search_query'] = $post_option['smart'];
+                   
+            $this->data['search_option_location'] = '';
+            if(!empty($post_option['location']))
+                $this->data['search_option_location'] = $post_option['location'];
         }
 
         $this->g_post_option = &$post_option;
@@ -3758,7 +4148,7 @@ class Frontend extends Frontend_Controller
                     
                     if(empty($val))
                     {
-                        $options_h.='<option value="'.$val.'" '.$selected.'>'.lang_check('Any').'</option>';
+                        $options_h='<option value="'.$val.'" '.$selected.'>'.lang_check('Any').'</option>';
                     }
                     else
                     {
@@ -3838,6 +4228,14 @@ class Frontend extends Frontend_Controller
         $this->data['order_livingarea_selected'] = '';
         if($order=='livingArea')
             $this->data['order_livingarea_selected'] = 'selected';
+        
+        $this->data['order_viewsASC_selected'] = '';
+        if($order=='counter_views ASC')
+            $this->data['order_viewsASC_selected'] = 'selected';
+            
+        $this->data['order_viewsDESC_selected'] = '';
+        if($order=='counter_views DESC')
+            $this->data['order_viewsDESC_selected'] = 'selected';
             
         if(count($this->data['is_purpose_rent']) > 0)
         {
@@ -4038,16 +4436,16 @@ class Frontend extends Frontend_Controller
         $config_2['total_rows'] = count($this->data['all_agents']);
         $config_2['per_page'] = $agent_per_page;
         $config_2['uri_segment'] = 4;
-        $config_2['num_tag_open'] = '<li>';
-        $config_2['num_tag_close'] = '</li>';
+    	$config_2['num_tag_open'] = '<li>';
+    	$config_2['num_tag_close'] = '</li>';
         $config_2['full_tag_open'] = '<ul class="pagination">';
         $config_2['full_tag_close'] = '</ul>';
         $config_2['cur_tag_open'] = '<li class="active"><span>';
         $config_2['cur_tag_close'] = '</span></li>';
-        $config_2['next_tag_open'] = '<li>';
-        $config_2['next_tag_close'] = '</li>';
-        $config_2['prev_tag_open'] = '<li>';
-        $config_2['prev_tag_close'] = '</li>';
+    	$config_2['next_tag_open'] = '<li>';
+    	$config_2['next_tag_close'] = '</li>';
+    	$config_2['prev_tag_open'] = '<li>';
+    	$config_2['prev_tag_close'] = '</li>';
         /* End Pagination */
 
         //$this->pagination->initialize($config_2);
@@ -4125,7 +4523,7 @@ class Frontend extends Frontend_Controller
             
             $message='';
             foreach($_POST as $key=>$value){
-                $message.="$key:\n$value\n";
+            	$message.="$key:\n$value\n";
             }
                         
             $message = $this->load->view('email/contact_message', array('data'=>$data), TRUE);
@@ -4244,16 +4642,16 @@ class Frontend extends Frontend_Controller
         $config_2['total_rows'] = count($this->data['news_module_all']);
         $config_2['per_page'] = config_item('per_page');
         $config_2['uri_segment'] = 5;
-        $config_2['num_tag_open'] = '<li>';
-        $config_2['num_tag_close'] = '</li>';
+    	$config_2['num_tag_open'] = '<li>';
+    	$config_2['num_tag_close'] = '</li>';
         $config_2['full_tag_open'] = '<ul class="pagination">';
         $config_2['full_tag_close'] = '</ul>';
         $config_2['cur_tag_open'] = '<li class="active"><span>';
         $config_2['cur_tag_close'] = '</span></li>';
-        $config_2['next_tag_open'] = '<li>';
-        $config_2['next_tag_close'] = '</li>';
-        $config_2['prev_tag_open'] = '<li>';
-        $config_2['prev_tag_close'] = '</li>';
+    	$config_2['next_tag_open'] = '<li>';
+    	$config_2['next_tag_close'] = '</li>';
+    	$config_2['prev_tag_open'] = '<li>';
+    	$config_2['prev_tag_close'] = '</li>';
         /* End Pagination */
 
         //$this->pagination->initialize($config_2);
@@ -4346,16 +4744,16 @@ class Frontend extends Frontend_Controller
         $config_2['total_rows'] = count($this->data['showroom_module_all']);
         $config_2['per_page'] = config_item('per_page');
         $config_2['uri_segment'] = 5;
-        $config_2['num_tag_open'] = '<li>';
-        $config_2['num_tag_close'] = '</li>';
+    	$config_2['num_tag_open'] = '<li>';
+    	$config_2['num_tag_close'] = '</li>';
         $config_2['full_tag_open'] = '<ul class="pagination">';
         $config_2['full_tag_close'] = '</ul>';
         $config_2['cur_tag_open'] = '<li class="active"><span>';
         $config_2['cur_tag_close'] = '</span></li>';
-        $config_2['next_tag_open'] = '<li>';
-        $config_2['next_tag_close'] = '</li>';
-        $config_2['prev_tag_open'] = '<li>';
-        $config_2['prev_tag_close'] = '</li>';
+    	$config_2['next_tag_open'] = '<li>';
+    	$config_2['next_tag_close'] = '</li>';
+    	$config_2['prev_tag_open'] = '<li>';
+    	$config_2['prev_tag_close'] = '</li>';
         /* End Pagination */
 
         //$this->pagination->initialize($config_2);
@@ -4407,16 +4805,16 @@ class Frontend extends Frontend_Controller
         $config_2['total_rows'] = count($this->data['expert_module_all']);
         $config_2['per_page'] = config_item('per_page');
         $config_2['uri_segment'] = 5;
-        $config_2['num_tag_open'] = '<li>';
-        $config_2['num_tag_close'] = '</li>';
+    	$config_2['num_tag_open'] = '<li>';
+    	$config_2['num_tag_close'] = '</li>';
         $config_2['full_tag_open'] = '<ul>';
         $config_2['full_tag_close'] = '</ul>';
         $config_2['cur_tag_open'] = '<li class="active"><span>';
         $config_2['cur_tag_close'] = '</span></li>';
-        $config_2['next_tag_open'] = '<li>';
-        $config_2['next_tag_close'] = '</li>';
-        $config_2['prev_tag_open'] = '<li>';
-        $config_2['prev_tag_close'] = '</li>';
+    	$config_2['next_tag_open'] = '<li>';
+    	$config_2['next_tag_close'] = '</li>';
+    	$config_2['prev_tag_open'] = '<li>';
+    	$config_2['prev_tag_close'] = '</li>';
         /* End Pagination */
 
         //$this->pagination->initialize($config_2);
@@ -4486,6 +4884,11 @@ class Frontend extends Frontend_Controller
             $this->data['widgets_order'] = json_decode($this->data['template_data']->widgets_order);
         }
         
+        if(isset($this->data['widget_preview']) && $this->data['widget_preview']) {
+            $this->temp_data['page']->template = 'inc_widget_preview';
+            $this->data['widget_preview_file'] = $this->uri->segment(3);
+        }
+        
         $output = $this->parser->parse($this->data['settings_template'].'/'.$this->temp_data['page']->template.'.php', $this->data, TRUE);
         $output =  str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
         
@@ -4495,10 +4898,10 @@ class Frontend extends Frontend_Controller
         }
         
         echo $output;
-    }
+	}
 
-    public function gps_check($str)
-    {
+	public function gps_check($str)
+	{
         $gps_coor = explode(', ', $str);
         
         if(empty($str) && config_db_item('address_not_required') === TRUE)
@@ -4506,27 +4909,27 @@ class Frontend extends Frontend_Controller
         
         if(count($gps_coor) != 2)
         {
-            $this->form_validation->set_message('gps_check', lang_check('Please check GPS coordinates'));
-            return FALSE;
+        	$this->form_validation->set_message('gps_check', lang_check('Please check GPS coordinates'));
+        	return FALSE;
         }
         
         if(!is_numeric($gps_coor[0]) || !is_numeric($gps_coor[1]))
         {
-            $this->form_validation->set_message('gps_check', lang_check('Please check GPS coordinates'));
-            return FALSE;
+        	$this->form_validation->set_message('gps_check', lang_check('Please check GPS coordinates'));
+        	return FALSE;
         }
         
         if($gps_coor[0] < -90 || $gps_coor[0] > 90 || $gps_coor[1] < -180 || $gps_coor[1] > 180)
         {
-            $this->form_validation->set_message('gps_check', lang_check('Please check GPS coordinates'));
-            return FALSE;
+        	$this->form_validation->set_message('gps_check', lang_check('Please check GPS coordinates'));
+        	return FALSE;
         }
         
         return TRUE;
-    }
+	}
     
-    public function captcha_check($str)
-    {
+	public function captcha_check($str)
+	{
         if(config_item('recaptcha_site_key') !== FALSE)
         {
             if(valid_recaptcha() === TRUE)
@@ -4540,16 +4943,16 @@ class Frontend extends Frontend_Controller
             }
         }
        
-        if ($str != substr(md5($this->data['captcha_hash_old'].config_item('encryption_key')), 0, 5))
-        {
-            $this->form_validation->set_message('captcha_check', lang_check('Wrong captcha'));
-            return FALSE;
-        }
-        else
-        {
-            return TRUE;
-        }
-    }
+		if ($str != substr(md5($this->data['captcha_hash_old'].config_item('encryption_key')), 0, 5))
+		{
+			$this->form_validation->set_message('captcha_check', lang_check('Wrong captcha'));
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
     
         
     public function _unique_username($str)

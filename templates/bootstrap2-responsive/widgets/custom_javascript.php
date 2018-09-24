@@ -1,7 +1,7 @@
 
 <?php if(config_item('enable_search_details_on_top') == TRUE): ?>
 
-<script language="javascript">
+<script>
 $(document).ready(function(){
 	if($('.top_content').length == 0 && $(window).width() > 767)
     {
@@ -34,6 +34,12 @@ $(document).ready(function(){
         e.preventDefault();
          $('html,body').animate({scrollTop:0}, 1500,'swing');
     })
+    
+    $('.field_datepicker_time').each(function(){
+    $(this).datepicker({
+        pickTime: true
+    });
+    });
 })
 
 
@@ -69,7 +75,7 @@ $(document).ready(function(){
 <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
 <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
     <div class="slides"></div>
-    <h3 class="title"></h3>
+    <h3 class="title"> </h3>
     <a class="prev">‹</a>
     <a class="next">›</a>
     <a class="close">×</a>

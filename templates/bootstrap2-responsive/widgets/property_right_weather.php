@@ -431,21 +431,4 @@ $_CI->load->model('weathercacher_m');
     </div>
 </div>
 
-<style>
-
-.weather-item
-{
-    background: white;
-    margin-bottom:10px;
-    padding:5px;
-}
-
-.weather-item .date
-{
-    font-weight: bold;
-    
-}
-
-</style>
-
 <?php endif;?>

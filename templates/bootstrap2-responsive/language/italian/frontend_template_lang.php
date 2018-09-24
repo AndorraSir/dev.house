@@ -1,6 +1,5 @@
 <?php 
 
-$lang['test_my_lang'] = "Solo un test ;-)";
 $lang['Portalname'] = "pPoint";
 $lang['Portalslogan'] = "Real estate Agency<br>Portal script";
 $lang[''] = "";

@@ -2,7 +2,7 @@
 <html lang="{lang_code}">
   <head>
     <?php _widget('head');?>
-    <script language="javascript">
+    <script>
     $(document).ready(function(){
 
     });    
@@ -14,7 +14,7 @@
   
 {template_header}
 
-<a name="content" id="content"></a>
+<a id="content"></a>
 <div class="wrap-content">
     <div class="container">
         <div class="row-fluid">

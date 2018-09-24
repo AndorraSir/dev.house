@@ -28,7 +28,7 @@
     
 ?>
 
-<script language="javascript">
+<script>
     
     /* [START] TreeField */
     var load_val_<?php echo $f_id;?> = false;
@@ -165,7 +165,7 @@
 
 ?>
 
-                <script language="javascript">
+                <script>
                 
                 $(window).load(function() {
                     var load_val = '<?php echo search_value($field_id); ?>';

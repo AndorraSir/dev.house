@@ -2,7 +2,7 @@
 
 date_default_timezone_set("Europe/Amsterdam");
 
-define('APP_VERSION_REAL_ESTATE', '1.6.2');
+define('APP_VERSION_REAL_ESTATE', '1.6.4');
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT

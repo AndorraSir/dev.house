@@ -7,6 +7,7 @@ class Backup extends Admin_Controller
 		parent::__construct();
         
         $this->load->model('backup_m');
+        $this->data['content_language_id'] = $this->language_m->get_content_lang();
 	}
     
     public function index()

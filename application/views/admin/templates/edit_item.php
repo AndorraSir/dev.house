@@ -540,7 +540,7 @@ function save_json_changes()
     <div class="control-group">
         <div class="controls">
             <button id="unhide-agent-mask" type="button" class="btn"><?php echo lang_check('Submit'); ?></button>
-            <img id="ajax-indicator-masking" src="<?php echo base_url(); ?>assets/img/loading.gif" style="display: none;" />
+            <img id="ajax-indicator-masking" src="<?php echo base_url(); ?>admin-assets/img/loading.gif" style="display: none;" />
         </div>
     </div>
 </form>

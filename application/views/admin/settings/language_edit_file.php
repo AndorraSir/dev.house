@@ -82,7 +82,7 @@
                     <!-- Form starts.  -->
                     <?php echo form_open(NULL, array('class' => 'form-horizontal', 'role'=>'form'))?>     
                                 <?php foreach($language_translations_english as $key=>$value):?>
-                                    <div class="form-group <?php echo (!empty($value) && empty($language_translations_current[$key]))?'has-error':''; ?>">
+                                    <div class="form-group <?php echo (!empty($value) && empty($language_translations_current[$key]))?'has-error':''; ?>" id="<?php echo url_title_cro('label_'.$value);?>">
                                       <label class="col-lg-4 control-label control-label-right"><?php echo $value; ?></label>
                                       <div class="col-lg-7">
                                         <?php 
@@ -146,3 +146,13 @@
 
    <!-- Mainbar ends -->	    	
    <div class="clearfix"></div>
+   
+   <script>
+   
+   // *only* if we have anchor on the url
+    if(typeof location_hash !== 'undefined' && location_hash != '') {
+        if($(location_hash).length)
+            $(location_hash).find('input').css("cssText","border: 2px solid #f88529 !important");
+    }
+   
+   </script>

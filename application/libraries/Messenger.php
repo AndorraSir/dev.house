@@ -111,7 +111,7 @@ class Messenger {
             }
             else
             {
-                $value['interlocutor_image_url'] =  'admin-assets/img/user-agent.png';
+                $value['interlocutor_image_url'] =  'assets/img/user-agent.png';
                 if($api)
                    $value['interlocutor_image_url'] =  base_url('templates/'.$this->settings['template'].'/assets/img/user-agent.png');
             }
@@ -171,7 +171,7 @@ class Messenger {
             }
             else
             {
-                $value->image_url = 'admin-assets/img/user-agent.png';
+                $value->image_url = 'assets/img/user-agent.png';
                 
                 if($api)
                     $value->image_url = base_url('templates/'.$this->settings['template'].'/assets/img/user-agent.png');

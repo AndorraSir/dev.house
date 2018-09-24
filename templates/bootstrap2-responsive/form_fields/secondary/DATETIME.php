@@ -25,5 +25,5 @@
     $class_add = str_replace(array('col-md-','col-sm-','col-xl-','col-xs-'), 'span', $class_add);
 ?>
 <div class="<?php echo $class_add; ?>" style="<?php _che($field->style); ?>">
-    <input type="text" option_id="<?php echo $f_id; ?>" class="form-control field_datepicker input_am id_<?php echo $f_id; ?> <?php echo $class_add; ?>" placeholder="<?php echo $placeholder ?><?php echo $suf_pre; ?>" hidefocus="true">
+    <input type="text" data-option_id="<?php echo $f_id; ?>" class="form-control field_datepicker input_am id_<?php echo $f_id; ?> <?php echo $class_add; ?>" placeholder="<?php echo $placeholder ?><?php echo $suf_pre; ?>">
 </div><!-- /.form-group -->

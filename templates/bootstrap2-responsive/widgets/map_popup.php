@@ -1,5 +1,5 @@
 
-<img style="width: 150px; height: 100px;" src="<?php _che($thumbnail_url, ''); ?>" />
+<img style="width: 150px; height: 100px;" src="<?php _che($thumbnail_url, ''); ?>" alt="" />
 <br />
 <?php _che($address, ''); ?>
 <br />

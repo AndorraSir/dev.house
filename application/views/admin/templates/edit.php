@@ -221,7 +221,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="box right"><span>RIGHT</span>
+                <td class="box right"><span><?php echo lang_check('Side');?></span>
 <?php
     $get_type = 'right';
     
@@ -485,7 +485,7 @@ foreach($obj_widgets->center as $key)
 }
 ?>
                 </td>
-                <td class="box right" style="width: 40%;"><span>RIGHT</span>
+                <td class="box right" style="width: 40%;"><span><?php echo lang_check('Side');?></span>
 <?php
 $obj_widgets = json_decode($widgets_value_json);
 

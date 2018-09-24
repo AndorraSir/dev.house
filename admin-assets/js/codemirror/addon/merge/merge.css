@@ -1,6 +1,6 @@
 .CodeMirror-merge {
   position: relative;
-  border: 1px solid #1a1a1a;
+  border: 1px solid #ddd;
   white-space: pre;
 }
 
@@ -31,8 +31,8 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   overflow: hidden;
-  border-left: 1px solid #1a1a1a;
-  border-right: 1px solid #1a1a1a;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
   position: relative;
   background: #f8f8f8;
 }

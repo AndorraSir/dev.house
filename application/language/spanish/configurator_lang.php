@@ -1,5 +1,6 @@
-<?php 
+<?php
 
+/* Configurator */
 $lang['configurator'] = "Configuración del sistema";
 $lang['start_configuration'] = "Configuración de Seguridad y configuraciones principales";
 $lang['l_site_name'] = "Nombre de la empresa";
@@ -28,25 +29,31 @@ $lang['admin_login_path'] = "Ruta de acceso del administrador";
 $lang['admin_login_form_path'] = "Método de entrada del administrador";
 $lang['homepage'] = "Inicio";
 $lang['alredy_installed'] = "El sistema ya está configurado";
-$lang['configurator_info'] = "Si quiere configurarlo de nuevo, en el archivo cms_config.php cambia:<br />\$config['installed'] = true;<br />to<br />\$config['installed'] = false;<br />";
+$lang['configurator_info'] = "Si quiere configurarlo de nuevo, en el archivo cms_config.php cambia:<br />".
+                             '$config[\'installed\'] = true;<br />'.
+                             'to<br />'.
+                             '$config[\'installed\'] = false;<br />';
 $lang['next'] = "Próximo";
 $lang['previous'] = "Previo";
 $lang['slideshow'] = "Slideshow";
 $lang['download'] = "Descargar";
 $lang[''] = "";
-
 $lang['admin_creditionals'] = "Permisos de administrador: admin, admin";
 $lang['client_creditionals'] = "Permisos del cliente: usuario, usuario";
 $lang['configuration_not_saved'] = "La configuración no se ha guardado";
 $lang['sqlite_warning'] = "SQLite está deshabilitado en su servidor!";
+$lang[''] = "";
 $lang['mysql_db_name'] = "Nombre de la base de datos MySQL";
 $lang['db_username'] = "Clave base de datos";
 $lang['db_password'] = "Contraseńa base de datos";
 $lang['mysql_db_host'] = "Datos servidor";
 $lang['mysql_db_driver'] = "Datos driver";
 $lang['mysql_db_port'] = "Datos del puerto";
-$lang['codecanyon_code'] = "Codigo de compra";
-$lang['Where to find?'] = "Donde encontrar";
-$lang['Wrong purchase code'] = "Codigo de compra incorrecto o nombre de usuario de codecanyon";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
 
-?>
+
+

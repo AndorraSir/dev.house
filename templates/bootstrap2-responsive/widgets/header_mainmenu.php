@@ -1,9 +1,9 @@
 <div class="head-wrapper">
     <div class="container">
         <div class="row">
-          <div class="col-12">
+          <div class="col-sm-12">
             <nav class="navbar navbar-expand-lg navbar-light col-12 pull-right">
-                <a class="navbar-brand logo pull-left" href="{homepage_url_lang}"><img src="<?php echo $website_logo_url; ?>" alt="<?php _l('Logo'); ?>" /></a>
+                <a class="navbar-brand logo pull-left col-sm-3 pl-0" href="{homepage_url_lang}"><img src="<?php echo $website_logo_url; ?>" alt="<?php _l('Logo'); ?>"  class="img-fluid"/></a>
                 <a class="navbar-brand logo-over pull-left" href="{homepage_url_lang}"><img src="assets/img/logo-over.png" alt="<?php _l('Logo'); ?>" /></a>    
                 <div class="pull-left">
                     <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#main-top-menu">

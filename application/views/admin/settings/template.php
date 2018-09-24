@@ -34,10 +34,14 @@
       <ul class="nav nav-tabs settings-tabs">
         <li><a href="<?php echo site_url('admin/settings/contact')?>"><?php echo lang('Company contact')?></a></li>
         <li><a href="<?php echo site_url('admin/settings/language')?>"><?php echo lang('Languages')?></a></li>
+        <li class="active"><a href="<?php echo site_url('admin/settings/template')?>"><?php echo lang('Template')?></a></li>
         <li><a href="<?php echo site_url('admin/settings/system')?>"><?php echo lang('System settings')?></a></li>
         <li><a href="<?php echo site_url('admin/settings/addons')?>"><?php echo lang_check('Addons')?></a></li>
         <?php if(config_db_item('slug_enabled') === TRUE): ?>
         <li><a href="<?php echo site_url('admin/settings/slug')?>"><?php echo lang_check('SEO slugs')?></a></li>
+        <?php endif; ?>
+        <?php if(config_db_item('currency_conversions_enabled') === TRUE): ?>
+        <li><a href="<?php echo site_url('admin/settings/currency_conversions')?>"><?php echo lang_check('Currency Conversions')?></a></li>
         <?php endif; ?>
       </ul>
     </div>
@@ -82,10 +86,10 @@
                                             <div class = "col-sm-4 col-md-4 thumbnail-template">
                                                 <label class="thumbnail-label" for="<?php _che($value);?>">
                                                     <a href="<?php echo site_url("admin/settings/addons");?>"><div class = "thumbnail">
-                                                        <?php if(file_exists(FCPATH."assets/img/templates.png")): ?>
-                                                            <img src="<?php echo base_url("assets/img/templates.png"); ?>" alt="">
+                                                        <?php if(file_exists(FCPATH."admin-assets/img/templates.png")): ?>
+                                                            <img src="<?php echo base_url("admin-assets/img/templates.png"); ?>" alt="">
                                                         <?php else: ?>
-                                                            <img src="<?php echo base_url("assets/img/242x240.png"); ?>" alt="">
+                                                            <img src="<?php echo base_url("admin-assets/img/242x240.png"); ?>" alt="">
                                                         <?php endif; ?>
                                                         <div class = "caption">
                                                         <span><?php _l("Find more");?></span>
@@ -102,7 +106,7 @@
                                                         <?php if(file_exists(FCPATH."templates/".$value."/screenshot.png")): ?>
                                                             <img src="<?php echo base_url("templates/".$value."/screenshot.png"); ?>" alt="">
                                                         <?php else: ?>
-                                                            <img src="<?php echo base_url("assets/img/242x240.png"); ?>" alt="">
+                                                            <img src="<?php echo base_url("admin-assets/img/242x240.png"); ?>" alt="">
                                                         <?php endif; ?>
                                                         <div class="thumbnail-badget">Selected</div>
                                                         <div class = "caption">

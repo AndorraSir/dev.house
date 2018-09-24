@@ -68,7 +68,7 @@ $("#todayspark3").sparkline([3,6,3,9,9,5,4,6,5,6,4,9,4,6,3,7,8,9,7,5,8,9,5,7,8,8
     width: '170',
     height: '50',
     lineColor: '#fff',
-    fillColor: '#1a1a1a'});
+    fillColor: '#ddd'});
 
 $("#todayspark4").sparkline([3,6,-3,9,5,-2,-6,5,-6,-2,-7,6,4,6,5,6,-4,9,4,-9,-6,6,5,-8,9,5,7,-9,4,8,-9,8,5 ], {
     type: 'bar',

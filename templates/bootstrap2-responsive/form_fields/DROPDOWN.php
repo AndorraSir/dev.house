@@ -21,7 +21,7 @@
     $class_add = str_replace(array('col-md-','col-sm-','col-xl-','col-xs-'), 'span', $class_add);
     
 ?>
-<select id="search_option_<?php echo $f_id; ?><?php echo $direction;?>" class="<?php echo $class_add; ?> selectpicker form-control" style="<?php _che($field->style); ?>" placeholder="<?php _che(${'options_name_'.$f_id}); ?>">
+<select id="search_option_<?php echo $f_id; ?><?php echo $direction;?>" class="<?php echo $class_add; ?> selectpicker form-control" style="<?php _che($field->style); ?>">
     <?php _che(${'options_values_'.$f_id}); ?>
 </select>
 

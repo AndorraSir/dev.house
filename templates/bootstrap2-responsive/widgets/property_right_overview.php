@@ -97,6 +97,6 @@
   <?php endif;?>
 
   <p style="text-align:right;">
-      <a target="_blank" type="button" class="btn" href="{estate_data_printurl}"><i class="icon-print"></i>&nbsp;{lang_PrintVersion}</a>
+      <a target="_blank" class="btn" href="{estate_data_printurl}"><i class="icon-print"></i>&nbsp;{lang_PrintVersion}</a>
   </p>
 </div>

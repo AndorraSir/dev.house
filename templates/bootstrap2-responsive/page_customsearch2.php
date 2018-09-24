@@ -16,7 +16,7 @@
 
 <?php _widget('top_mapsearch_scale');?>
 
-<a name="content" id="content"></a>
+<a id="content"></a>
 <div class="wrap-content">
     <div class="container">
     

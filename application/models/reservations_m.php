@@ -304,8 +304,8 @@ class Reservations_m extends MY_Model {
         $this->db->where('currency_code', $currency);
         
         // get dates
-        $this->db->where('date_from <', $date_to);
-        $this->db->where('date_to >', $date_from);
+        $this->db->where('date_from <=', $date_to);
+        $this->db->where('date_to >=', $date_from);
         
         $query_rates = $this->db->get();
         $results_rates = $query_rates->result();
@@ -317,7 +317,7 @@ class Reservations_m extends MY_Model {
         $days = array();
         for($i=0; $i < $days_between;  $i++)
         {
-            $days[] = strtotime($date_from." + $i day");
+            $days[] = date('Y-m-d',strtotime($date_from." + $i day"));
         }
         /* [/get days] */
 
@@ -327,8 +327,8 @@ class Reservations_m extends MY_Model {
         {
             foreach($results_rates as $rate)
             {
-                if(strtotime($rate->date_from)<$day && 
-                   strtotime($rate->date_to)>$day)
+                if(date('Y-m-d',strtotime($rate->date_from))<=$day && 
+                   date('Y-m-d',strtotime($rate->date_to)) >=$day)
                 {
                     if($days_between>29 && !empty($rate->rate_monthly))
                     {

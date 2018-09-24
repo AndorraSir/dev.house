@@ -2,7 +2,7 @@
 <html lang="{lang_code}">
   <head>
     <?php _widget('head');?>
-    <script language="javascript">
+    <script>
     $(document).ready(function(){
 
     });    
@@ -16,17 +16,17 @@
 <?php _subtemplate('headers', _ch($subtemplate_header, 'empty')); ?>
 
 <?php _widget('top_ads');?>
-<a name="content" id="content"></a>
+<a id="content"></a>
 <div class="wrap-content">
     <div class="container">
     
         <h2>{page_title}</h2>
         <div class="property_content">
         <?php _widget('center_defaultcontent');?>
-        
+        <?php if(file_exists(APPPATH.'controllers/admin/treefield.php')):?>
         <?php echo treefield_sitemap(64, $lang_id, 'ul'); ?>
-            
         <br/>
+        <?php endif;?>
         <h2>  <?php echo lang_check('Website sitemap');?> </h2>
         <?php echo website_sitemap($lang_id, 'ul'); ?>
         

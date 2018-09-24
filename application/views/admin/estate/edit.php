@@ -21,6 +21,12 @@
         
             <div class="row">
                 <div class="col-md-12" style="text-align:right;"> 
+                <?php if(!empty($estate->id) && file_exists(APPPATH.'controllers/admin/booking.php')): ?>
+                    <?php echo anchor('admin/booking/rates?smart_search='.$estate->id, '<i class="icon-shopping-cart"></i>&nbsp;&nbsp;'.lang_check('Property rates'), 'class="btn btn-primary"')?>
+                <?php endif; ?>
+                <?php if(!empty($estate->id) && check_acl('estate/clone_listing')): ?>
+                    <?php echo anchor('admin/estate/clone_listing/'.$estate->id, '<i class="icon-share"></i>&nbsp;&nbsp;'.lang('Clone Listing'), 'class="btn btn-primary"')?>
+                <?php endif; ?>
                 <?php if(!empty($estate->id) && file_exists(APPPATH.'controllers/admin/reviews.php') && check_acl('reviews')): ?>
                     <?php echo anchor('admin/reviews/index/'.$estate->id, '<i class="icon-star"></i>&nbsp;&nbsp;'.lang('Reviews'), 'class="btn btn-primary"')?>
                 <?php endif; ?>
@@ -97,7 +103,7 @@
                                 <div class="form-group">
                                   <label class="col-lg-3 control-label"><?php echo lang('Agent')?></label>
                                   <div class="col-lg-9">
-                                    <?php echo form_dropdown('agent', $available_agent, set_value('agent', $estate->agent), 'class="form-control" id="inputAgent" placeholder="'.lang('Agent').'"')?>
+                                    <?php echo form_dropdown_ajax('agent', 'user_m', set_value('agent', $estate->agent), 'name_surname');?>
                                   </div>
                                 </div>
                                 <?php endif;?>
@@ -168,7 +174,7 @@
                                     <li class="pull-right"><a href="#" id="translate-lang" rel="<?php echo site_url('api/translate/');  ?>" class="btn btn-default" type="button"><?php echo lang_check('Translate to other languages')?></a></li>
                                     <?php endif; ?>
                                   </ul>
-                                  <div style="padding-top: 9px; border-bottom: 1px solid #1a1a1a;" class="tab-content">
+                                  <div style="padding-top: 9px; border-bottom: 1px solid #ddd;" class="tab-content">
                                     <?php $i=0;foreach($this->option_m->languages as $key=>$val):$i++;?>
                                     <div id="<?php echo $key?>" class="tab-pane <?php echo $i==1?'active':''?>">
                                     
@@ -608,9 +614,10 @@ $(function () {
                                                 <div class="input-append" id="datetimepicker_field_<?php _che($key);?>_<?php _che($val_option->id);?>">
                                                     <?php
                                                     $date_format = 'yyyy-MM-dd';
-                                                    if(isset($settings['js_date_format']) && !empty($settings['js_date_format']))
+                                                    if(isset($settings['js_date_format']) && !empty($settings['js_date_format'])){
                                                         $date_format = $settings['js_date_format'];
-                                                    
+
+                                                    }
                                                     ?>
                                                     
                                                     <?php echo form_input('option'.$val_option->id.'_'.$key, set_value('option'.$val_option->id.'_'.$key, isset($estate->{'option'.$val_option->id.'_'.$key})?$estate->{'option'.$val_option->id.'_'.$key}:''), 'class="picker '.$val_option->type.'" id="inputOption_'.$key.'_'.$val_option->id.'"  data-format="'.$date_format.'" placeholder="'.$val_option->option.'" '.$required_text.' '.$max_length_text)?>
@@ -627,6 +634,12 @@ $(function () {
                                                     $('#datetimepicker_field_<?php _che($key);?>_<?php _che($val_option->id);?>').datetimepicker({
                                                       pickTime: false
                                                     });
+                                                    
+                                                    <?php 
+                                                    /* updated by date format */
+                                                    if(isset($estate->{'option'.$val_option->id.'_'.$key}) && !empty($estate->{'option'.$val_option->id.'_'.$key})):?>
+                                                        $('#inputOption_<?php _che($key);?>_<?php _che($val_option->id);?>').change();
+                                                    <?php endif;?>
                                                 });
                                             </script>
                                         <?php endif;?>
@@ -681,7 +694,126 @@ $(function () {
               <div class="widget worange">
 
                 <div class="widget-head">
-                  <div class="pull-left"><?php echo lang('Files')?></div>
+                  <div class="pull-left"><?php echo lang_check('Listing Images')?></div>
+                  <div class="widget-icons pull-right">
+                    <a class="wminimize" href="#"><i class="icon-chevron-up"></i></a> 
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="widget-content">
+                  <div class="padd">
+
+
+    <?php if(!isset($estate->id)):?>
+    <span class="label label-danger"><?php echo lang('After saving, you can add files and images');?></span>
+    <?php else:?>
+    <div id="page-files-<?php echo $estate->id?>" rel="estate_m">
+        <!-- The file upload form used as target for the file upload widget -->
+        <form class="fileupload" action="<?php echo site_url('files/upload_estate/'.$estate->id);?>" method="POST" enctype="multipart/form-data">
+            <!-- Redirect browsers with JavaScript disabled to the origin page -->
+            <noscript><input type="hidden" name="redirect" value="<?php echo site_url('admin/estate/edit/'.$estate->id);?>"></noscript>
+            <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+            <div class="fileupload-buttonbar">
+                <div class="span7 col-md-7">
+                    <!-- The fileinput-button span is used to style the file input field as button -->
+                    <span class="btn btn-success fileinput-button">
+                        <i class="icon-plus icon-white"></i>
+                        <span><?php echo lang('add_files...')?></span>
+                        <input type="file" name="files[]" multiple>
+                    </span>
+                    <button type="reset" class="btn btn-warning cancel">
+                        <i class="icon-ban-circle icon-white"></i>
+                        <span><?php echo lang('cancel_upload')?></span>
+                    </button>
+                    <button type="button" class="btn btn-danger delete">
+                        <i class="icon-trash icon-white"></i>
+                        <span><?php echo lang('delete_selected')?></span>
+                    </button>
+                    <input type="checkbox" class="toggle" />
+                </div>
+                <!-- The global progress information -->
+                <div class="span5 col-md-5 fileupload-progress fade">
+                    <!-- The global progress bar -->
+                    <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                        <div class="bar" style="width:0%;"></div>
+                    </div>
+                    <!-- The extended global progress information -->
+                    <div class="progress-extended">&nbsp;</div>
+                </div>
+            </div>
+            <!-- The loading indicator is shown during file processing -->
+            <div class="fileupload-loading"></div>
+            <br />
+            <!-- The table listing the files available for upload/download -->
+            <!--<table role="presentation" class="table table-striped">
+            <tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery">-->
+
+              <div role="presentation" class="fieldset-content">
+                <?php if(config_item('onmouse_gallery_enabled') === TRUE): ?>    
+                <div class="onmouse_gallery-notice clearfix"> <?php echo lang_check('Please order images as described');?>:</div> 
+
+                <ul class="onmouse_gallery-title-files clearfix"> 
+                <li class="item text-center">
+                <div class="img-rounded-title text-center"><?php echo lang_check('Main image');?></div>
+                </li>
+                <li class="item text-center">
+                <div class="img-rounded-title text-center"><?php echo lang_check('Apartment').' 1' ;?></div>
+                </li>
+                <li class="item text-center">
+                <div class="img-rounded-title text-center"><?php echo lang_check('Apartment').' 2' ;?></div>
+                </li>
+                <li class="item text-center">
+                <div class="img-rounded-title text-center"><?php echo lang_check('Apartment').' 3' ;?></div>
+                </li>
+                <li class="item text-center">
+                <div class="img-rounded-title text-center"><?php echo lang_check('...Other') ;?></div>
+                </li>
+                </ul>  
+                <?php endif;?>
+
+                <ul class="files files-list" data-toggle="modal-gallery" data-target="#modal-gallery">      
+    <?php if(isset($files[$estate->repository_id]))foreach($files[$estate->repository_id] as $file ):?>
+                <li class="img-rounded template-download fade in">
+                    <div class="preview">
+                        <img class="img-rounded" alt="<?php echo $file->filename?>" data-src="<?php echo $file->thumbnail_url?>" src="<?php echo $file->thumbnail_url?>">
+                    </div>
+                    <div class="filename">
+                        <code><?php echo character_hard_limiter($file->filename, 20)?></code>
+                    </div>
+                    <div class="options-container">
+                        <?php if($file->zoom_enabled):?>
+                        <a data-gallery="gallery" href="<?php echo $file->download_url?>" title="<?php echo $file->filename?>" download="<?php echo $file->filename?>" class="zoom-button btn btn-xs btn-success"><i class="icon-search icon-white"></i></a>                  
+                        <a class="btn btn-xs btn-info iedit visible-inline-lg" rel="<?php echo $file->filename?>" href="#<?php echo $file->filename?>"><i class="icon-pencil icon-white"></i></a>
+                        <?php else:?>
+                        <a target="_blank" href="<?php echo $file->download_url?>" title="<?php echo $file->filename?>" download="<?php echo $file->filename?>" class="btn btn-xs btn-success"><i class="icon-search icon-white"></i></a>
+                        <?php endif;?>
+                        <span class="delete">
+                            <button class="btn btn-xs btn-danger" data-type="POST" data-url="<?php echo $file->delete_url?>"><i class="icon-trash icon-white"></i></button>
+                            <input type="checkbox" value="1" name="delete">
+                        </span>
+                    </div>
+                </li>
+    <?php endforeach;?>
+                </ul>
+                <br style="clear:both;"/>
+              </div>
+        </form>
+
+    </div>
+    <?php endif;?>
+
+                  </div>
+                </div>
+                  <div class="widget-foot">
+                    <!-- Footer goes here -->
+                  </div>
+              </div>  
+            <?php if(config_item('plan_gallery_enabled') == TRUE):?>
+              <div class="widget worange">
+
+                <div class="widget-head">
+                  <div class="pull-left"><?php echo lang_check('Plan Images')?></div>
                   <div class="widget-icons pull-right">
                     <a class="wminimize" href="#"><i class="icon-chevron-up"></i></a> 
                   </div>
@@ -692,11 +824,11 @@ $(function () {
                   <div class="padd">
 
 <?php if(!isset($estate->id)):?>
-<span class="label label-danger"><?php echo lang('After saving, you can add files and images');?></span>
+<span class="label label-danger"><?php echo lang('After saving, you can add plan images');?></span>
 <?php else:?>
 <div id="page-files-<?php echo $estate->id?>" rel="estate_m">
     <!-- The file upload form used as target for the file upload widget -->
-    <form class="fileupload" action="<?php echo site_url('files/upload_estate/'.$estate->id);?>" method="POST" enctype="multipart/form-data">
+    <form class="fileupload" action="<?php echo site_url('files/upload_repository/'.$estate->planimages_repository_id.'/');?>" method="POST" enctype="multipart/form-data">
         <!-- Redirect browsers with JavaScript disabled to the origin page -->
         <noscript><input type="hidden" name="redirect" value="<?php echo site_url('admin/estate/edit/'.$estate->id);?>"></noscript>
         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -734,32 +866,10 @@ $(function () {
         <!-- The table listing the files available for upload/download -->
         <!--<table role="presentation" class="table table-striped">
         <tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery">-->
-
-          <div role="presentation" class="fieldset-content">
-            <?php if(config_item('onmouse_gallery_enabled') === TRUE): ?>    
-            <div class="onmouse_gallery-notice clearfix"> <?php echo lang_check('Please order images as described');?>:</div> 
-              
-            <ul class="onmouse_gallery-title-files clearfix"> 
-            <li class="item text-center">
-            <div class="img-rounded-title text-center"><?php echo lang_check('Main image');?></div>
-            </li>
-            <li class="item text-center">
-            <div class="img-rounded-title text-center"><?php echo lang_check('Apartment').' 1' ;?></div>
-            </li>
-            <li class="item text-center">
-            <div class="img-rounded-title text-center"><?php echo lang_check('Apartment').' 2' ;?></div>
-            </li>
-            <li class="item text-center">
-            <div class="img-rounded-title text-center"><?php echo lang_check('Apartment').' 3' ;?></div>
-            </li>
-            <li class="item text-center">
-            <div class="img-rounded-title text-center"><?php echo lang_check('...Other') ;?></div>
-            </li>
-            </ul>  
-            <?php endif;?>
-              
-            <ul class="files files-list" data-toggle="modal-gallery" data-target="#modal-gallery">      
-<?php if(isset($files[$estate->repository_id]))foreach($files[$estate->repository_id] as $file ):?>
+        <div role="presentation" class="fieldset-content">
+            <ul class="files files-list" data-toggle="modal-gallery" data-target="#modal-gallery">   
+                
+        <?php if(isset($files[$estate->planimages_repository_id]))foreach($files[$estate->planimages_repository_id] as $file ):?>
             <li class="img-rounded template-download fade in">
                 <div class="preview">
                     <img class="img-rounded" alt="<?php echo $file->filename?>" data-src="<?php echo $file->thumbnail_url?>" src="<?php echo $file->thumbnail_url?>">
@@ -786,6 +896,13 @@ $(function () {
           </div>
     </form>
 
+    
+    <script>
+    
+    
+    
+    
+    </script>
 </div>
 <?php endif;?>
 
@@ -795,7 +912,7 @@ $(function () {
                     <!-- Footer goes here -->
                   </div>
               </div>  
-              
+            <?php endif;?>    
             </div>
           </div>
 
@@ -848,7 +965,10 @@ $(function () {
             }
 
             // show all below
-            
+            <?php if(config_item('auto_category_display_fields') !== FALSE):?>
+            parent_elem_hide.prevAll().removeClass('hide')
+            <?php endif;?>
+                
             parent_elem_hide.nextAll().removeClass('hide')
             $(this).closest('.tab-pane').find('textarea, select, input').each(function(){
                 if($(this).attr('data-required') == 'true') {
@@ -856,6 +976,15 @@ $(function () {
                 }
             })
             
+            <?php if(config_item('auto_category_display_fields') !== FALSE):?>
+            if($(this).val() == '' && index == '') {
+                var el = $(this).closest('.form-group');
+                parent_elem_hide.nextAll().addClass('hide')
+                parent_elem_hide.prevAll().addClass('hide')
+                return;
+            }
+            <?php endif;?>
+                
             if (typeof index_tree !== typeof undefined && index_tree !== false) {
               // include all parent elements
               $(this).parent().parent().find('select').each(function(){
@@ -874,6 +1003,11 @@ $(function () {
         });
         
         $("select[name='option<?php echo $d_field_id.'_'.$id_lang; ?>']").trigger('change');
+        
+        <?php if(config_item('auto_category_display_fields') !== FALSE):?>
+            $("input[rel][name='option<?php echo $d_field_id.'_'.$id_lang; ?>']").trigger('change');
+        <?php endif;?>
+        
         
         function hide_related_<?php echo $d_field_id.'_'.$id_lang; ?>(parent_elem, parent_elem_hide, index)
         {
@@ -1066,7 +1200,30 @@ $(function () {
                         load_by_field(select_element, true, s_values_splited);
                     }
                 }
+            })
+            .success(function(data){
+                <?php if(config_item('auto_category_display')=== TRUE):?>
+                //console.log(Object.keys(data.values_arr).length);
+                // For old browser
+                var count = 0;
+                var i;
+                for (i in data.values_arr) {
+                    if (data.values_arr.hasOwnProperty(i)) {
+                        count++;
+                    }
+                }
+                //count = object.keys(data.values_arr).length;
+                if(field_element.val() !='' &&  count > 1) {
+                    field_element.closest('.field-row').next().show();
+                } else {
+                    field_element.closest('.field-row').nextAll().hide();
+                }
+                <?php endif;?>
             });
+        } else {
+            <?php if(config_item('auto_category_display')=== TRUE):?>
+            field_element.closest('.field-row').nextAll().hide();
+            <?php endif;?>
         }
     }
     
@@ -1111,6 +1268,25 @@ $(function () {
                 $("#inputOption_"+s_lang_id+"_"+s_field_id).trigger('change');
             }
 
+        })
+        .success(function(data){
+            <?php if(config_item('auto_category_display')=== TRUE):?>
+            //console.log(Object.keys(data.values_arr).length);
+            // For old browser
+            var count = 0;
+            var i;
+            for (i in data.values_arr) {
+                if (data.values_arr.hasOwnProperty(i)) {
+                    count++;
+                }
+            }
+            //count = object.keys(data.values_arr).length;
+            if(field_element.val() !='' &&  count > 1) {
+                field_element.closest('.field-row').next().show();
+            } else {
+                field_element.closest('.field-row').nextAll().hide();
+            }
+            <?php endif;?>
         });
 
     }

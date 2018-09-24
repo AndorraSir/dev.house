@@ -69,6 +69,9 @@ class Page extends Admin_Controller
     public function edit($id = NULL)
 	{
 	    // Fetch a page or set a new one
+        
+        $this->data['edit_page_url']="";
+        $this->data['content_language_code'] = $this->language_m->get_code($this->data['content_language_id']);
 	    if($id)
         {
             $this->data['page'] = $this->page_m->get_lang($id, FALSE, $this->data['content_language_id']);
@@ -85,13 +88,16 @@ class Page extends Admin_Controller
                 // Update page with new repository_id
                 $this->page_m->save(array('repository_id'=>$repository_id_new), $this->data['page']->id);
             }
+            
+            $title = $this->data['page']->{'navigation_title_'.$this->data['content_language_id']};
+            $this->data['edit_page_url'] = site_url($this->data['content_language_code'].'/'.$this->data['page']->id.'/'.url_title_cro($title, '-', TRUE));
         }
         else
         {
             $this->data['page'] = $this->page_m->get_new();
         }
-
-		// Pages for dropdown
+        
+        // Pages for dropdown
         //$this->data['pages_no_parents'] = $this->page_m->get_no_parents($this->data['content_language_id']);
         $this->data['pages_no_parents'] = $this->page_m->get_no_parents_news($this->data['content_language_id'], 'No parent', $id);
         $this->data['page_languages'] = $this->language_m->get_form_dropdown('language');
@@ -166,14 +172,15 @@ class Page extends Admin_Controller
                 $data['date_publish'] = date('Y-m-d H:i:s');
             }
 
-            $id = $this->page_m->save_with_lang($data, $data_lang, $id);
-            
             if(config_db_item('slug_enabled') === TRUE)
             {
                 // save slug
                 $this->load->model('slug_m');
                 $this->slug_m->save_slug('page_m', $id, $data_lang, $data);
             }
+           
+            $id = $this->page_m->save_with_lang($data, $data_lang, $id);
+            
             
             $this->load->library('sitemap');
             $this->sitemap->generate_sitemap();
@@ -199,8 +206,18 @@ class Page extends Admin_Controller
             exit();
         }
        
-		$this->page_m->delete($id);
+        
+        if(config_item('results_page_id_enabled')!==FALSE && config_db_item('results_page_id')!==FALSE) {
+            if(config_db_item('results_page_id') == $id) {
+                $this->session->set_flashdata('error', lang_check('This is results page and should not be removed, first you need to change results page in settings'));
+                redirect('admin/page');
+            }
+        }
+        
+        
+            $this->page_m->delete($id);
         redirect('admin/page');
+        
 	}
     
 	public function parent_check($parent_id)

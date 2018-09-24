@@ -1,6 +1,5 @@
 ﻿<?php 
 
-$lang['test_my_lang'] = "It's only test ;-)";
 $lang[''] = "d";
 $lang['message_sent_successfully'] = "Het bericht werd succesvol verzonden.";
 $lang['message_sent_error'] = "Er tradt een probleem op";

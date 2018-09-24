@@ -1,6 +1,5 @@
 <?php 
 
-$lang['test_my_lang'] = "It's only test ;-)";
 $lang[''] = "";
 
 $lang['message_sent_successfully'] = "Message sent successfully, we will contact you as soon as possible";

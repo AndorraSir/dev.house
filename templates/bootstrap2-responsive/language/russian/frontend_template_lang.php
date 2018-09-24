@@ -1,6 +1,5 @@
 <?php 
 
-$lang['test_my_lang'] = "Тестовое поле";
 $lang[''] = "";
 
 $lang['message_sent_successfully'] = "Сообщение отправлено, мы свяжемся в ближайшее время";

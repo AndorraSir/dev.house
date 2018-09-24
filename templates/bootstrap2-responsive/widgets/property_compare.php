@@ -4,7 +4,7 @@ $session_compare=$this->session->userdata('property_compare');
 ?>
 
 <div class="widget widget-compare contact" >
-    <div class="title" id="form">
+    <div class="title">
         <h2 class="block-title"><?php echo lang_check('Compare');?></h2>
     </div><!-- /.title -->
 

@@ -19,6 +19,8 @@
         this.$marker = null;
         this.$markers = new Array();
         this.$places_markers = new Array();
+        this.$custom_places_markers = new Array();
+        this.$custom_categories = new Array();
         this.$directionsDisplay = null;
         this.$directionsService = new google.maps.DirectionsService();
         this.$infowindow;
@@ -48,6 +50,11 @@
             if(self.settings.mapOptions.radius < 0)
                 self.settings.mapOptions.radius = 0;
             
+            self.$custom_categories['default_health']=[];
+            self.$custom_categories['default_park']=[];
+            self.$custom_categories['default_petrolpump']=[];
+            self.$custom_categories['default_atmbank']=[];
+            self.$custom_categories['default_store']=[];
             
             this.generate_map();
             return self;
@@ -57,7 +64,7 @@
             var places = '';
             $.each(this.settings.places, function (index, place) {
                 if (typeof place.type !== 'indefined' && typeof place.icon !== 'indefined' && typeof place.title !== 'indefined')
-                    places += '<a class="btn btn-large" data-rel="' + place.type + '"><img src="' + place.icon + '" alt="' + place.type + '"/> ' + self.lang_check(place.title) + '</a>'
+                    places += '<a data-index="default_' + place.title.toLowerCase() + '" class="btn btn-large" data-rel="' + place.type + '"><img src="' + place.icon + '" alt="' + place.type + '"/> ' + self.lang_check(place.title) + '</a>'
             })
 
             var html = '\n\
@@ -178,7 +185,7 @@
                     anchor: new google.maps.Point(17, 34),
                     scaledSize: new google.maps.Size(25, 25)
                 };
-
+                
                 var marker = new google.maps.Marker({
                     map: self.$map,
                     icon: image,
@@ -215,7 +222,7 @@
             var _init_places = function (places_types, icon) {
                 var pyrmont = new google.maps.LatLng(param.ltng[0], param.ltng[1]);
                 _setAllMap(null);
-
+                
                 self.$generic_icon = icon;
 
                 var places_type_array = places_types.split(',');
@@ -240,7 +247,17 @@
 
             // init_gmap_searchbox();
             this.$element.find(".np_places_select a").on('click', function () {
+                //clear custom locatin markers
+                self.clearCustomPlaces();
+                //clear google locatin markers
+                self.clearPlaces();
                 _init_places($(this).attr('data-rel'), $(this).find('img').attr('src'));
+                var  cat = $(this).attr('data-index')
+                //add new locations via array
+                if (typeof self.$custom_categories[cat] != 'undefined')
+                $.each(self.$custom_categories[cat], function(key,val) {
+                    self.addLocation(val);
+                })
             });
 
             var selected_place_type = self.settings.mapOptions.default_place_id;
@@ -253,17 +270,166 @@
             this.setCenterByMarker();
         },
         
+        addLocation : function (param) {
+            var placeLoc = new google.maps.LatLng(param.ltng[0], param.ltng[1])
+            var propertyLocation = this.$marker.getPosition();
+
+            var self = this;
+            if (typeof param.ltng === 'undefined') {
+                console.log('Missing ltng, parametr must be param = array(ltng, address)')
+                return false;
+            }
+            
+            if (typeof param.address === 'undefined') {
+                param.address = self.getAddress(param.ltng);
+            }
+            if (typeof param.title === 'undefined') {
+                param.title = '';
+            }
+            
+
+            var marker = new google.maps.Marker({
+                position: placeLoc,
+                map: this.$map,
+                icon: param.icon || ''
+            });
+            
+            self.$custom_places_markers.push(marker);
+             
+            var _calcRoute = function (source_place, dest_place) {
+                var selectedMode = 'WALKING';
+                var request = {
+                    origin: source_place,
+                    destination: dest_place,
+                    // Note that Javascript allows us to access the constant
+                    // using square brackets and a string value as its
+                    // "property."
+                    travelMode: google.maps.TravelMode[selectedMode]
+                };
+
+                self.$directionsService.route(request, function (response, status) {
+                    if (status == google.maps.DirectionsStatus.OK) {
+                        self.$directionsDisplay.setDirections(response);
+                        //console.log(response.routes[0].legs[0].distance.value);
+                    }
+                });
+            }
+            
+            var _calcDistance = function (p1, p2) {
+                return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
+            }
+            var distanceKm = (_calcDistance(propertyLocation, placeLoc) * 1.2).toFixed(2);
+            var walkingTime = parseInt((distanceKm / 5) * 60 + 0.5, 10);
+
+            google.maps.event.addListener(marker, 'click', function () {
+
+                //drawing route
+                _calcRoute(propertyLocation, placeLoc);
+
+                // Fetch place details
+
+                //open popup infowindow
+                self.$infowindow.setContent(param.title +'<br />' + param.address+'<br />' + self.lang_check('Distance') + ': ' + distanceKm + 'Km' +
+                        '<br />' + self.lang_check('WalkingTime') + ': ' + walkingTime + 'Min' +
+                        '<br /><a target="_blank" href="//maps.google.hr/maps?saddr=&daddr='+param.ltng[0]+','+param.ltng[1]+'">' + self.lang_check('Details') + '</a>');
+                self.$infowindow.open(self.$map, marker);
+
+            });
+        },
+        
+        addCustomCategory : function(param){
+            
+            var self = this;
+            if (typeof param.title === 'undefined') {
+                console.log('Missing title in param')
+                return false;
+            }
+            
+            if (typeof param.index === 'undefined') {
+                console.log('Missing index in param')
+                return false;
+            }
+            
+            if (typeof self.$custom_categories[param.index] != 'undefined') {
+                console.log('Index exists')
+                return false;
+            }
+            
+            self.$custom_categories[param.index]=[];
+            
+            var img ='';
+            if (typeof param.icon !== 'undefined') {
+                img = '<img src="' + param.icon + '" alt="' + param.title + '" width="20px" height="20px"/>'
+            }
+            
+            var place = '<a class="btn btn-large" data-rel="' + param.index + '">'+ img+ ' ' + param.title + '</a>'
+            var list = self.$element.find('.np_places_select')
+            $(place).appendTo(list).click(function(e){
+                e.preventDefault();
+                
+                //clear custom locatin markers
+                self.clearCustomPlaces();
+                //clear google locatin markers
+                self.clearPlaces();
+
+                //add new locations via array
+                $.each(self.$custom_categories[param.index], function(key,val) {
+                    self.addLocation(val);
+                })
+            })
+            
+        },
+        
+        addLocationTo : function(param){
+            
+            var self = this;
+
+            if (typeof param.index === 'undefined') {
+                console.log('Missing index in param')
+                return false;
+            }
+
+            if (typeof param.location === 'undefined') {
+                console.log('Missing location in param')
+                return false;
+            }
+
+            if (typeof self.$custom_categories[param.index] === 'undefined') {
+                console.log('Missing category, please first add category via addCustomCategory')
+                return false;
+            }
+            self.$custom_categories[param.index].push(param.location);
+            
+        },
+        
+        clearCustomCategory : function(param){
+            var self = this;
+            if (typeof param.index === 'undefined') {
+                console.log('Missing index in param')
+                return false;
+            }
+            if (typeof self.$custom_categories[param.index] === 'undefined') {
+                console.log('Missing index in categories')
+                return false;
+            }
+            self.$custom_categories[param.index]=[];
+        },
+        
         /* return addess */
         getAddress: function(gps){
             var latlng =gps[0]+","+gps[1];
             var address = '';
-            var url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + latlng + "&sensor=false";
+            var url = "//maps.googleapis.com/maps/api/geocode/json?latlng=" + latlng + "&sensor=false";
             $.ajax({
                 url: url,
                 async: false,
                 dataType: 'json',
                 success: function (data) {
-                  address = data.results[0].formatted_address;
+                    if(typeof data.results != 'undefined' && typeof data.results[0] != 'undefined' && typeof data.results[0].formatted_address  != 'undefined' )
+                        address = data.results[0].formatted_address;
+                    else {
+                        console.log(data.status)
+                    }
                 }
               });
             return address; 
@@ -285,12 +451,19 @@
         clearMap: function () {
             this.$element.find(".np_places_select a").unbind('click');
             this.setAllMapPlaces(null);
+            this.clearCustomPlaces(null);
             this.clearRout(null);
             this.setAllMap(null);
         },
         clearPlaces: function () {
             this.clearRout();
             this.setAllMapPlaces(null);
+        },
+        clearCustomPlaces: function () {
+            this.clearRout();
+            for (var i = 0; i < this.$custom_places_markers.length; i++) {
+                this.$custom_places_markers[i].setMap(null);
+            }
         },
         destroy: function () {
             this.$element.remove();

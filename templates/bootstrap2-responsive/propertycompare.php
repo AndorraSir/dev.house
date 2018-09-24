@@ -2,7 +2,7 @@
 <html lang="{lang_code}">
   <head>
     <?php _widget('head');?>
-    <script language="javascript">
+    <script>
     $(document).ready(function(){
 
     });    
@@ -11,7 +11,6 @@
 
   <body>
   
-<a name="top-page"></a>
 <div class="always-top">
 <?php $c_code = config_item('codecanyon_code'); if(empty($c_code)): ?>
 <div class="top-wrapper">
@@ -27,7 +26,7 @@
 
 <?php if(config_item('cookie_warning_enabled') === TRUE): ?>
 
-<script type="text/javascript">
+<script>
     
 function displayNotification(c_action) {
 
@@ -56,7 +55,7 @@ function displayNotification(c_action) {
 
 <div class="top-wrapper">
       <div class="container">
-            <script src="assets/js/cookiewarning4.js" language="JavaScript" type="text/javascript"></script>
+            <script src="assets/js/cookiewarning4.js"></script>
       </div> <!-- /.container -->
 </div>
 <?php endif; ?>
@@ -72,7 +71,7 @@ function displayNotification(c_action) {
 
 <?php _subtemplate('headers', _ch($subtemplate_header, 'empty')); ?>
 
-<a name="content" id="content"></a>
+<a id="content"></a>
 <div class="wrap-content">
     <div class="container">
      <div id="main">
@@ -101,7 +100,7 @@ function displayNotification(c_action) {
                         </td>
                         <?php foreach ($property_compare['thumbnail_url']['values'] as $k => $val):?>
                         <td style="text-align:center">
-                            <img src='<?php echo _simg($val, '150x100')?>'/>
+                            <img src='<?php echo _simg($val, '150x100')?>' alt=""/>
                         </td>
                         <?php endforeach; ?>
                     </tr>

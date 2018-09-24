@@ -2,7 +2,7 @@
 {has_ads_728x90px}
 <div class="wrap-content2">
     <div class="container ads">
-        <a href="{random_ads_728x90px_link}" target="_blank"><img src="{random_ads_728x90px_image}" /></a>
+        <a href="{random_ads_728x90px_link}" target="_blank"><img src="{random_ads_728x90px_image}" alt="" /></a>
     </div>
 </div>
 {/has_ads_728x90px}

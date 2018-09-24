@@ -497,7 +497,7 @@ class Page_m extends MY_Model {
 		$query = $this->db->get();
         $pages = $query->result_array();
         
-		$array = array();
+        $array = array();
         $tmp_arr = array();
 		foreach ($pages as $page) {
 			if (! $page['parent_id']) {
@@ -505,8 +505,10 @@ class Page_m extends MY_Model {
 				$array[$page['id']] = $page;
 			}
 			else {
-				// This is a child page
-                $array[$page['parent_id']]['children'][] = $page;
+                            // This is a child page
+                            // show only 2x lvl
+                            if(isset( $array[$page['parent_id']]))
+                                $array[$page['parent_id']]['children'][] = $page;
 			}
 		}
 		return $array;

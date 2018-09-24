@@ -1,3 +1,41 @@
+<?php if(empty($settings['maps_api_key'])):?>
+<div class="col-md-12">
+    <br/>
+    <div class="alert alert-warning alert-dismissible fade in">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+       <?php echo lang_check('To use script please enter google maps api key in ');?> <a href="<?php echo site_url('admin/settings/system');?>"> <?php echo lang_check('settings->system settings, add key');?>.</a> <a href="http://iwinter.com.hr/support/?p=17200"><strong><?php echo lang_check('All details here');?></strong></a>
+    </div>
+</div>
+<?php endif;?>
+<?php 
+
+if($settings_template=='local') {
+    $tree_field_id = 79;
+    $CI = & get_instance();
+    $values = array();
+    $CI->load->model('treefield_m');
+    $CI->load->model('file_m');
+    $check_option = $CI->treefield_m->get_lang(NULL, FALSE, $content_language_id);
+    foreach ($check_option as $key => $value) {
+        if($value->field_id==$tree_field_id){
+            $icon = 'assets/img/markers/piazza.png';
+            // Thumbnail and big image
+            if(!empty($value->image_filename))
+            {
+                $files_r = $CI->file_m->get_by(array('repository_id' => $value->repository_id),FALSE, 5,'id ASC');
+                // check second image
+                if($files_r and isset($files_r[1]) and file_exists(FCPATH.'files/thumbnail/'.$files_r[1]->filename)) {
+                    $icon = base_url('files/'.$files_r[1]->filename);
+                }
+            }
+            $values[$value->value_path.' -']= $icon;
+        }
+    }
+}
+
+?>
+
+
 
     <!-- Page heading -->
     <div class="page-head">
@@ -62,7 +100,7 @@
                   <div class="clearfix"></div>
                 </div>
 
-                  <div class="widget-content">
+                  <div class="widget-content widget-pages">
                     <!-- Nested Sortable -->
                     <div id="orderResult">
                     <?php echo get_ol_pages($pages_nested)?>
@@ -150,7 +188,19 @@
 
                   <div class="widget-content">
 
-                
+                    <table class="table table-bordered footable">
+                      <thead>
+                        <tr>
+                        	<th data-hide="phone"><?php _l('Date');?></th>
+                            <th><?php _l('Title');?></th>
+                        </tr>
+                      </thead>
+                      <tbody id="script_news_table">
+                        <tr>
+                        	<td colspan="5"><?php _l('Loading in progress');?></td>
+                        </tr>      
+                      </tbody>
+                    </table>
 <script type="text/javascript">
 $(function () {
     
@@ -230,6 +280,10 @@ $(function () {
       .marker.brown {
         background-color: #795548; }
      /* end realsite marker */  
+        .leaflet-container .leaflet-marker-pane img {
+            max-width: 20px !important;
+            max-height: 22px !important;
+        }
     <?php  elseif($settings_template=='realocation') :?>
         /* realocation */
        .marker {
@@ -245,11 +299,17 @@ $(function () {
           width: 40px;
           line-height: 34px;
         }
+        
         .marker img {
              width: 20px;
              filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
              opacity: 0.7;
          }
+         
+        .leaflet-container .leaflet-marker-pane img {
+            max-width: 20px !important;
+            max-height: 22px !important;
+        }
     /* end realocation */
     <?php  elseif($settings_template=='bootstrap4') :?>
         .marker {
@@ -288,11 +348,12 @@ $(function () {
             border-radius: 15px 15px 25px 0;
         } 
 
+        .leaflet-container .leaflet-marker-pane img,
         .marker img {
             position: absolute;
             z-index: 2;
-            max-width: 20px;
-            max-height: 22px;
+            max-width: 20px !important;
+            max-height: 22px !important;
             left: 50%;
             transform: translateX(-50%);
             top: 7px;
@@ -318,7 +379,10 @@ $(function () {
         width: 27px;
     }
     /* end realia */
-    
+    .leaflet-container .leaflet-marker-pane img {
+            max-width: 28px !important;
+            max-height: 27px !important;
+        }
     <?php  elseif($settings_template=='rento') :?>
     /* rento */
     .marker {
@@ -359,7 +423,54 @@ $(function () {
     .marker:before {
         background: #f44336;
     }
+        .leaflet-container .leaflet-marker-pane img {
+            max-width: 20px !important;
+            max-height: 22px !important;
+        }
+    /* end rento */
+    
+    <?php  elseif($settings_template=='local') :?>
+    /* rento */
 
+        .marker {
+          position: relative;
+          cursor: pointer;
+          width: 40px;
+          height: 40px;
+        }
+
+        .marker:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 40px;
+          height: 40px;
+          box-shadow: -3px 0 5px 0 rgba(0, 0, 0, 0.3);
+          display: block;
+          transition: all 0.2s ease-in-out;
+          border-radius: 50% 50% 0 50%;
+          background: #DA3743;
+          -webkit-transform: rotate(45deg);
+             -moz-transform: rotate(45deg);
+               -o-transform: rotate(45deg);
+                  transform: rotate(45deg);
+          cursor: pointer;
+        }
+
+        .marker img {
+          position: absolute;
+          z-index: 2;
+          max-width: 20px;
+          max-height: 22px;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          top: 50%;
+        }
+        .leaflet-container .leaflet-marker-pane img {
+            max-width: 20px !important;
+            max-height: 22px !important;
+        }
     /* end rento */
     <?php endif;?>
 </style> 
@@ -369,6 +480,94 @@ $(function () {
         $(function () {
             var pictureLabel = document.createElement("img");
                 pictureLabel.src = '<?php echo base_url('admin-assets/img/markers/marker_blue.png');?>';
+                
+            <?php if(config_db_item('map_version') =='open_street'):?>  
+                
+                map = L.map('mapsProperties', {
+                   <?php if(config_item('custom_map_center') === FALSE): ?>
+                   center: [<?php echo calculateCenter($estates)?>],
+                   <?php else: ?>
+                   center: [<?php echo config_item('custom_map_center'); ?>],
+                   <?php endif; ?>
+                   zoom: <?php _che($settings['zoom_dashboard'], 9);?>,
+                   scrollWheelZoom: false,
+                });     
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+
+                var positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png').addTo(map);
+
+                <?php if(count($estates_all)): foreach($estates_all as $estate):?>
+                   <?php
+                       
+                        // skip if gps is not defined
+                        if(empty($estate->gps))continue;
+
+                        $icon_url = base_url('admin-assets/img/markers/marker_blue.png');
+
+                        if(file_exists(FCPATH.'templates/'.$settings_template.'/assets/img/markers/marker_blue.png')) {
+                            $icon_url = base_url('templates/'.$settings_template.'/assets/img/markers/marker_blue.png');
+                        }elseif(file_exists(FCPATH.'templates/'.$settings_template.'/assets/img/icons/marker_blue.png'))
+                            $icon_url = base_url('templates/'.$settings_template.'/assets/img/icons/marker_blue.png');
+
+                        $value = $this->estate_m->get_field_from_listing($estate, 6);
+
+                        if($settings_template=='local') {
+                            $value = $this->estate_m->get_field_from_listing($estate, 79);
+                            $icon_url = '';
+                            if(!empty($value) && isset($values[$value])){
+                                $icon_url = $values[$value];
+                            }
+                        } else {
+                            if(isset($value))
+                            {
+                                if($value != '' && $value != 'empty')
+                                {
+                                   if(file_exists(FCPATH.'templates/'.$settings_template.'/assets/img/markers/'.$value.'.png'))
+                                    $icon_url = base_url('templates/'.$settings_template.'/assets/img/markers/'.$value.'.png');
+                                   elseif(file_exists(FCPATH.'templates/'.$settings_template.'/assets/img/icons/'.$value.'.png'))
+                                    $icon_url = base_url('templates/'.$settings_template.'/assets/img/icons/'.$value.'.png');
+                                }
+                            }
+                        }
+
+                        $marker_transparent = base_url('templates/'.$settings_template.'/assets/img/marker-transparent.png');
+                       
+                        $data = strip_tags($estate->address);
+                        foreach($this->option_m->get_visible($content_language_id) as $row):
+                            $value = $this->estate_m->get_field_from_listing($estate, $row->option_id);
+                            if($row->type == 'DROPDOWN')
+                            {
+                                isset($value)? $data .='<br/><span class=\\"label label-warning\\">'.htmlentities(strip_tags($value), ENT_QUOTES, "UTF-8").'</span>':'';
+                            }
+                            else
+                            {
+                                isset($value)? $data .='<br />'.htmlentities(strip_tags($value), ENT_QUOTES, "UTF-8"):'';
+                            }
+                        endforeach;
+                        $data .= '<br/><a style=\\"font-weight:bold;\\" href=\\"'.site_url('admin/estate/edit/'.$estate->id).'\\">'.lang('Edit').'</a>';
+                   ?>
+                           
+                   var marker = L.marker(
+                       [<?php _che($estate->gps); ?>],
+                       {icon: L.divIcon({
+                               html: '<div class=\"marker  <?php echo $value;?>-mark-color\"><img src=\"<?php echo $icon_url;?>\"></div>',
+                               className: 'open_steet_map_marker',
+                               iconSize: [31, 46],
+                               popupAnchor: [1, -35],
+                               iconAnchor: [15, 45],
+                           })
+                       }
+                   )/*.addTo(map)*/;
+                   marker.bindPopup('<?php _che($data);?>');
+                   clusters.addLayer(marker);
+                   markers.push(marker);
+                <?php endforeach; ?>
+                <?php endif;?>
+                map.addLayer(clusters);
+                
+            <?php else:?>
             $("#mapsProperties").gmap3({
                 defaults:{ 
                     classes:{
@@ -382,7 +581,7 @@ $(function () {
                 <?php else: ?>
                  center: [<?php echo config_item('custom_map_center'); ?>],
                 <?php endif; ?>
-                 zoom: 8,
+                 zoom: <?php _che($settings['zoom_dashboard'], 9);?>,
                  scrollwheel: false
                 }
              },
@@ -394,18 +593,32 @@ $(function () {
                     if(empty($estate->gps))continue;
                     
                     $icon_url = base_url('admin-assets/img/markers/marker_blue.png');
+                    
+                    if(file_exists(FCPATH.'templates/'.$settings_template.'/assets/img/markers/marker_blue.png')) {
+                        $icon_url = base_url('templates/'.$settings_template.'/assets/img/markers/marker_blue.png');
+                    }elseif(file_exists(FCPATH.'templates/'.$settings_template.'/assets/img/icons/marker_blue.png'))
+                        $icon_url = base_url('templates/'.$settings_template.'/assets/img/icons/marker_blue.png');
+                    
                     $value = $this->estate_m->get_field_from_listing($estate, 6);
                     
-                    if(isset($value))
-                    {
-                        if($value != '' && $value != 'empty')
+                    if($settings_template=='local') {
+                        $value = $this->estate_m->get_field_from_listing($estate, 79);
+                        $icon_url = '';
+                        if(!empty($value) && isset($values[$value])){
+                            $icon_url = $values[$value];
+                        }
+                    } else {
+                        if(isset($value))
                         {
-                           /* if(file_exists(FCPATH.'admin-assets/img/markers/'.$value.'.png'))
-                            $icon_url = base_url('admin-assets/img/markers/'.$value.'.png');*/
-                           if(file_exists(FCPATH.'templates/'.$settings_template.'/assets/img/markers/'.$value.'.png'))
-                            $icon_url = base_url('templates/'.$settings_template.'/assets/img/markers/'.$value.'.png');
-                           elseif(file_exists(FCPATH.'templates/'.$settings_template.'/assets/img/icons/'.$value.'.png'))
-                            $icon_url = base_url('templates/'.$settings_template.'/assets/img/icons/'.$value.'.png');
+                            if($value != '' && $value != 'empty')
+                            {
+                               /* if(file_exists(FCPATH.'admin-assets/img/markers/'.$value.'.png'))
+                                $icon_url = base_url('admin-assets/img/markers/'.$value.'.png');*/
+                               if(file_exists(FCPATH.'templates/'.$settings_template.'/assets/img/markers/'.$value.'.png'))
+                                $icon_url = base_url('templates/'.$settings_template.'/assets/img/markers/'.$value.'.png');
+                               elseif(file_exists(FCPATH.'templates/'.$settings_template.'/assets/img/icons/'.$value.'.png'))
+                                $icon_url = base_url('templates/'.$settings_template.'/assets/img/icons/'.$value.'.png');
+                            }
                         }
                     }
                     
@@ -414,19 +627,37 @@ $(function () {
                     echo '{latLng:['.$estate->gps.'], ';
                     
                     // HTML MARKER;
-                    if($settings_template=='realsite' || $settings_template=='bootstrap4' ||  $settings_template=='worlddealer' || $settings_template=='realocation' || $settings_template=='realia'|| $settings_template=='disabled-cityguide'){  
+                    if($settings_template=='realsite' ||  $settings_template=='worlddealer' || $settings_template=='realocation' || $settings_template=='disabled-cityguide'){  
                     echo 'options:{ icon: "'.$marker_transparent.'", 
-                                labelAnchor: new google.maps.Point(18,0),
+                                labelAnchor: new google.maps.Point(20,50),
+                                labelClass: "labels-marker ",
+                                labelContent: "<div class=\"marker  '.$value.'-mark-color\"><img src=\"'.$icon_url.'\"></div>"
+                                    },';
+                    } elseif($settings_template=='realia'){  
+                    echo 'options:{ icon: "'.$marker_transparent.'", 
+                                labelAnchor: new google.maps.Point(20,60),
+                                labelClass: "labels-marker ",
+                                labelContent: "<div class=\"marker  '.$value.'-mark-color\"><img src=\"'.$icon_url.'\"></div>"
+                                    },';
+                    } elseif($settings_template=='bootstrap4'){  
+                    echo 'options:{ icon: "'.$marker_transparent.'", 
+                                labelAnchor: new google.maps.Point(18,50),
                                 labelClass: "labels-marker ",
                                 labelContent: "<div class=\"marker  '.$value.'-mark-color\"><img src=\"'.$icon_url.'\"></div>"
                                     },';
                     } elseif($settings_template=='rento'){  
                     echo 'options:{ icon: "'.$marker_transparent.'", 
-                                labelAnchor: new google.maps.Point(20,0),
+                                labelAnchor: new google.maps.Point(20,25),
                                 labelClass: "labels-marker ",
                                 labelContent: "<div class=\"marker  '.$value.'-mark-color\"><img src=\"'.$icon_url.'\"></div>"
                                     },';
-                   } else {
+                   } elseif($settings_template=='local'){  
+                    echo 'options:{ icon: "'.$marker_transparent.'", 
+                                labelAnchor: new google.maps.Point(20,50),
+                                labelClass: "labels-marker ",
+                                labelContent: "<div class=\"marker  '.$value.'-mark-color\"><img src=\"'.$icon_url.'\"></div>"
+                                    },';
+                   }else {
                         echo 'options:{ icon: "'.$icon_url.'"},'; 
                     }
                     echo 'data:"'.strip_tags($estate->address);
@@ -474,5 +705,7 @@ $(function () {
             }
              }
             });
+            <?php endif;?>
+            
         });
     </script>

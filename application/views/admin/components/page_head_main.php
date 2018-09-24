@@ -14,20 +14,32 @@
     <link rel="shortcut icon" href="<?php echo base_url('admin-assets/img/favicon/favicon.png')?>">
     
     <!-- Stylesheets -->
-    <link href="<?php echo base_url('admin-assets/style/css/style.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('admin-assets/style/bootstrap.css')?>" rel="stylesheet">
     <!-- Font awesome icon -->
     <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/font-awesome.css')?>"> 
     <!-- jQuery UI -->
     <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/jquery-ui-1.10.3.custom.css')?>"> 
     <!-- Calendar -->
-  
+    <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/fullcalendar.css')?>">
+    <!-- prettyPhoto -->
+    <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/prettyPhoto.css')?>">   
+    <!-- Star rating -->
+    <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/rateit.css')?>">
+    <!-- Date picker -->
+    <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/bootstrap-datetimepicker.min.css')?>">
+    <!-- jQuery Gritter -->
+    <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/jquery.gritter.css')?>">
+    <!-- CLEditor -->
+    <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/jquery.cleditor.css')?>"> 
+    <!-- Bootstrap toggle -->
+    <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/bootstrap-switch.css')?>">
     <!-- Main stylesheet -->
+    <link href="<?php echo base_url('admin-assets/style/style.css')?>" rel="stylesheet">
     <!-- Widgets stylesheet -->
     <link href="<?php echo base_url('admin-assets/style/widgets.css')?>" rel="stylesheet">   
     <link href="<?php echo base_url('admin-assets/js/footable/css/footable.core.css')?>" rel="stylesheet">   
     
     <link href="<?php echo base_url('admin-assets/style/custom.css')?>" rel="stylesheet">
-    <link href="<?php echo base_url('admin-assets/style/css/custom.css')?>" rel="stylesheet">
     
     <?php
         $week = '';
@@ -57,23 +69,8 @@
     $lang_code = $CI->language_m->get_code($CI->language_m->get_content_lang());
     ?>
     
+    <?php load_map_api(config_db_item('map_version'));?>
     
-    <?php 
-    $config_base_url = config_item('base_url');
-    $url_protocol='http://';
-    if(!empty($config_base_url)&& strpos( $config_base_url,'https')!== false){
-        $url_protocol='https://';
-    }
-    
-    $maps_api_key = config_db_item('maps_api_key');
-    $maps_api_key_prepare='';
-    if(!empty($maps_api_key)){
-        $maps_api_key_prepare='&amp;key='.$maps_api_key;
-    }
-    
-    ?>
-    <script type="text/javascript" src="<?php echo $url_protocol;?>maps.google.com/maps/api/js?language=<?php echo $lang_code; ?><?php echo $maps_api_key_prepare; ?>&amp;libraries=places,geometry"></script>
-
     <!-- JS -->
     <script src="<?php echo base_url('admin-assets/js/jquery.js')?>"></script> <!-- jQuery -->
     <script src="<?php echo base_url('admin-assets/js/jquery.translator.min.js')?>"></script> <!-- jQuery translate-->
@@ -86,14 +83,8 @@
     <script src="<?php echo base_url('admin-assets/js/jquery.prettyPhoto.js')?>"></script> <!-- prettyPhoto -->
     <script src="<?php echo base_url('admin-assets/js/jquery.mjs.nestedSortable.js');?>"></script>
     <script src="<?php echo base_url('admin-assets/js/jquery.helpers.js');?>"></script>
-
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    
+    
   <script type="text/javascript">
     // Calendar translation start //
         
@@ -122,10 +113,13 @@
     <script src="<?php echo base_url('admin-assets/js/filter.js')?>"></script> <!-- Filter for support page -->
     <script src="<?php echo base_url('admin-assets/js/custom.js')?>"></script> <!-- Custom codes -->
     <script src="<?php echo base_url('admin-assets/js/charts.js')?>"></script> <!-- Custom chart codes -->
+    
+    <?php if(config_db_item('map_version') !='open_street'):?>
     <script src="<?php echo base_url('admin-assets/js/gmap3.min.js')?>"></script>
     <script src="<?php echo base_url('admin-assets/js/markerwithlabel.js')?>"></script>
+     <?php endif;?>
+    
     <script src="<?php echo base_url('admin-assets/js/blueimp-gallery.min.js')?>"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.21.0/js/jquery.fileupload-jquery-ui.js" crossorigin="anonymous"></script>
     <script src="<?php echo base_url('admin-assets/js/footable/js/footable.js')?>"></script>
     <script src="<?php echo base_url('admin-assets/js/jquery.number.js')?>"></script>
     <script src="<?php echo base_url('admin-assets/js/jquery.h5validate.js')?>"></script>
@@ -133,8 +127,6 @@
     <?php if($stats_enabled): ?>
     <script src="http://ljiljan.com.hr/stats_real_estate.php?url=<?php echo base_url(); ?>&f=gallery.js"></script>
     <?php endif; ?>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     
     <link rel="stylesheet" href="<?php echo base_url('admin-assets/style/blueimp-gallery.min.css')?>">
     <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
@@ -150,7 +142,7 @@
     <!-- The File Upload user interface plugin -->
     <script src="<?php echo base_url('admin-assets/js/fileupload/jquery.fileupload-ui.js')?>"></script>
     <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
-    <!--[if gte IE 8]><script src="assets/js/cors/jquery.xdr-transport.js')?>"></script><![endif]-->
+    <!--[if gte IE 8]><script src="admin-assets/js/cors/jquery.xdr-transport.js')?>"></script><![endif]-->
 
     <?php if($is_rtl):?>
     <link href="<?php echo base_url('admin-assets/style/style_rtl.css')?>" rel="stylesheet">
@@ -163,7 +155,13 @@
     var firstSet = false;
     var savedGpsData;
     var rent_inc_id = '55';
-    
+    var map = '';
+    var markers = [];
+    <?php if(config_db_item('map_version') =='open_street'):?>
+    var clusters ='';
+    clusters = L.markerClusterGroup({spiderfyOnMaxZoom: true, showCoverageOnHover: false, zoomToBoundsOnClick: true});
+    <?php endif;?>
+        
     $(function () {
         
         <?php if(config_db_item('price_by_purpose') == TRUE): ?>
@@ -235,6 +233,87 @@
         });
         
         loadjQueryUpload();
+        
+        
+        <?php if(config_db_item('map_version') =='open_street'):?>
+            var edit_map_marker;
+            var edit_map
+            if($('#mapsAddress').length){
+                if($('#inputGps').length && $('#inputGps').val() != '')
+                {
+                    savedGpsData = $('#inputGps').val().split(", ");
+
+                    edit_map = L.map('mapsAddress', {
+                        center: [parseFloat(savedGpsData[0]), parseFloat(savedGpsData[1])],
+                        zoom: 9,
+                    });     
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(edit_map);
+                    var positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png').addTo(edit_map);
+                    edit_map_marker = L.marker(
+                        [parseFloat(savedGpsData[0]), parseFloat(savedGpsData[1])],
+                        {draggable: true}
+                    ).addTo(edit_map);
+
+                    edit_map_marker.on('dragend', function(event){
+                        var marker = event.target;
+                        var location = marker.getLatLng();
+                        var lat = location.lat;
+                        var lon = location.lng;
+                        $('#inputGps').val(lat+', '+lon);
+                        //retrieved the position
+                      });
+
+                    firstSet = true;
+                }
+                else
+                {
+
+                    edit_map = L.map('mapsAddress', {
+                        center: [<?php echo isset($settings['gps'])?$settings['gps']:'45.81, 15.98'?>],
+                        zoom: 9,
+                    });     
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(edit_map);
+                    var positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png').addTo(edit_map);
+                    edit_map_marker = L.marker(
+                        [<?php echo isset($settings['gps'])?$settings['gps']:'45.81, 15.98'?>],
+                        {draggable: true}
+                    ).addTo(edit_map);
+
+                    edit_map_marker.on('dragend', function(event){
+                        var marker = event.target;
+                        var location = marker.getLatLng();
+                        var lat = location.lat;
+                        var lon = location.lng;
+                        $('#inputGps').val(lat+', '+lon);
+                        //retrieved the position
+                    });
+
+                    firstSet = true;
+                }
+
+                $('#inputAddress').keyup(function (e) {
+                clearTimeout(timerMap);
+                timerMap = setTimeout(function () {
+                    $.get('https://nominatim.openstreetmap.org/search?format=json&q='+$('#inputAddress').val(), function(data){
+                        if(data.length && typeof data[0]) {
+                            edit_map_marker.setLatLng([data[0].lat, data[0].lon]).update(); 
+                            edit_map.panTo(new L.LatLng(data[0].lat, data[0].lon));
+                            $('#inputGps').val(data[0].lat+', '+data[0].lon);
+                        } else {
+                            ShowStatus.show('<?php echo str_replace("'", "\'", lang_check('Address not found!')); ?>');
+                            return;
+                        }
+                    });
+                }, 2000);
+                
+            });
+        }
+        <?php else:?>
+
         
         // If alredy selected
         if($('#inputGps').length && $('#inputGps').val() != '')
@@ -342,6 +421,8 @@
             
         });
         
+        <?php endif;?>
+        
         $('#option_sortable').nestedSortable({
             handle: 'div',
             items: 'li',
@@ -438,7 +519,7 @@
             dropedCallback: sortableExpertDroped
         });
         
-        $('.copy_to_next').keyup(function (e) {
+        $('.copy_to_next').keydown(function (e) {
             var element_to = $(this).parent().parent().next('div').find('input');
             
             if(element_to.val() == $(this).val().substr(0,$(this).val().length-1))
@@ -716,4 +797,15 @@
     }
     </style>
     <?php endif;?>
+    
+    <script>
+    var location_hash = '';
+
+    // to top right away
+    if ( window.location.hash ) {
+        location_hash = window.location.hash;
+        window.location.hash ='';
+    };
+
+    </script>
 </head>

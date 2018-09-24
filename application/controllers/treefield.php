@@ -217,7 +217,7 @@ class Treefield extends Frontend_Controller
             }
             else
             {
-                $estate['thumbnail_url'] = 'admin-assets/img/no_image.jpg';
+                $estate['thumbnail_url'] = 'assets/img/no_image.jpg';
             }
 
             $this->data['last_estates'][] = $estate;
@@ -430,6 +430,10 @@ class Treefield extends Frontend_Controller
         
         $search_array = $search_json;
         
+        if(empty($search_array)) {
+            $search_array = new stdClass();
+        }
+        
         if(!empty($this->data['search_query']))
         {
             $search_array->search_option_smart = 
@@ -438,7 +442,7 @@ class Treefield extends Frontend_Controller
         
 
         // add treefield value
-        $search_array['v_search_option_'.$field_id] = $this->data['value_path'].' - ';
+        $search_array->{'v_search_option_'.$field_id} = $this->data['value_path'].' - ';
         //$search_array['v_search_option_88'] = $this->data['value_path'].' - ';
         
         if(!empty($lang_purpose))
@@ -528,14 +532,14 @@ class Treefield extends Frontend_Controller
                 if(substr_count($tempFile, $template_prefix) == 0)
                 {
                     $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
-                    //$template_output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
+                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
                     $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
                 }
             }
         }
 
         $output = $this->parser->parse($this->data['settings_template'].'/'.$this->data['treefield_data']->template.'.php', $this->data, TRUE);
-        echo str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
     }
 
 }

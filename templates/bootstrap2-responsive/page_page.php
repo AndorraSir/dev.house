@@ -2,7 +2,7 @@
 <html lang="{lang_code}">
   <head>
     <?php _widget('head');?>
-    <script language="javascript">
+    <script>
     $(document).ready(function(){
 
     });    
@@ -16,7 +16,7 @@
 <?php _subtemplate('headers', _ch($subtemplate_header, 'empty')); ?>
 
 <?php _widget('top_ads');?>
-<a name="content" id="content"></a>
+<a id="content"></a>
 <div class="wrap-content">
     <div class="container">
     

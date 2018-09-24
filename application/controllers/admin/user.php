@@ -824,7 +824,7 @@ class User extends Admin_Controller
                 $this->user_m->save($data, $user_id);
                 
                 if(!empty($data['phone']) &&
-                   config_db_item('clickatell_api_id') != FALSE && config_db_item('phone_verification_enabled') === TRUE && 
+                   (config_db_item('clickatell_api_id') != FALSE || config_db_item('clickatell_api_key') != FALSE) && config_db_item('phone_verification_enabled') === TRUE && 
                    file_exists(APPPATH.'libraries/Clickatellapi.php'))
                 {
                     $data['phone_verified'] = 0;

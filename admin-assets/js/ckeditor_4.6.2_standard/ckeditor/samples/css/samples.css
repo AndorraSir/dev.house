@@ -197,7 +197,7 @@ html {
   line-height: 1.13rem;
   line-height: 30px;
   float: left;
-  color: #1a1a1a;
+  color: #ddd;
   font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
@@ -1417,7 +1417,7 @@ div.toolbarModifier > ul > li ul li {
   line-height: 1;
 }
 div.toolbarModifier > ul > li ul li[data-type="subgroup"] {
-  border-top: 1px solid #1a1a1a;
+  border-top: 1px solid #ddd;
 }
 div.toolbarModifier > ul > li ul li[data-type="subgroup"]:first-child {
   border-top: 0;
@@ -1460,7 +1460,7 @@ div.toolbarModifier > ul > li ul li ul li .cke_combo_button {
   cursor: pointer;
   margin: 0;
   vertical-align: middle;
-  border: 1px solid #1a1a1a;
+  border: 1px solid #ddd;
   font-size: 11.41px;
   font-size: 0.713rem;
   line-height: 20.54px;
@@ -1483,7 +1483,7 @@ div.toolbarModifier-hints h3 {
   line-height: 2.03rem;
   padding: 0.36em 1.5em;
   background: #f5f5f5;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid #ddd;
   margin-top: 0;
   margin-bottom: 1.2em;
 }
@@ -1504,7 +1504,7 @@ div.toolbarModifier-hints dl dt {
   width: 9em;
   clear: both;
   text-align: right;
-  border-top: 1px solid #1a1a1a;
+  border-top: 1px solid #ddd;
   padding-left: 1.5em;
   padding-right: .1em;
   -webkit-box-sizing: border-box;

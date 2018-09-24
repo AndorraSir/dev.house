@@ -11,7 +11,7 @@
 <?php if(config_item('report_property_enabled') == TRUE && isset($property_id) && isset($agent_id)): ?>
 
     <?php if(!is_array($this->session->userdata('reported')) || !in_array($property_id, $this->session->userdata('reported'))): ?>
-        <a class="btn btn-info popup-with-form-report" style="display:inline-block;margin-left: 5px" id="report_property" href="#popup_report_property" style=""><i class="icon-flag icon-white"></i> <?php echo lang_check('Report property'); ?> <i class="load-indicator"></i></a>
+        <a class="btn btn-info popup-with-form-report" style="display:inline-block;margin-left: 5px" id="report_property" href="#popup_report_property"><i class="icon-flag icon-white"></i> <?php echo lang_check('Report property'); ?> <i class="load-indicator"></i></a>
     <?php endif; ?>    
 
 <!-- form itself -->
@@ -20,25 +20,25 @@
     <p class="hidden alert alert-error"><?php echo lang_check('Submit failed, please populate all fields!'); ?></p>
     </div>
     <div class="control-group">
-        <label class="control-label" for="inputName"><?php echo lang_check('YourName'); ?></label>
+        <label class="control-label" for="inputrepName"><?php echo lang_check('YourName'); ?></label>
         <div class="controls">
-            <input type="text" name="name" id="inputName" value="<?php echo $this->session->userdata('name'); ?>" placeholder="<?php echo lang_check('YourName'); ?>">
+            <input type="text" name="name" id="inputrepName" value="<?php echo $this->session->userdata('name'); ?>" placeholder="<?php echo lang_check('YourName'); ?>">
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="inputPhone"><?php echo lang_check('Phone'); ?></label>
+        <label class="control-label" for="inputrepPhone"><?php echo lang_check('Phone'); ?></label>
         <div class="controls">
-            <input type="text" name="phone" id="inputPhone" value="<?php echo $this->session->userdata('phone'); ?>" placeholder="<?php echo lang_check('Phone'); ?>">
+            <input type="text" name="phone" id="inputrepPhone" value="<?php echo $this->session->userdata('phone'); ?>" placeholder="<?php echo lang_check('Phone'); ?>">
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="inputEmail"><?php echo lang_check('Email'); ?></label>
+        <label class="control-label" for="inputrepEmail"><?php echo lang_check('Email'); ?></label>
         <div class="controls">
-            <input type="text" name="email" id="inputEmail" value="<?php echo $this->session->userdata('email'); ?>" placeholder="<?php echo lang_check('Email'); ?>">
+            <input type="text" name="email" id="inputrepEmail" value="<?php echo $this->session->userdata('email'); ?>" placeholder="<?php echo lang_check('Email'); ?>">
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="inputEmail"><?php echo lang_check('Message'); ?></label>
+        <label class="control-label" for="message"><?php echo lang_check('Message'); ?></label>
         <div class="controls">
             <textarea name="message" id="message"><?php echo $this->session->userdata('message'); ?></textarea>
         </div>
@@ -49,7 +49,7 @@
                 <input name="allow_contact" value="1" type="checkbox"> <?php echo lang_check('I allow agent and affilities to contact me'); ?>
             </label>
             <button id="unhide-report-mask" type="button" class="btn"><?php echo lang_check('Submit'); ?></button>
-            <img id="ajax-indicator-masking" src="assets/img/ajax-loader.gif" style="display: none;" />
+            <img class="ajax-indicator-masking" src="assets/img/ajax-loader.gif" style="display: none;" alt="" />
         </div>
     </div>
 </form>
@@ -88,7 +88,7 @@
                     data.push({name: 'agent_id', value: "<?php echo $agent_id; ?>"});
                     
                     //console.log( data );
-                    $('#popup_report_property #ajax-indicator-masking').css('display', 'inline');
+                    $('#popup_report_property .ajax-indicator-masking').css('display', 'inline');
                     
                     // send info to agent
                     $.post("<?php echo site_url('frontend/reportsubmit/'.$lang_code); ?>", data,
@@ -110,7 +110,7 @@
                             
                             //console.log("Data Loaded: " + data);
                         }
-                        $('#popup_report_property #ajax-indicator-masking').css('display', 'none');
+                        $('#popup_report_property .ajax-indicator-masking').css('display', 'none');
                     });
 
                     return false;

@@ -23,5 +23,5 @@
     $class_add = str_replace(array('col-md-','col-sm-','col-xl-','col-xs-'), 'span', $class_add);
 ?>
 <label class="span12 secondary-checkbox checkbox">
-    <input option_id="<?php echo $f_id; ?>" class="checkbox_am" type="checkbox" value="true<?php _che(${'options_name_'.$f_id}); ?>" /><?php _che(${'options_name_'.$f_id}); ?><span></span>
+    <input data-option_id="<?php echo $f_id; ?>" class="checkbox_am" type="checkbox" value="true<?php _che(${'options_name_'.$f_id}); ?>" /><?php _che(${'options_name_'.$f_id}); ?><span></span>
 </label>

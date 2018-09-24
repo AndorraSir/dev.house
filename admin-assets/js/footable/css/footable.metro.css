@@ -23,7 +23,7 @@
   vertical-align: middle;
 }
 .footable > tbody > tr:hover:not(.footable-row-detail) {
-  background: #1a1a1addd;
+  background: #dddddd;
 }
 .footable > tbody > tr:hover:not(.footable-row-detail) > td {
   color: #000000;
@@ -32,7 +32,7 @@
   border-bottom: none;
 }
 .footable > tbody > tr > td {
-  border-top: 1px solid #1a1a1addd;
+  border-top: 1px solid #dddddd;
   padding: 10px;
   text-align: left;
   border-left: none;
@@ -42,7 +42,7 @@
   border-left: none;
 }
 .footable > thead > tr > th {
-  border-bottom: 1px solid #1a1a1addd;
+  border-bottom: 1px solid #dddddd;
   padding: 10px;
   text-align: left;
 }
@@ -138,14 +138,14 @@
   border-color: #43c83c;
 }
 .footable.metro-blue {
-  border-color: #1a1a1a;
+  border-color: #1171a3;
 }
 .footable.metro-blue > tfoot > tr > th,
 .footable.metro-blue > thead > tr > th,
 .footable.metro-blue > tfoot > tr > td,
 .footable.metro-blue > thead > tr > td {
-  background-color: #1a1a1a;
-  border-color: #1a1a1a;
+  background-color: #1171a3;
+  border-color: #1171a3;
 }
 .footable-odd {
   background-color: #f7f7f7;

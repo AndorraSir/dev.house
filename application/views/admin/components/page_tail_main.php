@@ -41,7 +41,7 @@
 
 <script src="<?php echo base_url('admin-assets/js/ckeditor_4.6.2_standard/ckeditor/ckeditor.js')?>"></script>
 <script>
-CKEDITOR.config.contentsCss =[ "<?php echo base_url('templates/'.$settings['template'].'/assets/style/style.css')?>" <?php if(isset($template_css) && !empty($template_css)):?>, "<?php echo $template_css?>"<?php endif;?> ];  
+CKEDITOR.config.contentsCss =[ "<?php echo base_url('templates/'.$settings['template'].'/assets/css/custom.css')?>" <?php if(isset($template_css) && !empty($template_css)):?>, "<?php echo $template_css?>"<?php endif;?> ];  
 CKEDITOR.config.baseHref =  "<?php echo base_url('templates/'.$settings['template'])?>/"
 CKEDITOR.addCss(
             '.row {' +
@@ -69,6 +69,17 @@ CKEDITOR.dtd.a.p = 1;
 CKEDITOR.config.protectedSource.push(/<i[^>]*><\/i>/g);
 CKEDITOR.config.extraAllowedContent = 'p(*)[*]{*};div(*)[*]{*};li(*)[*]{*};ul(*)[*]{*}';
 CKEDITOR.dtd.$removeEmpty['i'] = false;
+
+
+// *only* if we have anchor on the url
+if(typeof location_hash !== 'undefined' && location_hash != '' && $(location_hash).length ) {
+    setTimeout( function() { 
+        $('html, body').animate({
+            scrollTop: ($(location_hash).offset().top-100) + 'px'
+        }, 1000, 'swing');
+    }, 1000);
+    // smooth scroll to the anchor id
+}
 </script>
 
 </body>

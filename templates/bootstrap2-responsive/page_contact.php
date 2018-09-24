@@ -2,9 +2,38 @@
 <html lang="{lang_code}">
   <head>
     <?php _widget('head');?>    
-    <script language="javascript">
+    <script>
     $(document).ready(function(){
 
+        <?php if(config_db_item('map_version') =='open_street'):?>
+
+        var contact_map;
+        if($('#contactMap').length){
+            contact_map = L.map('contactMap', {
+                center: [{settings_gps}],
+                zoom: 12,
+                scrollWheelZoom: scrollWheelEnabled,
+            });     
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(contact_map);
+            var positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png').addTo(contact_map);
+            var property_marker = L.marker(
+                [{settings_gps}],
+                {icon: L.divIcon({
+                        html: '<img src="assets/img/marker_blue.png">',
+                        className: 'open_steet_map_marker',
+                        iconSize: [19, 34],
+                        popupAnchor: [-5, -45],
+                        iconAnchor: [15, 45],
+                    })
+                }
+            ).addTo(contact_map);
+        
+            property_marker.bindPopup("{settings_address},<br />{lang_GPS}: {settings_gps}");
+        }
+
+        <?php else:?>
         $("#contactMap").gmap3({
          map:{
             options:{
@@ -44,6 +73,7 @@
             //}
           }
         }}});
+        <?php endif;?>
     });
     
     </script>
@@ -55,7 +85,7 @@
 
 <?php _subtemplate('headers', _ch($subtemplate_header, 'empty')); ?>
 
-<a name="content" id="content"></a>
+<a id="content"></a>
 <div class="wrap-content">
     <div class="container">
         <h2>{page_title}</h2>
@@ -120,6 +150,9 @@
                                </div>
                             </div>
                         <?php endif; ?>
+                        <?php if(config_db_item('terms_link') !== FALSE): ?>
+                            <button class="btn btn-info" type="submit" style="margin-top: 10px;">{lang_Send}</button>
+                        <?php endif; ?>
                     </div>
                     <div class="span-mini"></div>
                     <div class="span6">
@@ -128,7 +161,17 @@
                                 <textarea id="message" name="message" rows="4" class="input-block-level" type="text" placeholder="{lang_Message}">{form_value_message}</textarea>
                             </div>
                         </div>
-                        <button class="btn btn-info pull-right" type="submit">{lang_Send}</button>
+                                                        
+                        <?php if(config_db_item('terms_link') !== FALSE): ?>
+                        <div class="control-group">
+                            <div class="controls text-right">
+                                <a target="_blank" href="<?php echo config_db_item('terms_link'); ?>"><?php echo lang_check('I accept the Terms and Conditions'); ?></a>
+                                <input type="checkbox" value="1" name="terms" required="required"  style="margin: 0;"> 
+                            </div>
+                        </div>
+                        <?php else: ?>
+                            <button class="btn btn-info pull-right" type="submit">{lang_Send}</button>
+                        <?php endif; ?>
                     </div>
                     </div>
 		</form>

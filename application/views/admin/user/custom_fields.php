@@ -279,12 +279,11 @@ $(function() {
     if($('#input_custom_fields_code').val() != '')
     {
         first_json = jQuery.parseJSON($('#input_custom_fields_code').val());
-        
         $.each( first_json.PRIMARY, function( key, value ) {
             $('.el_sort[rel='+key+']').data('f_json',value);
             if(key > id_autoincrement)id_autoincrement = parseInt(key)+1;
         });
-        
+        id_autoincrement++;
     }
     
     $( ".el_drag" ).draggable({
@@ -590,7 +589,7 @@ td.box.SECONDARY
                                     <li class="<?php echo $i==1?'active':''?> lang"><a data-toggle="tab" href="#<?php echo $key_lang?>"><?php echo $val_lang?></a></li>
                                     <?php endforeach;?>                                    
                                   </ul>
-                                  <div style="padding-top: 9px; border-bottom: 1px solid #1a1a1a;" class="tab-content">
+                                  <div style="padding-top: 9px; border-bottom: 1px solid #ddd;" class="tab-content">
                                     <?php $i=0;foreach($this->page_m->languages as $key_lang=>$val_lang):$i++;?>
                                     <div id="<?php echo $key_lang?>" class="tab-pane <?php echo $i==1?'active':''?>">
                                         <div class="form-group">
@@ -614,7 +613,7 @@ td.box.SECONDARY
     <div class="control-group">
         <div class="controls">
             <button id="unhide-agent-mask" type="button" class="btn"><?php echo lang_check('Submit'); ?></button>
-            <img id="ajax-indicator-masking" src="<?php echo base_url(); ?>assets/img/loading.gif" style="display: none;" />
+            <img id="ajax-indicator-masking" src="<?php echo base_url(); ?>admin-assets/img/loading.gif" style="display: none;" />
         </div>
     </div>
 </form>

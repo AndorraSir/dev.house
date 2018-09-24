@@ -2,7 +2,7 @@
 <html lang="{lang_code}">
   <head>
     <?php _widget('head');?>
-    <script language="javascript">
+    <script>
     $(document).ready(function(){
 
     });    
@@ -16,7 +16,7 @@
 <?php _subtemplate('headers', _ch($subtemplate_header, 'empty')); ?>
 
 
-<a name="content" id="content"></a>
+<a id="content"></a>
 <div class="wrap-content">
     <div class="container">
     
@@ -29,7 +29,7 @@
               <li class="span12 li-list">
                 <div class="thumbnail span4">
                 <?php if(isset($row->image_filename)):?>
-                  <img alt="300x200" data-src="holder.js/300x200" style="width: 300px; height: 200px;" src="<?php echo base_url('files/thumbnail/'.$row->image_filename)?>" />
+                  <img alt="300x200" data-src="holder.js/300x200" style="width: 300px; height: 200px;" src="<?php echo _simg('files/'.$row->image_filename, '600x400'); ?>" />
                 <?php else:?>
                   <img alt="300x200" data-src="holder.js/300x200" style="width: 300px; height: 200px;" src="assets/img/no_image.jpg" />
                 <?php endif;?>

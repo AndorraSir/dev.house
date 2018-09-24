@@ -10,7 +10,7 @@
  		</div>
  		
  		<!-- Sidebar -->
- 		<div class="col-3 sidebar">
+ 		<div class="span3 sidebar">
  			<h2>Recent news</h2>
 <?php $articles = array_slice($articles, 3); ?>
 <?php echo article_links($articles); ?>

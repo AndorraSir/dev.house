@@ -76,7 +76,7 @@ class Frontuser_Controller extends MY_Controller
         }
         
         /* [START] Fetch logo URL */
-        $this->data['website_logo_url'] = 'admin-assets/img/logo.png';
+        $this->data['website_logo_url'] = 'assets/img/logo.png';
         if(isset($this->data['settings']['website_logo']))
         {
             if(is_numeric($this->data['settings']['website_logo']))
@@ -93,7 +93,7 @@ class Frontuser_Controller extends MY_Controller
                 
         if(config_item('secondary_logo_support')){
             /* [START] Fetch logo secondary URL */
-            $this->data['website_logo_secondary_url'] = 'admin-assets/img/logo_secondary.png';
+            $this->data['website_logo_secondary_url'] = 'assets/img/logo_secondary.png';
             if(isset($this->data['settings']['website_logo_secondary']))
             {
                 if(is_numeric($this->data['settings']['website_logo_secondary']))
@@ -109,7 +109,7 @@ class Frontuser_Controller extends MY_Controller
         }
         
         /* [START] Fetch favicon URL */
-        $this->data['website_favicon_url'] = 'admin-assets/img/favicon.png';
+        $this->data['website_favicon_url'] = 'assets/img/favicon.png';
         if(isset($this->data['settings']['website_favicon']))
         {
             if(is_numeric($this->data['settings']['website_favicon']))
@@ -528,17 +528,17 @@ class Frontuser_Controller extends MY_Controller
             }
             else
             {
-                $estate['thumbnail_url'] = 'admin-assets/img/no_image.jpg';
+                $estate['thumbnail_url'] = 'assets/img/no_image.jpg';
             }
             
-            $estate['icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].'marker_blue.png';
+            $estate['icon'] = 'assets/img/markers/'.$this->data['color_path'].'marker_blue.png';
             if(isset($estate['option_6']))
             {
                 if($estate['option_6'] != '' && $estate['option_6'] != 'empty')
                 {
                     if(file_exists(FCPATH.'templates/'.$this->data['settings_template'].
                                    '/assets/img/markers/'.$this->data['color_path'].$estate['option_6'].'.png'))
-                    $estate['icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].$estate['option_6'].'.png';
+                    $estate['icon'] = 'assets/img/markers/'.$this->data['color_path'].$estate['option_6'].'.png';
                 }
             }
 
@@ -696,14 +696,14 @@ class Frontuser_Controller extends MY_Controller
             }
             // [END] custom price field
             
-            $estate['icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].'marker_blue.png';
+            $estate['icon'] = 'assets/img/markers/'.$this->data['color_path'].'marker_blue.png';
             if(isset($estate['option_6']))
             {
                 if($estate['option_6'] != '' && $estate['option_6'] != 'empty')
                 {
                     if(file_exists(FCPATH.'templates/'.$this->data['settings_template'].
                                    '/assets/img/markers/'.$this->data['color_path'].$estate['option_6'].'.png'))
-                    $estate['icon'] = 'admin-assets/img/markers/'.$this->data['color_path'].$estate['option_6'].'.png';
+                    $estate['icon'] = 'assets/img/markers/'.$this->data['color_path'].$estate['option_6'].'.png';
                 }
             }
             
@@ -724,7 +724,7 @@ class Frontuser_Controller extends MY_Controller
             }
             else
             {
-                $estate['thumbnail_url'] = 'admin-assets/img/no_image.jpg';
+                $estate['thumbnail_url'] = 'assets/img/no_image.jpg';
             }
             
             // [agent second image]

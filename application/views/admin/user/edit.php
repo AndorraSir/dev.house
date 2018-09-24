@@ -197,6 +197,48 @@
                                     <?php echo form_textarea('embed_video_code', set_value('embed_video_code', $user->embed_video_code), 'class="form-control" id="input_embed_video_code" placeholder="'.lang_check('Embed video code').'"')?>
                                   </div>
                                 </div>
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label"><?php echo lang_check('Payment details')?></label>
+                                  <div class="col-lg-10">
+                                    <?php echo form_textarea('payment_details', set_value('payment_details', $user->payment_details), 'class="form-control" id="input_payment_details" placeholder="'.lang_check('Payment details').'"')?>
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label"><?php echo lang_check('facebook_link')?></label>
+                                  <div class="col-lg-10">
+                                    <?php echo form_input('facebook_link', set_value('facebook_link', $user->facebook_link), 'class="form-control" id="input_facebook_link" placeholder="'.lang_check('facebook_link').'"')?>
+                                  </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label"><?php echo lang_check('youtube_link')?></label>
+                                  <div class="col-lg-10">
+                                    <?php echo form_input('youtube_link', set_value('youtube_link', $user->youtube_link), 'class="form-control" id="input_youtube_link" placeholder="'.lang_check('youtube_link').'"')?>
+                                  </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label"><?php echo lang_check('gplus_link')?></label>
+                                  <div class="col-lg-10">
+                                    <?php echo form_input('gplus_link', set_value('gplus_link', $user->gplus_link), 'class="form-control" id="input_gplus_link" placeholder="'.lang_check('gplus_link').'"')?>
+                                  </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label"><?php echo lang_check('twitter_link')?></label>
+                                  <div class="col-lg-10">
+                                    <?php echo form_input('twitter_link', set_value('twitter_link', $user->twitter_link), 'class="form-control" id="input_twitter_link" placeholder="'.lang_check('twitter_link').'"')?>
+                                  </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label"><?php echo lang_check('linkedin_link')?></label>
+                                  <div class="col-lg-10">
+                                    <?php echo form_input('linkedin_link', set_value('linkedin_link', $user->linkedin_link), 'class="form-control" id="input_linkedin_link" placeholder="'.lang_check('linkedin_link').'"')?>
+                                  </div>
+                                </div>
                                 <?php endif; ?>
                                 
                                 <?php if($this->session->userdata('type') == 'ADMIN' && config_db_item('phone_verification_enabled') === TRUE && file_exists(APPPATH.'libraries/Clickatellapi.php')): ?>
@@ -288,7 +330,7 @@
                                 </div>
                                 <?php endif; ?>
                                 
-                                <?php if(config_db_item('clickatell_api_id') != '' && file_exists(APPPATH.'controllers/admin/savesearch.php')): ?>
+                                <?php if((config_db_item('clickatell_api_id') != '' || config_db_item('clickatell_api_key') != '') && file_exists(APPPATH.'controllers/admin/savesearch.php')): ?>
                                 <div class="form-group">
                                   <label class="col-lg-2 control-label"><?php echo lang_check('SMS notifications enabled')?></label>
                                   <div class="col-lg-10">
@@ -342,7 +384,7 @@ custom_fields_print('custom_fields_code');
                 </div>
 
                 <div class="widget-content">
-                  <div class="padd" style="padding-bottom: 0px;padding-left:25px;">
+                  <div class="padd">
                   <span class="label label-info"><?php _l('Profile gallery instructions');?></span>
                   </div>  
                   <div class="padd">

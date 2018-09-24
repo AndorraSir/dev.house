@@ -2,7 +2,7 @@
 <html lang="{lang_code}">
   <head>
     <?php _widget('head');?>
-    <script language="javascript">
+    <script>
     $(document).ready(function(){
 
     });    
@@ -144,17 +144,26 @@
                 <?php endif;?>
                 
                 <?php if(config_item('appId') != '' && !empty($login_url_facebook)): ?>
-                <a href="<?php echo $login_url_facebook; ?>" style="text-align:center;display:block;"><img src="assets/img/login-facebook.png" /></a>
+                <a href="<?php echo $login_url_facebook; ?>" style="text-align:center;display:block;"><img src="assets/img/login-facebook.png"  alt=""/></a>
                 <?php endif;?>
                 
                 <?php if(config_item('glogin_enabled')): ?>
-                <a href="<?php echo site_url('api/google_login/'); ?>" style="text-align:center;display:block;"><img src="assets/img/login-google.png" /></a>
+                <a href="<?php echo site_url('api/google_login/'.$lang_id); ?>" style="text-align:center;display:block;"><img src="assets/img/login-google.png"  alt=""/></a>
+                <?php endif;?>
+                <?php if(file_exists(APPPATH.'libraries/Twlogin.php')): ?>
+                    <?php 
+                        $CI = &get_instance();
+                        $CI->load->library('twlogin');
+                    ?>
+                    <?php if($CI->twlogin->__get('consumerKey') && $CI->twlogin->__get('consumerSecret')): ?>
+                        <a href="<?php echo site_url('api/twitter_login/'.$lang_id); ?>" title style="text-align:center;display:block;"><img src="assets/img/twitter_signin.png" alt="twitter_login" /></a>
+                    <?php endif;?>
                 <?php endif;?>
                 
             </div></div>
             <div class="span6 register-form">
             <h2>{lang_Register}</h2>
-            <a name="content" id="content"></a>
+            <a id="content"></a>
             <div class="property_content">
                 <?php if($this->session->flashdata('error_registration') != ''):?>
                 <p class="alert alert-success"><?php echo $this->session->flashdata('error_registration')?></p>
@@ -171,7 +180,7 @@
                         <?php 
                         $values = array('USER' => lang_check('USER'), 'AGENT' => lang_check('AGENT'));
                         
-                        echo form_dropdown('type', $values, set_value('type', ''), 'class="form-control" id="input_type" placeholder="'.lang_check('Account type').'"')?>
+                        echo form_dropdown('type', $values, set_value('type', ''), 'class="form-control" id="input_type"')?>
                       </div>
                     </div>
                     <?php endif; ?>

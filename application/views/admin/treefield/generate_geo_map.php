@@ -80,6 +80,12 @@
                                   <?php echo form_checkbox('random_locations', 1, false, '')?>
                                   </div>
                                 </div>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label"><?php echo lang_check('Add country in root')?></label>
+                                  <div class="col-lg-10">
+                                  <?php echo form_checkbox('in_root', 1, false, '')?>
+                                  </div>
+                                </div>
                     
                                 <div class="form-group">
                                   <div class="col-lg-offset-2 col-lg-10">

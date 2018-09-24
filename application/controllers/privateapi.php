@@ -64,10 +64,12 @@ class Privateapi extends CI_Controller
             if(isset($this->data['parameters']['design_parameters']))
             {
                 $post_data = array('design_parameters' => $this->data['parameters']['design_parameters'],
-                                   'css_variant' => $this->data['parameters']['css_variant'],
-                                   'color' => $this->data['parameters']['color']);
+                                   'css_variant' =>  isset($this->data['parameters']['css_variant'])? $this->data['parameters']['css_variant'] : '',
+                                   'color' => isset($this->data['parameters']['color'])? $this->data['parameters']['color'] : '');
                 $this->settings_m->save_settings($post_data);
-                $this->session->set_userdata( array('color'=>$this->data['parameters']['color']));
+                if(isset($this->data['parameters']['color']))
+                    $this->session->set_userdata( array('color'=>$this->data['parameters']['color']));
+                
                 $this->data['message'] = lang_check('Changes saved!');
                 $this->data['success'] = true;
             }
@@ -696,5 +698,120 @@ class Privateapi extends CI_Controller
         
     }
     
+    function visual_edit_getwidgets ($lang_code='en',$get_type = NULL) {
+        
+        $this->data['success'] = true;
+
+        $this->load->model('page_m');
+        $CI = &get_instance();
+        $settings= $this->settings_m->get_fields();
+        $CI->app_settings = $settings;
+        $_widgets = $this->page_m->get_subtemplates('widgets');
+        
+        if(empty($get_type)){
+            $this->data['success'] = true;
+            echo json_encode($this->data);
+            exit();
+        }
+        
+        $get_widget_params = function($file = NULL, $key='') {
+            if($file== NULL || empty($key)) return false;
+            $file = FCPATH.$file;
+            if ( file_exists( $file ) && is_file( $file ) ) {
+                if ( preg_match( '|'.$key.':(.*)$|mi', file_get_contents($file), $name )) {
+                    return trim($name[1]);
+                }
+            }
+            return false;
+        };
+        
+        $widgets = array();
+        foreach($_widgets as $key=>$val)
+        {
+            if(substr($key, 0, strlen($get_type)) == $get_type)
+            {
+                $widget = array();
+                $widget_title = $get_widget_params("templates/".$settings["template"]."/widgets/".$key.".php", 'Widget-title');
+                $widget_image = $get_widget_params("templates/".$settings["template"]."/widgets/".$key.".php", 'Widget-preview-image');
+                if(!empty($widget_title) || !empty($widget_image) ) {
+                    if(!empty($widget_image) && file_exists(FCPATH."templates/".$settings["template"].$widget_image)) {
+                        $widget['title'] = lang_check($widget_title);
+                        $widget['filename'] = $key;
+                        $widget['thumbnail'] = base_url("/templates/".$settings["template"].$widget_image);
+                        $widgets[]=$widget;
+                    }
+                }
+            }
+        }  
+        $this->data['widgets'] = $widgets;
+        
+        
+        $this->data['success'] = true;
+        echo json_encode($this->data);
+        exit();
+        
+    }
+    
+    function visual_edit_getwidget_content ($lang_code='en',$widget_filename = NULL) {
+        
+        $this->data['success'] = false;
+        $CI = &get_instance();
+        $settings= $this->settings_m->get_fields();
+        $this->load->helper('MY_form_helper');
+        
+        //$widget_filename = 'center_categories_tiles';
+        
+        $_content = file_get_contents_curl(site_url($lang_code.'/inc_widget_preview/'.$widget_filename));
+        
+        preg_match("/<body[^>]*>(.*?)<\/body>/is", $_content, $matches);
+        
+        if(isset($matches[1])) {
+            $inc = $matches[1];
+        }
+        
+        $this->data['content'] = $inc;
+        $this->data['success'] = true;
+        echo json_encode($this->data);
+        exit();
+        
+    }
+    
+        
+    function visual_edit_save_template ($lang_code='en') {
+        
+        $this->data['success'] = false;
+        $this->load->helper('MY_form_helper');
+        $this->load->model('customtemplates_m');
+        
+        //$widget_filename = 'center_categories_tiles';
+        $post = $_POST;
+        $data = array();
+        $id = $post['template_id'];
+        
+        $data['theme'] = $post['theme'];
+        $data['template_name'] = $post['template_name'];
+        $data['type'] = $post['type'];
+        
+        /* filter widgets_order */
+        $post['widgets_order'] = json_decode($post['widgets_order'],'JSON_OBJECT_AS_ARRAY');
+        $widgets_order = array();
+        foreach ($post['widgets_order'] as $type => $widgets) {
+            $widgets_order[$type] = array();
+            foreach ($widgets as $value) {
+                if(!empty($value))
+                    $widgets_order[$type][]=$value;
+            }
+        }
+        $post['widgets_order'] = json_encode($widgets_order);
+         /* end filter widgets_order */
+        
+        $data['widgets_order'] = $post['widgets_order'];
+        
+        $id = $this->customtemplates_m->save($data, $id, TRUE);
+        $this->data['success'] = true;
+        echo json_encode($this->data);
+        exit();
+        
+    }
     
 }

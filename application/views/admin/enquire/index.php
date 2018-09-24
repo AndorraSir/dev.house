@@ -53,8 +53,12 @@
                       <button type="submit" class="btn btn-default"><i class="icon icon-search"></i>&nbsp;&nbsp;<?php echo lang_check('Search'); ?></button>
 
                     </form>
+                    <?php echo validation_errors()?>
                     <?php if($this->session->flashdata('error')):?>
                     <p class="label label-important validation"><?php echo $this->session->flashdata('error')?></p>
+                    <?php endif;?>
+                    <?php if($this->session->flashdata('message')):?>
+                    <p class="label label-success validation"><?php echo $this->session->flashdata('message')?></p>
                     <?php endif;?>
                     
                     <?php echo form_open('admin/enquire/delete_multiple', array('class' => '', 'style'=> 'padding:0px;margin:0px;', 'role'=>'form'))?> 

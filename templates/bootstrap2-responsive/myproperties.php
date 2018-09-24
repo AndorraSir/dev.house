@@ -4,7 +4,7 @@
     <?php _widget('head');?>
     <link href="assets/js/footable/css/footable.core.css" rel="stylesheet">  
     <script src="assets/js/footable/js/footable.js"></script>
-    <script language="javascript">
+    <script>
     $(document).ready(function(){
         $('.footable').footable();
     });    
@@ -15,12 +15,12 @@
   
 {template_header}
 
-<a name="content" id="content"></a>
+<a id="content"></a>
 <div class="wrap-content">
     <div class="container">
         <div class="row-fluid">
             <div class="span12">
-            <a name="content" id="content"></a>
+            <a id="content"></a>
             <h2>{lang_Myproperties}</h2>
             <div class="property_content">
                 <div class="widget-controls clearfix"> 
@@ -307,7 +307,11 @@
     <?php endif; ?>
 </ul>
 </div>
-<?php endif; ?>                               
+<?php else: ?> 
+    <?php if(config_item('def_package') !== FALSE && config_item('def_package') == $package->id &&  strtotime($user['package_last_payment'])<=time() && $package->id !== $user['package_id']):?>
+        <a href="<?php echo site_url('frontend/do_package_activate/'.$lang_code.'/'.config_item('def_package')); ?>" class="btn btn-middle btn-info"><?php echo lang_check('Activate');?></a>
+    <?php endif; ?>                               
+<?php endif; ?>                              
 </td>
                                     </tr>
                         <?php endforeach;?>
@@ -373,7 +377,7 @@
 if(config_item('price_reduce_enabled') === TRUE):
 ?> 
 <script src="assets/js/jquery.confirm.js"></script>
-<script language="javascript">
+<script>
 
 // init copy features
 $(document).ready(function(){

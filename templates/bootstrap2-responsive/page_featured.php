@@ -2,7 +2,7 @@
 <html lang="{lang_code}">
   <head>
     <?php _widget('head');?>
-    <script language="javascript">
+    <script>
     $(document).ready(function(){
 
 
@@ -16,13 +16,13 @@
 
 <?php _subtemplate('headers', _ch($subtemplate_header, 'empty')); ?>
 
-<a name="content" id="content"></a>
+<a id="content"></a>
 <div class="wrap-content">
     <div class="container">
 
         <h2>{page_title}</h2>
         
-        {page_body}
+        <div class="page_content">{page_body}</div>
         <br style="clear:both;" />
         <br style="clear:both;" />
 

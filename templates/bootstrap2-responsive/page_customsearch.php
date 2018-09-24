@@ -11,7 +11,7 @@
 
 <?php _widget('top_mapsearch2');?>
 
-<a name="content" id="content"></a>
+<a id="content"></a>
 <div class="wrap-content">
     <div class="container">
     
@@ -39,7 +39,7 @@
         <div class="row-fluid">
             <?php foreach($last_estates as $key=>$item): ?>
             <?php
-               if($key==0)echo '<ul class="">';
+               if($key==0)echo '<ul class="last-properties-grid">';
             ?>
                 <?php _generate_results_item(array('key'=>$key, 'item'=>$item,'icons'=>false, 'view_counter'=>false)); ?>
             <?php

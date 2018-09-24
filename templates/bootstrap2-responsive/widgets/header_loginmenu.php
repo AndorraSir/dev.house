@@ -4,9 +4,10 @@
         <div class="col-12 masthead">
         {not_logged}
         <ul class="nav pull-left top-small">
-          <li><span><i class="icon-phone"></i> {settings_phone}</span></li>
-          <li class="hidden-xs"><a href="mailto:{settings_email}"><i class="icon-envelope"></i> {settings_email}</a></li>
-          <?php if(config_db_item('property_subm_disabled')==FALSE):  ?>
+<!--           <li><span><i class="icon-phone"></i> {settings_phone}</span></li>
+ -->          
+<!--     <li class="hidden-xs"><a href="mailto:{settings_email}"><i class="icon-envelope"></i> {settings_email}</a></li>
+ -->          <?php if(config_db_item('property_subm_disabled')==FALSE):  ?>
           <li><a href="{front_login_url}#content"><i class="icon-user"></i> {lang_Login}</a></li>
           <?php endif;?>
         </ul>
@@ -45,7 +46,7 @@
             <?php _widget('custom_messenger_item');?>
         </ul>
         {/is_logged_other}
-        <?php echo print_breadcrump(null, ' > ', 'class="breadcrumb nav pull-right"');?>
+        <?php echo print_breadcrump(null, ' > ', 'class="breadcrumb nav pull-right hide"');?>
         </div>
         </div>
       </div> <!-- /.container -->

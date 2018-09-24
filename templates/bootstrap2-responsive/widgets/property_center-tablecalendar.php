@@ -43,10 +43,10 @@ foreach($t_rows as $table_row_index => $row_title)
         $row_time = strtotime($row_time);
         
         //$cal_data[date("m", $row_time)][date("j", $row_time)] = 
-        //    'class="available selectable" ref="'.date("Y-m-d", $row_time).'" ref_to="'.date("Y-m-d", strtotime(date("Y-m-d", $row_time).' +7 day')).'"';
+        //    'class="available selectable" data-ref="'.date("Y-m-d", $row_time).'" ref_to="'.date("Y-m-d", strtotime(date("Y-m-d", $row_time).' +7 day')).'"';
     
         $cal_data[date("m", $row_time)][date("j", $row_time)] = 
-            'class="available not_selectable" ref="'.date("Y-m-d", $row_time).'" ref_to="'.date("Y-m-d", strtotime(date("Y-m-d", $row_time).' +7 day')).'"';
+            'class="available not_selectable" data-ref="'.date("Y-m-d", $row_time).'" ref_to="'.date("Y-m-d", strtotime(date("Y-m-d", $row_time).' +7 day')).'"';
     
     }
     
@@ -66,7 +66,7 @@ foreach($t_rows as $table_row_index => $row_title)
 }
                 ?>
 
-<script language="javascript">
+<script>
 
 var def_message_f1 = '';
 var cal_titles = [];
@@ -87,7 +87,7 @@ $(document).ready(function(){
         var row_index = $(this).attr('rel');
         var title = $("#table_field_76 tbody tr:nth-child("+row_index+") td:first").html();
 
-        title = '<a class="t_cal_link btn btn-warning" rel="'+row_index+'" href="#"><img style="vertical-align:top;margin-top:2px;" src="assets/img/euro30.png" /> <i class="icon-calendar icon-white"></i>&nbsp;'+title+'</a>';
+        title = '<a class="t_cal_link btn btn-warning" rel="'+row_index+'" href="#"><img style="vertical-align:top;margin-top:2px;" src="assets/img/euro30.png" alt="" /> <i class="icon-calendar icon-white"></i>&nbsp;'+title+'</a>';
         $("#table_field_76 tbody tr:nth-child("+row_index+") td:first").html(title);
         
         if(index == 0)

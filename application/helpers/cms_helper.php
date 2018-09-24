@@ -274,7 +274,10 @@ function _search_form_secondary($form_id, $subfolder='')
     
         if(!empty($title))
         {
-            if($obj->type == 'C_PURPOSE' || $obj->type == 'SMART_SEARCH' || $obj->type == 'DATE_RANGE' || $obj->type == 'BREAKLINE')
+            if($obj->type == 'C_PURPOSE' || $obj->type == 'SMART_SEARCH' || $obj->type == 'DATE_RANGE' || $obj->type == 'BREAKLINE'
+                 || ($obj->type == 'C_PRICE_RANGE' && file_exists(FCPATH.'templates/'.$template_name.'/form_fields/'.$subfolder.$obj->type.'.php' ))
+                 || ($obj->type == 'C_YEAR_RANGE' && file_exists(FCPATH.'templates/'.$template_name.'/form_fields/'.$subfolder.$obj->type.'.php' ))    
+                )
             {
                 if(!empty($subfolder)&&file_exists(FCPATH.'templates/'.$template_name.'/form_fields/secondary/'.$subfolder.$obj->type.'.php')){
                     echo $CI->load->view($template_name.'/form_fields/secondary/'.$subfolder.$obj->type.'.php', array_merge($CI->data, array('field'=>$obj)), true);
@@ -354,7 +357,10 @@ function _search_form_secondary_hidden($form_id, $subfolder='')
     
         if(!empty($title))
         {
-            if($obj->type == 'C_PURPOSE' || $obj->type == 'SMART_SEARCH' || $obj->type == 'DATE_RANGE' || $obj->type == 'BREAKLINE')
+            if($obj->type == 'C_PURPOSE' || $obj->type == 'SMART_SEARCH' || $obj->type == 'DATE_RANGE' || $obj->type == 'BREAKLINE'
+                || ($obj->type == 'C_PRICE_RANGE' && file_exists(FCPATH.'templates/'.$template_name.'/form_fields/'.$subfolder.$obj->type.'.php' ))
+                || ($obj->type == 'C_YEAR_RANGE' && file_exists(FCPATH.'templates/'.$template_name.'/form_fields/'.$subfolder.$obj->type.'.php' ))     
+            )
             {
                 if(!empty($subfolder)&&file_exists(FCPATH.'templates/'.$template_name.'/form_fields/'.$subfolder.$obj->type.'.php')){
                     echo $CI->load->view($template_name.'/form_fields/'.$subfolder.$obj->type.'.php', array_merge($CI->data, array('field'=>$obj)), true);
@@ -576,6 +582,22 @@ function _widget($filename)
             $output = $CI->parser->parse($CI->data['settings_template'].'/widgets/'.$filename.'.php', $CI->data, TRUE);
         }
         
+        if(config_item('widget_edit_button_enabled') !== FALSE) {
+            // Check login and if ADMIN show edit widget
+            $CI->load->library('session');
+            $CI->load->model('user_m');
+            if($CI->user_m->loggedin() == TRUE && $CI->session->userdata('type')=='ADMIN') {
+                preg_match('#<[A-Za-z0-9 _-]*class="[A-Za-z0-9 _-]*widget_edit_enabled[A-Za-z0-9 _-]*"\s*[^>]*>#Usi', $output, $m);
+                if($m && isset($m[0])){
+                    $control='<div class="widget_controls_panel" data-widgetfilename="'.$filename.'">
+                                   <a href="'.site_url('admin/templatefiles/edit/'.$filename.'.php/widgets').'" target="_blank" class="btn btn-edit"><i class="ion-edit"></i></a>
+                               </div>';
+                    $t1 = str_replace('>', '>'.$control, $m[0]);
+                    $output = str_replace($m[0], $t1, $output);  
+                }
+            }
+        }
+        
         echo $output;
     }
 }
@@ -719,7 +741,7 @@ function slug_url($uri, $model_name='')
         $page_id = NULL;
         if(isset($first_page->id) && $first_page->id ==$model_id)
         {
-            if($CI->data['lang_code'] == $CI->language_m->get_default())
+            if(isset($CI->data['lang_code']) && $CI->data['lang_code'] == $CI->language_m->get_default())
                 return base_url();
             
             return base_url().'index.php/'.$model_lang_code;
@@ -762,7 +784,11 @@ function slug_url($uri, $model_name='')
         }
         else if($uri_exp[0] == 'profile')
         {
-            $model_lang_code = $uri_exp[2];
+            if(isset($uri_exp[2]))
+                $model_lang_code = $uri_exp[2];
+            else 
+                $model_lang_code = $def_lang_code;
+                
             $model_id = $uri_exp[1];
             
             // fetch user username
@@ -820,7 +846,7 @@ function get_menu ($array, $child = FALSE, $lang_code)
     $is_logged_user = ($CI->user_m->loggedin() == TRUE);
 	
 	if (count($array)) {
-		$str .= $child == FALSE ? '<ul class="nav nav-pills" id="main-top-menu" role="navigation">' . PHP_EOL : '<ul class="dropdown-menu">' . PHP_EOL;
+		$str .= $child == FALSE ? '<ul class="nav navbar-nav nav-collapse collapse navbar-main" id="main-top-menu">' . PHP_EOL : '<ul class="dropdown-menu">' . PHP_EOL;
 		$position = 0;
 		foreach ($array as $key=>$item) {
 		    if($item['is_visible'] == '0')
@@ -830,12 +856,12 @@ function get_menu ($array, $child = FALSE, $lang_code)
             
             $active = $CI->uri->segment(2) == url_title_cro($item['id'], '-', TRUE) ? TRUE : FALSE;
             
-            // if($position == 1 && $child == FALSE){
-            //     $item['navigation_title'] = '<img src="assets/img/home-icon.png" alt="'.$item['navigation_title'].'" />';
+            if($position == 1 && $child == FALSE){
+                $item['navigation_title'] = '<img src="assets/img/home-icon.png" alt="'.$item['navigation_title'].'" />';
                 
-            //     if($CI->uri->segment(2) == '')
-            //         $active = TRUE;
-            // }
+                if($CI->uri->segment(2) == '')
+                    $active = TRUE;
+            }
             
             if(empty($item['is_private']) || $item['is_private'] == '1' && $is_logged_user)
 			if (isset($item['children']) && count($item['children'])) {
@@ -1084,7 +1110,7 @@ function get_lang_menu ($array, $lang_code, $extra_ul_attributes = '')
             $template_name = $CI->data['settings_template'];
             if(file_exists(FCPATH.'templates/'.$template_name.'/assets/img/flags/'.$item['code'].'.png'))
             {
-                $flag_icon = '&nbsp; <img src="'.'admin-assets/img/flags/'.$item['code'].'.png" alt="" />';
+                $flag_icon = '&nbsp; <img src="'.'assets/img/flags/'.$item['code'].'.png" alt="" />';
             }
         }
 
@@ -1478,7 +1504,7 @@ if ( ! function_exists('get_ol_pages'))
     		foreach ($array as $item) {  
 
     			$str .= '<li id="list_' . $item['id'] .'">';
-    			$str .= '<div class="" alt="'.$item['id'].'" ><i class="icon-file-alt"></i>&nbsp;&nbsp;' . $item['title'] .'&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-warning">'.$item['template'].'</span>';
+    			$str .= '<div class="" alt="'.$item['id'].'" ><i class="icon-file-alt"></i>&nbsp;&nbsp;' . $item['title'] .'&nbsp;&nbsp;&nbsp;&nbsp;<span class="list_content"><span class="label label-warning">'.$item['template'].'</span></span>';
                 if($item['type'] == 'ARTICLE')
                     $str .= '&nbsp;<span class="label label-info">'.lang_check($item['type']).'</span>';
                 $str .= '<span class="pull-right">
@@ -1638,7 +1664,7 @@ if ( ! function_exists('get_ol_expert_tree'))
     			
                 // Do we have any children?
     			if (isset($array[$k_parent_id])) {
-    				$str .= get_ol_showroom_tree($array, $k_parent_id);
+    				$str .= get_ol_expert_tree($array, $k_parent_id);
     			}
     			
     			$str .= '</li>' . PHP_EOL;
@@ -2321,4 +2347,83 @@ function array_flatten($array) {
     } 
   } 
   return $result; 
+}
+
+
+if (! function_exists('field_order_by'))
+{
+	function field_order_by($field_title = '')
+	{
+            $CI =& get_instance();
+            $str ='';
+            $get = array();
+            
+            if($CI->input->get())
+                $get = $CI->input->get();
+
+            if(isset($get['order_by']))
+                unset($get['order_by']);
+
+            if($CI->input->get('order_by') && stripos($CI->input->get('order_by'), $field_title) !== FALSE){
+                if(stripos($CI->input->get('order_by'), 'DESC') !== FALSE){
+                    $str.='<a href="'.site_url($CI->uri->uri_string()).'?'.http_build_query(array_merge($get,array('order_by'=>$field_title.' ASC'))).'" class="glyphicon glyphicon-sort-by-attributes-alt"></a>';
+                } elseif(stripos($CI->input->get('order_by'), 'ASC') !== FALSE){
+                    $str.='<a href="'.site_url($CI->uri->uri_string()).'?'.http_build_query(array_merge($get,array('order_by'=>$field_title.' DESC'))).'" class="glyphicon glyphicon-sort-by-attributes"></a>';
+                }
+            } else {
+                $str.='<a href="'.site_url($CI->uri->uri_string()).'?'.http_build_query(array_merge($get,array('order_by'=>$field_title.' ASC'))).'" class="glyphicon glyphicon-sort"></a>';
+            }  
+                        
+            return $str;        
+        
+	}
+}
+
+if (! function_exists('get_widget_option'))
+{
+	function get_widget_option($option_name,$widget_name,$page_id,$lang_id,$default_value='')
+	{
+            $CI =& get_instance();
+            $CI->load->model('widgetoptions_m');
+            $template_name = $CI->data['settings']['template'];
+            $value = $CI->widgetoptions_m->get_option_page_lang($option_name, $widget_name, $page_id, $template_name);
+            
+            if($value && $value->{'value_'.$lang_id})
+                return $value->{'value_'.$lang_id};
+            
+            return $default_value;
+	}
+}
+
+if (! function_exists('load_map_api'))
+{
+	function load_map_api($version='google', $lang_code ='en')
+	{
+            $CI =& get_instance();
+            $template_name = $CI->data['settings']['template'];
+           
+            $src = '';
+            switch ($version) {
+                
+                case 'open_street' : $maps_api_key = $CI->data['settings']['maps_api_key'];;
+                                $load = '<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />';
+                                $load .= '<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>';
+                                $load .= '<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css" />';
+                                $load .= '<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css" />';
+                                $load .= '<script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>';
+                                break;
+                
+                case 'google' : $maps_api_key = $CI->data['settings']['maps_api_key'];;
+                                $src = '//maps.google.com/maps/api/js?v=3.3&amp;libraries=places,geometry&amp;key='.$maps_api_key.'&amp;language='.$lang_code;
+                                $load = '<script src="'.$src.'"></script>';
+                                break;
+                            
+                default:        $maps_api_key = $CI->data['settings']['maps_api_key'];;
+                                $src = '//maps.google.com/maps/api/js?v=3.3&amp;libraries=places,geometry&amp;key='.$maps_api_key.'&amp;language='.$lang_code;
+                                $load = '<script src="'.$src.'"></script>';
+                                break;
+            }
+            
+            echo $load;
+	}
 }

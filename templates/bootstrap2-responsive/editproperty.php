@@ -4,7 +4,7 @@
     <?php _widget('head');?>
     <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
     <script src="assets/js/editable_table/mindmup-editabletable.js"></script>
-    <script language="javascript">
+    <script>
     
     // init copy features
 $(document).ready(function(){
@@ -443,7 +443,7 @@ $(document).ready(function(){
   
 {template_header}
 
-<a name="content" id="content"></a>
+<a id="content"></a>
 <div class="wrap-content">
     <div class="container">
         <div class="row-fluid">
@@ -633,7 +633,7 @@ $(document).ready(function(){
 
                                                 ?>
                                                 <div class="field-row hidden">
-                                                <?php echo form_input('option'.$val_option['id'].'_'.$key, set_value('option'.$val_option['id'].'_'.$key, isset($estate['option'.$val_option['id'].'_'.$key])?$estate['option'.$val_option['id'].'_'.$key]:''), 'class="form-control tree-input-value" id="inputOption_'.$key.'_'.$val_option['id'].'" placeholder="'.$val_option['option'].'"')?>
+                                                <?php echo form_input('option'.$val_option['id'].'_'.$key, set_value('option'.$val_option['id'].'_'.$key, isset($estate['option'.$val_option['id'].'_'.$key])?$estate['option'.$val_option['id'].'_'.$key]:''), 'class="form-control tree-input-value"  rel="" id="inputOption_'.$key.'_'.$val_option['id'].'" placeholder="'.$val_option['option'].'"')?>
                                                 </div>
                                               </div>
                                             </div>
@@ -684,7 +684,7 @@ if(isset($estate['option'.$val_option['id'].'_'.$key])){
 </ul>
 
 <!-- JavaScript used to call the fileupload widget to upload files -->
-<script language="javascript">
+<script>
 // When the server is ready...
 $( document ).ready(function() {
     
@@ -851,7 +851,7 @@ function reset_events_<?php echo $val_option['id'].'_'.$key; ?>(){
                                             </div>
                                             
                                             
-                                            <script type="text/javascript">
+                                            <script>
 
                                             $(function () {
                                                 var table_options = {};
@@ -952,7 +952,7 @@ function reset_events_<?php echo $val_option['id'].'_'.$key; ?>(){
                                     <?php else: ?>
                                     <span><em><?php echo lang_check('Save for preview')?></em></span>
                                     <?php endif; ?>
-                                    <img id="ajax-indicator-1" src="assets/img/ajax-loader.gif" />
+                                    <img id="ajax-indicator-1" src="assets/img/ajax-loader.gif"  alt=""/>
                                   </div>
                                 </div>
                        <?php echo form_close()?>
@@ -970,6 +970,8 @@ function reset_events_<?php echo $val_option['id'].'_'.$key; ?>(){
         </div>
         
         <br />
+        
+        <h2><?php echo lang_check('Images gallery');?></h2>
         <div class="property_content">
 <?php if(!isset($estate['id'])):?>
 <span class="label label-danger label-important"><?php echo lang_check('After saving, you can add files and images');?></span>
@@ -1067,6 +1069,88 @@ function reset_events_<?php echo $val_option['id'].'_'.$key; ?>(){
 </div>
 <?php endif;?>
         </div>
+               <br /> 
+    <?php if(config_item('plan_gallery_enabled') == TRUE):?>       
+    <h2><?php echo lang_check('Plan gallery');?></h2>
+    <div class="property_content">
+        <?php if(!isset($estate['id'])):?>
+        <span class="label label-danger label-important"><?php echo lang_check('After saving, you can add files and images');?></span>
+        <?php else:?>
+        <div id="page-files-<?php echo $estate['planimages_repository_id']?>" rel="estate_m">
+            <!-- The file upload form used as target for the file upload widget -->
+            <form class="fileupload" action="<?php echo site_url('files/upload_repository/'.$estate['planimages_repository_id']);?>" method="POST" enctype="multipart/form-data">
+                <!-- Redirect browsers with JavaScript disabled to the origin page -->
+                <noscript><input type="hidden" name="redirect" value="<?php echo site_url('admin/estate/edit/'.$estate['id']);?>"></noscript>
+                <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+                <div class="fileupload-buttonbar">
+                    <div class="span7 col-md-7">
+                        <!-- The fileinput-button span is used to style the file input field as button -->
+                        <span class="btn btn-success fileinput-button">
+                            <i class="icon-plus icon-white"></i>
+                            <span><?php echo lang_check('Addfiles')?></span>
+                            <input type="file" name="files[]" multiple>
+                        </span>
+                        <button type="reset" class="btn btn-warning cancel">
+                            <i class="icon-ban-circle icon-white"></i>
+                            <span><?php echo lang_check('Cancelupload')?></span>
+                        </button>
+                        <button type="button" class="btn btn-danger delete">
+                            <i class="icon-trash icon-white"></i>
+                            <span><?php echo lang_check('Deleteselection')?></span>
+                        </button>
+                        <input type="checkbox" class="toggle" />
+                    </div>
+                    <!-- The global progress information -->
+                    <div class="span5 col-md-5 fileupload-progress fade">
+                        <!-- The global progress bar -->
+                        <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                            <div class="bar" style="width:0%;"></div>
+                        </div>
+                        <!-- The extended global progress information -->
+                        <div class="progress-extended">&nbsp;</div>
+                    </div>
+                </div>
+                <!-- The loading indicator is shown during file processing -->
+                <div class="fileupload-loading"></div>
+                <br />
+                <!-- The table listing the files available for upload/download -->
+                <!--<table role="presentation" class="table table-striped">
+                <tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery">-->
+
+                  <div role="presentation" class="fieldset-content">
+                    <ul class="files files-list-u" data-toggle="modal-gallery" data-target="#modal-gallery">      
+                    <?php if(isset($files[$estate['planimages_repository_id']]))foreach($files[$estate['planimages_repository_id']] as $key=>$file ):?>
+                        <li class="img-rounded template-download fade in">   
+                        <div class="preview">
+                            <img class="img-rounded" alt="<?php echo $file->filename?>" data-src="<?php echo $file->thumbnail_url?>" src="<?php echo $file->thumbnail_url?>">
+                        </div>
+                        <div class="filename">
+                            <code><?php echo character_hard_limiter($file->filename, 20)?></code>
+                        </div>
+                        <div class="options-container">
+                            <?php if($file->zoom_enabled):?>
+                            <a data-gallery="gallery" href="<?php echo $file->download_url?>" title="<?php echo $file->filename?>" download="<?php echo $file->filename?>" class="zoom-button btn btn-mini btn-success"><i class="icon-search icon-white"></i></a>                  
+                            <a class="btn btn-mini btn-info iedit visible-inline-block-lg" rel="<?php echo $file->filename?>" href="#<?php echo $file->filename?>"><i class="icon-pencil icon-white"></i></a>
+                            <?php else:?>
+                            <a target="_blank" href="<?php echo $file->download_url?>" title="<?php echo $file->filename?>" download="<?php echo $file->filename?>" class="btn btn-mini btn-success"><i class="icon-search icon-white"></i></a>
+                            <?php endif;?>
+                            <span class="delete">
+                                <button class="btn btn-mini btn-danger" data-type="POST" data-url="<?php echo $file->delete_url?>"><i class="icon-trash icon-white"></i></button>
+                                <input type="checkbox" value="1" name="delete">
+                            </span>
+                        </div>
+                    </li>
+                    <?php endforeach;?>
+                    </ul>
+                    <br style="clear:both;"/>
+                  </div>
+            </form>
+
+        </div>
+        <?php endif;?>
+        <?php endif;?>
+        
+        </div>
         
         <?php if(false):?>
         <br />
@@ -1081,12 +1165,142 @@ function reset_events_<?php echo $val_option['id'].'_'.$key; ?>(){
 
 <?php _widget('custom_javascript');?> 
 <script src="assets/libraries/ckeditor_4.6.2_standard/ckeditor/ckeditor.js"></script>
-<script language="javascript">
-    
-    /* [START] TreeField */
+<script>
+  /* [START] Dependent fields */
+    $(document).ready(function(){
+        //console.log('Dependent fields loading');
+        <?php 
+        // Fetch dependent fields
+        $CI =& get_instance();
+        $CI->load->model('dependentfield_m');
+        $dependent_fields = $CI->dependentfield_m->get();
+        $dependent_fields_prepare = array();
+        foreach($dependent_fields as $key_d_field=>$d_field)
+        {
+            $dependent_fields_prepare[$d_field->field_id][$d_field->selected_index] = $d_field->hidden_fields_list;
+        }
+        
+        foreach($CI->language_m->db_languages_code as $key_lang=>$id_lang):
+        foreach($dependent_fields_prepare as $d_field_id=>$d_field_indexes):
+        ?>
+        //console.log('fields: <?php echo $d_field_id; ?>');
+        $("select[name='option<?php echo $d_field_id.'_'.$id_lang; ?>'], input[rel][name='option<?php echo $d_field_id.'_'.$id_lang; ?>']").change(function () {
 
+            var index = $(this).children('option:selected').index();
+            var parent_elem = $(this).parent().parent().parent();
+            var parent_elem_hide = $(this).parent().parent();
+            
+            var index_tree = $(this).attr('rel');
+            if (typeof index_tree !== typeof undefined && index_tree !== false) {
+              index = index_tree;
+              parent_elem = parent_elem.parent();
+              parent_elem_hide = parent_elem_hide.parent();
+            }
+
+            // show all below
+            parent_elem_hide.nextAll().removeClass('hide')
+            $(this).closest('.tab-pane').find('textarea, select, input').each(function(){
+                if($(this).attr('data-required') == 'true') {
+                    $(this).attr('required', 'required')
+                }
+            })
+            
+            if (typeof index_tree !== typeof undefined && index_tree !== false) {
+              // include all parent elements
+              $(this).parent().parent().find('select').each(function(){
+                if($(this).val() != '')
+                {
+                    hide_related_<?php echo $d_field_id.'_'.$id_lang; ?>(parent_elem, parent_elem_hide, $(this).val());
+                }
+              });
+            }
+            else
+            {
+                hide_related_<?php echo $d_field_id.'_'.$id_lang; ?>(parent_elem, parent_elem_hide, index);
+            }
+            
+            
+            //console.log(index);
+        });
+        
+        $("select[name='option<?php echo $d_field_id.'_'.$id_lang; ?>']").trigger('change');
+        
+        function hide_related_<?php echo $d_field_id.'_'.$id_lang; ?>(parent_elem, parent_elem_hide, index)
+        {
+            <?php foreach($d_field_indexes as $d_selected_index=>$d_hidden_fields_list): ?>
+            if(index == '<?php echo $d_selected_index; ?>')
+            {
+                // console.log('Hide now it all ;-)');
+                <?php 
+                $hidden_fields_list = explode(',', $d_hidden_fields_list);
+                $generate_selector_list = array();
+                $generate_selector = '';
+                foreach($hidden_fields_list as $hide_field_id)
+                {
+                    $generate_selector_list[] = "[name='option".$hide_field_id.'_'.$id_lang."']";
+                }
+                $generate_selector = implode(',', $generate_selector_list);
+                ?>
+                
+                // empty values
+                parent_elem.find("<?php echo $generate_selector; ?>").not('.skip-input').each( function() {
+                    if(this.type=='text' || this.type=='textarea'){
+                        this.value = '';
+                    }
+                    else if(this.type=='radio' || this.type=='checkbox'){
+                        this.checked=false;
+                    }
+                    else if(this.type=='select-one' || this.type=='select-multiple'){
+                        this.value ='';
+                        if(this.value != '')this.value ='-';
+                    }
+                    
+                    if($(this).attr('required')) {
+                        $(this).removeAttr('required')
+                        $(this).attr('data-required', 'true')
+                    }
+                    
+                });
+                
+                // hide all below
+                //parent_elem.find("<?php echo $generate_selector; ?>").parent().parent().addClass('hide');
+                
+                // hide all below <hr> if found below
+                parent_elem.find("<?php echo $generate_selector; ?>").parent().parent().each( function() {
+                    var curr_elem = $(this);
+                    if(!(curr_elem.hasClass('control-group') || curr_elem.hasClass('form-group')) &&
+                       (curr_elem.parent().hasClass('control-group') || curr_elem.parent().hasClass('form-group')) )
+                    {
+                        curr_elem = curr_elem.parent();
+                    }
+                    
+                    curr_elem.addClass('hide');
+                    
+                    if(curr_elem.prev().is('hr'))
+                    {
+                        curr_elem.prev().addClass('hide');
+                    }
+                    
+                    if(curr_elem.next().is('hr'))
+                    {
+                        curr_elem.next().addClass('hide');
+                    }
+                });
+            }
+            <?php endforeach; ?>
+        }
+        
+        
+        <?php endforeach;endforeach; ?>
+        
+    });
+    
+    /* [END] Dependent fields */
+        
+    /* [START] TreeField */
+    
     $(function() {
-        $(".TREE-GENERATOR .col-lg-9.controls select").change(function(){
+        $(".TREE-GENERATOR select").change(function(){
             var s_value = $(this).val();
             var s_name_splited = $(this).attr('name').split("_"); 
             var s_level = parseInt(s_name_splited[3]);
@@ -1094,10 +1308,11 @@ function reset_events_<?php echo $val_option['id'].'_'.$key; ?>(){
             var s_field_id = s_name_splited[0].substr(6);
             // console.log(s_value); console.log(s_level); console.log(s_field_id);
             
-            load_by_field_e($(this));
+            load_by_field($(this));
             
             // Reset child selection and value generator
             var generated_val = '';
+            var last_selected_numeric = '';
             $(this).parent().parent()
             .find('select').each(function(index){
                 // console.log($(this).attr('name'));
@@ -1106,11 +1321,17 @@ function reset_events_<?php echo $val_option['id'].'_'.$key; ?>(){
                     $(this).html('<option value=""><?php echo lang_check('No values found'); ?></option>');
                     $(this).val('');
                 }
-                else
+                else if($(this).val() != '')
+                {
+                    last_selected_numeric = $(this).val();
                     generated_val+=$(this).find("option:selected").text()+" - ";
+                }
+                    
             });
-            //console.log(generated_val);
+
+            $("#inputOption_"+s_lang_id+"_"+s_field_id).attr('rel', last_selected_numeric);
             $("#inputOption_"+s_lang_id+"_"+s_field_id).val(generated_val);
+            $("#inputOption_"+s_lang_id+"_"+s_field_id).trigger("change");
 
         });
         
@@ -1123,9 +1344,20 @@ function reset_events_<?php echo $val_option['id'].'_'.$key; ?>(){
             if(s_values_splited[0] != '')
             {
                 var first_select = $(this).parent().parent().find('select:first');
-                first_select.find('option').filter(function () { return $(this).html() == s_values_splited[0]; }).attr('selected', 'selected');
+                var find_selected = first_select.find('option').filter(function () { return $(this).html() == s_values_splited[0]; });
+                find_selected.attr('selected', 'selected');
+                
+                var index_tree = find_selected.val();
+                if (typeof index_tree !== typeof undefined && index_tree !== false)
+                {
+                    if($(this).attr('rel') != index_tree)
+                    {
+                        $(this).attr('rel', index_tree);
+                        $(this).trigger("change");
+                    }
+                }
 
-                load_by_field_e(first_select, true, s_values_splited);
+                load_by_field(first_select, true, s_values_splited);
             }
             
             //console.log('value: '+s_values_splited[0]);
@@ -1133,7 +1365,7 @@ function reset_events_<?php echo $val_option['id'].'_'.$key; ?>(){
 
     });
     
-    function load_by_field_e(field_element, autoselect_next, s_values_splited)
+    function load_by_field(field_element, autoselect_next, s_values_splited)
     {
         if (typeof autoselect_next === 'undefined') autoselect_next = false;
         if (typeof s_values_splited === 'undefined') s_values_splited = [];
@@ -1162,8 +1394,22 @@ function reset_events_<?php echo $val_option['id'].'_'.$key; ?>(){
                 {
                     if(s_values_splited[s_level+1] != '')
                     {
-                        select_element.find('option').filter(function () { return $(this).html() == s_values_splited[s_level+1]; }).attr('selected', 'selected');
-                        load_by_field_e(select_element, true, s_values_splited);
+                        var find_selected = select_element.find('option').filter(function () { return $(this).html() == s_values_splited[s_level+1]; });
+                        
+                        find_selected.attr('selected', 'selected');
+                        var index_tree = find_selected.val();
+                        if (typeof index_tree !== typeof undefined && index_tree !== false)
+                        {
+                            var input_element = field_element.parent().parent().find("input.tree-input-value");
+
+                            if(input_element.attr('rel') != index_tree)
+                            {
+                                input_element.attr('rel', index_tree);
+                                $(input_element).trigger("change");
+                            }
+                        }
+                        
+                        load_by_field(select_element, true, s_values_splited);
                     }
                 }
             });
@@ -1180,8 +1426,7 @@ function reset_events_<?php echo $val_option['id'].'_'.$key; ?>(){
         // Load values for current select
         var ajax_indicator = field_element.parent().parent().parent().find('.ajax_loading');
         if(s_level == 0)$("#inputOption_"+s_lang_id+"_"+s_field_id).attr('value', '');
-        
-        
+
         ajax_indicator.css('display', 'block');
         $.getJSON( "<?php echo site_url('privateapi/get_level_values_select'); ?>/"+s_lang_id+"/"+s_field_id+"/"+field_parent_select_id+"/"+parseInt(s_level), function( data ) {
             ajax_indicator.css('display', 'none');
@@ -1194,14 +1439,27 @@ function reset_events_<?php echo $val_option['id'].'_'.$key; ?>(){
                 field_element.val('');
             
             var generated_val = '';
+            var last_selected_val = '';
+            
             field_element.parent().parent()
             .find('select').each(function(index){
                 if($(this).val() != '' && $(this).val() != null)
+                {
+                    last_selected_val = $(this).val();
                     generated_val+=$(this).find("option:selected").text()+" - ";
+                }
             });
-            
-            if(generated_val.length > $("#inputOption_"+s_lang_id+"_"+s_field_id).attr('value').length)
-                $("#inputOption_"+s_lang_id+"_"+s_field_id).attr('value', generated_val);
+
+            if(generated_val.length > $("#inputOption_"+s_lang_id+"_"+s_field_id).val().length)
+            {
+                
+                //alert(generated_val);
+                //console.log(generated_val);
+                $("#inputOption_"+s_lang_id+"_"+s_field_id).attr('rel', last_selected_val);
+                $("#inputOption_"+s_lang_id+"_"+s_field_id).val(generated_val);
+                $("#inputOption_"+s_lang_id+"_"+s_field_id).trigger('change');
+            }
+
         });
 
     }
@@ -1211,114 +1469,6 @@ function reset_events_<?php echo $val_option['id'].'_'.$key; ?>(){
     }
     
     /* [END] TreeField */
-    
-    /* [START] Dependent fields */
-    $(document).ready(function(){
-        
-        $('.ajax-indicator').click(function(){
-            $('#ajax-indicator-1').show();
-        });
-        
-        //console.log('Dependent fields loading');
-        <?php 
-        // Fetch dependent fields
-        $CI =& get_instance();
-        $CI->load->model('dependentfield_m');
-        $dependent_fields = $CI->dependentfield_m->get();
-        
-        $dependent_fields_pre_prepare = array();
-        $dependent_fields_prepare = array();
-        foreach($dependent_fields as $key_d_field=>$d_field)
-        {
-            $dependent_fields_pre_prepare[$d_field->field_id][$d_field->selected_index] = $d_field->hidden_fields_list;
-        }
-        
-        // Dependent fields right ordering
-        
-        foreach($options as $key_option=>$val_option)
-        {
-            if(isset($dependent_fields_pre_prepare[$val_option['id']]))
-            {
-                $dependent_fields_prepare[$val_option['id']] = $dependent_fields_pre_prepare[$val_option['id']];
-            }
-        }
-        
-        
-        foreach($CI->language_m->db_languages_code as $key_lang=>$id_lang):
-        foreach($dependent_fields_prepare as $d_field_id=>$d_field_indexes):
-        ?>
-        //console.log('fields: <?php echo $d_field_id; ?>');
-        $("select[name='option<?php echo $d_field_id.'_'.$id_lang; ?>']").change(function () {
-            var index = $(this).children('option:selected').index();
-            
-            // show all below
-            $(this).parent().parent().nextAll().removeClass('hide');
-            
-            <?php foreach($d_field_indexes as $d_selected_index=>$d_hidden_fields_list): ?>
-            if(index == '<?php echo $d_selected_index; ?>')
-            {
-                //console.log('Hide now it all ;-)');
-                <?php 
-                $hidden_fields_list = explode(',', $d_hidden_fields_list);
-                $generate_selector_list = array();
-                $generate_selector = '';
-                foreach($hidden_fields_list as $hide_field_id)
-                {
-                    $generate_selector_list[] = "[name='option".$hide_field_id.'_'.$id_lang."']";
-                }
-                $generate_selector = implode(',', $generate_selector_list);
-                ?>
-                
-                // empty values
-                $(this).parent().parent().parent().find("<?php echo $generate_selector; ?>").not('.skip-input').each( function() {
-                    if(this.type=='text' || this.type=='textarea'){
-                        this.value = '';
-                    }
-                    else if(this.type=='radio' || this.type=='checkbox'){
-                        this.checked=false;
-                    }
-                    else if(this.type=='select-one' || this.type=='select-multiple'){
-                        this.value ='';
-                        if(this.value != '')this.value ='-';
-                    }
-                });
-                
-                // hide all below
-                //$(this).parent().parent().parent().find("<?php echo $generate_selector; ?>").parent().parent().addClass('hide');
-                
-                $(this).parent().parent().parent().find("<?php echo $generate_selector; ?>").parent().parent().each( function() {
-                    var curr_elem = $(this);
-                    if(!curr_elem.hasClass('control-group') &&
-                       curr_elem.parent().hasClass('control-group') )
-                    {
-                        curr_elem = curr_elem.parent();
-                    }
-                    
-                    curr_elem.addClass('hide');
-                    
-                    if(curr_elem.prev().is('hr'))
-                    {
-                        curr_elem.prev().addClass('hide');
-                    }
-                    
-                    if(curr_elem.next().is('hr'))
-                    {
-                        curr_elem.next().addClass('hide');
-                    }
-                });
-                
-                
-            }
-            <?php endforeach; ?>
-            
-            //console.log(index);
-        });
-        
-        $("select[name='option<?php echo $d_field_id.'_'.$id_lang; ?>']").trigger('change');
-        <?php endforeach;endforeach; ?>
-        
-    });
-    /* [END] Dependent fields */
     
     function generate_table(key_id, generate_table)
     {
@@ -1715,7 +1865,7 @@ $(document).ready(function(){
 <span class="hidden" id="price_detection">
 </span>
 
-<script type="text/javascript">
+<script>
 
 /* hint */
 $(document).ready(function(){

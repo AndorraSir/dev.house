@@ -34,8 +34,8 @@ class Ghelper {
 		$address = str_replace(' ','+',$address);
         $address = strtolower($address);
         
-	 	$url = 'http://maps.google.com/maps/api/geocode/json?address=' . $address;
-        
+	 	$url = 'http://maps.google.com/maps/api/geocode/json?address=' .utf8_encode($address) ;
+                
         $this->CI->load->model('cacher_m');
         $loaded_value = $this->CI->cacher_m->load($address);
         

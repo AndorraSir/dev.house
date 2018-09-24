@@ -8,7 +8,7 @@
   
 {template_header}
 
-<a name="content" id="content"></a>
+<a id="content"></a>
 <div class="wrap-content">
     <div class="container">
         <div class="row-fluid">
@@ -77,7 +77,7 @@
               <ul class="nav nav-tabs lang-tabs">
                 <?php $i=0;foreach($this->option_m->languages as $key=>$val):$i++;
 
-                    if(config_item('multilang_on_qs') == 0 && $this->language_m->get_default() != $this->language_m->get_code($key))
+                    if(config_db_item('multilang_on_qs') == 0 && $this->language_m->get_default() != $this->language_m->get_code($key))
                         continue;
                 
                 ?>
@@ -88,7 +88,7 @@
               <div style="padding-top: 9px;" class="tab-content">
                 <?php $i=0;foreach($this->option_m->languages as $key=>$val):$i++;
                 
-                    if(config_item('multilang_on_qs') == 0 && $this->language_m->get_default() != $this->language_m->get_code($key))
+                    if(config_db_item('multilang_on_qs') == 0 && $this->language_m->get_default() != $this->language_m->get_code($key))
                         continue;
                 ?>
                 <div id="<?php echo $key?>" class="tab-pane <?php echo $i==1?'active':''?>">
@@ -305,7 +305,7 @@
                     <div class="control-group">
                       <div class="controls">
                         <?php echo form_submit('', lang('Save'), 'class="btn btn-primary ajax-indicator"')?>
-                        <img id="ajax-indicator-1" src="assets/img/ajax-loader.gif" />
+                        <img id="ajax-indicator-1" src="assets/img/ajax-loader.gif" alt="" />
                       </div>
                     </div>
 
@@ -456,10 +456,87 @@
 
 <?php _widget('custom_javascript');?> 
 <script src="assets/libraries/ckeditor_4.6.2_standard/ckeditor/ckeditor.js"></script>
-    <script language="javascript">
+    <script>
     $(document).ready(function(){
         
-        
+          <?php if(config_db_item('map_version') =='open_street'):?>
+            var edit_map_marker;
+            var edit_map
+            if($('#mapsAddress_nondefault').length){
+                if($('#inputGps').length && $('#inputGps').val() != '')
+                {
+                    savedGpsData = $('#inputGps').val().split(", ");
+
+                    edit_map = L.map('mapsAddress_nondefault', {
+                        center: [parseFloat(savedGpsData[0]), parseFloat(savedGpsData[1])],
+                        zoom: {settings_zoom},
+                    });     
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(edit_map);
+                    var positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png').addTo(edit_map);
+                    edit_map_marker = L.marker(
+                        [parseFloat(savedGpsData[0]), parseFloat(savedGpsData[1])],
+                        {draggable: true}
+                    ).addTo(edit_map);
+
+                    edit_map_marker.on('dragend', function(event){
+                        var marker = event.target;
+                        var location = marker.getLatLng();
+                        var lat = location.lat;
+                        var lon = location.lng;
+                        $('#inputGps').val(lat+', '+lon);
+                        //retrieved the position
+                      });
+
+                    firstSet = true;
+                }
+                else
+                {
+
+                    edit_map = L.map('mapsAddress_nondefault', {
+                        center: [{settings_gps}],
+                        zoom: {settings_zoom},
+                    });     
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(edit_map);
+                    var positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png').addTo(edit_map);
+                    edit_map_marker = L.marker(
+                        [{settings_gps}],
+                        {draggable: true}
+                    ).addTo(edit_map);
+
+                    edit_map_marker.on('dragend', function(event){
+                        var marker = event.target;
+                        var location = marker.getLatLng();
+                        var lat = location.lat;
+                        var lon = location.lng;
+                        $('#inputGps').val(lat+', '+lon);
+                        //retrieved the position
+                    });
+
+                    firstSet = true;
+                }
+
+                $('#input_address').on('change keyup', function (e) {
+                    clearTimeout(timerMap);
+                    timerMap = setTimeout(function () {
+                        $.get('https://nominatim.openstreetmap.org/search?format=json&q='+$('#input_address').val(), function(data){
+                            if(data.length && typeof data[0]) {
+                                edit_map_marker.setLatLng([data[0].lat, data[0].lon]).update(); 
+                                edit_map.panTo(new L.LatLng(data[0].lat, data[0].lon));
+                                $('#inputGps').val(data[0].lat+', '+data[0].lon);
+                            } else {
+                                ShowStatus.show('<?php echo str_replace("'", "\'", lang_check('Address not found!')); ?>');
+                                return;
+                            }
+                        });
+                    }, 2000);
+
+                });
+            }
+            <?php else:?>
         
         $("#mapsAddress_nondefault").gmap3({
             map:{
@@ -521,7 +598,8 @@
                 }, 2000);
                 
             });
-          
+            
+        <?php endif;?> 
           
             /* hint */
             
@@ -655,7 +733,7 @@
         if(select_element.length > 0 && s_value != '')
         {
             ajax_indicator.css('display', 'block');
-            $.getJSON( "<?php echo site_url('privateapi/get_level_values_select'); ?>/"+s_lang_id+"/"+s_field_id+"/"+s_value+"/"+parseInt(s_level+1), function( data ) {
+            $.getJSON( "<?php echo site_url('api/get_level_values_select'); ?>/"+s_lang_id+"/"+s_field_id+"/"+s_value+"/"+parseInt(s_level+1), function( data ) {
                 //console.log(data.generate_select);
                 //console.log("select[name=option"+s_field_id+"_"+s_lang_id+"_level_"+parseInt(s_level+1)+"]");
                 ajax_indicator.css('display', 'none');
@@ -687,7 +765,7 @@
         
         
         ajax_indicator.css('display', 'block');
-        $.getJSON( "<?php echo site_url('privateapi/get_level_values_select'); ?>/"+s_lang_id+"/"+s_field_id+"/"+field_parent_select_id+"/"+parseInt(s_level), function( data ) {
+        $.getJSON( "<?php echo site_url('api/get_level_values_select'); ?>/"+s_lang_id+"/"+s_field_id+"/"+field_parent_select_id+"/"+parseInt(s_level), function( data ) {
             ajax_indicator.css('display', 'none');
             
             field_element.html(data.generate_select);
@@ -717,14 +795,5 @@
     /* [END] TreeField */
     
     </script>
-    
-    <style>
-    
-    #mapsAddress_nondefault
-    {
-        height:400px;
-    }
-    
-    </style>
   </body>
 </html>

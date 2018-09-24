@@ -19,7 +19,7 @@
       <div class="row">
         <div class="span6">
           <h1>
-            <img src="assets/img/logo.png" />
+            <img src="assets/img/logo.png"  alt="logo"/>
           </h1>
         </div>
         <div class="span6 text-right">

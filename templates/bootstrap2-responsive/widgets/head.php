@@ -35,9 +35,9 @@
     <link href="assets/style/footer.css" rel="stylesheet">
     <link href="assets/style/searchform.css" rel="stylesheet">
     <link href="assets/style/navbar.css" rel="stylesheet">
-    <link href="assets/style/carousel.css" rel="stylesheet">
+    <link href="assets/style/carousel.css" rel="stylesheet"> 
 
-    <script src="assets/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i,900,900i|Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet">
 
 
    <!-- Font Awesome -->
@@ -58,8 +58,9 @@
     <link href="assets/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="assets/css/blueimp-gallery.min.css" rel="stylesheet">
     <link href="assets/css/jquery.cleditor.css" rel="stylesheet">
-    <link href="assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet"> 
 
+    
     
     <?php 
     $config_base_url = config_item('base_url');
@@ -85,9 +86,8 @@
     <script src="assets/js/blueimp-gallery.min.js"></script>
     <script src="assets/js/jquery.helpers.js"></script>
     <script src="assets/js/jquery.placeholder.min.js"></script>
-    
+     
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i,900,900i|Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet">
 
     <script type="text/javascript" src="assets/js/jquery.number.js"></script>
     <script type="text/javascript" src="assets/js/jquery.h5validate.js"></script>

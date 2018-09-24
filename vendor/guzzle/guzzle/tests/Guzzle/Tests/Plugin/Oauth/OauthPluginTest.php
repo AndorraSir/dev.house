@@ -84,7 +84,7 @@ class OauthPluginTest extends \Guzzle\Tests\GuzzleTestCase
         $this->assertNotContains('&e=f', $sts);
     }
 
-    public function testCreatesStringToSignFromPostRequestWithbootstrap2-responsiveType()
+    public function testCreatesStringToSignFromPostRequestWithCustomContentType()
     {
         $p = new OauthPlugin($this->config);
         $request = $this->getRequest();

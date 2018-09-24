@@ -180,7 +180,7 @@ class News extends Frontend_Controller
         /* {/MOULE_NEWS} */
         
         $output = $this->parser->parse($this->data['settings_template'].'/results_news.php', $this->data, TRUE);
-        $output = str_replace('admin-assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
+        $output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
         
         echo json_encode(array('print' => $output, 'lang_id'=>$lang_id, 'total_rows'=>$config_2['total_rows']));
         exit();

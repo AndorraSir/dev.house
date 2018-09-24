@@ -40,6 +40,7 @@ class Settings_m extends MY_Model {
     public $rules_system = array(
         'noreply' => array('field'=>'noreply', 'label'=>'lang:No-reply email', 'rules'=>'trim|required|valid_email'),
         'zoom' => array('field'=>'zoom', 'label'=>'lang:Zoom index', 'rules'=>'trim|less_than[19]|required|is_natural'),
+        'zoom_dashboard' => array('field'=>'zoom_dashboard', 'label'=>'lang:Zoom index dashboard', 'rules'=>'trim|less_than[19]|is_natural'),
         'paypal_email' => array('field'=>'paypal_email', 'label'=>'lang:PayPal payment email', 'rules'=>'trim|valid_email'),
         'payments_enabled'=> array('field'=>'payments_enabled', 'label'=>'lang:Enable payments', 'rules'=>'trim'),
         'walkscore_enabled'=> array('field'=>'walkscore_enabled', 'label'=>'lang:Walkscore enabled', 'rules'=>'trim'),
@@ -80,6 +81,9 @@ class Settings_m extends MY_Model {
         
         'js_date_format' => array('field'=>'js_date_format', 'label'=>'lang:Js date format', 'rules'=>'trim'),
         'php_date_format' => array('field'=>'php_date_format', 'label'=>'lang:Php date format', 'rules'=>'trim'),
+        'word_filtering' => array('field'=>'word_filtering', 'label'=>'lang:Word filtering', 'rules'=>'trim'),
+        'clickatell_api_key' => array('field'=>'clickatell_api_key', 'label'=>'lang:Clickatell api key', 'rules'=>'trim'),
+        'map_version' => array('field'=>'map_version', 'label'=>'lang:Open street map', 'rules'=>'trim'),
 
     );
 

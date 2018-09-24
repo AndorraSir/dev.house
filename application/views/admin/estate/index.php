@@ -94,7 +94,25 @@
                         <?php echo form_dropdown('field_4', $this->option_m->get_field_values($content_language_id, 4, lang_check('Purpose')), set_value_GET('field_4', '', true), 'class="form-control"'); ?>
                       </div>
                       <div class="form-group">
-                        <?php echo form_dropdown('field_2', $this->option_m->get_field_values($content_language_id, 2, lang_check('Type')), set_value_GET('field_2', '', true), 'class="form-control"'); ?>
+                        <?php if($settings['template'] == 'local'):?> 
+                            <?php
+                            $tree_field_id = 79;
+                            $values = array();
+                            $CI = &get_instance();
+                            $this->load->model('treefield_m');
+                            $this->load->model('file_m');
+                            $check_option = $CI->treefield_m->get_lang(NULL, FALSE, $content_language_id);
+                            foreach ($check_option as $key => $value) {
+                                if($value->field_id==$tree_field_id){
+                                    $values['"field_79":"'.$value->value_path]= $value->value_path;
+                                }
+                            }
+                            ?>
+                            <?php echo form_dropdown('json_object', array_merge(array(''=>lang_check('Category')),$values), set_value_GET('json_object', '', true), 'class="form-control"'); ?>
+                        <?php else:?>
+                            <?php echo form_dropdown('field_2', $this->option_m->get_field_values($content_language_id, 2, lang_check('Type')), set_value_GET('field_2', '', true), 'class="form-control"'); ?>
+                        <?php endif;?>
+                      
                       </div>
                       <?php if($this->session->userdata('type') == 'ADMIN'):?>
                       <div class="form-group">
@@ -108,20 +126,21 @@
                     <?php if($this->session->flashdata('error')):?>
                     <p class="label label-important validation"><?php echo $this->session->flashdata('error')?></p>
                     <?php endif;?>
-                    
                     <?php echo form_open('admin/estate/delete_multiple', array('class' => '', 'style'=> 'padding:0px;margin:0px;', 'role'=>'form'))?> 
                     <table class="table table-bordered footable">
                       <thead>
                         <tr>
-                        	<th>#</th>
-                            <th><?php echo lang('Address');?></th>
+                            <th style='white-space:nowrap'># <?php echo field_order_by($field_title = 'property.id');?></th>
+                            <th><?php echo lang('Address');?>
+                                <?php echo field_order_by($field_title = 'property.address');?>
+                            </th>
                             <th data-hide="phone"><?php echo lang('Agent');?></th>
                             <!-- Dynamic generated -->
                             <?php foreach($this->option_m->get_visible($content_language_id) as $row):?>
                             <th data-hide="phone,tablet"><?php echo $row->option?></th>
                             <?php endforeach;?>
                             <!-- End dynamic generated -->
-                            <th data-hide="phone"><?php echo lang_check('Views');?></th>
+                            <th data-hide="phone"><?php echo lang_check('Views');?> <?php echo field_order_by($field_title = 'property.counter_views');?></th>
                             <th data-hide="phone"><?php echo lang_check('Preview');?></th>
                         	<th class="control"><?php echo lang('Edit');?></th>
 
@@ -143,28 +162,40 @@
                       <tbody>
                         <?php if(count($estates)): foreach($estates as $estate):?>
                                     <tr>
-                                    	<td><?php echo $estate->id?></td>
-                                        <td>
-                                        <?php echo anchor('admin/estate/edit/'.$estate->id, _ch($estate->address) )?>
-                                        <?php if($estate->is_activated == 0):?>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-danger"><?php echo lang_check('Not Activated')?></span>
-                                        <?php endif;?>
-                                        <?php if(isset($settings['listing_expiry_days']) && $settings['listing_expiry_days'] > 0 && strtotime($estate->date_modified) <= time()-$settings['listing_expiry_days']*86400): ?>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-warning"><?php echo lang_check('Expired'); ?></span>
-                                        <?php endif; ?>
-                                        <?php if(!empty($estate->activation_paid_date)):?>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-success"><?php echo lang_check('Paid'); ?></span>
-                                        <?php endif; ?>
-                                        <?php if(!empty($estate->status)):?>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-info"><?php echo $estate->status; ?></span>
-                                        <?php endif; ?>
+                                    	<td>
+                                                    
+                                            <?php echo $estate->id?>
+                                        
+                                        </td>
+                                        <td class="tooltip_preview">
+                                            <?php if(!empty($estate->image_filename) && file_exists(FCPATH.'files/thumbnail/'.$estate->image_filename)):?>
+                                            <a class="tooltipbox" target="_blank" href="<?php echo site_url((config_item('listing_uri')===false?'property':config_item('listing_uri')).'/'.$estate->id);?>">
+                                                <img src="<?php echo _simg('files/thumbnail/'.$estate->image_filename, '56x40');?>" width="56px" height="40px" alt=""/>
+                                            </a>
+                                            <?php endif; ?>
+                                            <?php echo anchor('admin/estate/edit/'.$estate->id, _ch($estate->address) )?>
+                                            <?php if($estate->is_activated == 0):?>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-danger"><?php echo lang_check('Not Activated')?></span>
+                                            <?php endif;?>
+                                            <?php if(isset($settings['listing_expiry_days']) && $settings['listing_expiry_days'] > 0 && strtotime($estate->date_modified) <= time()-$settings['listing_expiry_days']*86400): ?>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-warning"><?php echo lang_check('Expired'); ?></span>
+                                            <?php endif; ?>
+                                            <?php if(!empty($estate->activation_paid_date)):?>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-success"><?php echo lang_check('Paid'); ?></span>
+                                            <?php endif; ?>
+                                            <?php if(!empty($estate->status)):?>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-info"><?php echo $estate->status; ?></span>
+                                            <?php endif; ?>
                                         </td>
                                         <td><?php echo check_set($available_agent[$this->estate_m->get_user_id($estate->id)], '')?></td>
                                         <!-- Dynamic generated -->
                                         <?php foreach($this->option_m->get_visible($content_language_id) as $row):?>
                                         <td>
                                         <?php
-                                            echo $this->estate_m->get_field_from_listing($estate, $row->option_id);
+                                            $value = $this->estate_m->get_field_from_listing($estate, $row->option_id);
+                                            if($row->option_id==79)
+                                                $value = trim($value,' - ');
+                                            echo $value;
                                         ?>
                                         </td>
                                         <?php endforeach;?>

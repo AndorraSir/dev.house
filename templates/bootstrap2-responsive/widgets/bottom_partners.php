@@ -6,7 +6,7 @@
         <div class="row-fluid bottom_partners">
         <?php if(!empty($all_agents)):foreach($all_agents as $agent): ?>
                 <?php if(isset($agent['image_sec_url'])): ?>
-                  <div class="span2 agencies-logo"><a href="<?php echo $agent['agent_url']; ?>"><img src="<?php echo $agent['image_sec_url']; ?>" /></a></div>
+                  <div class="span2 agencies-logo"><a href="<?php echo $agent['agent_url']; ?>"><img src="<?php echo $agent['image_sec_url']; ?>" alt="" /></a></div>
                 <?php endif; ?>
             <?php endforeach; ?>
         <?php else: ?>

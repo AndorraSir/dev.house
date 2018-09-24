@@ -22,7 +22,7 @@
 ?>
 
     <div class="<?php echo $class_add; ?>" style="<?php _che($field->style); ?>">
-    <select option_id="<?php echo $f_id; ?>" class="nomargin input_am<?php echo $direction;?> id_<?php echo $f_id; ?> <?php echo $class_add; ?>" placeholder="<?php _che(${'options_name_'.$f_id}); ?>">
+    <select data-option_id="<?php echo $f_id; ?>" class="nomargin input_am<?php echo $direction;?> id_<?php echo $f_id; ?> <?php echo $class_add; ?>">
         <?php _che(${'options_values_'.$f_id}); ?>
     </select>
     </div>

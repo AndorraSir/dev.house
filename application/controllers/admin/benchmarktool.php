@@ -11,6 +11,7 @@ class Benchmarktool extends Admin_Controller
         ini_set('display_errors',1);
         error_reporting(E_ALL);
         //$this->output->enable_profiler(TRUE);
+        $this->data['content_language_id'] = $this->language_m->get_content_lang();
 	}
     
     public function index()
@@ -37,6 +38,384 @@ class Benchmarktool extends Admin_Controller
         }
         
         return false;
+    }
+    public function unused_images($par='0')
+    {
+        $files_for_skip = array('index.html', 'no_image.jpg', 'treefield_');
+
+        // Get all images from file table
+        $this->load->model('file_m');
+
+        $files_db = $this->file_m->get();
+        $files_db_filename = array();
+
+        // Get only filenames
+        foreach($files_db as $file)
+        {
+            $files_db_filename[$file->filename] = $file->repository_id;
+        }
+
+        //dump($files_db_filename);
+
+        // Get files from files folder
+        if ($handle = opendir(FCPATH.'/files')) {
+            while (false !== ($entry = readdir($handle))) {
+                if ($entry != "." && $entry != "..") {
+
+                    $skip=false;
+                    foreach($files_for_skip as $val)
+                    {
+                        if(substr_count($entry, $val) > 0)
+                        {
+                            $skip=true;
+                            break;
+                        }
+                    }
+                    if($skip)continue;
+
+                    if(is_file(FCPATH.'/files/'.$entry) && !isset($files_db_filename[$entry]))
+                    {
+                        echo "root FILES NOT in DB: $entry<br />";
+
+                        if($par == '1')
+                        {
+                            unlink(FCPATH.'/files/'.$entry);
+                        }
+                    }
+                }
+            }
+            closedir($handle);
+        }
+
+        // Get files from files folder
+        if ($handle = opendir(FCPATH.'/files/thumbnail/')) {
+            while (false !== ($entry = readdir($handle))) {
+                if ($entry != "." && $entry != "..") {
+
+                    $skip=false;
+                    foreach($files_for_skip as $val)
+                    {
+                        if(substr_count($entry, $val) > 0)
+                        {
+                            $skip=true;
+                            break;
+                        }
+                    }
+                    if($skip)continue;
+
+                    if(is_file(FCPATH.'/files/thumbnail/'.$entry) && !isset($files_db_filename[$entry]))
+                    {
+                        echo "thumbnail FILES NOT in DB: $entry<br />";
+
+                        if($par == '1')
+                        {
+                            unlink(FCPATH.'/files/thumbnail/'.$entry);
+                        }
+                    }
+                }
+            }
+            closedir($handle);
+        }
+
+        // Find repositories not used
+        $all_rep = array();
+
+        $reps = $this->col_from_table('ads_m', 'repository_id');
+        $all_rep +=  $reps;
+
+        $reps = $this->col_from_table('estate_m', 'repository_id');
+        $all_rep +=  $reps;
+
+        $reps = $this->col_from_table('user_m', 'repository_id');
+        $all_rep +=  $reps;
+
+        $reps = $this->col_from_table('slideshow_m', 'repository_id');
+        $all_rep +=  $reps;
+
+        $reps = $this->col_from_table('treefield_m', 'repository_id');
+        $all_rep +=  $reps;
+
+        $reps = $this->col_from_table('showroom_m', 'repository_id');
+        $all_rep +=  $reps;
+
+        $reps = $this->col_from_table('page_m', 'repository_id');
+        $all_rep +=  $reps;
+
+        $reps = $this->col_from_table('option_m', 'repository_id');
+        $all_rep +=  $reps;
+
+        $all_rep[config_db_item('website_logo')] = 'settings';
+        $all_rep[config_db_item('website_logo_secondary')] = 'settings';
+        $all_rep[config_db_item('website_favicon')] = 'settings';
+        $all_rep[config_db_item('watermark_img')] = 'settings';
+        $all_rep[config_db_item('search_background')] = 'settings';
+
+        // Find reps by UPLOAD fields
+
+        $this->db->select('*');
+        $this->db->from('option');
+        $this->db->join('property_value', 'option.id = property_value.option_id');
+        $this->db->where('option.type', 'UPLOAD'); 
+        $query = $this->db->get();
+        $results = $query->result();
+
+        $upload_fields = array();
+        foreach($results as $row)
+        {
+            if(is_numeric($row->value_num))
+            {
+                $all_rep[$row->value_num] = 'fields_upload';
+            }
+        }
+
+        foreach($files_db_filename as $key=>$val)
+        {
+            if(!isset($all_rep[$val]))
+            {
+                echo "REPOSITORY NOT FOUND: $val<br />";
+                echo "<img style=\"background-color:black;max-height:100px;\" src=\"".base_url()."files/$key\"><br />";
+
+                if($par == '1')
+                {
+                    unlink(FCPATH.'/files/'.$key);
+                    unlink(FCPATH.'/files/thumbnail/'.$key);
+
+                    // remove from file table
+                    $this->db->delete('file', array('filename' => $key)); 
+
+                }
+            }
+        }
+
+        // Remove strict_cache and captcha files
+        if($par == '1')
+        {
+            if ($handle = opendir(FCPATH.'/files/captcha/')) {
+                while (false !== ($entry = readdir($handle))) {
+                    if ($entry != "." && $entry != "..") {
+    
+                        unlink(FCPATH.'/files/captcha/'.$entry);
+                    }
+                }
+                closedir($handle);
+            }
+
+            if ($handle = opendir(FCPATH.'/files/strict_cache/')) {
+                while (false !== ($entry = readdir($handle))) {
+                    if ($entry != "." && $entry != "..") {
+    
+                        unlink(FCPATH.'/files/strict_cache/'.$entry);
+                    }
+                }
+                closedir($handle);
+            }
+        }
+
+        echo 'TO remove files also, change parameter in url, 0 to 1<br />';
+
+        exit('FINISH');
+    }
+    
+    public function translation_definitions($par='0')
+    {
+
+        $files_content = '';
+        $dir = FCPATH.'/templates/'.$this->data['settings']['template'];
+        echo '<b>Check missing strings in translate file:</b><br />';
+        if(is_dir($dir)) {
+
+            function scanDir_f($dir, &$files_content) {
+                $objs = scanDir($dir);
+                foreach($objs as $val) {
+                    if($val == "." || $val == "..") continue;
+                    $file_p = $dir.'/'.$val;
+                    
+                    if(is_dir($file_p) && $val != "language" && $val != "assets") {
+                        scanDir_f($file_p, $files_content);
+                    } elseif(strpos($val, 'php') !== FALSE) {
+                        $files_content .= file_get_contents($file_p);
+                    }
+                }
+            }
+            scanDir_f($dir, $files_content);
+            
+            $strings = array();
+            preg_match_all('/\_l\((.*?)\)/is', $files_content, $matches);
+            if($matches && isset($matches[1])){
+                foreach ($matches[1] as $key => $value) {
+                    $value = trim($value);
+                    $_val = substr($value, 1);
+                    if($value[0]== "'" && strpos($_val, "',") !== FALSE) {
+                        $i = strpos($_val, "',");
+                        if($i!= 0 && $_val[strpos($value, "',")-1] !=='\\'){
+                            $pos = strpos($value, "',");
+                            $value = substr($value, 0, $pos);
+                        }
+                    }
+                    if($value[0]== '"' && strpos($_val, '",') !== FALSE) {
+                        $i = strpos($_val, '",');
+                        if($i!= 0 && $_val[strpos($_val, '",')-1] !=="\\"){
+                            $pos = strpos($value, '",');
+                            $value = substr($value, 0, $pos);
+                        }
+                    }
+                    if($value[0]== "'" && strpos($_val, "'.") !== FALSE) {
+                        $i = strpos($_val, "'.");
+                        if($i!= 0 && $_val[strpos($_val, "'.")-1] !=='\\')
+                            continue;
+                    }
+                    if($_val[0]== '"' && strpos($_val, '".') !== FALSE) {
+                        $i = strpos($_val, '".');
+                        if($i!= 0 && $_val[strpos($_val, '".')-1] !=="\\")
+                            continue;
+                    }
+                    
+                    $value= trim($value, "'");
+                    $value= trim($value, '"');
+                    $strings[] = $value;
+                }
+            }
+            preg_match_all('/lang_check\((.*?)\)/is', $files_content, $matches);
+            if($matches && isset($matches[1])){
+                foreach ($matches[1] as $key => $value) {
+                    $value = trim($value);
+                    $_val = substr($value, 1);
+                    if($value[0]== "'" && strpos($_val, "',") !== FALSE) {
+                        $i = strpos($_val, "',");
+                        if($i!= 0 && $_val[strpos($value, "',")-1] !=='\\'){
+                            $pos = strpos($value, "',");
+                            $value = substr($value, 0, $pos);
+                        }
+                    }
+                    if($value[0]== '"' && strpos($_val, '",') !== FALSE) {
+                        $i = strpos($_val, '",');
+                        if($i!= 0 && $_val[strpos($_val, '",')-1] !=="\\"){
+                            $pos = strpos($value, '",');
+                            $value = substr($value, 0, $pos);
+                        }
+                    }
+                    if($value[0]== "'" && strpos($_val, "'.") !== FALSE) {
+                        $i = strpos($_val, "'.");
+                        if($i!= 0 && $_val[strpos($_val, "'.")-1] !=='\\')
+                            continue;
+                    }
+                    if($_val[0]== '"' && strpos($_val, '".') !== FALSE) {
+                        $i = strpos($_val, '".');
+                        if($i!= 0 && $_val[strpos($_val, '".')-1] !=="\\")
+                            continue;
+                    }
+                    
+                    $value= trim($value, "'");
+                    $value= trim($value, '"');
+                    $strings[] = $value;
+                }
+            }
+            
+            /*
+            preg_match_all('/{lang_(.*?)}/is', $files_content, $matches);
+            if($matches && isset($matches[1])){
+                foreach ($matches[1] as $key => $value) {
+                    $value= trim($value, "'");
+                    $value= trim($value, '"');
+                    $strings[] = $value;
+                }
+            }
+            */
+            $strings = array_unique($strings);
+            
+            $this->load->model('language_m');
+            $this->load->helper('security');
+            $this->data['content_language_id'] = $this->language_m->get_content_lang();
+            $language_current = $this->language_m->get_name($this->data['content_language_id']);
+
+            $path_current = FCPATH.'templates/'.$this->data['settings']['template'].'/language/'.$language_current.'/frontend_template_lang.php';
+            include $path_current;
+            
+            if(!isset($lang)) $lang = array();
+            
+            $language_translations_content = $lang;
+            
+            /* add missing strings translate text */
+            $count = 0;
+            echo "<pre>";
+            foreach ($strings as $key => $value) {
+                $lang_val = $value;
+                $key = $value;
+
+                $lang_val = xss_clean($lang_val);
+                $lang_val = str_replace('"', '\"', $lang_val);
+                $lang_val = str_replace('$', '\\$', $lang_val);
+
+                $key = str_replace('\'', '\\\'', $key);
+                $key = str_replace('$', '\\$', $key);
+
+                if(!isset($language_translations_content[$lang_val]) && strpos($lang_val, '$') === FALSE) {
+                    echo '$lang[\''.$lang_val.'\'] = "'.$lang_val.'";'.PHP_EOL;
+                    $count++;
+                } 
+            }
+            echo "</pre>";
+            /* end add ore replace new translate text */
+
+            // Save file
+            if($par == 1 && $count > 0) {
+                $file_content = "\n";
+
+                $previous = 't';
+                
+                foreach ($strings as $key => $val) {
+                    $lang_val = $val;
+
+                    $lang_val = xss_clean($lang_val);
+                    $lang_val = str_replace('"', '\"', $lang_val);
+                    $lang_val = str_replace('$', '\\$', $lang_val);
+
+                    $key = str_replace('\'', '\\\'', $key);
+                    $key = str_replace('$', '\\$', $key);
+                    
+                    if(!isset($language_translations_content[$lang_val]) && strpos($lang_val, '$') === FALSE) {
+
+                        if(empty($previous) && !empty($lang_val))
+                            $file_content.= "\n";
+
+                        $file_content.= '$lang[\''.$lang_val.'\'] = "'.$lang_val.'";'."\n";
+                        $previous = $lang_val;
+                    }
+                }
+                
+                $origin = file_get_contents($path_current);
+                $origin = str_replace('?>', "\n", $origin);
+                $file_content = $origin.$file_content;
+                file_put_contents($path_current, $file_content);
+            }
+        }
+
+
+        echo '<b>Find "'.$count.'" missing strings in translate file.';
+        if($count>0 && $par==1)
+            echo ' Strings was added, please now translate via Admin->languages->translate files -> frontend_template_lang.php';
+        echo '</b><br />';
+
+        exit('FINISH');
+    }
+
+    private function col_from_table($table_model, $col)
+    {
+        $this->load->model($table_model);
+
+        $col_db = $this->$table_model->get();
+        $col_db_filename = array();
+
+        // Get only filenames
+        foreach($col_db as $row)
+        {
+            if(isset($row->$col))
+            {
+                $col_db_filename[$row->$col] = $table_model;
+            }
+        }
+
+        return $col_db_filename;
     }
     
     private function in_template($template, $file_path)
@@ -80,8 +459,8 @@ class Benchmarktool extends Admin_Controller
 //        $sql = implode('', $lines);
 //        file_put_contents($filename, $sql);
     }
-    
-    public function generate_script_classifieds($template = 'boomerang')
+
+    public function generate_script_local($template = 'local')
     {
 $skip_files = array(
 'application/controllers/admin/ads.php',
@@ -96,6 +475,151 @@ $skip_files = array(
 'application/controllers/admin/showroom.php',
 //'application/controllers/admin/treefield.php',
 'application/controllers/paymentconsole.php',
+'application/controllers/propertycompare.php',
+'application/controllers/trulia.php',
+'application/libraries/Clickatellapi.php',
+'application/controllers/admin/visits.php',
+'application/libraries/Geoplugin.php',
+'application/libraries/Glogin.php',
+'application/libraries/Twlogin.php',
+//'application/libraries/Pdf.php',
+'application/libraries/Importcsv.php',
+'application/libraries/Import_google_places.php',
+'application/libraries/Import_foursquare.php',
+'cron.php',
+//'slug.php',
+'.htaccess',
+'README.md',
+'custom_database.php',
+'templates/bootstrap2-responsive/widgets/right_mortgage.php',
+'templates/bootstrap2-responsive/widgets/property_right_currency-conversions.php',
+'templates/bootstrap2-responsive/widgets/property_right_qrcode.php',
+'templates/bootstrap2-responsive/assets/js/places.js',
+
+//'templates/boomerang/widgets/right_mortgage.php',
+//'templates/boomerang/widgets/property_right_currency-conversions.php',
+'templates/boomerang/widgets/property_right_qrcode.php',
+'templates/boomerang/assets/js/places.js',
+
+'templates/local/widgets/property_right_qrcode.php',
+'templates/local/assets/js/places.js',
+
+'templates/proper/assets/js/places.js',
+'templates/proper/widgets/property_right_qrcode.php',
+'templates/proper/widgets/right_mortgage.php',
+'templates/realocation/widgets/property_right_qrcode.php',
+'templates/realocation/assets/js/places.js',
+'templates/realia/widgets/property_right_currency-conversions.php',
+'templates/realia/widgets/property_right_qrcode.php',
+'templates/realia/assets/js/places.js',
+);
+
+$skip_folders = array(
+
+// [languages]
+
+'application/language/arabic',
+'application/language/dutch',
+'application/language/german',
+'application/language/italian',
+'application/language/persian',
+'application/language/portuguese',
+'application/language/russian',
+'application/language/serbian',
+'application/language/slovenian',
+'application/language/spanish',
+'application/language/turkish',
+'application/language/albanian',
+'application/language/espana',
+
+'system/language/arabic',
+'system/language/dutch',
+'system/language/german',
+'system/language/italian',
+'system/language/persian',
+'system/language/portuguese',
+'system/language/russian',
+'system/language/serbian',
+'system/language/slovenian',
+'system/language/spanish',
+'system/language/turkish',
+'system/language/albanian',
+'system/language/espana',
+
+'templates/realsite/language/arabic',
+'templates/realsite/language/dutch',
+'templates/realsite/language/german',
+'templates/realsite/language/italian',
+'templates/realsite/language/persian',
+'templates/realsite/language/portuguese',
+'templates/realsite/language/russian',
+'templates/realsite/language/serbian',
+'templates/realsite/language/slovenian',
+'templates/realsite/language/spanish',
+'templates/realsite/language/turkish',
+'templates/realsite/language/albanian',
+'templates/realsite/language/espana',
+
+'templates/boomerang/language/arabic',
+'templates/boomerang/language/dutch',
+'templates/boomerang/language/german',
+'templates/boomerang/language/italian',
+'templates/boomerang/language/persian',
+'templates/boomerang/language/portuguese',
+'templates/boomerang/language/russian',
+'templates/boomerang/language/serbian',
+'templates/boomerang/language/slovenian',
+'templates/boomerang/language/spanish',
+'templates/boomerang/language/turkish',
+'templates/boomerang/language/albanian',
+'templates/boomerang/language/espana',
+
+'templates/local/language/arabic',
+'templates/local/language/dutch',
+'templates/local/language/german',
+'templates/local/language/italian',
+'templates/local/language/persian',
+'templates/local/language/portuguese',
+'templates/local/language/russian',
+'templates/local/language/serbian',
+'templates/local/language/slovenian',
+'templates/local/language/spanish',
+'templates/local/language/turkish',
+'templates/local/language/albanian',
+'templates/local/language/espana',
+
+
+// [/languages]
+
+'exports',
+'assets/js/jquery-contact-tabs',
+'assets/js/like2unlock/js',
+'application/config/development',
+'templates/boomerang/assets/boomerang',
+'.git'
+);
+
+        $this->sql_dump();
+        
+        $this->generate_script($template, $skip_files, $skip_folders, 'basic');
+    }
+    
+    public function generate_script_classifieds($template = 'boomerang')
+    {
+$skip_files = array(
+'application/controllers/admin/ads.php',
+'application/controllers/admin/booking.php',
+//'application/controllers/admin/expert.php',
+//'application/controllers/admin/favorites.php',
+//'application/controllers/admin/news.php',
+//'application/controllers/admin/packages.php',
+//'application/controllers/admin/reviews.php',
+'application/controllers/admin/reports.php',
+'application/controllers/admin/savesearch.php',
+'application/controllers/admin/showroom.php',
+'application/controllers/admin/visits.php',
+//'application/controllers/admin/treefield.php',
+'application/controllers/paymentconsole.php',
 //'application/controllers/propertycompare.php',
 'application/controllers/trulia.php',
 'application/libraries/Clickatellapi.php',
@@ -105,6 +629,7 @@ $skip_files = array(
 'application/libraries/Importcsv.php',
 'application/libraries/Import_google_places.php',
 'application/libraries/Import_foursquare.php',
+'application/libraries/Twlogin.php',
 'cron.php',
 //'slug.php',
 '.htaccess',
@@ -192,8 +717,8 @@ $skip_folders = array(
 // [/languages]
 
 'exports',
-'admin-assets/js/jquery-contact-tabs',
-'admin-assets/js/like2unlock/js',
+'assets/js/jquery-contact-tabs',
+'assets/js/like2unlock/js',
 'application/config/development',
 'templates/boomerang/assets/boomerang',
 '.git'
@@ -220,6 +745,7 @@ $skip_files = array(
 'application/controllers/admin/treefield.php',
 'application/controllers/paymentconsole.php',
 'application/controllers/propertycompare.php',
+'application/controllers/admin/visits.php',
 'application/controllers/trulia.php',
 'application/libraries/Clickatellapi.php',
 'application/libraries/Geoplugin.php',
@@ -230,6 +756,7 @@ $skip_files = array(
 'application/libraries/Import_foursquare.php',
 'application/libraries/Eventful.php',
 'application/libraries/Xml2u.php',
+'application/libraries/Twlogin.php',
 'cron.php',
 'slug.php',
 '.htaccess',
@@ -257,8 +784,8 @@ $skip_files = array(
 
 $skip_folders = array(
 'exports',
-'admin-assets/js/jquery-contact-tabs',
-'admin-assets/js/like2unlock/js',
+'assets/js/jquery-contact-tabs',
+'assets/js/like2unlock/js',
 'application/config/development',
 'templates/boomerang/assets/boomerang',
 '.git'

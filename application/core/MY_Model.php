@@ -13,6 +13,11 @@ class MY_Model extends CI_Model {
 		parent::__construct();
 	}
     
+    public function get_primary_key()
+    {
+        return $this->_primary_key;
+    }
+
     public function get_table_name()
     {
         return $this->_table_name;

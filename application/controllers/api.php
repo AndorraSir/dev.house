@@ -2,11 +2,11 @@
 
 class Api extends CI_Controller
 {
-    private $data = array();
+    public $data = array();
     private $settings = array();
     
     // www.mapquestapi.com api key, to generate map image for PDF export
-    private $mapquest_api_key='4PcY4Dku0JA5Gd4aT9evfEPMnG9BGBPi';
+    private $mapquest_api_key='c9MNDPFQVui453XfIl7RBH1FxXkVW9sd';
     
     public function __construct()
     {
@@ -297,6 +297,92 @@ class Api extends CI_Controller
         exit();
     }
     
+    
+    public function newsrss ($lang_code, $limit_properties=20, $offset_properties=0)
+    {
+        header('Content-Type: application/rss+xml; charset=utf-8');
+        $this->load->model('language_m');
+        $this->load->model('option_m');
+        $this->load->model('estate_m');
+        $this->load->model('page_m');
+        $this->load->model('file_m');
+        $this->load->helper('text_helper');
+        $lang_id = $this->language_m->get_id($lang_code);
+        $lang_name = $this->language_m->get_name($lang_id);
+        $this->lang->load('frontend_template', $lang_name, FALSE, TRUE, FCPATH.'templates/'.$this->settings['template'].'/');
+        
+        if(empty($this->settings['websitetitle']))$this->settings['websitetitle'] = 'Title not defined';
+        
+        $this->data['listing_uri'] = config_item('listing_uri');
+        if(empty($this->data['listing_uri']))$this->data['listing_uri'] = 'property';
+        
+        //Fetch last 20 properties
+        //$options = $this->option_m->get_options($lang_id);
+        
+         /* {MODULE_NEWS} */
+        
+        $cat_merge = '';
+        // Fetch all pages
+        $news_module_all = $this->page_m->get_lang(NULL, FALSE, $lang_id, array('type'=>'MODULE_NEWS_POST'), null, '', 'date_publish DESC');
+        
+        /* {/MODULE_NEWS} */
+        
+        
+        // Fetch all files by repository_id
+        
+        // Set website details
+        $generated_xml = '<?xml version="1.0" encoding="UTF-8" ?>';
+        $generated_xml.= '<rss version="2.0">
+                            <channel>
+                              <title><![CDATA[ '.strip_tags($this->settings['websitetitle']).' ]]></title>
+                              <link>'.site_url().'</link>
+                              <description>'.$this->settings['phone'].', '.$this->settings['email'].'</description>';
+        
+        
+        // Add listings to rss feed     
+        foreach($news_module_all as $key=>$row){
+            $title_slug=$title='';
+            $value = $row->title;
+            if(!empty($value))
+            {
+                $title = $value;
+                $title_slug = url_title_cro($value);
+            }
+            $url = slug_url($lang_code.'/'.$row->id.'/'.$title_slug);
+
+            $description = 'Description field removed';
+            $value = character_limiter(strip_tags($row->body), 150);
+            if(!empty($value))
+            {
+                $description = $value;
+            }
+            // Thumbnail
+            $thumbnail_url = '';
+            if(isset($row->image_filename))
+            {
+                $thumbnail_url = base_url('files/thumbnail/'.rawurlencode($row->image_filename));
+                $thumbnail_url = '<img align="left" hspace="5" src="'.$thumbnail_url.'" />';
+            }
+            
+            $pubDate= date("r", strtotime($row->date));
+            
+            $generated_xml.=  '<item>
+                                <title>'.strip_tags($title).'</title>
+                                <link>'.$url.'</link>
+                                <pubDate>'.$pubDate.'</pubDate>
+                                <description>
+                                    <![CDATA['.$thumbnail_url.$description.']]>
+                                </description>
+                              </item>';
+        }
+
+        // Close rss  
+        $generated_xml.= '</channel></rss>';
+
+        echo $generated_xml;
+        exit();
+    }
+    
     /*
         Example call: index.php/api/json/en?
         Supported uri parameters, for pagination:
@@ -453,7 +539,8 @@ class Api extends CI_Controller
     public function google_login($lang_id = NULL)
     {
 		
-	
+	$this->load->library('session');
+        
         if (version_compare(phpversion(), '5.5.0', '>=')) {
         } else {
             exit('PHP version 5.5 is required for google login');
@@ -465,6 +552,12 @@ class Api extends CI_Controller
         }
 
         $this->load->model('language_m');
+        
+        if(!empty($lang_id)){
+            $this->session->set_userdata('lang_id', $lang_id);
+        } elseif($this->session->userdata('lang_id')) {
+            $lang_id = $this->session->userdata('lang_id');
+        }
         
         if(empty($lang_id))
             $lang_id = $this->language_m->get_default_id();
@@ -904,7 +997,6 @@ class Api extends CI_Controller
         echo json_encode($this->data);
         exit();
     }
-
     
     public function xml2u ($lang_code = 'en', $limit_properties=NULL, $offset_properties=0) {
         $this->load->library('session');
@@ -919,5 +1011,1012 @@ class Api extends CI_Controller
         exit();
     }
     
+    function abuse ($listing_id = NULL, $lang_code = 'en') {
+        $this->data['message'] = '';
+        $this->data['success'] = false;
+        $error ='';
+        
+        //load language files
+        $this->load->model('language_m');
+        $lang_name = $this->language_m->get_name($lang_code);
+        if($lang_name != NULL)
+            $this->lang->load('frontend_template', $lang_name, FALSE, TRUE, FCPATH.'templates/'.$this->settings['template'].'/');
+        
+        // Check login and fetch user id
+        $this->load->library('session');
+        $this->load->model('user_m');
+        /*
+        if($this->user_m->loggedin() == TRUE)
+        {
+            $user_id = $this->session->userdata('id');
+        }
+        else
+        {
+            $this->data['message'] = lang_check('Login required!');
+            echo json_encode($this->data);
+            exit();
+        }*/
+        
+        if($listing_id === NULL) {
+            $this->data['message'] = lang_check('Missing listing_id');
+            echo json_encode($this->data);
+            exit();
+        }
+        /* from GET DATA */
+        $_POST['property_id'] = $listing_id;
+        
+        
+        $this->load->model('reports_m');
+        $this->load->model('estate_m');
+        
+        $listing= $this->estate_m->get_dynamic($_POST['property_id']);
+
+        if($listing){
+            $_POST['agent_id'] = $listing->agent;
+        }
+        $_POST = array_merge($_POST, $_GET);
+        
+        //Validation
+        $this->load->library('form_validation');
+        $rules = $this->reports_m->rules_agent;
+        $this->form_validation->set_rules($rules);
+        
+        // Process the form
+        if($this->form_validation->run() == TRUE)
+        {
+            $data = $this->reports_m->array_from_post(array('property_id', 'agent_id', 'name', 
+                                                         'phone', 'email', 'message', 'allow_contact', 'date_submit'));
+            
+            // Save to database
+            $data['date_submit'] = date('Y-m-d H:i:s');
+            $this->reports_m->save($data);
+            
+            // Save to session
+            $this->load->library('session');
+            $data_sess = $data;
+            $data_sess['reported'] = $this->session->userdata('reported');
+            $data_sess['reported'][] = $data_sess['property_id'];
+            $this->session->set_userdata($data_sess);
+            
+            // Send mail
+            if(!empty($this->settings['email']))
+            {
+                // Send email to agent/user
+                $this->load->library('email');
+                $config_mail['mailtype'] = 'html';
+                $this->email->initialize($config_mail);
+                
+                $this->email->from($this->settings['noreply'], lang_check('Web page'));
+                $this->email->to($this->settings['email']);
+                
+                $this->email->subject(lang_check('Reporte from real-estate web'));
+                
+                $message = $this->load->view('email/report_submission', array('data'=>$data), TRUE);
+                
+                $this->email->message($message);
+                if ( ! $this->email->send())
+                {
+                    $this->session->set_flashdata('email_sent', 'email_sent_false');
+                    //echo 'problem sending email';
+                }
+                else
+                {
+                    $this->session->set_flashdata('email_sent', 'email_sent_true');
+                    //echo 'successfully';
+                }
+            }
+            
+        }
+        else
+        {
+            $error .= validation_errors();
+        }
+        
+        $this->data['message'] = $error;
+        
+        if(empty($this->data['message'])) {
+            $this->data['message'] = lang_check('Thanks on your abuse report');
+            $this->data['success'] = true;
+        }
+        
+        echo json_encode($this->data);
+        exit();
+        
+    }
     
+    function submit_visit($listing_id = NULL, $lang_code = 'en') {
+        $this->data['message'] = '';
+        $this->data['success'] = false;
+        $error ='';
+        
+        //load language files
+        $this->load->model('language_m');
+        $lang_name = $this->language_m->get_name($lang_code);
+        if($lang_name != NULL)
+            $this->lang->load('frontend_template', $lang_name, FALSE, TRUE, FCPATH.'templates/'.$this->settings['template'].'/');
+        
+        // Check login and fetch user id
+        $this->load->library('session');
+        $this->load->model('user_m');
+        
+        if($this->user_m->loggedin() == TRUE)
+        {
+            $user_id = $this->session->userdata('id');
+        }
+        else
+        {
+            $this->data['message'] = lang_check('Login required!');
+            echo json_encode($this->data);
+            exit();
+        }
+        
+        if($listing_id === NULL) {
+            $this->data['message'] = lang_check('Missing listing_id');
+            echo json_encode($this->data);
+            exit();
+        }
+        /* from GET DATA */
+        $_POST['property_id'] = $listing_id;
+        
+        
+        $this->load->model('visits_m');
+        $this->load->model('estate_m');
+        
+        $listing= $this->estate_m->get_dynamic($_POST['property_id']);
+
+        if($listing){
+            $_POST['agent_id'] = $listing->agent;
+        }
+        
+        $_POST = array_merge($_POST, $_GET);
+        
+        //Validation
+        $this->load->library('form_validation');
+        $rules = $this->visits_m->rules_client;
+        $this->form_validation->set_rules($rules);
+        $_POST['client_id'] = $this->session->userdata('id');
+        
+        // Process the form
+        if($this->form_validation->run() == TRUE)
+        {
+            $data = $this->visits_m->array_from_post(array('property_id', 'date_visit', 'client_id', 'message'));
+            
+            // Save to database
+            $data['date_created'] = date('Y-m-d H:i:s');
+            $data['date_visit'] = date('Y-m-d H:i:s',strtotime($data['date_visit']));
+            $this->visits_m->save($data);
+            
+        }
+        else
+        {
+            $error .= validation_errors();
+        }
+        
+        $this->data['message'] = $error;
+        
+        if(empty($this->data['message'])) {
+            $this->data['message'] = lang_check('Thanks on submit visit');
+            $this->data['success'] = true;
+        }
+        
+        echo json_encode($this->data);
+        exit();
+        
+    }
+        
+    public function date_valid($date){
+        if((bool)strtotime($date)) {
+            return true;
+        }
+        
+        $this->form_validation->set_message('date_valid', 'The Date field must date');
+        return false;
+    }
+    
+        
+    public function login_form($lang_code = 'en') {
+        $this->data['success'] = false;
+        $this->load->model('user_m');
+        $this->load->library('session');
+        $this->load->model('language_m');
+        $this->load->library('form_validation');
+        if($lang_code != NULL){
+            $lang_name = $this->language_m->get_name($lang_code);
+            $this->lang->load('frontend_template', $lang_name, FALSE, TRUE, FCPATH.'templates/'.$this->settings['template'].'/');
+        }
+        
+        $error='';
+        $redirect=false;
+
+        // Set form
+        $rules = $this->user_m->rules;
+        $this->form_validation->set_rules($rules);
+
+        // Process form
+        if($this->form_validation->run() == TRUE)
+        {
+            // We can login and redirect
+            if($this->user_m->login() == TRUE)
+            {
+
+                if(file_exists(APPPATH.'controllers/admin/booking.php') && 
+                   $this->config->item('reservations_disabled') === FALSE &&
+                   $this->config->item('user_login_to_reservations') === TRUE)
+                {
+                    $redirect = site_url('frontend/myreservations/'.$lang_code);
+                }
+
+                $this->data['success'] = true;
+                $redirect = site_url('frontend/myproperties/'.$lang_code);
+            }   
+            else
+            {
+                $error .= '<p class="alert alert-danger">'.lang_check('That email/password combination does not exist').'</p>';
+            }
+        }
+        else
+        {
+            $error .= validation_errors();
+        }
+        
+            
+        $this->data['redirect'] = $redirect;
+        $this->data['errors'] = $error;
+        echo json_encode($this->data);
+        exit();
+    }
+    
+    public function register_form($lang_code = 'en') {
+        $this->data['success'] = false;
+        $this->load->model('user_m');
+        $this->load->library('session');
+        $this->load->model('language_m');
+        $this->load->library('form_validation');
+        if($lang_code != NULL){
+            $lang_name = $this->language_m->get_name($lang_code);
+            $this->lang->load('frontend_template', $lang_name, FALSE, TRUE, FCPATH.'templates/'.$this->settings['template'].'/');
+        }
+        
+        $error='';
+        $redirect=false;
+
+        $this->data['is_registration'] = true;
+
+        $rules = $this->user_m->rules_admin;
+        $rules['name_surname']['label'] = 'lang:FirstLast';
+        $rules['password']['rules'] .= '|required';
+        $rules['type']['rules'] = 'trim';
+        $rules['language']['rules'] = 'trim';
+        $rules['mail']['label'] = 'lang:Email';
+        $rules['mail']['rules'] .= '|valid_email';
+        if($this->config->item('register_reduced') == TRUE)
+        {
+            $rules['name_surname']['rules'] = 'trim|xss_clean';
+            $rules['username']['rules'] = 'trim|xss_clean';
+
+            $e_mail = $this->input->post('mail');
+            if(!empty($e_mail))
+            {
+                if(empty($_POST['username']))
+                    $_POST['username'] = $e_mail;
+                if(empty($_POST['name_surname']))
+                    $_POST['name_surname'] = $e_mail;
+            }
+        }
+
+        if(isset($_POST['password']))
+            $_POST['password_confirm'] = $_POST['password'];
+/*
+        if($this->config->item('captcha_disabled') === FALSE)
+            $rules['captcha'] = array('field'=>'captcha', 'label'=>'lang:Captcha', 
+                                      'rules'=>'trim|required|callback_captcha_check|xss_clean');
+*/
+        if($this->config->item('recaptcha_site_key') !== FALSE)
+            $rules['g-recaptcha-response'] = array('field'=>'g-recaptcha-response', 'label'=>'lang:Recaptcha', 
+                                                    'rules'=>'trim|required|callback_captcha_check|xss_clean');
+
+        $this->form_validation->set_rules($rules);
+
+        // Process the form
+        if($this->form_validation->run() == TRUE)
+        {
+
+            $data = $this->user_m->array_from_post(array('name_surname', 'mail', 'password', 'username',
+                                                         'address', 'description', 'mail', 'phone','type', 'language', 'activated'));
+           /*dump($_POST);
+           dump($data);*/
+            if($data['password'] == '')
+            {
+                unset($data['password']);
+            }
+            else
+            {
+                $data['password'] = $this->user_m->hash($data['password']);
+            }
+
+            if($data['type'] == 'AGENT' && config_db_item('dropdown_register_enabled') === TRUE)
+            {
+                $data['type'] = 'AGENT';
+            }
+            else
+            {
+                $data['type'] = 'USER';
+            }
+
+            $data['activated'] = '1';
+            if(config_db_item('email_activation_enabled') === TRUE)
+                $data['activated'] = '0';
+
+            $data['description'] = '';
+            $data['registration_date'] = date('Y-m-d H:i:s');
+            $data['mail_verified'] = 0;
+            $data['phone_verified'] = 0;
+
+            if(empty($data['phone']))$data['phone'] = '';
+            if(empty($data['phone2']))$data['phone2'] = '';
+            if(empty($data['address']))$data['address'] = '';
+
+            if($this->config->item('def_package') !== FALSE && $data['type'] == 'USER')
+            {
+                $data['package_id'] = $this->config->item('def_package');
+
+                $this->load->model('packages_m');
+                $package = $this->packages_m->get($data['package_id']);
+
+                if(is_object($package))
+                {
+                    $days_extend = $package->package_days;
+
+                    if($days_extend > 0)
+                        $data['package_last_payment'] = date('Y-m-d H:i:s', time() + 86400*intval($days_extend));
+                }
+            }
+
+            if($this->config->item('def_package_agent') !== FALSE && $data['type'] == 'AGENT')
+            {
+                $data['package_id'] = $this->config->item('def_package_agent');
+
+                $this->load->model('packages_m');
+                $package = $this->packages_m->get($data['package_id']);
+
+                if(is_object($package))
+                {
+                    $days_extend = $package->package_days;
+
+                    if($days_extend > 0)
+                        $data['package_last_payment'] = date('Y-m-d H:i:s', time() + 86400*intval($days_extend));
+                }
+            }
+
+            $user_id = $this->user_m->save($data, NULL);
+            $message_mail = '';
+
+            if(!empty($data['mail']) && config_db_item('email_activation_enabled') === TRUE)
+            {
+                $data['mail_verified'] = 0;
+                // [START] Activation email
+
+                //if(ENVIRONMENT != 'development')
+                $this->load->library('email');
+                $config_mail['mailtype'] = 'html';
+                $this->email->initialize($config_mail);
+                $this->email->from($this->settings['noreply'], lang_check('Web page'));
+                $this->email->to($data['mail']);
+
+                $this->email->subject(lang_check('Activate your account'));
+
+                $new_hash = substr($this->user_m->hash($data['mail'].$user_id), 0, 5);
+
+                $data_m = array();
+                $data_m['name_surname'] = $data['name_surname'];
+                $data_m['username'] = $data['username'];
+                $data_m['activation_link'] = '<a href="'.site_url('admin/user/verifyemail/'.$user_id.'/'.$new_hash).'">'.lang_check('Activate your account').'</a>';
+                $data_m['login_link'] = '<a href="'.site_url('frontend/login/').'?username='.$data['username'].'#content">'.lang_check('login_link').'</a>';
+
+                $message = $this->load->view('email/email_activation', array('data'=>$data_m), TRUE);
+
+                $this->email->message($message);
+                if ( ! $this->email->send())
+                {
+                    $message_mail = ', '.lang_check('Problem sending email to user');
+                }
+                // [END] Activation email
+            }
+
+            if(!empty($data['phone']) && !empty($user_id) &&
+               (config_db_item('clickatell_api_id') != FALSE || config_db_item('clickatell_api_key') != FALSE) && config_db_item('phone_verification_enabled') === TRUE &&
+               file_exists(APPPATH.'libraries/Clickatellapi.php'))
+            {
+                $data['phone_verified'] = 0;
+
+                //Send SMS for phone verification
+                $new_hash = substr($this->user_m->hash($data['phone'].$user_id), 0, 5);
+
+                $message='';
+                $message.=lang_check('Your code').": \n";
+                $message.=$new_hash."\n";
+                $message.=lang_check('Verification link').": \n";
+                $message.=site_url('admin/user/verifyphone/'.$user_id.'/'.$new_hash);
+
+                $this->load->library('clickatellapi');
+                $return_sms = $this->clickatellapi->send_sms($message, $data['phone']);
+
+                if(substr_count($return_sms, 'successnmessage') == 0)
+                {
+                    // nginx causing error 502
+                    // $this->session->set_flashdata('error_sms', $return_sms);
+                }
+            }
+
+            if(config_db_item('email_activation_enabled') !== FALSE)
+            {
+                $this->data['message'] =
+                        lang_check('Thanks on registration, please check and activate your email to login').$message_mail;
+            }
+            else
+            {
+                $this->data['message'] =
+                        lang_check('Thanks on registration, you can login now').$message_mail;
+            }
+
+            if(!empty($user_id) && 
+                config_item('registration_interest_enabled') === TRUE && 
+                config_item('tree_field_enabled') === TRUE)
+            {
+                $redirect = site_url('fresearch/treealerts/'.$this->data['lang_code'].'/'.$user_id.'/'.md5($user_id.config_item('encryption_key')));
+            }
+
+            $this->data['success'] = true;
+        }
+        else {
+            $error .= validation_errors();
+        }
+            
+        $this->data['redirect'] = $redirect;
+        $this->data['errors'] = $error;
+        echo json_encode($this->data);
+        exit();
+    }
+
+    public function _unique_mail($str)
+    {
+        // Do NOT validate if mail alredy exists
+        // UNLESS it's the mail for the current user
+        $this->load->model('user_m');
+        $id = $this->session->userdata('id');
+        $this->db->where('mail', $this->input->post('mail'));
+        !$id || $this->db->where('id !=', $id);
+        
+        $user = $this->user_m->get();
+        
+        if(count($user))
+        {
+            $this->form_validation->set_message('_unique_mail', '%s '.lang_check('should be unique'));
+            return FALSE;
+        }
+        
+        return TRUE;
+    }
+
+    public function captcha_check($str)
+    {
+    if($this->config->item('recaptcha_site_key') !== FALSE)
+    {
+        if(valid_recaptcha() === TRUE)
+        {
+            return TRUE;
+        }
+        else
+        {
+            $this->form_validation->set_message('captcha_check', lang_check('Robot verification failed'));
+            return FALSE;
+        }
+    }
+
+            if ($str != substr(md5($this->data['captcha_hash_old'].config_item('encryption_key')), 0, 5))
+            {
+                    $this->form_validation->set_message('captcha_check', lang_check('Wrong captcha'));
+                    return FALSE;
+            }
+            else
+            {
+                    return TRUE;
+            }
+    }
+    
+    public function get_all_counters_by_id($lang_id, $option_id=2)
+    {
+        //load language files
+        $this->load->model('language_m');
+        $this->load->model('option_m');
+        $lang_name = $this->language_m->get_name($lang_id);
+        $this->lang->load('frontend_template', $lang_name, FALSE, TRUE, FCPATH.'templates/'.$this->settings['template'].'/');
+        
+        $this->data['message'] = lang_check('No message returned!');
+        
+        unset($_POST['v_undefined']);
+        
+        $this->data['parameters'] = $_POST;
+        $parameters = json_encode($_POST);
+        
+        $this->data['parameters']['is_activated'] = 1;
+        $f_name = 'v_search_option_'.$option_id;
+        if(isset($this->data['parameters'][$f_name]))
+            unset($this->data['parameters'][$f_name]);
+        
+        $this->load->model('estate_m');
+        
+        $this->data['lang_id'] = $lang_id;
+        
+        $this->data['counters'] = $this->estate_m->get_all_counters($lang_id, array(), $this->data['parameters'],$option_id);
+        
+        /* if fields type == TREE */
+        $check_option= $this->option_m->get_by(array('id'=>$option_id));
+        if($check_option[0]->type=='TREE')
+        {
+            function recursion_calc_count ($result_count, $tree_listings, $parent_title, $id, &$ariesInfo){
+                if (isset($tree_listings[$id]) && count($tree_listings[$id]) > 0){
+                    foreach ($tree_listings[$id] as $key => $_child) {
+                        $options = $tree_listings[$_child->parent_id][$_child->id];
+
+                        $_parent_title = $parent_title.' - '.$options->value;
+
+                        if(isset($result_count[$_parent_title.' -'])) {
+                            $ariesInfo[$_parent_title.' -']['count']=$result_count[$_parent_title.' -'];
+                        } else {
+                            $ariesInfo[$_parent_title.' -']['count']=0;
+                        }
+
+                        if (isset($tree_listings[$_child->id]) && count($tree_listings[$_child->id]) > 0){    
+                            recursion_calc_count($result_count, $tree_listings, $_parent_title, $_child->id, $ariesInfo);
+                        }
+                    }
+                }
+            };
+            $this->load->model('treefield_m');
+            $tree_listings = $this->treefield_m->get_table_tree($lang_id, $option_id, NULL, FALSE, '.order');
+            if(!empty($tree_listings)){
+                $result_count = array();
+                foreach ($this->data['counters'] as $key => $value) {
+                    if(!empty($value->value))
+                        $result_count[$value->value]= $value->count;
+                }
+
+                $_treefields = $tree_listings[0];
+                $ariesInfo = array();
+                foreach ($_treefields as $val) {
+                    $options = $tree_listings[0][$val->id];
+                    $treefield = array();
+                    $field_name = 'value' ;
+                    $treefield['id'] = $val->id;
+                    $treefield['title'] = $options->$field_name;
+
+                    if(isset($result_count[$treefield['title'].' -'])) {
+                        $ariesInfo[$treefield['title'].' -']['count']=$result_count[$treefield['title'].' -'];
+                    } else {
+                        $ariesInfo[$treefield['title'].' -']['count']=0;
+                    }
+                    if(isset($tree_listings[$val->id]) && count($tree_listings[$val->id]) > 0){
+                        $parent_title = $treefield['title'];
+                        recursion_calc_count($result_count, $tree_listings, $parent_title, $val->id, $ariesInfo);
+                    }     
+                }
+                $count = array();
+                foreach ($ariesInfo as $key => $value) {
+                    $_count = $value['count'];
+                    foreach ($ariesInfo as $k => $v) {
+                        if(stripos($k, $key)===0 && $k != $key) {
+                            $_count +=$v['count'];
+                        }
+                    }
+                    $item= new stdClass();
+                    $item->value = $key;
+                    $item->count = $_count;
+                    $count[]= $item;
+                }
+               $this->data['counters'] = $count;  
+                
+            }
+        }
+        
+        
+        /* end if fields type == TREE */
+        
+        echo json_encode($this->data);
+        exit();
+    }
+    
+    public function twitter_login($lang_id = NULL)
+    {
+		
+	$this->load->library('session');
+        $this->load->model('user_m');
+        $this->load->model('language_m');
+        $this->load->library('Twlogin');
+        
+        if(!file_exists(APPPATH.'libraries/Twlogin.php'))
+        {
+            exit('Twitter login modul is not available');
+        }
+        
+        if(!empty($lang_id)){
+            $this->session->set_userdata('lang_id', $lang_id);
+        } elseif($this->session->userdata('lang_id')) {
+            $lang_id = $this->session->userdata('lang_id');
+        }
+        
+        if(empty($lang_id))
+            $lang_id = $this->language_m->get_default_id();
+        
+        $lang_code = $this->language_m->get_code($lang_id);
+        $lang_name = $this->language_m->get_name($lang_id);
+        
+        /* new user */
+        if (!isset($_GET['oauth_token'])) {
+        
+            // create a new twitter connection object
+            $connection  = new Twlogin();
+            // get the token from connection object
+            $request_token = $connection->getRequestToken(); 
+            // if request_token exists then get the token and secret and store in the session
+            if($request_token){
+                    $token = $request_token['oauth_token'];
+                    $this->session->set_flashdata('request_token', $token);
+                    $this->session->set_flashdata('request_token_secret', $request_token['oauth_token_secret']);
+                    
+                    // get the login url from getauthorizeurl method
+                    $login_url = $connection->getAuthorizeURL($token);
+                    header('Location: ' . $login_url);
+                    exit;
+            } else {
+                /* try againe (not conntect with twitter, check config)*/
+                $this->session->set_flashdata('error', 
+                    lang_check("Can't connect with twitter please try again or contact with support"));
+                redirect('frontend/login/'.$lang_code); 
+                exit();
+            }
+                redirect('frontend/login/'.$lang_code); 
+            exit();
+        } elseif (isset($_GET['oauth_token'])) {
+            
+            // create a new twitter connection object with request token
+            
+            $connection = new Twlogin( $this->session->flashdata('request_token'),  $this->session->flashdata('request_token_secret'));
+            // get the access token from getAccesToken method
+            $access_token = $connection->getAccessToken($_REQUEST['oauth_verifier']);
+            if($access_token){	
+                    // set the parameters array with attributes include_entities false
+                    $params = array('include_email' => 'true', 'include_entities' => 'false', 'skip_status' => 'true');
+                    // get the data
+                    $data = $connection->get('account/verify_credentials',$params);
+                    if($data){
+                        // store the data in the session
+                        $user_array = (array)$data;
+                        $user_email =  _ch($user_array['email'],$user_array['screen_name'].'@twitter.com');
+                        $user_namesurname = _ch($user_array['name'],'');
+                        $user_avatar = _ch($user_array['profile_image_url'],'');
+                        
+                        // Register / Login
+                        $user_get = $this->user_m->get_by(array('password'=>$this->user_m->hash($user_array['id_str']), 
+                                                                'username'=>$user_email), true);
+
+                        if(count($user_get) == 0)
+                        {
+
+                            // Check if email already exists
+                            if($this->user_m->if_exists($user_email) === TRUE)
+                            {
+                                exit('Email already exists in database, please contact administrator or reset password');
+                            }
+
+                            // Register user
+                            $data_f = array();
+                            $data_f['username'] = $user_email;
+                            $data_f['mail'] = $user_email;
+                            $data_f['password'] = $this->user_m->hash($user_array['id_str']);
+                            $data_f['facebook_id'] = '';
+                            $data_f['type'] = 'USER';
+                            $data_f['name_surname'] = $user_namesurname;
+                            $data_f['activated'] = '1';
+                            $data_f['description'] = '';
+                            $data_f['language'] = $lang_name;
+                            $data_f['registration_date'] = date('Y-m-d H:i:s');
+                            $data_f['mail_verified'] = 0;
+                            $data_f['phone_verified'] = 0;               
+
+                            if($this->config->item('def_package') !== FALSE)
+                            {
+                                $data_f['package_id'] = $this->config->item('def_package');
+
+                                $this->load->model('packages_m');
+                                $package = $this->packages_m->get($data_f['package_id']);
+
+                                if(is_object($package))
+                                {
+                                    $days_extend = $package->package_days;
+
+                                    if($days_extend > 0)
+                                        $data_f['package_last_payment'] = date('Y-m-d H:i:s', time() + 86400*intval($days_extend));
+                                }
+                            }      
+
+                            $user_id = $this->user_m->save($data_f, NULL);
+                            if(empty($user_id))
+                            {
+                                echo 'QUERY: '.$this->db->last_query().PHP_EOL;
+                                echo '<br />';
+                                echo 'ERROR: '.$this->db->_error_message().PHP_EOL;
+                                echo '<br />';
+                                echo 'Please contact with administrator and send errors';
+                                exit();
+                            }
+
+                            if(!empty($user_avatar)){
+                                $user_avatar=str_replace('_normal', '_400x400', $user_avatar);
+                                
+                                $this->load->model('repository_m');
+                                $this->load->model('file_m');
+                                $this->load->library('uploadHandler', array('initialize'=>FALSE));
+
+                                $user_data = $this->user_m->get($user_id);
+                                // Fetch file repository
+                                $repository_id = $user_data->repository_id;
+                                if(empty($repository_id))
+                                {
+                                    // Create repository
+                                    $repository_id = $this->repository_m->save(array('name'=>'user_m'));
+                                    // Update with new repository_id
+                                    $this->user_m->save(array('repository_id'=>$repository_id), $user_data->id);
+                                }
+
+                                $file_name = '';
+
+                                $handle   = curl_init($user_avatar);
+                                curl_setopt($handle, CURLOPT_HEADER, false);
+                                curl_setopt($handle, CURLOPT_FAILONERROR, true);  // this works
+                                curl_setopt($handle, CURLOPT_HTTPHEADER, Array("User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.15) Gecko/20080623 Firefox/2.0.0.15") ); // request as if Firefox
+                                curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+                                curl_setopt($handle, CURLOPT_FOLLOWLOCATION, true);
+                                curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 3);
+                                $file = curl_exec($handle);
+                                ##print $connectable;
+                                curl_close($handle);
+                                $image_info = getimagesizefromstring($file);
+
+                                $extension ='';
+                                switch ($image_info['mime']) {
+                                    case 'image/gif':
+                                                    $extension = '.gif';
+                                                    break;
+                                    case 'image/jpeg':
+                                                    $extension = '.jpg';
+                                                    break;
+                                    case 'image/png':        
+                                                    $extension = '.png';
+                                                    break;
+                                    default:
+                                                    // handle errors
+                                                    break;
+                                }
+                                $new_file_name=time().rand(000, 999).$extension;
+                                file_put_contents(FCPATH.'/files/'.$new_file_name, $file);
+                                /* create thumbnail */
+                                $this->uploadhandler->regenerate_versions($new_file_name);
+                                /* end create thumbnail */
+                                $file_name= $new_file_name;
+                                $next_order=0;
+                                $file_id = $this->file_m->save(array(
+                                'repository_id' => $repository_id,
+                                'order' => $next_order,
+                                'filename' => $file_name,
+                                )); 
+                                $next_order++;
+                            }
+                        }
+                        
+                        // Login :: AUTO
+                        if($this->user_m->login($user_email, $user_array['id']) == TRUE)
+                        {
+                            if(!empty($user_id) && 
+                                config_item('registration_interest_enabled') === TRUE && 
+                                config_item('tree_field_enabled') === TRUE)
+                            {
+                                redirect('fresearch/treealerts/'.$lang_code.'/'.$user_id.'/'.md5($user_id.config_item('encryption_key')));
+                            }
+
+                            redirect('frontend/myproperties/'.$lang_code);
+                            exit();
+                        }
+                        else
+                        {
+                            $this->session->set_flashdata('error', 
+                                    lang_check('That email/password combination does not exists'));
+                            redirect('frontend/login/'.$lang_code); 
+                            exit();
+                        }
+                        
+                        
+                    } else {
+                        /* try againe (not conntect with twitter, check config)*/
+                        $this->session->set_flashdata('error', 
+                             lang_check("Twitter oAuth cant get data. Please try againe or contact with support"));
+                        redirect('frontend/login/'.$lang_code); 
+                        exit();
+                    }
+            } else {
+                /* try againe (not conntect with twitter, check config)*/
+                $this->session->set_flashdata('error', 
+                    lang_check("Twitter oAuth Invalid request token. Please try againe or contact with support"));
+                redirect('frontend/login/'.$lang_code); 
+                exit();
+            }
+            exit();
+        }
+        exit();
+    }
+
+
+    public function treefieldid($output="", $atts=array(), $instance=NULL)
+    {
+        $language_id = $this->input->post('language_id', true);
+        $this->load->model('language_m');
+        $this->load->library('form_validation');
+
+        if($language_id != NULL){
+            $lang_name = $this->language_m->get_name($language_id);
+            $this->lang->load('frontend_template', $lang_name, FALSE, TRUE, FCPATH.'templates/'.$this->settings['template'].'/');
+        }
+
+        $ajax_output = array();
+        $ajax_output['message'] = lang_check('No message returned!', 'sw_win');
+        $results = array();
+        
+        $parameters = $_POST;
+        
+        $table = $this->input->post('table', true);
+        $table_name = $table;
+        
+        if(empty($parameters['empty_value']))
+            $parameters['empty_value'] = ' - ';
+        
+        if(empty($parameters['limit']))
+            $parameters['limit'] = 10;
+            
+        if(empty($parameters['offset']))
+            $parameters['offset'] = 0;
+            
+        if(empty($parameters['attribute_id']))
+            $parameters['attribute_id'] = 'id';
+            
+        if(empty($parameters['attribute_value']))
+            $parameters['attribute_value'] = 'address';
+            
+        if(empty($parameters['field_id']))
+            $parameters['field_id'] = 1;
+            
+        if(empty($parameters['offset']))
+            $parameters['offset'] = 0;
+
+        if($parameters['offset'] == 0) // currently don't have load_more functionality'
+        if(!empty($parameters['empty_value']))
+        {
+            $results[0]['key'] = '';
+            $results[0]['value'] = $parameters['empty_value'];
+        }
+
+        if(substr($table,-2, 2) == '_m')
+        {
+            // it's model
+            $table_name = substr($table,0, -2);
+            $attr_id = $parameters['attribute_id'];
+            $attr_val = $parameters['attribute_value'];
+            $attr_search = $parameters['search_term'];
+            $skip_id = $parameters['skip_id'];
+            
+            $id_part="";
+            if(is_numeric($attr_search))
+                $id_part = "$attr_id=$attr_search OR ";
+        
+            $this->load->model($table);
+            
+            $where = array();
+            
+            if(!empty($attr_search))
+                $where["($id_part $attr_val LIKE '%$attr_search%')"] = NULL;
+            
+            //get_by($where, $single = FALSE, $limit = NULL, $order_by = NULL, $offset = NULL, 
+            //$search = array(), $where_in = NULL, $check_user = FALSE, $fetch_user_details=FALSE)
+            
+            
+            $q_results=array();
+            if($table == 'treefield_m')
+            {
+                //if(!empty($skip_id))
+                //    $where["( id$table_name != $skip_id )"] = NULL;
+                
+                //if(!empty($parameters['language_id']))
+                //    $where["lang_id"] = $parameters['language_id'];
+                    
+                $table_name = 'sw_'.$table_name;
+                    
+                
+//                $this->db->join($table_name.'_lang', $table_name.'.idtreefield = '.$table_name.'_lang.treefield_id');
+//                $this->db->where('lang_id', current_language_id());
+//                $this->db->where('field_id', $parameters['field_id']);
+                
+//                $q_results = $this->$table->get_by($where, FALSE, $parameters['limit'], 
+//                                                    "$attr_id DESC", $parameters['offset'],
+//                                                    array(), NULL, TRUE);
+                
+                if($parameters['offset'] == 0) // currently don't have load_more functionality'
+                    $q_results = $this->$table->get_table_tree($language_id, $parameters['field_id'], $skip_id, true, '_lang.value', '', $where);
+            
+                //var_dump($q_results);
+
+                //echo $this->db->last_query();
+                //exit();
+            }
+            else
+            {
+                $q_results = $this->$table->get_by($where, FALSE, $parameters['limit'], 
+                                                    "$attr_id DESC", $parameters['offset']);
+            }
+        
+            $ind_order=1;
+            foreach ($q_results as $key=>$row)
+            {
+                $level_gen='';
+                if(empty($attr_search))
+                    $level_gen = str_pad('', $row->level*12, '&nbsp;').'|-';
+                
+                $results[$ind_order]['key'] = $row->{$attr_id};
+                $results[$ind_order]['value'] = $level_gen
+                                          ._ch($row->{$parameters['attribute_value']});
+                                          //.', '.$row->{$parameters['attribute_id']};
+                                          
+                $ind_order++;
+            }
+            
+            // get current value by ID
+            $row=NULL;
+            if(!empty($parameters['curr_id']))
+                $row = $this->$table->get_lang($parameters['curr_id'], $language_id);
+                
+            if(is_object($row))
+            {
+                $level_gen = str_pad('', $row->level*12, '&nbsp;').'|-';
+                
+                $this->data['curr_val'] = $level_gen
+                                          ._ch($row->{$parameters['attribute_value'].'_'.$language_id});
+                                          //.', '.$row->{$parameters['attribute_id']};
+            }
+            else
+            {
+                $this->data['curr_val'] = $parameters['empty_value'];
+            }
+            
+            $ajax_output['curr_val'] = $this->data['curr_val'];
+            
+            $this->data['success'] = true;
+        
+        }
+        
+        $ajax_output['results'] = $results;
+        
+        $json_output = json_encode($ajax_output);
+
+        //$length = mb_strlen($json_output);
+        header('Pragma: no-cache');
+        header('Cache-Control: no-store, no-cache');
+        header('Content-Type: application/json; charset=utf8');
+        //header('Content-Length: '.$length); // special characters causing troubles
+
+        echo $json_output;
+        
+        exit();
+    }
+
+
 }
+
+

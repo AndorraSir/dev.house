@@ -10,7 +10,6 @@ class Estate_m extends MY_Model {
         'address' => array('field'=>'address', 'label'=>'lang:Address', 'rules'=>'trim|required|xss_clean|quote_fix'),
         'is_featured' => array('field'=>'is_featured', 'label'=>'lang:Featured', 'rules'=>'trim|callback_featured_limitation_check'),
         'is_activated' => array('field'=>'is_activated', 'label'=>'lang:Activated', 'rules'=>'trim'),
-        'is_visible' => array('field'=>'is_visible', 'label'=>'lang:Visible', 'rules'=>'trim'),
         'agent' => array('field'=>'agent', 'label'=>'lang:Agent', 'rules'=>'trim'),
         'id_transitions' => array('field'=>'id_transitions', 'label'=>'lang:Transitions id', 'rules'=>'trim'),
    );
@@ -50,7 +49,7 @@ class Estate_m extends MY_Model {
         $estate->agent = NULL;
         $estate->is_featured = '0';
         $estate->is_activated = '0';
-        $estate->is_visible = '1';
+        $estate->is_visible = '0';
         $estate->counter_views = 0;
         $estate->id_transitions = '';
         
@@ -132,23 +131,8 @@ class Estate_m extends MY_Model {
             else if($this->session->userdata('type') != 'ADMIN' && $this->session->userdata('type') != 'AGENT_ADMIN')
             {
                 $this->db->join('property_user', $this->_table_name.'.id = property_user.property_id', 'right');
-                //$this->db->where('user_id', $this->session->userdata('id'));
-                
-                // [AGENCY AGENT]
-                if(config_db_item('agency_agent_enabled') === TRUE)
-                {
-                    $this->db->join('user', 'property_user.user_id = user.id', 'left');
-                    $this->db->where('(user_id = '.$this->session->userdata('id').' OR agency_id = '.$this->session->userdata('id').')', NULL);
-                }
-                else
-                {
-                    $this->db->where('user_id', $this->session->userdata('id'));
-                }
-                // [/AGENCY AGENT]
-                
+                $this->db->where('user_id', $this->session->userdata('id'));
             }
-            
-            
         }
         else if(is_numeric($check_user))
         {
@@ -219,18 +203,7 @@ class Estate_m extends MY_Model {
             else if($this->session->userdata('type') != 'ADMIN' && $this->session->userdata('type') != 'AGENT_ADMIN')
             {
                 $this->db->join('property_user', $this->_table_name.'.id = property_user.property_id', 'right');
-                
-                // [AGENCY AGENT]
-                if(config_db_item('agency_agent_enabled') === TRUE)
-                {
-                    $this->db->join('user', 'property_user.user_id = user.id', 'left');
-                    $this->db->where('(user_id = '.$this->session->userdata('id').' OR agency_id = '.$this->session->userdata('id').')', NULL);
-                }
-                else
-                {
-                    $this->db->where('user_id', $this->session->userdata('id'));
-                }
-                // [/AGENCY AGENT]
+                $this->db->where('user_id', $this->session->userdata('id'));
             }
         }
         else if(is_numeric($check_user))
@@ -305,6 +278,30 @@ class Estate_m extends MY_Model {
             }
         }
         // [END] Radius search
+        // [START] Location search
+        elseif(isset($search_array['v_search_option_location']))
+        {
+            
+            $search_radius = (config_item('search_search_radius')) ? config_item('search_search_radius') : 200;
+            
+            $this->load->library('ghelper');
+            $coordinates_center = $this->ghelper->getCoordinates($search_array['v_search_option_location']);
+            if(count($coordinates_center) >= 2 && $coordinates_center['lat'] != 0)
+            {
+                $distance_unit = 'km';
+                if(lang_check('km') == 'm')
+                {
+                    //$distance_unit = 'm';
+                }
+                
+                // calculate rectangle
+                $rectangle_ne = $this->ghelper->getDueCoords($coordinates_center['lat'], $coordinates_center['lng'], 45, $search_radius, $distance_unit);
+                $rectangle_sw = $this->ghelper->getDueCoords($coordinates_center['lat'], $coordinates_center['lng'], 225, $search_radius, $distance_unit);
+                
+            }
+            unset($search_array['v_search_option_location'], $search_array['search_option_location']);
+        }
+        // [END] Radius search
         
         //var_dump($search_array, $rectangle_ne, $rectangle_sw);
 
@@ -316,7 +313,7 @@ class Estate_m extends MY_Model {
         $this->db->from($this->_table_name);
         $this->db->join($this->_table_name.'_lang', $this->_table_name.'.id = '.$this->_table_name.'_lang.property_id');
         if($where !== NULL) $this->db->where($where);
-        
+
         // [RECTANGLE SEARCH]
         if(!empty($rectangle_ne) && !empty($rectangle_sw))
         {
@@ -347,22 +344,17 @@ class Estate_m extends MY_Model {
             }
         }
         
+        // [/is_featured via API]
         
-        // [is_visible via API]
-        if(!empty($search_array['v_search_option_is_visible']))
+        // [search_by_reviews via API]
+        if(!empty($search_array['search_by_reviews']))
         {
-            if(substr($search_array['v_search_option_is_visible'],0,4) == 'true')
+            if(substr($search_array['search_by_reviews'],0,4) == 'true')
             {
-                $this->db->where('property.is_visible', 1);
+                  $this->db->order_by('avarage_rating DESC');
             }
         }
-        
-        unset($search_array['v_search_option_is_visible']);
-        
-        /* hide listing if not visible */
-        //$this->db->where('property.is_visible', 1);
-        
-        // [/is_featured via API]
+        // [/search_by_reviews via API]
 
         unset($search_array['v_rectangle_ne'], $search_array['v_undefined'],
               $search_array['v_rectangle_sw'], $search_array['v_search-start'],
@@ -402,6 +394,10 @@ class Estate_m extends MY_Model {
 //                    else 
                     if($val != "")
                     {
+                        // enabled in value  : ' and "
+                        $val = str_replace("'", "\'", $val);
+                        $val = str_replace('"', '\"', $val);
+                        
                         if(config_item('smart_search_disabled') === TRUE)
                         {
                             /* 
@@ -446,6 +442,16 @@ class Estate_m extends MY_Model {
                 {
                     if(isset($fields['field_'.$option_id.'_int']))
                     {
+                        
+                        if(isset($options[$option_id]->type) && $options[$option_id]->type == 'DATETIME' && !empty($val)){
+
+                            if((bool)strtotime($val)) {
+                                /*echo $key.'='.$val.'<br>';*/
+                                $timestamp = strtotime($val);
+                                $val = date('Y-m-d H:i:s', $timestamp);;
+                            }
+                        }
+                        
                         if(is_numeric($val))    
                             $val = intval($val);
                         $this->db->where("(".'field_'.$option_id.'_int'." >= '$val')");
@@ -461,7 +467,8 @@ class Estate_m extends MY_Model {
                         $this->db->where("(".'field_'.$option_id.'_int'." <= '$val')");
                     }
                 }
-                else if((config_item('field_dropdown_multiple_enabled') == TRUE) && (strrpos($key, 'multi') > 0))
+                
+                else if((strrpos($key, 'multi') > 0))
                 {
                     if(config_item('field_dropdown_multiple_enabled') == TRUE) {
                         if(is_array($val) && !empty($val)){
@@ -487,11 +494,7 @@ class Estate_m extends MY_Model {
                 
                 else if(strrpos($key, 'search_option') > 0 && isset($fields['field_'.$option_id]) /*&& $option_id != 4*/ && $val != "" && $options[$option_id]->type != 'TREE')
                 {
-                    if($option_id == 4)
-                    {
-                        $this->db->like('field_'.$option_id, $val);
-                    }
-                    else if(isset($fields['field_'.$option_id]))
+                    if(isset($fields['field_'.$option_id]))
                     {
                         $val = str_replace('&amp;', '&', $val);
                         $this->db->where('field_'.$option_id, $val);
@@ -847,8 +850,7 @@ class Estate_m extends MY_Model {
                 if($value != 'SKIP_ON_EMPTY')
                     $insert_batch[] = $insert_arr;
                 
-                if(config_item('multilang_on_qs') == 0 && ($this->uri->segment(1) == 'fquick' || 
-                                                           $this->uri->segment(1) == 'tokenapi'))
+                if(config_db_item('multilang_on_qs') == 0 && $this->uri->segment(1) == 'fquick')
                 {
                     if($language_id == $this->language_m->get_default_id())
                     {
@@ -899,7 +901,7 @@ class Estate_m extends MY_Model {
                                 }
                                 else
                                 {
-                                    // translate $value
+                                    // transplate $value
                                     // Fix value if HTML errors exists:
                                     if(!empty($value)){
                                         if(function_exists('tidy'))
@@ -910,7 +912,7 @@ class Estate_m extends MY_Model {
 
                                         $value = $this->mymemorytranslation->translate($value, $this->language_m->db_languages_id[$language_id], $this->language_m->db_languages_id[$ch_lang_id]);
                                     }                                    
-                                    // End translate $value
+                                    // End transplate $value
                                             
                                     $data_property_lang[$ch_lang_id]['language_id']=    intval($ch_lang_id);
                                     $data_property_lang[$ch_lang_id]['property_id']=    intval($id);
@@ -971,9 +973,6 @@ class Estate_m extends MY_Model {
             $this->db->set(array('property_id'=>$id,
                                  'user_id'=>$data['agent']));
             $this->db->insert('property_user');
-        } else if(empty($data['agent'])) {
-            $this->db->where('property_id', $id);
-            $this->db->delete('property_user'); 
         }
         /* [property_lang] */
         foreach($data_property_lang as $lang_id =>$property_data)
@@ -983,17 +982,9 @@ class Estate_m extends MY_Model {
                 if(!isset($data_property_lang[$lang_id][$key_field]))
                     $data_property_lang[$lang_id][$key_field] = NULL;
             }
-
-            if (version_compare(PHP_VERSION, '5.4.0', '>='))
-            {
-                $data_property_lang[$lang_id]['json_object'] = 
-                    json_encode($data_property_lang[$lang_id]['json_object'], JSON_UNESCAPED_UNICODE);
-            }
-            else
-            {
-                $data_property_lang[$lang_id]['json_object'] = 
-                    json_encode($data_property_lang[$lang_id]['json_object']);
-            }
+            
+            $data_property_lang[$lang_id]['json_object'] = 
+                json_encode($data_property_lang[$lang_id]['json_object'], JSON_UNESCAPED_UNICODE );
         }
         
         if(count($data_property_lang) > 0)
@@ -1117,14 +1108,16 @@ class Estate_m extends MY_Model {
             $this->load->model('file_m');	
             $this->repository_m->delete($estate_data->repository_id);
         }
-        
         parent::delete($id);
+        
+        $this->db->cache_delete_all();
+        
     }
     
     public function get_sitemap()
 	{
         // Fetch pages without parents
-        $this->db->select('*');
+        //$this->db->select('*');
         //$this->db->join($this->_table_name.'_lang', $this->_table_name.'.id = '.$this->_table_name.'_lang.page_id');
         $estates = parent::get_by(array('is_activated'=>1));
                 
@@ -1133,25 +1126,9 @@ class Estate_m extends MY_Model {
     
     public function check_user_permission($property_id, $user_id)
     {
-        if($this->session->userdata('type') == 'ADMIN')return 1;
-        
-        $this->db->select('*');
-        $this->db->from('property_user');
         $this->db->where('property_id', $property_id);
-        
-        // [AGENCY AGENT]
-        if(config_db_item('agency_agent_enabled') === TRUE)
-        {
-            $this->db->join('user', 'property_user.user_id = user.id', 'left');
-            $this->db->where('(user_id = '.$user_id.' OR agency_id = '.$user_id.')', NULL);
-        }
-        else
-        {
-            $this->db->where('user_id', $user_id);
-        }
-        // [/AGENCY AGENT]
-        
-        $query = $this->db->get();
+        $this->db->where('user_id', $user_id);
+        $query = $this->db->get('property_user');
         return $query->num_rows();
     }
     
@@ -1233,7 +1210,7 @@ class Estate_m extends MY_Model {
     }
     
     
-    public function get_all_counters($lang_id, $all_ids, $search_params)
+    public function get_all_counters($lang_id, $all_ids, $search_params, $counter_option_id = FALSE)
     {
         // get all cached fields
         $fields = $this->db->list_fields('property_lang');
@@ -1242,14 +1219,26 @@ class Estate_m extends MY_Model {
         // Example:
         // SELECT option_id, COUNT(*) as count FROM `property_value` WHERE option_id IN (23,33) AND value = 'true' GROUP BY option_id
 
-        $this->db->select('option_id, COUNT(*) as count');
+        if($counter_option_id == FALSE)
+            $this->db->select('option_id, COUNT(*) as count');
+        else{
+            $this->db->select('value, COUNT(*) as count');
+        }
+        
         $this->db->from('property_value');
         $this->db->join($this->_table_name.'_lang', 'property_value.property_id = '.$this->_table_name.'_lang.property_id');
         $this->db->join($this->_table_name, 'property_value.property_id = '.$this->_table_name.'.id');
-        $this->db->where('value', 'true'); 
+        
+        if($counter_option_id == FALSE){
+            $this->db->where('value', 'true'); 
+        }else{
+            $this->db->where('option_id', $counter_option_id); 
+        }
+        
         $this->db->where('property_value.language_id', $lang_id); 
         $this->db->where($this->_table_name.'_lang.language_id', $lang_id);
-        $this->db->where_in('option_id', $all_ids);
+        if(!empty($all_ids) && $counter_option_id == FALSE)
+            $this->db->where_in('option_id', $all_ids);
         
         
         $search_array = $search_params;
@@ -1309,6 +1298,9 @@ class Estate_m extends MY_Model {
 //                    else 
                     if($val != "")
                     {
+                        // enabled in value  : ' and "
+                        $val = str_replace("'", "\'", $val);
+                        $val = str_replace('"', '\"', $val);
                         if(config_item('smart_search_disabled') === TRUE)
                         {
                             /* 
@@ -1349,19 +1341,37 @@ class Estate_m extends MY_Model {
                         }
                     }
                 }
-                else if(strrpos($key, 'from') > 0 && isset($fields['field_'.$option_id.'_int']) && (is_numeric($val) || $options[$option_id]->type == 'DATETIME'))
+                else if(isset($option_id) && strrpos($key, 'from') > 0 && isset($fields['field_'.$option_id.'_int']) && (is_numeric($val) || $options[$option_id]->type == 'DATETIME'))
                 {
                     if(isset($fields['field_'.$option_id.'_int']))
                     {
+                        if(isset($options[$option_id]->type) && $options[$option_id]->type == 'DATETIME' && !empty($val)){
+
+                            if((bool)strtotime($val)) {
+                                /*echo $key.'='.$val.'<br>';*/
+                                $timestamp = strtotime($val);
+                                $val = date('Y-m-d H:i:s', $timestamp);;
+                            }
+                        }
+                        
                         if(is_numeric($val))    
                             $val = intval($val);
                         $this->db->where("(".'field_'.$option_id.'_int'." >= '$val')");
                     }
                 }
-                else if(strrpos($key, 'to') > 0 && isset($fields['field_'.$option_id.'_int']) && (is_numeric($val) || $options[$option_id]->type == 'DATETIME'))
+                else if(isset($option_id) && strrpos($key, 'to') > 0 && isset($fields['field_'.$option_id.'_int']) && (is_numeric($val) || $options[$option_id]->type == 'DATETIME'))
                 {
                     if(isset($fields['field_'.$option_id.'_int']))
                     {
+                        if(isset($options[$option_id]->type) && $options[$option_id]->type == 'DATETIME' && !empty($val)){
+
+                            if((bool)strtotime($val)) {
+                                /*echo $key.'='.$val.'<br>';*/
+                                $timestamp = strtotime($val);
+                                $val = date('Y-m-d H:i:s', $timestamp);;
+                            }
+                        }
+                        
                         if(is_numeric($val))    
                             $val = intval($val);
                             
@@ -1393,7 +1403,7 @@ class Estate_m extends MY_Model {
                     }
                 }
                 
-                else if(strrpos($key, 'search_option') > 0 && isset($fields['field_'.$option_id]) /*&& $option_id != 4*/ && $val != "" && $options[$option_id]->type != 'TREE')
+                else if(isset($option_id) && strrpos($key, 'search_option') > 0 && isset($fields['field_'.$option_id]) /*&& $option_id != 4*/ && $val != "" && $options[$option_id]->type != 'TREE')
                 {
                     if(isset($fields['field_'.$option_id]))
                     {
@@ -1430,9 +1440,11 @@ class Estate_m extends MY_Model {
             }
         }
         
-        
-        
-        $this->db->group_by("option_id"); 
+        if($counter_option_id == FALSE){
+            $this->db->group_by("option_id"); 
+        }else{
+            $this->db->group_by("value"); 
+        }
 
         $query = $this->db->get();
         

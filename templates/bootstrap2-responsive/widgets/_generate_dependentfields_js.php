@@ -95,7 +95,7 @@ $(document).ready(function(){
                 $generate_selector_list[] = "#search_option_".$hide_field_id."_to";
                 $generate_selector_list[] = "#search_option_".$hide_field_id;
                 //for secondr form
-                $generate_selector_list[] = "[option_id='".$hide_field_id."']";
+                $generate_selector_list[] = "[data-option_id='".$hide_field_id."']";
             }
             $generate_selector = implode(',', $generate_selector_list);
             ?>
@@ -142,7 +142,7 @@ $(document).ready(function(){
 
             // hide secondary form if no elements visible
 
-            if($('form.secondary-form div:not(.dependenthide) input[option_id]').length == 0)
+            if($('form.secondary-form div:not(.dependenthide) input[data-option_id]').length == 0)
             {
                 $('form.secondary-form').parent().parent().addClass('dependenthide');
             }

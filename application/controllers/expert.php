@@ -3,13 +3,13 @@
 class Expert extends Frontend_Controller
 {
 
-    public function __construct ()
-    {
-        parent::__construct();
+	public function __construct ()
+	{
+		parent::__construct();
         
         $this->load->model('showroom_m');
         $this->load->model('qa_m');
-    }
+	}
     
     public function _remap($method, $params = array())
     {
@@ -285,7 +285,7 @@ class Expert extends Frontend_Controller
             
             $message='';
             foreach($data as $key=>$value){
-                $message.="$key:\n$value\n";
+            	$message.="$key:\n$value\n";
             }
             
             $message = $this->load->view('email/expert_message', array('data'=>$data), TRUE);
@@ -530,16 +530,16 @@ class Expert extends Frontend_Controller
         $config_2['total_rows'] = count($this->data['expert_module_all']);
         $config_2['per_page'] = config_item('per_page');
         $config_2['uri_segment'] = 5;
-        $config_2['num_tag_open'] = '<li>';
-        $config_2['num_tag_close'] = '</li>';
+    	$config_2['num_tag_open'] = '<li>';
+    	$config_2['num_tag_close'] = '</li>';
         $config_2['full_tag_open'] = '<ul>';
         $config_2['full_tag_close'] = '</ul>';
         $config_2['cur_tag_open'] = '<li class="active"><span>';
         $config_2['cur_tag_close'] = '</span></li>';
-        $config_2['next_tag_open'] = '<li>';
-        $config_2['next_tag_close'] = '</li>';
-        $config_2['prev_tag_open'] = '<li>';
-        $config_2['prev_tag_close'] = '</li>';
+    	$config_2['next_tag_open'] = '<li>';
+    	$config_2['next_tag_close'] = '</li>';
+    	$config_2['prev_tag_open'] = '<li>';
+    	$config_2['prev_tag_close'] = '</li>';
         /* End Pagination */
 
         //$this->pagination->initialize($config_2);
