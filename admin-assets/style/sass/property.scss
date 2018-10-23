@@ -1,0 +1,42 @@
+.property_options{
+	padding:0px;
+}
+.property_container{
+	h4{
+		color:#4C5C68;
+		text-transform:uppercase;
+		border-bottom:2px solid #4C5C68;
+		padding-bottom:10px;
+		display: inline-block;
+		margin-bottom:20px;
+		font-size:18px;
+	}
+	h2{
+		color:#4C5C68;
+		display: block;
+		font-size:36px;
+		margin-top:3rem;
+		margin-bottom:0px;
+	}
+	.address{
+		font-family:'Lato';
+		text-transform:uppercase;
+		font-size:18px;
+		display: block;
+		margin-bottom: 20px;
+	}
+	label{
+		margin-top:1rem;
+		margin-bottom: 0;
+	}
+	.form-control{
+		color:#908E91;
+		font-weight:300;
+	}
+	.btn-info {
+		background-color: #F5A623 !important;
+		background: #F5A623;
+		text-transform: uppercase;
+		margin-left:0;
+	}
+}

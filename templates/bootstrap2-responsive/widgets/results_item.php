@@ -19,7 +19,7 @@ if(isset($columns) && $columns == 3)
 ?>
 
 
-<li class="col-4">
+<li class="col-sm-4">
     <div class="card f_<?php echo _ch($item['is_featured']); ?>">
       <div class="">
       <h3 class="card-title" style="display:none"><?php echo _ch($item['option_10']); ?>&nbsp;</h3>
@@ -42,9 +42,9 @@ if(isset($columns) && $columns == 3)
         <p class="bottom-border"><span class="f_<?php echo _ch($item['is_featured']); ?>"><?php echo _ch($item['address']); ?></span></p>
         <p class="prop-description "><i><?php echo _ch($item['option_chlimit_8']); ?></i></p>
         <div class="row">
-        <p class="bottom-border col-4"><?php echo _ch($options_name_2); ?> <br><span><?php echo _ch($item['option_2']); ?></span></p>
-        <p class="bottom-border col-4"><?php echo _ch($options_name_3); ?> <br><span><?php echo _ch($item['option_3']); ?></span></p>
-        <p class="bottom-border col-4"><?php echo _ch($options_name_19); ?> <br><span><?php echo _ch($item['option_19']); ?></span></p>
+        <p class="bottom-border col-sm-4"><?php echo _ch($options_name_2); ?> <br><span><?php echo _ch($item['option_2']); ?></span></p>
+        <p class="bottom-border col-sm-4"><?php echo _ch($options_name_3); ?> <br><span><?php echo _ch($item['option_3']); ?></span></p>
+        <p class="bottom-border col-sm-4"><?php echo _ch($options_name_19); ?> <br><span><?php echo _ch($item['option_19']); ?></span></p>
         <?php if(!empty($item['icons'])):?>
         <p class="prop-icons" style="display: none">
             <?php 
@@ -57,7 +57,7 @@ if(isset($columns) && $columns == 3)
         <?php endif;?>
         
         <p class="prop-details">
-          <a class="btn btn-info col-12" href="<?php echo _ch($item['url']); ?>">
+          <a class="btn btn-info col-sm-12" href="<?php echo _ch($item['url']); ?>">
           {lang_Details}
           </a>
         </p>

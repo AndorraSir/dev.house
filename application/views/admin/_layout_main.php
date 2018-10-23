@@ -450,25 +450,7 @@
                 </a>
             </li>
             <?php endif;?>
-            
-            <?php if(check_acl('monetize') && config_db_item('frontend_disabled') === FALSE):?>
-            <li class="has_submenu nred<?php echo (strpos($this->uri->uri_string(),'monetize')!==FALSE)?' current open':'';?>">
-                <a href="#">
-                    <!-- Menu name with icon -->
-                    <i class="icon-usd"></i> <?php echo lang_check('Payments');?>
-                    <!-- Icon for dropdown -->
-                    <span class="pull-right"><i class="icon-angle-right"></i></span>
-                </a>
-              <ul>
-                <li><a href="<?php echo site_url('admin/monetize/payments')?>"><?php echo lang_check('Activations');?></a></li>
-                <li><a href="<?php echo site_url('admin/monetize/payments_featured')?>"><?php echo lang_check('Featured');?></a></li>
-                <?php if(file_exists(APPPATH.'controllers/paymentconsole.php')): ?>
-                <li><a href="<?php echo site_url('admin/monetize/invoices')?>"><?php echo lang_check('Invoices');?></a></li>
-                <?php endif; ?>
-              </ul>
-            </li>
-            <?php endif;?>
-            
+                        
             <?php if(file_exists(APPPATH.'controllers/admin/savesearch.php') && check_acl('savesearch')): ?>
             <li class="ngreen<?php echo (strpos($this->uri->uri_string(),'savesearch')!==FALSE)?' current open':'';?>">
                 <a href="<?php echo site_url('admin/savesearch')?>">

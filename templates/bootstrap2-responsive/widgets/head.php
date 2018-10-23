@@ -36,6 +36,7 @@
     <link href="assets/style/searchform.css" rel="stylesheet">
     <link href="assets/style/navbar.css" rel="stylesheet">
     <link href="assets/style/carousel.css" rel="stylesheet"> 
+    <link href="assets/style/property.css" rel="stylesheet"> 
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i,900,900i|Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet">
 

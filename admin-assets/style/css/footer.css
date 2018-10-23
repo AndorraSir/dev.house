@@ -1,0 +1,44 @@
+.wrap-bottom {
+  background: #46494C;
+  padding: 4rem 0;
+  color: #fff; }
+
+.footer {
+  padding: 10px; }
+
+a.developed_by {
+  position: relative;
+  display: inline;
+  top: 45px;
+  left: 35px;
+  opacity: 0.4; }
+
+a.to-top {
+  position: absolute;
+  color: white;
+  left: 55px;
+  top: 15px; }
+
+div.sketch-bottom {
+  background-image: url("../img/sketch-bottom.png");
+  position: absolute;
+  bottom: -10px;
+  left: 30px;
+  width: 172px;
+  height: 72px; }
+
+div.logo-transparent {
+  position: absolute;
+  top: 40px;
+  left: 25px;
+  width: 222px;
+  height: 71px; }
+
+.wrap-bottom .col-3 {
+  position: relative;
+  height: 220px;
+  color: white; }
+
+.wrap-bottom .span6 table {
+  color: white;
+  margin-left: 80px; }

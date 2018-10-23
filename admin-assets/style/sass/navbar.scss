@@ -1,0 +1,218 @@
+.navbar-nav>li {
+    float: left;
+}
+.nav>li {
+    position: relative;
+    display: block;
+}
+.navbar-right {
+    float: right!important;
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #101010;
+}
+.navbar-collapse.collapse {
+    display: block!important;
+    height: auto!important;
+    padding-bottom: 0;
+    overflow: visible!important;
+}
+.navbar{
+	background:#fff;
+	color:#000;
+}
+.navi{
+	li a{
+		font-size:13px;
+		color:grey;
+	}
+}
+.navbar{
+    box-shadow:0px 0px 0px !important;
+    ul.nav > li.active > a {
+        color:red;
+    }
+    .nav > li > a{
+        padding: 20px 20px 10px;
+        font-family: 'Lato', sans-serif;
+    }
+}
+
+
+.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
+    background-color: #fff;
+    color: black;
+
+}
+.masthead ul.top-small{
+    width:50%;
+}
+.head-wrapper {
+    box-shadow:0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    .navbar{
+        padding:0px;
+    }
+    .navbar ul.nav>li>a{
+        font-size: 14px;
+        font-weight: normal;
+        box-shadow: none;
+        text-shadow:none;
+        color:#908E91;
+        text-transform: uppercase;
+        overflow: hidden;
+        font-family:'Lato' sans-serif;
+    }
+}
+/*.logo{
+    width:343px;
+}*/
+div.lang_menu_wrapper {
+    font-size: 16px;
+    font-weight: normal;
+    font-family:'Lato' sans-serif;
+    text-transform: uppercase;
+    color:#908E91;
+    a{
+        color:#908E91;
+    }
+    .caret{
+        display:none;
+    }
+    .btn-group {
+        margin: 0px 0 0 0;
+        margin-left: 70px;
+    }
+}
+.breadcrumb {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    background-color: transparent;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    padding: 3px 8px;
+    padding-right: 0;
+    margin-bottom:0px !important;
+}
+
+.nav.breadcrumb li,
+.nav.breadcrumb li > * {
+    display: inline-block !important;
+    white-space: nowrap;
+    font-weight: normal;
+    font-size: 14px;
+    color:#908E91;
+}
+.btn.btn-navbar{
+    display: none;
+}
+
+
+/* language menu*/
+
+div.lang_menu_wrapper .sr-only {
+     position: absolute; 
+     width: 1px; 
+     height: 1px; 
+     margin: -1px; 
+     padding: 0; 
+     overflow: hidden; 
+     clip: rect(0, 0, 0, 0); 
+     border: 0; 
+}
+
+
+div.lang_menu_wrapper .btn .caret {
+    margin-left: 0;
+}
+    
+
+div.lang_menu_wrapper .btn-group>.btn+.dropdown-toggle {
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+div.lang_menu_wrapper .btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+div.lang_menu_wrapper.btn-group>.btn:first-child {
+    margin-left: 0;
+}
+
+div.lang_menu_wrapper .btn-group-vertical>.btn, .btn-group>.btn {
+    position: relative;
+    float: left;
+}
+
+div.lang_menu_wrapper button {
+    border-radius: 0px;
+    font-size: 14px;
+    color:#908E91;
+}
+
+.lang_menu_wrapper button {
+    text-transform: uppercase;
+    position: relative;
+    padding-right: 40px;
+}
+
+.lang_menu_wrapper .lang_menu_top.dropdown-menu {
+    min-width: 106px;
+    border-radius: 0px;
+}
+
+.lang_menu_wrapper .btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.lang_menu_wrapper .btn-default {
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+ul.top-small
+{
+    width:100%;
+    a{
+        color: #908E91 ;
+    }
+    li{
+        float:left;
+        padding: 3px 8px;
+        margin: 0px 0px;
+        font-weight: normal;
+        font-size:11px;
+    }
+    li:first-child{
+        border-left: 0px;
+    }
+}
+
+/* Top */
+
+.top-wrapper
+{
+    position: relative;
+}
+
