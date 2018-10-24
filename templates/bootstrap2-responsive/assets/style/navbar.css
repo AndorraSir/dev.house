@@ -177,3 +177,10 @@ ul.top-small {
 /* Top */
 .top-wrapper {
   position: relative; }
+
+@media (max-width: 768px) {
+  .nav-collapse, .nav-collapse.collapse {
+    height: 0;
+    overflow: hidden; }
+  .btn.btn-navbar {
+    display: block !important; } }

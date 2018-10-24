@@ -32,9 +32,13 @@ a, span, p{
 .collapse:not(.show){
 	display:block !important;
 }
+.pull-left .collapse:not(.show){
+	display:none !important;
+}
 .fade:not(.show){
 	opacity:1;
 }
+
 
 
 .ownership-badget{
@@ -127,3 +131,9 @@ li.dropdown.active > .dropdown-toggle{
 	    max-width: 125px;
 	}
 }
+
+@media (min-width: 576px){
+	.container {
+	    max-width: 95%;
+	}
+}	
