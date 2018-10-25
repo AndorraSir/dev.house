@@ -1,16 +1,26 @@
 #myCarousel {
   height: 80vh;
   overflow: hidden; }
+  @media screen and (max-width: 767px) {
+    #myCarousel {
+      height: 400px !important; } }
   #myCarousel .carousel-inner > .item > img {
     width: 100%;
     min-height: 100%; }
   #myCarousel .slider-size {
     height: 100%; }
 
+@media screen and (max-width: 767px) {
+  #myCarousel {
+    height: 400px; } }
+
 .propertyCarousel #myCarousel {
   height: 70vh;
   overflow: hidden;
   margin-bottom: 2rem; }
+  @media (max-width: 767px) {
+    .propertyCarousel #myCarousel {
+      height: 400px; } }
   .propertyCarousel #myCarousel .carousel-inner > .item > img {
     width: 100%;
     min-height: 100%; }
@@ -32,7 +42,38 @@
   filter: brightness(80%); }
 
 .slider-info .title {
-  font-size: 42px;
+  font-size: 48px;
   font-family: 'Playfair Display', serif;
   color: #fff;
   text-align: center; }
+  @media screen and (max-width: 767px) {
+    .slider-info .title {
+      font-size: 32px; } }
+
+.wrap-map img {
+  max-width: 100%;
+  object-fit: cover;
+  filter: brightness(60%); }
+
+#myCarousel > .carousel-inner > .item > img {
+  width: 100%;
+  min-height: 100%; }
+
+.carousel-inner {
+  height: 100%; }
+
+.carousel-control-prev {
+  opacity: 0.8; }
+  .carousel-control-prev .arrow-left {
+    background: url("../img/icons/left-chevron.svg") no-repeat center;
+    background-size: contain;
+    height: 200px;
+    width: 70px; }
+
+.carousel-control-next {
+  opacity: 0.8; }
+  .carousel-control-next .arrow-right {
+    background: url("../img/icons/right-chevron.svg") no-repeat center;
+    background-size: contain;
+    height: 200px;
+    width: 70px; }

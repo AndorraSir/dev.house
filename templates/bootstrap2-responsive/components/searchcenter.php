@@ -46,7 +46,7 @@
     
     .scentered.wrap-search
     {
-        width:60%;
+        width:90%;
     }
     
     .scentered.wrap-search
@@ -150,15 +150,14 @@ $(document).ready(function()
 
 
 <div class="wrap-search scentered">
-    <div class="container-fluid center-search">
-
+    <div class="center-search">
         <ul id="search_option_4" class="menu-onmap tabbed-selector">
             <li class="all-button" style="display:none;"><a href="#"><?php echo lang_check('All'); ?></a></li>
             {options_values_radio_4}
         </ul>
         
         <div class="search-form custom-search-form">
-            <form class="form-inline col-12 pl-0 pr-0">
+            <form class="form-inline col-sm-12 pl-0 pr-0">
             
                 <input id="rectangle_ne" type="text" class="hide" />
                 <input id="rectangle_sw" type="text" class="hide" />

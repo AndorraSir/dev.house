@@ -1,5 +1,6 @@
 body, input, button, select, textarea {
-  font-family: 'Lato', sans-serif !important; }
+  font-family: 'Lato', sans-serif !important;
+  font-weight: 300; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Playfair Display', serif; }
@@ -23,8 +24,9 @@ a, span, p {
 .collapse:not(.show) {
   display: block !important; }
 
-.pull-left .collapse:not(.show) {
-  display: none !important; }
+@media (max-width: 768px) {
+  .pull-left .collapse:not(.show) {
+    display: none !important; } }
 
 .fade:not(.show) {
   opacity: 1; }
@@ -44,13 +46,7 @@ li.dropdown.active > .dropdown-toggle {
 .hide {
   display: none; }
 
-.row {
-  /*	width:100%;
-*/ }
-
 .carousel .item .slider-info {
-  position: absolute;
-  z-index: 5;
   border-bottom: none;
   padding: 11px 30px 11px 30px;
   display: block;
@@ -63,6 +59,9 @@ li.dropdown.active > .dropdown-toggle {
   background: rgba(0, 0, 0, 0) !important; }
 
 .btn-info {
+  background-color: #F5A623 !important; }
+
+.card .btn-info {
   background-color: #F5A623 !important; }
 
 .list-results {
@@ -101,6 +100,6 @@ li.dropdown.active > .dropdown-toggle {
 .head-wrapper a.logo img {
   max-width: 125px; }
 
-@media (min-width: 576px) {
+@media (max-width: 576px) {
   .container {
     max-width: 95%; } }

@@ -121,21 +121,24 @@ ul.menu-onmap li a:hover {
     padding: 11px 6px;
     color: #908E91; }
 
+.slider-info {
+  position: absolute;
+  display: block;
+  top: 30%;
+  width: 100%;
+  text-align: center; }
+
 .wrap-search {
   width: 100%;
   z-index: 999; }
-
-.search-form {
-  /*    margin-top: 150px;
-*/ }
 
 .tabbed-selector li:last-child {
   display: none; }
 
 .center-search {
-  top: 155px;
-  background-color: rgba(255, 255, 255, 0.5) !important;
-  padding: 1rem 2rem; }
+  top: 50px;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 1rem; }
 
 .custom-search-form .dropdown-toggle::after {
   position: absolute;

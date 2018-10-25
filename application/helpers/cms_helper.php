@@ -857,7 +857,7 @@ function get_menu ($array, $child = FALSE, $lang_code)
             $active = $CI->uri->segment(2) == url_title_cro($item['id'], '-', TRUE) ? TRUE : FALSE;
             
             if($position == 1 && $child == FALSE){
-                $item['navigation_title'] = '<img src="assets/img/home-icon.png" alt="'.$item['navigation_title'].'" />';
+                $item['navigation_title'] = 'HOME<img src="assets/img/home-icon.png" alt="'.$item['navigation_title'].'" />';
                 
                 if($CI->uri->segment(2) == '')
                     $active = TRUE;
