@@ -3,18 +3,19 @@ ul.cards li {
   color: #908E91;
   font-size: 16px; }
 
-.card {
-  color: #908E91;
-  font-size: 16px !important;
-  font-weight: 200 !important; }
-  .card img {
-    width: 100%; }
-  .card .prop-description {
+.custom_card {
+  border: 0px; }
+  .custom_card img {
+    width: 100%;
+    object-fit: cover; }
+  .custom_card .prop-description {
     min-height: 20px;
     height: auto;
     overflow: hidden;
     text-overflow: ellipsis; }
-  .card .btn {
+  .custom_card .btn {
     margin: 0px; }
-  .card .prop-details {
+  .custom_card .prop-details {
     margin-bottom: 0px; }
+  .custom_card .btn-info {
+    background-color: #F5A623 !important; }

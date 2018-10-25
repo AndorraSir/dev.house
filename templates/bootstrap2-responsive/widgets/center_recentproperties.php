@@ -40,7 +40,7 @@
         ?>
         
       </div>
-      <div class="pagination properties">
+      <div class="pagination properties mb-0 mt-2">
       {pagination_links}
       </div>
 

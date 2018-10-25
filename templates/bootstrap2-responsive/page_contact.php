@@ -3,7 +3,7 @@
   <head>
     <?php _widget('head');?>    
     <script>
-    $(document).ready(function(){
+        $(document).ready(function(){
 
         <?php if(config_db_item('map_version') =='open_street'):?>
 

@@ -34,8 +34,14 @@
         color:red;
     }
     .nav > li > a{
-        padding: 20px 20px 10px;
         font-family: 'Lato', sans-serif;
+       
+    }
+    .nav > li{
+        padding: 20px;
+         &:hover{
+            background-color:#eaeaea;
+        }
     }
 }
 
@@ -55,12 +61,11 @@
     }
     .navbar ul.nav>li>a{
         font-size: 14px;
-        font-weight: normal;
+        font-weight: 300;
         box-shadow: none;
         text-shadow:none;
         color:#908E91;
         text-transform: uppercase;
-        overflow: hidden;
         font-family:'Lato' sans-serif;
     }
 }
@@ -81,7 +86,8 @@ div.lang_menu_wrapper {
     }
     .btn-group {
         margin: 0px 0 0 0;
-        margin-left: 70px;
+        margin-left: 10px;
+        padding:20px;
     }
 }
 .breadcrumb {
@@ -191,18 +197,17 @@ div.lang_menu_wrapper button {
     border-color: #ccc;
 }
 
-ul.top-small
-{
+ul.top-small{
     width:100%;
     a{
         color: #908E91 ;
+        font-weight: 300;
+        font-size:13px;
     }
     li{
         float:left;
         padding: 3px 8px;
         margin: 0px 0px;
-        font-weight: normal;
-        font-size:11px;
     }
     li:first-child{
         border-left: 0px;
@@ -237,6 +242,7 @@ div.lang_menu_wrapper .dropdown-menu li a {
     position: relative;
     width: 100%;
     display: inline-block;
+    font-weight:300;
 }
 
 div.lang_menu_wrapper .dropdown-menu li.active a,
@@ -257,12 +263,6 @@ div.lang_menu_wrapper .dropdown-menu li a img {
 .lang_menu_wrapper{
     img{
         padding-bottom:4px;
-    }
-}
-.top-small{
-    a{
-        font-size:12px;
-        font-weight:300;
     }
 }
 

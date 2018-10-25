@@ -42,6 +42,9 @@ a, span, p{
 	opacity:1;
 }
 
+.pagination{
+	display: none;
+}
 
 
 .ownership-badget{
@@ -83,11 +86,6 @@ li.dropdown.active > .dropdown-toggle{
 
 .btn-info{
 	background-color: #F5A623 !important;
-}
-.card{
-	.btn-info{
-		background-color: #F5A623 !important;
-	}
 }
 
 .list-results{
