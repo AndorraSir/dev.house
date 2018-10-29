@@ -14,33 +14,35 @@
         <span class="pull-left hide" style="padding-top: 5px;">{lang_OrderBy}&nbsp;&nbsp;&nbsp;</span>
     </div>
 <br style="clear:both;">
+    <div class="row">
         {has_no_results}
-        <ul class="thumbnails">
-            <li class="col-sm-12">
+        <div class="thumbnails">
+            <div class="col-sm-12">
                 <div class="alert alert-success">
                 {lang_Noestates}
                 </div>
-            </li>
-        </ul>
-        {/has_no_results}
-        <div class="cards">
-            <?php foreach($results as $key=>$item): ?>
-            <?php
-               if($key==0)echo '<div class="row">';
-            ?>
-                <?php _generate_results_item(array('key'=>$key, 'item'=>$item)); ?>
-            <?php
-               if( ($key+1)%3==0 )
-                {
-                    echo '</div><div class="row hfhf">';
-                }
-                if( ($key+1)==count($results) ) echo '</div>';
-                endforeach;
-            ?>
-            </ul>
+            </div>
         </div>
-    <div class="pagination properties mb-0 mt-2">
+        {/has_no_results}
+
+        <?php foreach($results as $key=>$item): ?>
+        <?php
+           if($key==0)echo '<div class="col-sm-4"><div class="cards row">';
+        ?>
+            <?php _generate_results_item(array('key'=>$key, 'item'=>$item)); ?>
+        <?php
+           if( ($key+1)%3==0 )
+            {
+                echo '</div></div><div class="col-sm-4"><div class="cards hfhf row">';
+            }
+            if( ($key+1)==count($results) ) echo '</div></div>';
+            endforeach;
+        ?>
+        
+      </div>
+      <div class="pagination properties mb-0 mt-2">
       {pagination_links}
     </div>
+
+      
 </div>
-    
