@@ -19,8 +19,7 @@ if(isset($columns) && $columns == 3)
 ?>
 
 
-<div class="col-sm-4">
-    <div class="custom_card hoverable f_<?php echo _ch($item['is_featured']); ?>">
+    <div class="col-sm-4 custom_card hoverable f_<?php echo _ch($item['is_featured']); ?>">
       <img alt="300x200" data-src="holder.js/300x200" src="<?php echo _simg($item['thumbnail_url'], '300x200'); ?>"  alt=""/>
       <?php if(!empty($item['option_4'])):?>
       <div class="purpose-badget fea_<?php echo _ch($item['is_featured']); ?>" style="display: none;"><?php echo _ch($item['option_4']); ?></div>
@@ -61,4 +60,3 @@ if(isset($columns) && $columns == 3)
         </p>
       </div>
     </div>
-  </div>
