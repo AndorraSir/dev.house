@@ -86,18 +86,25 @@
 <?php _subtemplate('headers', _ch($subtemplate_header, 'empty')); ?>
 
 <a id="content"></a>
-<div class="wrap-content">
+<div class="wrap-content pt-5">
     <div class="container">
         <h2>{page_title}</h2>
         <div class="property_content">
         {page_body}
-        
-        {has_settings_gps}
+        </div>
+    </div>
+    <div class="container">
         <h2>{lang_Locationonmap}</h2>
+    </div>
+    <div class="container-fluid p-0">
+        {has_settings_gps}
+
         <div id="contactMap">
         </div>
         {/has_settings_gps}
-        
+    </div>
+    <div class="container pt-4">
+
         {has_settings_email}
         <h2 id="form">{lang_Contactform}</h2>
         <div id="contactForm"  class="contact-form">
@@ -108,34 +115,34 @@
             <!-- The form name must be set so the tags identify it -->
             <input type="hidden" name="form" value="contact" />
 
-                    <div class="row-fluid">
-                    <div class="span5">
-                        <div class="control-group {form_error_firstname}">
+                    <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group {form_error_firstname}">
                             <div class="controls">
                                 <div class="input-prepend input-block-level">
                                     <span class="add-on"><i class="icon-user"></i></span>
-                                    <input class="input-block-level" id="firstname" name="firstname" type="text" placeholder="{lang_FirstLast}" value="{form_value_firstname}" />
+                                    <input class="form-control input-block-level" id="firstname" name="firstname" type="text" placeholder="{lang_FirstLast}" value="{form_value_firstname}" />
                                 </div>
                             </div>
                         </div>
-                        <div class="control-group {form_error_email}">
+                        <div class="form-group {form_error_email}">
                             <div class="controls">
                                 <div class="input-prepend input-block-level">
                                     <span class="add-on"><i class="icon-envelope"></i></span>
-                                    <input class="input-block-level" id="email" name="email" type="text" placeholder="{lang_Email}" value="{form_value_email}" />
+                                    <input class="form-control  input-block-level" id="email" name="email" type="text" placeholder="{lang_Email}" value="{form_value_email}" />
                                 </div>
                             </div>
                         </div>
-                        <div class="control-group {form_error_phone}">
+                        <div class="form-group {form_error_phone}">
                             <div class="controls">
                                 <div class="input-prepend input-block-level">
                                     <span class="add-on"><i class="icon-phone"></i></span>
-                                    <input class="input-block-level" id="phone" name="phone" type="text" placeholder="{lang_Phone}" value="{form_value_phone}" />
+                                    <input class="form-control input-block-level" id="phone" name="phone" type="text" placeholder="{lang_Phone}" value="{form_value_phone}" />
                                 </div>
                             </div>
                         </div>
                         <?php if(config_item('captcha_disabled') === FALSE ): ?>
-                        <div class="control-group" >
+                        <div class="form-group"  style="display: none;">
                             <?php echo $captcha['image']; ?>
                             <input class="captcha" name="captcha" type="text" placeholder="{lang_Captcha}" value="" />
                             <input class="hidden" name="captcha_hash" type="text" value="<?php echo $captcha_hash; ?>" />
@@ -143,7 +150,7 @@
                         <?php endif; ?>
                         
                         <?php if(config_item('recaptcha_site_key') !== FALSE): ?>
-                            <div class="control-group" >
+                            <div class="form-group" >
                                 <label class="control-label captcha"></label>
                                 <div class="controls">
                                     <?php _recaptcha(true); ?>
@@ -155,10 +162,10 @@
                         <?php endif; ?>
                     </div>
                     <div class="span-mini"></div>
-                    <div class="span6">
+                    <div class="col-sm-6">
                         <div class="control-group {form_error_message}">
                             <div class="controls">
-                                <textarea id="message" name="message" rows="4" class="input-block-level" type="text" placeholder="{lang_Message}">{form_value_message}</textarea>
+                                <textarea id="message" name="message" rows="4" class="form-control input-block-level" type="text" placeholder="{lang_Message}">{form_value_message}</textarea>
                             </div>
                         </div>
                                                         
@@ -175,8 +182,9 @@
                     </div>
                     </div>
 		</form>
-        </div>
         {/has_settings_email}
+
+    </div>
         
        <?php _widget('center_imagegallery');?>
         
@@ -191,6 +199,7 @@
         </ul>
         {/has_page_documents}
         </div>
+    </div>
     </div>
 </div>
     

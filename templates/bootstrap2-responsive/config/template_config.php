@@ -16,7 +16,7 @@ $config['dropdown_menu_enabled'] = TRUE;
 
 $config['field_file_upload_enabled'] = TRUE;
 $config['visual_templates_enabled'] = TRUE;
-$config['search_listing_page'] = 161;  
+$config['search_listing_page'] = 174;  
 
 $config['field_dropdown_multiple_enabled'] = TRUE;
 $config['field_datetime_enabled'] = TRUE;
