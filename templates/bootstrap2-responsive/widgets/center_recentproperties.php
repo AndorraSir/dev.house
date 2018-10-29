@@ -33,7 +33,7 @@
         <?php
            if( ($key+1)%3==0 )
             {
-                echo '</ul><ul class="cards row">';
+                echo '</ul><ul class="cards hfhf row">';
             }
             if( ($key+1)==count($results) ) echo '</ul>';
             endforeach;

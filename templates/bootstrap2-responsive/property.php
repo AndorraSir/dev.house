@@ -358,24 +358,22 @@
     <a name="content" id="content"></a>
     <div class="wrap-content property_container">
       <div class="container">
-        <div class="row-fluid">
-          <div class="col-sm-12">
+        <div class="row mt-4">
+          <div class="col-sm-8">
             <h2>{page_title}</h2>
-          </div>
-            {has_page_images}
-            <div class="col-sm-12">
-
-            <?php if(!empty($estate_data_address)): ?>
+              <?php if(!empty($estate_data_address)): ?>
             <span class="address">{estate_data_address}</span>
             <?php endif; ?>
-            <div class="facebook_top_share">
-              {settings_facebook_top}
-            </div>
+          </div>
+            {has_page_images}
+            <div class="col-sm-4">          
+              <div class="facebook_top_share mt-3">
+                {settings_facebook_top}
+              </div>
           </div>
         </div>
       </div>
-      <div class="property-carousel">
-        
+      <div class="property-carousel">       
         <div class="propertyCarousel">
           <div id="myCarousel" class="carousel slide">
             <ol class="carousel-indicators">

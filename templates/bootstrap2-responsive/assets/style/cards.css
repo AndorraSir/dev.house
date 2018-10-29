@@ -3,6 +3,12 @@ ul.cards li {
   color: #908E91;
   font-size: 16px; }
 
+ul.cards .card-title {
+  margin-bottom: 0.5rem;
+  font-family: 'Lato';
+  font-size: 18px;
+  text-transform: uppercase; }
+
 .custom_card {
   border: 0px; }
   .custom_card img {
@@ -19,3 +25,5 @@ ul.cards li {
     margin-bottom: 0px; }
   .custom_card .btn-info {
     background-color: #F5A623 !important; }
+  .custom_card .card-body {
+    min-height: 330px; }

@@ -30,14 +30,14 @@ a, span, p{
 		background:lightgrey;
 	}
 }
-.collapse:not(.show){
+/*.collapse:not(.show){
 	display:block !important;
 }
 @media (max-width: 768px){
 	.pull-left .collapse:not(.show){
 		display:none !important;
 	}
-}
+}*/
 .fade:not(.show){
 	opacity:1;
 }
@@ -109,7 +109,7 @@ li.dropdown.active > .dropdown-toggle{
 		font-weight:normal;
 	}
 	.btn-info{
-		background-color: #F5A623;
+		background-color: #F5A623 !important;
 	}
 }
 
@@ -138,4 +138,22 @@ li.dropdown.active > .dropdown-toggle{
 	.container {
 	    max-width: 95%;
 	}
+	.head-wrapper{
+		a.logo img {
+		    max-width: 85px;
+		}
+	}
 }	
+
+.container.ads{
+    text-align: center;
+    padding:0px;
+    overflow: hidden;
+}
+
+.fixed-map{
+	position: absolute !important;
+	height:250px;
+	top:30px;
+	display: none;
+}

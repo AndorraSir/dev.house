@@ -163,11 +163,11 @@ $(document).ready(function()
                 <input id="rectangle_sw" type="text" class="hide" />
             
             
-                <input id="search_option_smart" type="text" class="col-4 form-control custom-input" value="{search_query}" placeholder="{lang_CityorCounty}" autocomplete="off" />
-                <select id="search_option_2" class="col-3 selectpicker" placeholder="{options_name_2}">
+                <input id="search_option_smart" type="text" class="col-sm-4 form-control custom-input" value="{search_query}" placeholder="{lang_CityorCounty}" autocomplete="off" />
+                <select id="search_option_2" class="col-sm-3 selectpicker" placeholder="{options_name_2}">
                     {options_values_2}
                 </select>
-                 <select id="search_option_3" class="col-3 selectpicker nomargin" placeholder="{options_name_3}">
+                 <select id="search_option_3" class="col-sm-3 selectpicker nomargin" placeholder="{options_name_3}">
                     {options_values_3}
                 </select>
                 
@@ -176,8 +176,8 @@ $(document).ready(function()
                 
                 <div class="advanced-form-part hidden">
                 <div class="form-row-space"></div>
-                <input id="search_option_36_from" type="text" class="col-3 mPrice" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_from'); ?>" />
-                <input id="search_option_36_to" type="text" class="col-3 xPrice" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_to'); ?>" />
+                <input id="search_option_36_from" type="text" class="col-sm-3 mPrice" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_from'); ?>" />
+                <input id="search_option_36_to" type="text" class="col-sm-3 xPrice" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_to'); ?>" />
                 <input id="search_option_19" type="text" class="col-3 Bathrooms" placeholder="{options_name_19}" value="<?php echo search_value(19); ?>" />
                 <input id="search_option_20" type="text" class="col-3" placeholder="{options_name_20}" value="<?php echo search_value(20); ?>" />
                 

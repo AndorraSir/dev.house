@@ -17,11 +17,6 @@ a.developed_by{
     opacity: 0.4;
 }
 
-a.to-top{
-    position: absolute;
-    color:white;
-    left: 55px; top:15px;
-}
 
 div.sketch-bottom{
     background-image: url("../img/sketch-bottom.png");
@@ -32,7 +27,7 @@ div.sketch-bottom{
 
 div.logo-transparent{
     position:absolute;
-    top: 40px; left: 25px;
+    top: 0px; left: 0px;
     width: 222px; height: 71px;
 }
 
@@ -45,4 +40,71 @@ div.logo-transparent{
 .wrap-bottom .span6 table{
     color: white;
     margin-left:80px;
+}
+
+.btn-pin {
+    background-color: #c61118!important;
+    color: #fff!important;
+}
+
+.btn-fb {
+    background-color: #3b5998!important;
+    color: #fff!important;
+}
+.btn-tw {
+    background-color: #55acee!important;
+    color: #fff!important;
+}
+.btn-gplus {
+    background-color: #dd4b39!important;
+    color: #fff!important;
+}
+.btn-floating {
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    width: 47px;
+    height: 47px;
+    position: relative;
+    z-index: 1;
+    vertical-align: middle;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    margin: 10px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    padding: 0;
+    cursor: pointer;
+}
+.btn-floating i {
+    display: inline-block;
+    width: inherit;
+    text-align: center;
+    color: #fff;
+}
+.btn-floating.btn-lg i {
+    font-size: 1.625rem;
+    line-height: 48.1px;
+}
+button, html [type="button"], [type="reset"], [type="submit"] {
+    -webkit-appearance: none !important; 
+}
+
+
+.fixed-action-btn {
+    position: fixed;
+    z-index: 998;
+    right: 35px;
+    bottom: 35px;
+    margin-bottom: 0;
+    padding-top: 15px;
+}
+a.waves-effect, a.waves-light {
+    display: inline-block;
+}
+
+.c_blue{
+    background-color:#5C96BE !important;
 }

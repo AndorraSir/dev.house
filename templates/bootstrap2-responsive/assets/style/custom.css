@@ -21,13 +21,14 @@ a, span, p {
   .settings-tabs .active {
     background: lightgrey; }
 
-.collapse:not(.show) {
-  display: block !important; }
-
-@media (max-width: 768px) {
-  .pull-left .collapse:not(.show) {
-    display: none !important; } }
-
+/*.collapse:not(.show){
+	display:block !important;
+}
+@media (max-width: 768px){
+	.pull-left .collapse:not(.show){
+		display:none !important;
+	}
+}*/
 .fade:not(.show) {
   opacity: 1; }
 
@@ -81,7 +82,7 @@ li.dropdown.active > .dropdown-toggle {
     float: right;
     font-weight: normal; }
   .list-results .btn-info {
-    background-color: #F5A623; }
+    background-color: #F5A623 !important; }
 
 .main-title {
   font-size: 20px;
@@ -102,4 +103,17 @@ li.dropdown.active > .dropdown-toggle {
 
 @media (max-width: 576px) {
   .container {
-    max-width: 95%; } }
+    max-width: 95%; }
+  .head-wrapper a.logo img {
+    max-width: 85px; } }
+
+.container.ads {
+  text-align: center;
+  padding: 0px;
+  overflow: hidden; }
+
+.fixed-map {
+  position: absolute !important;
+  height: 250px;
+  top: 30px;
+  display: none; }

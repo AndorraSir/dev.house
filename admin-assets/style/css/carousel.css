@@ -48,12 +48,17 @@
   text-align: center; }
   @media screen and (max-width: 767px) {
     .slider-info .title {
-      font-size: 32px; } }
+      font-size: 18px; } }
 
 .wrap-map img {
   width: 100%;
   object-fit: cover;
   filter: brightness(60%); }
+  @media screen and (max-width: 767px) {
+    .wrap-map img {
+      font-size: 32px;
+      width: auto;
+      height: 100%; } }
 
 #myCarousel > .carousel-inner > .item > img {
   width: 100%;

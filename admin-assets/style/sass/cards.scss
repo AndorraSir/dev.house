@@ -4,6 +4,12 @@ ul.cards{
 		 color:#908E91;
     	font-size:16px;
 	}
+	.card-title {
+	    margin-bottom: 0.5rem;
+	    font-family: 'Lato';
+	    font-size: 18px;
+	    text-transform: uppercase;
+	}
 }
 .custom_card{
     border:0px;
@@ -26,6 +32,9 @@ ul.cards{
 	}
 	.btn-info{
 		background-color: #F5A623 !important;
+	}
+	.card-body{
+		min-height:330px;
 	}
 
 }

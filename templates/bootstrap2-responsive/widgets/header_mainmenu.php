@@ -1,19 +1,15 @@
 <div class="head-wrapper">
     <div class="container">
         <div class="row">
-          <div class="col-sm-12">
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand logo pull-left col-sm-3 pl-0" href="{homepage_url_lang}"><img src="<?php echo $website_logo_url; ?>" alt="<?php _l('Logo'); ?>"  class="img-fluid"/></a>
-                <a class="navbar-brand logo-over pull-left" href="{homepage_url_lang}"><img src="assets/img/logo-over.png" alt="<?php _l('Logo'); ?>" /></a>    
-                <div class="d-flex justify-content-end col-sm-9">
-                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#main-top-menu">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                
-                  {print_menu}
-                 <?php if(config_db_item('dropdown_menu_enabled') === TRUE): ?>
+            <nav class="navbar sticky-top navbar-expand-lg navbar-light col-sm-12">
+                <a class="navbar-brand logo" href="{homepage_url_lang}"><img src="<?php echo $website_logo_url; ?>" alt="<?php _l('Logo'); ?>"  class="img-fluid"/></a>  
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu_buttons" aria-controls="menu_buttons" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                <div class="d-flex col-sm-10 pr-0">                   
+                  <div class="collapse navbar-collapse justify-content-end" id="menu_buttons">
+                    {print_menu}
+                    <?php if(config_db_item('dropdown_menu_enabled') === TRUE): ?>
                   <div class="lang_menu_wrapper">
                      <div class="btn-group">
                          <?php
@@ -41,6 +37,8 @@
                   </div>
                 </div>
                 <?php else: ?>
+                  </div>
+                 
                 <div class="simple-languages">
                     {print_lang_menu}
                 </div>

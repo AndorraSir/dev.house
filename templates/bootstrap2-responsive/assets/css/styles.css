@@ -242,59 +242,6 @@ button.btn.btn-navbar
     display:none;
 }
 
-form.form-search.agents {
-    margin: 0 0 8px;
-}
-
-a{
-    color: black;
-}
-
-p, h2{
-    background: url('');
-}
-
-.simple-languages li a
-{
-    color:white;
-}
-
-.simple-languages li.active a
-{
-    color: #1a1a1a !important;
-}
-
-.simple-languages li a:hover
-{
-    text-decoration: none;
-}
-
-.simple-languages li:hover
-{
-    background:#464745;
-}
-
-.container, .head-wrapper, .wrap-map, .wrap-search, .wrap-content, .wrap-bottom, .wrap-content2
-{
-    /*min-width: 1000px;*/
-}
-
-.wrap-content .container, .wrap-search .container
-{
-    /*max-width: 940px;*/
-}
-
-
-
-.advanced-form-part
-{
-
-}
-
-.showroom_logo
-{
-    max-width:360px;
-}
 
 a#search-advanced
 {
@@ -380,12 +327,7 @@ label.control-label.captcha
     padding:0px;
 }
 
-.container.ads
-{
-    text-align: center;
-    padding:10px;
-    overflow: hidden;
-}
+
 
 .sidebar-ads-1
 {
@@ -445,40 +387,6 @@ label.control-label.captcha
 
 /* Head and Navbar */
 
-.head-wrapper
-{
-    border-top:2px solid #ccc;
-    color:#ccc;
-    position: relative;
-    background: white;
-}
-
-
-
-.head-wrapper .container
-{
-    position: relative;
-}
-
-.head-wrapper a.logo
-{
-    padding-top:10px;
-    padding-right:10px;
-}
-
-
-
-.masthead
-{
-    position: relative;
-}
-
-.head-wrapper .navbar
-{
-    padding-top:0px;
-    margin-bottom:0px;
-}
-
 .head-wrapper .bfh-languages
 {
     position: absolute;
@@ -520,46 +428,7 @@ a.image_expert img {
 
 /* simple-languages */
 
-div.simple-languages
-{
-    padding-top:30px;
-    padding-bottom:20px;
-    display:inline;
-}
 
-
-div.simple-languages ul
-{
-    list-style: none;
-}
-
-div.simple-languages ul li
-{
-    float:left;
-    padding:5px 10px;
-    border:1px solid #CCCCCC;
-    margin-right:3px;
-}
-
-div.simple-languages ul li.active
-{
-    background: #F6F6F6;
-}
-
-
-
-
-
-.navbar .nav li.dropdown.open > .dropdown-toggle .caret, .navbar .nav li.dropdown.active > .dropdown-toggle .caret, .navbar .nav li.dropdown.open.active > .dropdown-toggle .caret,
-.navbar .nav li.dropdown > a:hover .caret, .navbar .nav li.dropdown > a:focus .caret {
-    border-bottom-color: white;
-    border-top-color: white;
-}
-
-.navbar .nav li.dropdown > .dropdown-toggle .caret {
-    border-bottom-color: #777777;
-    border-top-color: #FFFFFF;
-}
 
 
 
@@ -1200,11 +1069,7 @@ a.over-image:hover
     right:0;left:0;
 }
 
-.share
-{
-    padding-top:75px;
-    padding-left:45px;
-}
+/*
 
 .custom-icon
 {
@@ -1218,7 +1083,7 @@ a.over-image:hover
     float:left;
     margin-right:3px;
     opacity:0.5;
-}
+}*/
 
 a:hover .custom-icon
 {
@@ -2116,17 +1981,6 @@ div.route_suggestion input
 
 /* END Pac input map search */
 
-div.always-top
-{
-    /*
-    background:white;
-    left: 0; top:0px;
-    margin-bottom: 0;
-    position: fixed;
-    right: 0;
-    z-index: 1030;
-    */
-}
 
 /* Carousel customized start */
 

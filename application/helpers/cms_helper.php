@@ -846,7 +846,7 @@ function get_menu ($array, $child = FALSE, $lang_code)
     $is_logged_user = ($CI->user_m->loggedin() == TRUE);
 	
 	if (count($array)) {
-		$str .= $child == FALSE ? '<ul class="nav navbar-nav nav-collapse collapse navbar-main" id="main-top-menu">' . PHP_EOL : '<ul class="dropdown-menu">' . PHP_EOL;
+		$str .= $child == FALSE ? '<ul class="navbar-nav" id="main-top-menu">' . PHP_EOL : '<ul class="dropdown-menu">' . PHP_EOL;
 		$position = 0;
 		foreach ($array as $key=>$item) {
 		    if($item['is_visible'] == '0')

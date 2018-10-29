@@ -1,9 +1,9 @@
 <div class="results-properties-list with-sidebar pt-5">
-    <h2 class="text-center">{lang_Realestates}: <?php echo $total_rows; ?> Favoritos</h2>
+    <h2 class="text-center hide">{lang_Realestates}: <?php echo $total_rows; ?></h2>
     <div class="options">
-        <a class="view-type hidden-phone" ref="list" href="#"><img src="assets/img/glyphicons/glyphicons_157_show_thumbnails_with_lines.png" /></a>
+        <a class="view-type hidden-phone hide" ref="list" href="#"><img src="assets/img/glyphicons/glyphicons_157_show_thumbnails_with_lines.png" /></a>
 
-        <select class="col-3 selectpicker-small pull-right" placeholder="{lang_OrderBy}">
+        <select class="col-sm-3 selectpicker-small pull-right" placeholder="{lang_OrderBy}">
             <option value="id ASC" {order_dateASC_selected}>{lang_DateASC}</option>
             <option value="id DESC" {order_dateDESC_selected}>{lang_DateDESC}</option>
             <option value="price ASC" {order_priceASC_selected}>{lang_PriceASC}</option>
