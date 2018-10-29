@@ -17,32 +17,32 @@
     <div class="row">
         {has_no_results}
         <ul class="thumbnails">
-        <li class="col-12">
-        <div class="alert alert-success">
-        {lang_Noestates}
-        </div>
-        </li>
+            <li class="col-sm-12">
+                <div class="alert alert-success">
+                {lang_Noestates}
+                </div>
+            </li>
         </ul>
         {/has_no_results}
-
+<ul class="cards one">
         <?php foreach($results as $key=>$item): ?>
         <?php
-           if($key==0)echo '<ul class="cards row">';
+           if($key==0)echo '<li class="one">';
         ?>
             <?php _generate_results_item(array('key'=>$key, 'item'=>$item)); ?>
         <?php
            if( ($key+1)%3==0 )
             {
-                echo '</ul><ul class="cards hfhf row">';
+                echo '</li><li class="cards hfhf">';
             }
             if( ($key+1)==count($results) ) echo '</ul>';
             endforeach;
         ?>
-        
-      </div>
-      <div class="pagination properties mb-0 mt-2">
+        </ul>
+    </div>
+    <div class="pagination properties mb-0 mt-2">
       {pagination_links}
-      </div>
+    </div>
 
       
 </div>

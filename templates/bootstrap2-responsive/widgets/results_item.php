@@ -19,7 +19,7 @@ if(isset($columns) && $columns == 3)
 ?>
 
 
-<li class="col-sm-4">
+<div class="col-sm-4">
     <div class="custom_card hoverable f_<?php echo _ch($item['is_featured']); ?>">
       <img alt="300x200" data-src="holder.js/300x200" src="<?php echo _simg($item['thumbnail_url'], '300x200'); ?>"  alt=""/>
       <?php if(!empty($item['option_4'])):?>
@@ -61,4 +61,4 @@ if(isset($columns) && $columns == 3)
         </p>
       </div>
     </div>
-  </li>
+  </div>
