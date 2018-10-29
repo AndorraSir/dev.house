@@ -89,7 +89,7 @@
 <div class="wrap-content homepage-content">
     <div class="container pt-5">
       <div class="row">
-          <div class="col-12">
+          <div class="col-sm-12">
               <?php _widget('center_recentproperties');?>
           </div>
       </div>
@@ -101,7 +101,7 @@
         {/has_settings_gps}
     </div>
 </div>
-
+</div>
 
 <?php _subtemplate('footers', _ch($subtemplate_footer, 'standard')); ?>
 

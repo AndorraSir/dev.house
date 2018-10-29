@@ -16,33 +16,33 @@
 <br style="clear:both;">
     <div class="row">
         {has_no_results}
-        <div class="thumbnails">
-            <div class="col-sm-12">
-                <div class="alert alert-success">
-                {lang_Noestates}
-                </div>
-            </div>
+        <ul class="thumbnails">
+        <li class="col-12">
+        <div class="alert alert-success">
+        {lang_Noestates}
         </div>
+        </li>
+        </ul>
         {/has_no_results}
 
         <?php foreach($results as $key=>$item): ?>
         <?php
-           if($key==0)echo '<div class="col-sm-4"><div class="cards row">';
+           if($key==0)echo '<ul class="cards">';
         ?>
             <?php _generate_results_item(array('key'=>$key, 'item'=>$item)); ?>
         <?php
            if( ($key+1)%3==0 )
             {
-                echo '</div></div><div class="col-sm-4"><div class="cards hfhf row">';
+                echo '</ul><ul class="cards">';
             }
-            if( ($key+1)==count($results) ) echo '</div></div>';
+            if( ($key+1)==count($results) ) echo '</ul>';
             endforeach;
         ?>
         
       </div>
-      <div class="pagination properties mb-0 mt-2">
+      <div class="pagination properties">
       {pagination_links}
-    </div>
+      </div>
 
       
 </div>
