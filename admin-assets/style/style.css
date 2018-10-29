@@ -639,17 +639,17 @@ form label{
   padding-left: 30px;
   text-decoration: none;
   color: #999;
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid #d5d5d5;
 }
 
 .sidebar .navi li ul li.active a { 
-  background: #131313;
-  border-bottom: 1px solid #222;
+  background: #eaeaea;
+  border-bottom: 1px solid #d5d5d5;
 }
 
 .sidebar .navi li ul li a:hover {
-  background: #131313;
-  border-bottom: 1px solid #222;
+  background: #eaeaea;
+  border-bottom: 1px solid #d5d5d5;
 }
 
 /* Sidebar colors */

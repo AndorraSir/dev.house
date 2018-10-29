@@ -14,10 +14,10 @@
         <span class="pull-left hide" style="padding-top: 5px;">{lang_OrderBy}&nbsp;&nbsp;&nbsp;</span>
     </div>
 <br style="clear:both;">
-    <div class="row">
+    <div class="">
         {has_no_results}
         <ul class="thumbnails">
-        <li class="col-12">
+        <li class="col-sm-12">
         <div class="alert alert-success">
         {lang_Noestates}
         </div>
@@ -27,13 +27,13 @@
 
         <?php foreach($results as $key=>$item): ?>
         <?php
-           if($key==0)echo '<ul class="cards">';
+           if($key==0)echo '<ul class="cards row">';
         ?>
             <?php _generate_results_item(array('key'=>$key, 'item'=>$item)); ?>
         <?php
            if( ($key+1)%3==0 )
             {
-                echo '</ul><ul class="cards">';
+                echo '</ul><ul class="cards row">';
             }
             if( ($key+1)==count($results) ) echo '</ul>';
             endforeach;
