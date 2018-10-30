@@ -85,90 +85,6 @@
     />
 </url>
 <url>
-	<loc>http://localhost:8888/dev.house/index.php/es/157/articulos</loc>
-	<lastmod>2014-04-08T22:08:34+02:00</lastmod>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-    <xhtml:link
-        rel="alternate"
-        hreflang="en"
-        href="http://localhost:8888/dev.house/index.php/en/157/articulos"
-    />
-    <xhtml:link
-        rel="alternate"
-        hreflang="fr"
-        href="http://localhost:8888/dev.house/index.php/fr/157/articulos"
-    />
-    <xhtml:link
-        rel="alternate"
-        hreflang="cat"
-        href="http://localhost:8888/dev.house/index.php/cat/157/articulos"
-    />
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/en/157/articles</loc>
-	<lastmod>2014-04-08T22:08:34+02:00</lastmod>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-    <xhtml:link
-        rel="alternate"
-        hreflang="es"
-        href="http://localhost:8888/dev.house/index.php/es/157/articles"
-    />
-    <xhtml:link
-        rel="alternate"
-        hreflang="fr"
-        href="http://localhost:8888/dev.house/index.php/fr/157/articles"
-    />
-    <xhtml:link
-        rel="alternate"
-        hreflang="cat"
-        href="http://localhost:8888/dev.house/index.php/cat/157/articles"
-    />
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/fr/157/articulos</loc>
-	<lastmod>2014-04-08T22:08:34+02:00</lastmod>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-    <xhtml:link
-        rel="alternate"
-        hreflang="es"
-        href="http://localhost:8888/dev.house/index.php/es/157/articulos"
-    />
-    <xhtml:link
-        rel="alternate"
-        hreflang="en"
-        href="http://localhost:8888/dev.house/index.php/en/157/articulos"
-    />
-    <xhtml:link
-        rel="alternate"
-        hreflang="cat"
-        href="http://localhost:8888/dev.house/index.php/cat/157/articulos"
-    />
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/cat/157/articulos</loc>
-	<lastmod>2014-04-08T22:08:34+02:00</lastmod>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-    <xhtml:link
-        rel="alternate"
-        hreflang="es"
-        href="http://localhost:8888/dev.house/index.php/es/157/articulos"
-    />
-    <xhtml:link
-        rel="alternate"
-        hreflang="en"
-        href="http://localhost:8888/dev.house/index.php/en/157/articulos"
-    />
-    <xhtml:link
-        rel="alternate"
-        hreflang="fr"
-        href="http://localhost:8888/dev.house/index.php/fr/157/articulos"
-    />
-</url>
-<url>
 	<loc>http://localhost:8888/dev.house/index.php/en/5/about_us</loc>
 	<lastmod>2013-12-12T16:01:35+01:00</lastmod>
 	<changefreq>monthly</changefreq>
@@ -414,6 +330,90 @@
         rel="alternate"
         hreflang="fr"
         href="http://localhost:8888/dev.house/index.php/fr/4/contactanos"
+    />
+</url>
+<url>
+	<loc>http://localhost:8888/dev.house/index.php/es/166/calculadora</loc>
+	<lastmod>2018-10-30T11:05:26+01:00</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="http://localhost:8888/dev.house/index.php/en/166/calculadora"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/166/calculadora"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/166/calculadora"
+    />
+</url>
+<url>
+	<loc>http://localhost:8888/dev.house/index.php/en/166/calculator</loc>
+	<lastmod>2018-10-30T11:05:26+01:00</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="es"
+        href="http://localhost:8888/dev.house/index.php/es/166/calculator"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/166/calculator"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/166/calculator"
+    />
+</url>
+<url>
+	<loc>http://localhost:8888/dev.house/index.php/fr/166/calculadora</loc>
+	<lastmod>2018-10-30T11:05:26+01:00</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="es"
+        href="http://localhost:8888/dev.house/index.php/es/166/calculadora"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="http://localhost:8888/dev.house/index.php/en/166/calculadora"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/166/calculadora"
+    />
+</url>
+<url>
+	<loc>http://localhost:8888/dev.house/index.php/cat/166/calculate</loc>
+	<lastmod>2018-10-30T11:05:26+01:00</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="es"
+        href="http://localhost:8888/dev.house/index.php/es/166/calculate"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="http://localhost:8888/dev.house/index.php/en/166/calculate"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/166/calculate"
     />
 </url>
 <url>

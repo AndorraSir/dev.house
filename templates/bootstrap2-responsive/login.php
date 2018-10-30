@@ -18,14 +18,14 @@
 
 <?php endif; ?>
 
-<div class="wrap-content" id="content">
+<div class="wrap-content pt-5" id="content">
     <div class="container">
 
         <?php if(file_exists(APPPATH.'controllers/admin/packages.php') && config_item('def_package') !== FALSE): ?>
-        <div class="row-fluid">
-            <div class="span12">
+        <div class="row">
+            <div class="col-sm-6">
             <h2>{lang_AvailablePackages}</h2>
-            <div class="property_content">
+            <div class="property_content hoverable">
                 <div class="widget-content">
                     <?php if($this->session->flashdata('error_package')):?>
                     <p class="alert alert-error"><?php echo $this->session->flashdata('error_package')?></p>
@@ -74,28 +74,12 @@
         
         <?php endif; ?>
         
-        <?php if(isset($settings_activation_price) && isset($settings_featured_price) &&
-                 $settings_activation_price > 0 || $settings_featured_price > 0): ?>
-        <div class="row-fluid">
-            <div class="span12">
-            <div class="property_content">
-                <div class="widget-content">
-                <?php if($settings_activation_price > 0): ?>
-                    <?php echo lang_check('* Property activation price:').' '.$settings_activation_price.' '.$settings_default_currency; ?><br />
-                 <?php endif;?>
-                 <?php if($settings_featured_price > 0): ?>
-                    <?php echo lang_check('* Property featured price:').' '.$settings_featured_price.' '.$settings_default_currency; ?>
-                 <?php endif;?>
-                 </div>
-            </div>
-            </div>
-        </div>
-        <?php endif;?>
         
-        <div class="row-fluid">
-            <div class="span6 login-form">
-            <h2>{lang_Login}</h2>
-            <div class="property_content">
+        <div class="row">
+            <div class="col-sm-6 login-form">
+            <div class="property_content hoverable">
+                <h2>{lang_Login}</h2>
+
                 <?php if($is_login):?>
                 <?php echo validation_errors()?>
                 <?php if($this->session->flashdata('error')):?>
@@ -107,21 +91,21 @@
                   <!-- Login form -->
                   <?php echo form_open(NULL, array('class' => 'form-horizontal'))?>
                     <!-- Email -->
-                    <div class="control-group">
+                    <div class="form-group">
                       <label class="control-label" for="inputUsername"><?php echo lang('Username')?></label>
                       <div class="controls">
                         <?php echo form_input('username', $this->input->get('username'), 'class="form-control" id="inputUsername" placeholder="'.lang('Username').'"')?>
                       </div>
                     </div>
                     <!-- Password -->
-                    <div class="control-group">
+                    <div class="form-group">
                       <label class="control-label" for="inputPassword"><?php echo lang('Password')?></label>
                       <div class="controls">
                         <?php echo form_password('password', $this->input->get('password'), 'class="form-control" id="inputPassword" placeholder="'.lang('Password').'"')?>
                       </div>
                     </div>
                     <!-- Remember me checkbox and sign in button -->
-                    <div class="control-group">
+                    <div class="form-group">
 					<div class="controls">
                       <div class="checkbox">
                         <label>
@@ -130,11 +114,11 @@
 						</div>
 					</div>
 					</div>
-                    <div class="control-group">
+                    <div class="form-group">
 					   <div class="controls">
 							<button type="submit" class="btn btn-danger"><?php echo lang('Sign in')?></button>
 							<button type="reset" class="btn btn-default"><?php echo lang('Reset')?></button>
-                            <a href="<?php echo site_url('admin/user/forgetpassword'); ?>"><em><?php echo lang_check('Forget password?')?></em></a>
+                <a class="d-block" href="<?php echo site_url('admin/user/forgetpassword'); ?>"><em><?php echo lang_check('Forget password?')?></em></a>
 						</div>
                     </div>
                   <?php echo form_close()?>
@@ -161,10 +145,11 @@
                 <?php endif;?>
                 
             </div></div>
-            <div class="span6 register-form">
-            <h2>{lang_Register}</h2>
+            <div class="col-sm-6 register-form">
             <a id="content"></a>
-            <div class="property_content">
+            <div class="property_content hoverable">
+                <h2>{lang_Register}</h2>
+
                 <?php if($this->session->flashdata('error_registration') != ''):?>
                 <p class="alert alert-success"><?php echo $this->session->flashdata('error_registration')?></p>
                 <?php endif;?>
@@ -174,7 +159,7 @@
                   <!-- Login form -->
                   <?php echo form_open(NULL, array('class' => 'form-horizontal'))?>
                     <?php if(config_db_item('dropdown_register_enabled') === TRUE): ?>
-                    <div class="control-group">
+                    <div class="form-group">
                       <label class="control-label"><?php echo lang_check('Account type')?></label>
                       <div class="controls">
                         <?php 
@@ -187,56 +172,56 @@
 
                   
                   <?php if(config_db_item('register_reduced') == FALSE): ?>
-                                <div class="control-group">
+                                <div class="form-group">
                                   <label class="control-label"><?php echo lang('FirstLast')?></label>
                                   <div class="controls">
                                     <?php echo form_input('name_surname', set_value('name_surname', ''), 'class="form-control" id="inputNameSurname" placeholder="'.lang('FirstLast').'"')?>
                                   </div>
                                 </div>
                                 
-                                <div class="control-group">
+                                <div class="form-group">
                                   <label class="control-label"><?php echo lang('Username')?></label>
                                   <div class="controls">
                                     <?php echo form_input('username', set_value('username', ''), 'class="form-control" id="inputUsername" placeholder="'.lang('Username').'"')?>
                                   </div>
                                 </div>
                   <?php endif; ?>
-                                <div class="control-group">
+                                <div class="form-group">
                                   <label class="control-label"><?php echo lang('Email')?></label>
                                   <div class="controls">
                                     <?php echo form_input('mail', set_value('mail', ''), 'class="form-control" id="inputMail" placeholder="'.lang('Email').'"')?>
                                   </div>
                                 </div>
                   
-                                <div class="control-group">
+                                <div class="form-group">
                                   <label class="control-label"><?php echo lang('Password')?></label>
                                   <div class="controls">
                                     <?php echo form_password('password', set_value('password', ''), 'class="form-control" id="inputPassword" placeholder="'.lang('Password').'" autocomplete="off"')?>
                                   </div>
                                 </div>
                                 
-                                <div class="control-group">
+                                <div class="form-group">
                                   <label class="control-label"><?php echo lang('Confirmpassword')?></label>
                                   <div class="controls">
                                     <?php echo form_password('password_confirm', set_value('password_confirm', ''), 'class="form-control" id="inputPasswordConfirm" placeholder="'.lang('Confirmpassword').'" autocomplete="off"')?>
                                   </div>
                                 </div>
                   <?php if(config_db_item('register_reduced') == FALSE): ?>
-                                <div class="control-group">
+                                <div class="form-group">
                                   <label class="control-label"><?php echo lang('Address')?></label>
                                   <div class="controls">
                                     <?php echo form_textarea('address', set_value('address', ''), 'placeholder="'.lang('Address').'" rows="3" class="form-control"')?>
                                   </div>
                                 </div>          
                                 
-                                <div class="control-group">
+                                <div class="form-group">
                                   <label class="control-label"><?php echo lang_check('Phone')?> <?php echo lang_check('PhoneAdd')?></label>
                                   <div class="controls">
                                     <?php echo form_input('phone', set_value('phone', ''), 'class="form-control" id="inputPhone" placeholder="'.lang('Phone').'"')?>
                                   </div>
                                 </div>
                                 <?php if(config_db_item('phone_mobile_enabled') === TRUE): ?>
-                                <div class="control-group">
+                                <div class="form-group">
                                   <label class="control-label"><?php echo lang_check('Mobile phone')?> <?php echo lang_check('PhoneAdd')?></label>
                                   <div class="controls">
                                     <?php echo form_input('phone2', set_value('phone2', ''), 'class="form-control" id="inputPhone2" placeholder="'.lang('Mobile phone').'"')?>
@@ -246,8 +231,8 @@
                    <?php endif; ?>
 
                                 
-                                <?php if(config_item('captcha_disabled') === FALSE): ?>
-                                <div class="control-group" >
+                              <!--   <?php if(config_item('captcha_disabled') === FALSE): ?>
+                                <div class="form-group" >
                                     <label class="control-label captcha"><?php echo $captcha['image']; ?></label>
                                     <div class="controls">
                                         <input class="captcha" name="captcha" type="text" placeholder="{lang_Captcha}" value="" />
@@ -257,15 +242,15 @@
                                 <?php endif; ?>
                                 
                                 <?php if(config_item('recaptcha_site_key') !== FALSE): ?>
-                                <div class="control-group" >
+                                <div class="form-group" >
                                     <label class="control-label captcha"></label>
                                     <div class="controls">
                                         <?php _recaptcha(true); ?>
                                     </div>
                                 </div>
-                                <?php endif; ?>
+                                <?php endif; ?> -->
                                 
-                    <div class="control-group">
+                    <div class="form-group">
                         <div class="controls">
     						<button type="submit" class="btn btn-danger"><?php echo lang('Register')?></button>
     						<button type="reset" class="btn btn-success"><?php echo lang('Reset')?></button>

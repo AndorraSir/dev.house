@@ -50,10 +50,10 @@ $active_group = 'mysql';
 $active_record = TRUE;
 
 //MySQL example
-$db['mysql']['hostname'] = '10.50.10.7';
-$db['mysql']['username'] = 'house';
+$db['mysql']['hostname'] = 'localhost';
+$db['mysql']['username'] = 'house_username';
 $db['mysql']['password'] = 'hGlq7*46';
-$db['mysql']['database'] = 'houseDB';
+$db['mysql']['database'] = 'pruebasDB';
 $db['mysql']['dbdriver'] = 'mysql';
 $db['mysql']['dbprefix'] = '';
 $db['mysql']['pconnect'] = TRUE;
@@ -66,7 +66,7 @@ $db['mysql']['swap_pre'] = '';
 $db['mysql']['autoinit'] = TRUE;
 $db['mysql']['stricton'] = FALSE;
 
-$db['mysql']['port'] = 3306;
+$db['mysql']['port'] = 8888;
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */
