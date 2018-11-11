@@ -13,6 +13,7 @@ ul.cards{
 }
 .custom_card{
     border:0px;
+    margin-bottom: 2rem;
 	img{
 		width:100%;
 		object-fit:cover;
@@ -32,9 +33,6 @@ ul.cards{
 	}
 	.btn-info{
 		background-color: #F5A623 !important;
-	}
-	.card-body{
-		min-height:330px;
 	}
 
 }

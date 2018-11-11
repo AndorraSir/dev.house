@@ -10,7 +10,8 @@ ul.cards .card-title {
   text-transform: uppercase; }
 
 .custom_card {
-  border: 0px; }
+  border: 0px;
+  margin-bottom: 1rem; }
   .custom_card img {
     width: 100%;
     object-fit: cover; }
@@ -25,5 +26,3 @@ ul.cards .card-title {
     margin-bottom: 0px; }
   .custom_card .btn-info {
     background-color: #F5A623 !important; }
-  .custom_card .card-body {
-    min-height: 330px; }

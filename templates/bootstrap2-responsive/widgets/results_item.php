@@ -29,37 +29,38 @@ if(isset($columns) && $columns == 3)
       <img class="featured" alt="Featured" src="" style="display:none;"/>
       <a href="<?php echo _ch($item['url']); ?>" class="ove"> </a>
       <div class="card-body">
-        <p class="prop-details">
+        <div class="prop-details">
 
          <?php if(!empty($item['option_36'])):?>
-        <span class="price"><?php _che($options_prefix_36); ?> <?php echo _ch($item['option_36']); ?><?php _che($options_suffix_36, ''); ?></span>
+        <span class="price" style="display:block; height:25px;"><?php _che($options_prefix_36); ?> <?php echo _ch($item['option_36']); ?><?php _che($options_suffix_36, ''); ?></span>
         <?php endif;?>
          <?php if(!empty($item['option_37'])):?>
           <span class="price"><?php _che($options_prefix_37); ?> <?php echo _ch($item['option_37']); ?><?php _che($options_suffix_37, ''); ?>&nbsp;</span>
           <?php endif;?>
-        </p>
-        <p class="bottom-border"><span class="f_<?php echo _ch($item['is_featured']); ?>"><?php echo _ch($item['address']); ?></span></p>
-        <p class="prop-description "><i><?php echo _ch($item['option_chlimit_8']); ?></i></p>
+        </div>
+        <div class=""><span class="f_<?php echo _ch($item['is_featured']); ?>"><?php echo _ch($item['address']); ?></span></div>
+        <div class="prop-description "><i><?php echo _ch($item['option_chlimit_8']); ?></i></div>
         <div class="row">
-        <p class="bottom-border col-sm-4"><?php echo _ch($options_name_2); ?> <br><span><?php echo _ch($item['option_2']); ?></span></p>
-        <p class="bottom-border col-sm-4"><?php echo _ch($options_name_3); ?> <br><span><?php echo _ch($item['option_3']); ?></span></p>
-        <p class="bottom-border col-sm-4"><?php echo _ch($options_name_19); ?> <br><span><?php echo _ch($item['option_19']); ?></span></p>
+          <div class="col-sm-4"><?php echo _ch($options_name_2); ?> <br><span><?php echo _ch($item['option_2']); ?></span></div>
+          <div class="col-sm-4"><?php echo _ch($options_name_3); ?> <br><span><?php echo _ch($item['option_3']); ?></span></div>
+          <div class="col-sm-4"><?php echo _ch($options_name_19); ?> <br><span><?php echo _ch($item['option_19']); ?></span></div>
         <?php if(!empty($item['icons'])):?>
-        <p class="prop-icons" style="display: none">
-            <?php 
-                foreach ($item['icons'] as $icon) {
-                    echo $icon['icon'];
-                }
-            ?>
-        </p>
+          <p class="prop-icons" style="display: none">
+              <?php 
+                  foreach ($item['icons'] as $icon) {
+                      echo $icon['icon'];
+                  }
+              ?>
+          </p>
+          <?php endif;?>
+
       </div>
-        <?php endif;?>
         
-        <p class="prop-details">
+        <div class="prop-details">
           <a class="btn btn-info col-sm-12" href="<?php echo _ch($item['url']); ?>">
           {lang_Details}
           </a>
-        </p>
+        </div>
       </div>
     </div>
   </li>
