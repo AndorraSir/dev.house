@@ -18,7 +18,7 @@
 
 <?php endif; ?>
 
-<div class="wrap-content pt-5" id="content">
+<div class="wrap-content pt-5 pb-5" id="content">
     <div class="container">
 
         <?php if(file_exists(APPPATH.'controllers/admin/packages.php') && config_item('def_package') !== FALSE): ?>

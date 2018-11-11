@@ -9,7 +9,7 @@
         {settings_facebook}
     </div> 
 
-    <div class="share d-flex align-content-start">
+    <div class="share d-flex justify-content-end">
         <!--Facebook-->
 	<a class="btn-floating btn-lg btn-fb" type="button" role="button"><i class="fa fa-facebook"></i></a>
 	<!--Twitter-->

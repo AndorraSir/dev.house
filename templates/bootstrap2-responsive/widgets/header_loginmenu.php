@@ -1,7 +1,7 @@
 <div class="top-wrapper">
       <div class="container">
         <div class="row">
-        <div class="col-12 masthead">
+        <div class="col-sm-12 masthead">
         {not_logged}
         <ul class="nav pull-left top-small">
 <!--           <li><span><i class="icon-phone"></i> {settings_phone}</span></li>
@@ -13,7 +13,7 @@
         </ul>
         {/not_logged}
         {is_logged_user}
-        <ul class="nav pull-left top-small">
+        <ul class="nav pull-right top-small">
         <?php if(file_exists(APPPATH.'controllers/admin/booking.php')):?>
           <li><a href="{myreservations_url}#content"><i class="icon-shopping-cart"></i> {lang_Myreservations}</a></li>
         <?php endif; ?>
@@ -34,7 +34,7 @@
         </ul>
         {/is_logged_user}
         {is_logged_other}
-        <ul class="nav pull-left top-small">
+        <ul class="nav pull-right top-small">
           <li><a href="{login_url}"><i class="icon-wrench"></i> {lang_Admininterface}</a></li>
           <li><a href="{logout_url}"><i class="icon-off"></i> {lang_Logout}</a></li>
           <?php if(isset($page_edit_url)&&!empty($page_edit_url)):?>

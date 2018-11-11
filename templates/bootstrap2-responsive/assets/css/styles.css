@@ -534,13 +534,6 @@ input#search_showroom
     background: #EEEEEE;
 }
 
-.wrap-content h2, .wrap-content2 h2
-{
-    font-size: 28px;
-    color: #767577;
-    font-weight: 300;   
-    font-family: 'Lato', sans-serif;
-}
 
 .wrap-content .options a.view-type
 {
@@ -1208,12 +1201,7 @@ div.facebook_top_share
     font-style: italic;
 }
 
-.property_content
-{
-    padding:10px;
-    background: white;
-    display:block;
-}
+
 
 .property_content.property_content_print {
     padding: 0px;
@@ -1251,37 +1239,6 @@ div.facebook_top_share
     width:1px;
     height:1px;
     min-height:0px;    
-}
-
-.contact-form
-{
-    padding-left:20px;
-}
-
-.contact-form input, .contact-form textarea
-{
-    line-height: auto;
-    height: auto;
-    font-size: 14px;
-    border-radius: auto;
-}
-
-.contact-form textarea
-{
-    height:110px;
-}
-
-.contact-form .control-group {
-    margin-bottom: 0px;
-}
-
-.contact-form .row-fluid [class*="span"]:first-child {
-    margin-left: 15px;
-}
-
-#contactForm .alert
-{
-    margin-bottom: 6px;
 }
 
 /* Clustering */
@@ -2091,18 +2048,6 @@ h5 span.checkbox-visible
     margin-top:3px;
 }
 
-i.load-indicator
-{
-    background: url(../img/ajax-indicator-2.png) no-repeat;
-
-    display: inline-block;
-    height: 14px;
-    line-height: 14px;
-    margin-top: 3px;
-    vertical-align: text-top;
-    width: 14px;
-    display: none;
-}
 
 /* END add to favorites */
 
@@ -2189,22 +2134,6 @@ div.lang_menu_wrapper .caret {
 }
 
 
-@media (max-width: 767px) {
-    
-    .wrap-bottom .col-3  {
-        height : auto;
-    }
-    
-    .wrap-bottom .container .logo-transparent {
-        position: initial;
-    }
-    
-    .wrap-bottom .container .logo-transparent img {
-        display: block;
-        margin-left: 25px;
-        margin-top: 40px;
-    }
-}
 
 
 .search-senter {
@@ -2289,23 +2218,8 @@ div.month_container
        box-sizing: border-box;
     }
     
-    .bottom_partners .span2 {
-        width: 20%;
-        margin-left: 3%;
-    }
     
-    .footer-row .logo-transparent {
-        margin: 0 auto;
-    }
-    
-    .footer-row .logo-transparent img{
-        margin-left: 0 !important;
-    }
-    
-    .footer-row .span6 table {
-        margin: 0 auto;
-    }
-    
+   
     .footer-row  .to-top {
         left:50%;
         transform: translateX(-50%);

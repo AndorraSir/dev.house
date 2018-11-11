@@ -59,7 +59,10 @@ div.always-top{
     }
     .navbar-nav > li{
         padding: 20px;
-         &:hover{
+        &:hover{
+            background-color:#eaeaea;
+        }
+        &.active{
             background-color:#eaeaea;
         }
     }
@@ -77,7 +80,7 @@ div.always-top{
     width:50%;
 }
 .head-wrapper {
-    box-shadow:0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    box-shadow:0 1px 2px 0 rgba(0,0,0,.16), 0 1px 2px 0 rgba(0,0,0,.12);
     .navbar{
         padding:0px;
     }
@@ -167,7 +170,7 @@ div.lang_menu_wrapper .btn-group>.btn:first-child:not(:last-child):not(.dropdown
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
-
+/*
 div.lang_menu_wrapper.btn-group>.btn:first-child {
     margin-left: 0;
 }
@@ -175,19 +178,13 @@ div.lang_menu_wrapper.btn-group>.btn:first-child {
 div.lang_menu_wrapper .btn-group-vertical>.btn, .btn-group>.btn {
     position: relative;
     float: left;
-}
+}*/
 
-div.lang_menu_wrapper button {
+/*div.lang_menu_wrapper button {
     border-radius: 0px;
     font-size: 14px;
     color:#908E91;
-}
-
-.lang_menu_wrapper button {
-    text-transform: uppercase;
-    position: relative;
-    padding-right: 40px;
-}
+}*/
 
 .lang_menu_wrapper .lang_menu_top.dropdown-menu {
     min-width: 106px;
@@ -215,10 +212,6 @@ div.lang_menu_wrapper button {
     user-select: none;
 }
 
-.lang_menu_wrapper .btn-default {
-    background-color: #fff;
-    border-color: #ccc;
-}
 
 ul.top-small{
     width:100%;
@@ -244,10 +237,6 @@ ul.top-small{
 }
 
 @media (max-width: 768px){
-   /* .nav-collapse, .nav-collapse.collapse {
-        height: 0;
-        overflow: hidden;
-    }*/
     .btn.btn-navbar{
         display: block !important;
     }
@@ -266,19 +255,18 @@ div.lang_menu_wrapper .dropdown-menu li a {
     width: 100%;
     display: inline-block;
     font-weight:300;
+    a:hover {
+       background-color:#eaeaea;
+    }
+    img {
+        text-align: right;
+        position: absolute;
+        right: 10px;
+        top: 16px;
+    }
 }
 
-div.lang_menu_wrapper .dropdown-menu li.active a,
-div.lang_menu_wrapper .dropdown-menu li a:hover {
-   background-color:#eaeaea;
-}
 
-div.lang_menu_wrapper .dropdown-menu li a img {
-    text-align: right;
-    position: absolute;
-    right: 10px;
-    top: 16px;
-}
 
 .open>.dropdown-menu {
     display: block;
@@ -287,5 +275,14 @@ div.lang_menu_wrapper .dropdown-menu li a img {
     img{
         padding-bottom:4px;
     }
+    .dropdown-menu li.active a{
+       background-color:#eaeaea;
+    }
+    button {
+        text-transform: uppercase;
+        position: relative;
+        padding-right: 40px;
+    }
+
 }
 

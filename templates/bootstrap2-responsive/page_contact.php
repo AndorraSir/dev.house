@@ -86,7 +86,7 @@
 <?php _subtemplate('headers', _ch($subtemplate_header, 'empty')); ?>
 
 <a id="content"></a>
-<div class="wrap-content pt-5">
+<div class="wrap-content pt-5 pb-5">
     <div class="container">
         <h2>{page_title}</h2>
         <div class="property_content">
@@ -199,7 +199,6 @@
         </ul>
         {/has_page_documents}
         </div>
-    </div>
     </div>
 </div>
     
