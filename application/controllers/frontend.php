@@ -385,7 +385,7 @@ class Frontend extends Frontend_Controller
                     
                     $checked = '';
                     if($this->_get_purpose() == strtolower($val))$checked = 'checked';
-                    $radio_li.='<label class="checkbox">
+                    $radio_li.='<label class="checkbox option1">
                                 <input type="radio" rel="'.$val.'" name="search_option_'.$row->option_id.'" value="'.$key2.'" '.$checked.'> '.$val.'
                                 </label>';
                 }
@@ -4167,7 +4167,7 @@ class Frontend extends Frontend_Controller
                     if($this->_get_purpose() == strtolower($val))$checked = 'checked';
                     if($o_selected == 'selected="selected"')$checked = 'checked';
                     
-                    $radio_li.='<label class="checkbox">
+                    $radio_li.='<label class="checkbox option2">
                                 <input type="radio" rel="'.$val.'" name="search_option_'.$row->option_id.'" value="'.$key2.'" '.$checked.'> '.$val.'
                                 </label>';
                 }

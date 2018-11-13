@@ -28,7 +28,11 @@ div.sketch-bottom{
 div.logo-transparent{
     position:absolute;
     top: 0px; left: 0px;
-    width: 222px; height: 71px;
+    width: 150px; height: 71px;
+    img{
+        object-fit:cover;
+        width: 250px;
+    }
 }
 
 .wrap-bottom .col-3{

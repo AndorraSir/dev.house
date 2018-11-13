@@ -1,7 +1,7 @@
 <div class="wrap-map" id="wrap-map-1">
     {template_searchcenter}
 
-    <div id="myCarousel" class="carousel slide search-senter" data-ride="carousel">
+    <div id="myCarousel" class="carousel slide search-senter d-none d-sm-block" data-ride="carousel">
     <ol class="carousel-indicators">
     {slideshow_images}
     <li data-target="#myCarousel" data-slide-to="{num}" class="{first_active}"></li>

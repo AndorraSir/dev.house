@@ -91,8 +91,12 @@ ul.menu-onmap{
     padding-left: 0px;
     label{
         margin-right:20px;
+        text-transform: capitalize;
         input{
             color:#908E91;
+        }
+        &:nth-child(3n+3){
+            display: none;
         }
     }
 }
@@ -109,21 +113,18 @@ ul.menu-onmap li.active
     opacity: 1;
 }
 
-ul.menu-onmap li.active a
-{
+ul.menu-onmap li.active a{
     font-weight: bold;
     color: black;
     padding: 15px 30px;
 }
 
-ul.menu-onmap li.active a:hover
-{
+ul.menu-onmap li.active a:hover{
     color: black;
     text-decoration: underline;
 }
 
-ul.menu-onmap li
-{
+ul.menu-onmap li{
     float: left;
     border-bottom: none;
     margin-top: 5px;
@@ -182,8 +183,8 @@ ul.menu-onmap li a:hover
     padding:1rem;
 }
 .custom-search-form {
-    .form-inline{
-        
+    form div{
+        margin-bottom: 1rem;
     }
     .dropdown-toggle::after{
         position:absolute;
@@ -191,7 +192,7 @@ ul.menu-onmap li a:hover
         top:20px;
     }
     .custom-input{
-       box-shadow:  0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+       box-shadow:  0 2px 2px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
        height:45px;
        margin-right:10px;
     }
@@ -199,7 +200,9 @@ ul.menu-onmap li a:hover
         padding:0.5rem;
     }
     .btn-info{
-        background-color: #F5A623 !important;
+        background-color: #00c851 !important;
+        width:100%;
+        margin:0px;
     }
 }
 
@@ -207,4 +210,13 @@ ul.menu-onmap li a:hover
     text-transform:capitalize;
     font-weight:300;
     font-size:16px;
+    color: #999;
+
+    li a{
+        color: #999;
+        padding:10px;
+    }
+}
+.bootstrap-select:not([class*=span]){
+    width:100% !important;
 }

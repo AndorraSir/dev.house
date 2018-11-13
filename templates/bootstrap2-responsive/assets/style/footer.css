@@ -25,8 +25,11 @@ div.logo-transparent {
   position: absolute;
   top: 0px;
   left: 0px;
-  width: 222px;
+  width: 150px;
   height: 71px; }
+  div.logo-transparent img {
+    object-fit: cover;
+    width: 250px; }
 
 .wrap-bottom .col-3 {
   position: relative;

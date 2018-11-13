@@ -28,7 +28,6 @@ div.always-top{
 
 
 .head-wrapper a.logo{
-    padding-top:10px;
     padding-right:10px;
 }
 
@@ -58,7 +57,7 @@ div.always-top{
        
     }
     .navbar-nav > li{
-        padding: 20px;
+        padding: 29px;
         &:hover{
             background-color:#eaeaea;
         }
@@ -76,9 +75,7 @@ div.always-top{
         justify-content: auto !important;
     }
 }
-.masthead ul.top-small{
-    width:50%;
-}
+
 .head-wrapper {
     box-shadow:0 1px 2px 0 rgba(0,0,0,.16), 0 1px 2px 0 rgba(0,0,0,.12);
     .navbar{

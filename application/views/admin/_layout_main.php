@@ -304,7 +304,7 @@
             <?php endif;?>
 
             <?php if(check_acl('slideshow') && config_db_item('frontend_disabled') === FALSE):?>
-            <li class="ngreen<?php echo (strpos($this->uri->uri_string(),'slideshow')!==FALSE)?' current':'';?>"><a href="<?php echo site_url('admin/slideshow')?>"><i class="icon-picture"></i> <?php echo lang_check('Slideshow')?> FFFFFF</a></li>
+            <li class="ngreen<?php echo (strpos($this->uri->uri_string(),'slideshow')!==FALSE)?' current':'';?>"><a href="<?php echo site_url('admin/slideshow')?>"><i class="icon-picture"></i> <?php echo lang_check('Slideshow')?></a></li>
             <li class="nlightblue<?php echo (strpos($this->uri->uri_string(),'statistics')!==FALSE)?' current':'';?>"><a target="_blank" href="https://www.google.com/analytics/web"><i class="icon-bar-chart"></i> <?php echo lang_check('Statistics');?></a></li>
             <?php endif;?>
             

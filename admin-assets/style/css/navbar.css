@@ -21,7 +21,6 @@ div.always-top {
   z-index: 1030; }
 
 .head-wrapper a.logo {
-  padding-top: 10px;
   padding-right: 10px; }
 
 .masthead {
@@ -41,7 +40,7 @@ div.always-top {
   .navbar .navbar-nav > li > a {
     font-family: 'Lato', sans-serif; }
   .navbar .navbar-nav > li {
-    padding: 20px; }
+    padding: 29px; }
     .navbar .navbar-nav > li:hover {
       background-color: #eaeaea; }
     .navbar .navbar-nav > li.active {
@@ -54,9 +53,6 @@ div.always-top {
   .navbar-expand-lg {
     flex-flow: row nowrap;
     justify-content: auto !important; } }
-
-.masthead ul.top-small {
-  width: 50%; }
 
 .head-wrapper {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.16), 0 1px 2px 0 rgba(0, 0, 0, 0.12); }
