@@ -39,5 +39,23 @@ ul.cards{
 	.btn-info{
 		background-color: #F5A623 !important;
 	}
+	.details{
+		span{
+			text-transform:uppercase;
+			display:block;
+			text-align:center;
+			font-size:14px;
+			margin-bottom:10px;
+		}
+	}
+	.prop-address{
+		span{
+			text-transform:uppercase;
+			display:block;
+			text-align:left;
+			font-size:14px;
+			margin-bottom:10px;
+		}
+	}
 
 }

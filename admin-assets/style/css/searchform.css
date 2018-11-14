@@ -169,7 +169,7 @@ ul.menu-onmap li a:hover {
 
 .bg-light-grey {
   background-color: #eaeaea; }
-  .bg-light-grey .wrap-map-1 {
+  .bg-light-grey #wrap-map-1 {
     display: none; }
 
 .bootstrap-select.btn-group .btn .filter-option {
