@@ -96,7 +96,7 @@
     </div>
     <div class="container-fluid p-0">
         {has_settings_gps}
-        <div id="contactMap">
+        <div id="contactMap" style="display:none;">
         </div>
         {/has_settings_gps}
     </div>

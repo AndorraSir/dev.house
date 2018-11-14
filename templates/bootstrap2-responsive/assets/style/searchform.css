@@ -50,6 +50,9 @@
 .widget-searchvisual input {
   margin-right: 6px; }
 
+#search_option_smart {
+  width: 100%; }
+
 @media (max-width: 767px) {
   .widget-searchvisual ul.menu-onmap {
     position: relative;
@@ -140,8 +143,8 @@ ul.menu-onmap li a:hover {
 
 .center-search {
   top: 50px;
-  background-color: rgba(255, 255, 255, 0.7);
-  padding: 1rem; }
+  background-color: #eaeaea;
+  padding: 2rem 0; }
 
 .custom-search-form form div {
   margin-bottom: 1rem; }

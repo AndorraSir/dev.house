@@ -419,7 +419,7 @@
           <?php endif; ?>
           <?php _widget('report_property');?>
           
-          <h4>{lang_Description} PRUEBA 1</h4>
+          <h4>{lang_Description}</h4>
           {page_body}
           <div class="row">
             <div class="visible-phone col-sm-6" style="display:none">
@@ -953,12 +953,14 @@
           </div>
         </div>
       </div>
-      <div class="container mt-3">
+      <div class="container mt-3 hide">
         <div class="row">
-          <h4 id="hNearProperties">{lang_Propertylocation} hhh</h4>
+            <div class="col-sm-12">
+                <h4 id="hNearProperties">{lang_Propertylocation}</h4>
+            </div>
         </div>
       </div>
-      <div class="map-container">
+      <div class="map-container hide">
         <div id="propertyLocation">
         </div>
       </div>

@@ -34,6 +34,7 @@ $lang['Sort'] = "Sortiranje";
 $lang['Details'] = "Details";
 $lang['Realestates'] = "Real estates";
 $lang['Results'] = "Results";
+$lang['SearchResults'] = "Search Results";
 $lang['Locationonmap'] = "Location on map";
 $lang['Noestates'] = "No estates found";
 $lang[''] = "";

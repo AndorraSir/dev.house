@@ -938,3 +938,10 @@ table.table-statuses tbody tr td
     50% {
         -webkit-transform: scale(1.55) rotate(90deg);
         transform: scale(1.55) rotate(90deg); } }
+
+
+
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus{
+    background-color:#eaeaea !important;
+}        

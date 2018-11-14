@@ -40,19 +40,26 @@ if(isset($columns) && $columns == 3)
         </div>
         <div class=""><span class="f_<?php echo _ch($item['is_featured']); ?>"><?php echo _ch($item['address']); ?></span></div>
         <div class="prop-description "><i><?php echo _ch($item['option_chlimit_8']); ?></i></div>
-        <div class="row">
-          <div class="col-sm-4"><?php echo _ch($options_name_2); ?> <br><span><?php echo _ch($item['option_2']); ?></span></div>
-          <div class="col-sm-4"><?php echo _ch($options_name_3); ?> <br><span><?php echo _ch($item['option_3']); ?></span></div>
-          <div class="col-sm-4"><?php echo _ch($options_name_19); ?> <br><span><?php echo _ch($item['option_19']); ?></span></div>
+
         <?php if(!empty($item['icons'])):?>
-          <p class="prop-icons" style="display: none">
+          <p class="prop-icons" style="display: block">
               <?php 
                   foreach ($item['icons'] as $icon) {
                       echo $icon['icon'];
+
+
+
                   }
               ?>
           </p>
           <?php endif;?>
+
+        <div class="row">
+
+          <div class="col-sm-4"><?php echo _ch($options_name_2); ?><?php echo _ch($item['icons']); ?> <br><span><?php echo _ch($item['option_2']); ?></span></div>
+          <div class="col-sm-4"><?php echo _ch($options_name_3); ?> <br><span><?php echo _ch($item['option_3']); ?></span></div>
+          <div class="col-sm-4"><?php echo _ch($options_name_19); ?> <br><span><?php echo _ch($item['option_19']); ?></span></div>
+          
 
       </div>
         

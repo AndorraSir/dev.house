@@ -87,16 +87,19 @@
 <a name="content" id="content"></a>
 <div class="wrap-content pt-4">
     <div class="container">
-      <h2>{lang_Locationonmap}</h2>
+      <dib class="row pt-4 pb-4">
+        <h2>{lang_SearchResults}</h2>
+      </dib>
     </div>
-    <div class="container-fluid p-0">
+    <div class="container-fluid p-0 hide">
        {has_settings_gps}
         <div id="contactMap">
         </div>
       {/has_settings_gps}
     </div>
-     
+   <div class="container-fluid" style="background-color:#eaeaea"> 
   <?php _subtemplate('headers', _ch($subtemplate_header, 'search')); ?>
+</div>
 
   <div class="container">
       <div class="row">

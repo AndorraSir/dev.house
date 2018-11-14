@@ -263,7 +263,7 @@
                 
                 <li class="nblue<?php echo (strpos($this->uri->uri_string(),'user/edit/'.$this->session->userdata('id'))!==FALSE)?' current':'';?>"><a href="<?php echo site_url('admin/user/edit/'.$this->session->userdata('id'))?>"><i class="icon-user"></i> <?php echo lang_check('Profile');?></a></li>
                 
-                  <?php if(check_acl('settings')):?>
+                <?php if(check_acl('settings')):?>
                     <li class="has_submenu nred<?php echo (strpos($this->uri->uri_string(),'settings')!==FALSE)?' current open':'';?>">
                       <a href="#">
                         <!-- Menu name with icon -->
