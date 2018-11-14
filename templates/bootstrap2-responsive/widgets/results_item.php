@@ -29,10 +29,13 @@ if(isset($columns) && $columns == 3)
       <img class="featured" alt="Featured" src="" style="display:none;"/>
       <a href="<?php echo _ch($item['url']); ?>" class="ove"> </a>
       <div class="card-body">
-        <div class="prop-details">
-
+        <div class="prop-details row mb-2">
          <?php if(!empty($item['option_36'])):?>
-        <span class="price mb-3"><?php _che($options_prefix_36); ?> <?php echo _ch($item['option_36']); ?><?php _che($options_suffix_36, ''); ?></span>
+            <div class="col-sm-6"><span style="text-transform:uppercase"><?php echo _ch($item['option_4']); ?></span></div>
+              <div class="col-sm-6 text-right">
+                <span class="price"><?php _che($options_prefix_36); ?> <?php echo _ch($item['option_36']); ?><?php _che($options_suffix_36, ''); ?></span>
+              </div>
+        
         <?php endif;?>
          <?php if(!empty($item['option_37'])):?>
           <span class="price"><?php _che($options_prefix_37); ?> <?php echo _ch($item['option_37']); ?><?php _che($options_suffix_37, ''); ?>&nbsp;</span>
