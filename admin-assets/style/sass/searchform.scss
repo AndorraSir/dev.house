@@ -60,10 +60,9 @@
 .widget-searchvisual input {
     margin-right: 6px;
 }
-#search_option_smart{
+#search_option_smart {
     width: 100%;
 }
-
 
 
 @media (max-width: 767px) {
@@ -182,8 +181,8 @@ ul.menu-onmap li a:hover
 }
 .center-search{
     top:50px;
-    background-color:#eaeaea;
-    padding:2rem 0;
+    background-color:rgba(255, 255, 255, 0.7);
+    padding:1rem;
 }
 .custom-search-form {
     form div{
@@ -206,6 +205,12 @@ ul.menu-onmap li a:hover
         background-color: #00c851 !important;
         width:100%;
         margin:0px;
+    }
+}
+.bg-light-grey{
+    background-color:#eaeaea;
+    .wrap-map-1{
+        display:none;
     }
 }
 

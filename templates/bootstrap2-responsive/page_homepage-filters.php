@@ -97,7 +97,7 @@
         </div>
       {/has_settings_gps}
     </div>
-   <div class="container-fluid" style="background-color:#eaeaea"> 
+   <div class="container-fluid bg-light-grey"> 
   <?php _subtemplate('headers', _ch($subtemplate_header, 'search')); ?>
 </div>
 

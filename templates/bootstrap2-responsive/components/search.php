@@ -84,7 +84,7 @@
 <?php endif; ?>
 
 <div class="wrap-search scentered">
-    <div class="container center-search">
+    <div class="container center-search bg-light-grey">
 
         <ul id="search_option_4" class="menu-onmap tabbed-selector">
             <li class="all-button" style="display:none;"><a href="#"><?php echo lang_check('All'); ?></a></li>

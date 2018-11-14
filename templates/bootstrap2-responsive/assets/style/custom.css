@@ -75,9 +75,9 @@ li.dropdown.active > .dropdown-toggle {
   .list-results .caption {
     margin-top: 1rem; }
   .list-results span.price {
-    font-size: 18px;
+    font-size: 24px;
     float: right;
-    font-weight: normal; }
+    font-weight: 300; }
   .list-results .btn-info {
     background-color: #F5A623 !important; }
 
