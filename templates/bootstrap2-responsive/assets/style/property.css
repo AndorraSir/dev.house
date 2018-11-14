@@ -36,3 +36,7 @@
   background: #F5A623;
   text-transform: uppercase;
   margin-left: 0; }
+
+.property_container .property-price {
+  font-size: 24px;
+  font-weight: 300; }

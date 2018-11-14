@@ -1,4 +1,4 @@
-<div class="wrap-map" id="wrap-map-1">
+<div class="wrap-map row" id="wrap-map-1">
     {template_searchcenter}
 
     <div id="myCarousel" class="carousel slide search-senter d-none d-sm-block" data-ride="carousel">
@@ -11,10 +11,10 @@
     <div class="carousel-inner">
         <?php foreach ($slideshow_images as $key => $item):?>
             <div class="carousel-item <?php _che($item['first_active']);?>">
-            <div class="cont">
-                <img alt="" src="<?php _che($item['url']);?>" />
-                
-            </div>
+                <div class="cont">
+                    <img alt="" src="<?php _che($item['url']);?>" />
+                    
+                </div>
             </div>
         <?php endforeach;?>
     </div>

@@ -4246,8 +4246,9 @@ class Frontend extends Frontend_Controller
         /* [/Define order] */
         
         /* Pagination configuration */ 
-        $config['full_tag_open'] = '<ul class="pagination">';
-        $config['full_tag_close'] = '</ul>';
+        $config['full_tag_open'] = '<nav aria-label="Page navigation example">
+<ul class="pagination pg-blue pagination-lg">';
+        $config['full_tag_close'] = '</ul></nav>';
         $config['base_url'] = $this->data['ajax_load_url'];
         $config['total_rows'] = 200;
         $config['per_page'] = config_item('per_page');

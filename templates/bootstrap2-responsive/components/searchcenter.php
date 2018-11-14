@@ -9,7 +9,7 @@
 .scentered.wrap-search
 {
     width:80%;
-    top:38%;
+    /*top:38%;*/
     left:60px;
     position:absolute;
 }
@@ -20,11 +20,6 @@
 }
 
 
-
-.scentered.wrap-search .search-form form .col-3
-{
-    width:30%;
-}
 
 .scentered.wrap-search .search-form form button#search-start
 {
@@ -147,28 +142,13 @@ $(document).ready(function()
 });
 
 </script>
-    <?php if(config_item('property_slider_enabled')===TRUE&&!empty($item['property_details'])):?>
-        <div class="slider-info hello">
-            <div class='container'>
-                 <span class="title c-white text-uppercase strong-700 hide"><?php _che($item['property_details']['title']);?></span>
-                  <span class="title c-white text-uppercase"></span>
-                 <span class="subtitle-sm"><?php _che($item['property_details']['option_chlimit_8']);?></span>
-             </div>
-        </div> 
-        <?php elseif(!empty($item['title'])): ?>
-            <div class="slider-info hello">
-                <div class='container'>
-                   <span class="title c-white text-uppercase strong-700 hide" style="display:none;"><?php _che($item['property_details']['title']);?></span>
-                      <h1 class="title c-white text-uppercase">ENCUENTRA TU INMUEBLE CON HOUSE</h1>
-                    <span class="subtitle-sm"><?php _che($item['description']);?></span>
-                     <?php if(!empty($item['link'])):?>
-                  
-                    <?php endif; ?>
-                 </div>
-            </div>                     
-        <?php endif; ?>
-
-<div class="wrap-search scentered">
+            
+<div class="wrap-search scentered align-self-center">
+    <div class="slider-info hello">
+        <div class='container'>
+            <h1 class="title c-white text-uppercase">{lang_Maintitle}</h1>                    
+         </div>
+    </div>  
     <div class="center-search">
         <ul id="search_option_4" class="menu-onmap tabbed-selector fff">
             <li class="all-button" style="display:none;"><a href="#"><?php echo lang_check('All'); ?></a></li>

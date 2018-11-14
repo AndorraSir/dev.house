@@ -162,13 +162,13 @@ ul.menu-onmap li a:hover
 }
 
 .slider-info{
-    position: absolute;
     display: block;
-    top: 30%;
     width:100%;
     text-align: center;
 }
-
+.carousel-indicators{
+    bottom:20px !important;
+}
 
 
 .wrap-search{

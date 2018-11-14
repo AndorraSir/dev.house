@@ -507,13 +507,13 @@ class Property extends Frontend_Controller
             }
             
             // [START] custom price field
-//            $estate['custom_price'] = '';
-//            if(!empty($estate['option_36']))
-//                $estate['custom_price'].=$this->data['options_prefix_36'].$estate['option_36'].$this->data['options_suffix_36'];
-//            if(!empty($estate['option_37']))
-//                $estate['custom_price'].=$this->data['options_prefix_37'].$estate['option_37'].$this->data['options_suffix_37'];
-//            if(empty($estate['option_37']) && !empty($estate['option_56']))
-//                $estate['custom_price'].=$this->data['options_prefix_56'].$estate['option_56'].$this->data['options_suffix_56'];
+           $estate['custom_price'] = '';
+           if(!empty($estate['option_36']))
+               $estate['custom_price'].=$this->data['options_prefix_36'].$estate['option_36'].$this->data['options_suffix_36'];
+           if(!empty($estate['option_37']))
+               $estate['custom_price'].=$this->data['options_prefix_37'].$estate['option_37'].$this->data['options_suffix_37'];
+           if(empty($estate['option_37']) && !empty($estate['option_56']))
+               $estate['custom_price'].=$this->data['options_prefix_56'].$estate['option_56'].$this->data['options_suffix_56'];
             // [END] custom price field
             
             // Url to preview

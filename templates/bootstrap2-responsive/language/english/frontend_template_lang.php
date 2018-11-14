@@ -11,6 +11,7 @@ $lang[''] = "";
 
 $lang['FirstLast'] = "First and last name";
 $lang['Email'] = "Email";
+$lang['Maintitle'] = "Find your property with House.ad";
 $lang['Phone'] = "Phone";
 $lang['Message'] = "Message";
 $lang['Send'] = "Send";
@@ -23,6 +24,7 @@ $lang['Logo'] = "Logo";
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
+$lang['Contactdetails'] = "Contact details";
 
 $lang['Sale'] = "Sale";
 $lang['Rent'] = "Rent";

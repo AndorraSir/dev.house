@@ -361,12 +361,18 @@
         <div class="row mt-4">
           <div class="col-sm-8">
             <h2>{page_title}</h2>
+            
               <?php if(!empty($estate_data_address)): ?>
             <span class="address">{estate_data_address}</span>
             <?php endif; ?>
           </div>
             {has_page_images}
-            <div class="col-sm-4">          
+            <div class="col-sm-4">   
+            <?php if(!empty($estate_data_option_36)): ?>
+<div class="property-price text-right">
+  {options_prefix_36} <?php echo $estate_data_option_36; ?> {options_suffix_36}
+</div>
+<?php endif;?>       
               <div class="facebook_top_share mt-3">
                 {settings_facebook_top}
               </div>
@@ -972,6 +978,7 @@
       <?php if(!empty($estate_data_option_67)): ?>
       <div id="agent_shit" style="display: none">
         <h2><?php echo lang_check('Company details'); ?></h2>
+
         <div class="agent" style="display:none">
           <?php if($is_private_listing): ?>
           <div class="purchase_package">

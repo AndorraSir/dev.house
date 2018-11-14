@@ -84,6 +84,8 @@
 <?php endif; ?>
 
 <div class="wrap-search scentered">
+                    
+
     <div class="container center-search bg-light-grey">
 
         <ul id="search_option_4" class="menu-onmap tabbed-selector">
