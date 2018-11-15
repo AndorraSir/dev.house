@@ -97,51 +97,46 @@ ul.menu-onmap{
         input{
             color:#908E91;
         }
-        &:nth-child(3n+3){
+        &:nth-child(4n+4){
             display: none;
+        }
+    }
+    li{
+        float: left;
+        border-bottom: none;
+        margin-top: 5px;
+        margin-left: 3px;
+        background: #908E91;
+        a{
+            font-weight: bold;
+            color: white;
+            padding: 11px 30px 11px 30px;
+            display:inline-block;
+        }
+    }
+    li.active{
+        float:left;
+        margin-top:0px;
+        border:0px;
+        border-bottom: none;
+        margin-left: 3px;
+        background: #EFEFEF;
+        color: black;
+        opacity: 1;
+        a{
+            font-weight: bold;
+            color: black;
+            padding: 15px 30px;
+        }
+        a:hover{
+            color: black;
+            text-decoration: underline;
         }
     }
 }
 
-ul.menu-onmap li.active
-{
-    float:left;
-    margin-top:0px;
-    border:0px;
-    border-bottom: none;
-    margin-left: 3px;
-    background: #EFEFEF;
-    color: black;
-    opacity: 1;
-}
 
-ul.menu-onmap li.active a{
-    font-weight: bold;
-    color: black;
-    padding: 15px 30px;
-}
 
-ul.menu-onmap li.active a:hover{
-    color: black;
-    text-decoration: underline;
-}
-
-ul.menu-onmap li{
-    float: left;
-    border-bottom: none;
-    margin-top: 5px;
-    margin-left: 3px;
-    background: #908E91;
-
-}
-
-ul.menu-onmap li a
-{
-    font-weight: bold;
-    color: white;
-    padding: 11px 30px 11px 30px;
-    display:inline-block;
-}
 
 ul.menu-onmap li a:hover
 {
