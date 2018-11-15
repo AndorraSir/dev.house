@@ -647,7 +647,7 @@ class Frontend_Controller extends MY_Controller
                     $_property_details['option_8'] = '';
                     if(!empty($property['option8_'.$this->data['lang_id']]))
                     {
-                        $_property_details['option_chlimit_8'] = character_limiter(strip_tags($property['option8_'.$this->data['lang_id']]), 140);
+                        $_property_details['option_chlimit_8'] = character_limiter(strip_tags($property['option8_'.$this->data['lang_id']]), 100);
                         $_property_details['option_8'] = strip_tags($property['option8_'.$this->data['lang_id']]);
                     }
                     

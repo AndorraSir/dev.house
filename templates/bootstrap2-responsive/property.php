@@ -966,7 +966,7 @@
             </div>
         </div>
       </div>
-      <div class="map-container hide">
+      <div class="map-container">
         <div id="propertyLocation">
         </div>
       </div>

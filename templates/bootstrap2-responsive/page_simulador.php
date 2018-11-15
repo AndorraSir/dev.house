@@ -17,11 +17,11 @@
 
 <?php _widget('top_ads');?>
 <a id="content"></a>
-<div class="wrap-content pt-5">
+<div class="wrap-content pt-5 pb-5">
     <div class="container">
     
-        <h1>{page_title}</h1>
-        <div class="property_content">
+        <h1 class="mb-4">{page_title}</h1>
+        <div class="">
         <?php _widget('center_defaultcontent');?>
         <?php _widget('center_imagegallery');?>
         <div class="row">
@@ -42,7 +42,7 @@
             <span><input type="text" name="interes" class="form-control"  maxlength=9 value="<?php echo $_POST["interes"]?>"></span>
         </div>
         <div class="form-group">
-            <p><input type="submit" class="btn btn-info" value="Calcular"></p>
+            <p><input type="submit" class="btn btn-info float-right" value="Calcular"></p>
         </div>
     </form>
 <?php
@@ -70,7 +70,7 @@ if($_POST["importe"] && $_POST["anos"] && $_POST["interes"])
 
 </div>
 
- <div class="col-sm-6">
+ <div class="col-sm-6 pl-5">
 
 <?php
 if($_POST["importe"] && $_POST["anos"] && $_POST["interes"])
@@ -87,7 +87,7 @@ if($_POST["importe"] && $_POST["anos"] && $_POST["interes"])
  
 
 
-    <div class="table table-striped">
+    <div class="table table-striped table-scroll">
         <div class="row">
             <div class="col-sm-3">Mes</div>
             <div class="col-sm-3">Intereses</div>
