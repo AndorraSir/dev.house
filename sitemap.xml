@@ -253,26 +253,6 @@
     />
 </url>
 <url>
-	<loc>http://localhost:8888/dev.house/index.php/en/4/contact</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-    <xhtml:link
-        rel="alternate"
-        hreflang="es"
-        href="http://localhost:8888/dev.house/index.php/es/4/contact"
-    />
-    <xhtml:link
-        rel="alternate"
-        hreflang="fr"
-        href="http://localhost:8888/dev.house/index.php/fr/4/contact"
-    />
-    <xhtml:link
-        rel="alternate"
-        hreflang="cat"
-        href="http://localhost:8888/dev.house/index.php/cat/4/contact"
-    />
-</url>
-<url>
 	<loc>http://localhost:8888/dev.house/index.php/es/4/contactanos</loc>
 	<changefreq>monthly</changefreq>
 	<priority>0.5</priority>
@@ -290,6 +270,26 @@
         rel="alternate"
         hreflang="cat"
         href="http://localhost:8888/dev.house/index.php/cat/4/contactanos"
+    />
+</url>
+<url>
+	<loc>http://localhost:8888/dev.house/index.php/en/4/contact</loc>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="es"
+        href="http://localhost:8888/dev.house/index.php/es/4/contact"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/4/contact"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/4/contact"
     />
 </url>
 <url>
@@ -509,166 +509,6 @@
 <url>
 	<loc>http://localhost:8888/dev.house/index.php/property/8/cat/ozalj_apartment</loc>
 	<lastmod>2016-02-10T19:01:06+01:00</lastmod>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/38/es</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/38/en</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/38/fr</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/38/cat</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/37/es</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/37/en</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/37/fr</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/37/cat</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/36/es</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/36/en</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/36/fr</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/36/cat</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/35/es</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/35/en</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/35/fr</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/35/cat</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/34/es</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/34/en</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/34/fr</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/34/cat</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/33/es</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/33/en</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/33/fr</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/33/cat</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/32/es</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/32/en</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/32/fr</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/32/cat</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/31/es</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/31/en</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/31/fr</loc>
-	<changefreq>monthly</changefreq>
-	<priority>0.5</priority>
-</url>
-<url>
-	<loc>http://localhost:8888/dev.house/index.php/property/31/cat</loc>
 	<changefreq>monthly</changefreq>
 	<priority>0.5</priority>
 </url>
