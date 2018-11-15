@@ -1,37 +1,138 @@
-var gulp = require('gulp');
-var browserSync = require('browser-sync');
-var sass = require('gulp-sass');
-var uglify     = require('gulp-uglify');
-var connect = require('gulp-connect');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
+const cssmin = require('gulp-cssmin');
+const browserSync = require('browser-sync').create();
+const concat = require('gulp-concat');
+const minify = require('gulp-minify');
+const rename = require('gulp-rename');
+const imagemin = require('gulp-imagemin');
+const connect = require('gulp-connect-php');
+const fs = require('fs');
 
-// Html task
-gulp.task('html', function(){
-  gulp.src('application/views/**/*.php')
-  .pipe(reload({stream:true}))
-})
+const cssAddonsPath = './css/modules/';
 
-// Browser task
-gulp.task('browser-sync', function() {
-  browserSync.init({
-    proxy : 'http://192.168.1.111/',
-  });
-});
- 
-gulp.task('connect', function() {
-  connect.server();
-});
- 
+// CSS Tasks
+gulp.task('css-compile', function() {
+  gulp.src('scss/*.scss')
+    .pipe(sass({outputStyle: 'nested'}).on('error', sass.logError))
+    .pipe(autoprefixer({
+      browsers: ['last 10 versions'],
+      cascade: false
+    }))
+    .pipe(gulp.dest('./dist/css/'));
 
-gulp.task('styles', function(){
-  return gulp.src('admin-assets/style/sass/*.scss')
-    .pipe(sass())
-    .pipe(gulp.dest('admin-assets/style/css/'))
-    .pipe(gulp.dest('templates/bootstrap2-responsive/assets/style/'))
-});
- 
-// Watch task
-gulp.task('watch', function(){
-  gulp.watch('application/views/**/*.php', ['html'])
+    gulp.start('css-compile-modules');
 });
 
-gulp.task('default', ['watch', 'connect']);
+// CSS Tasks
+gulp.task('css-compile-modules', function() {
+  gulp.src('scss/**/modules/**/*.scss')
+    .pipe(sass({outputStyle: 'nested'}).on('error', sass.logError))
+    .pipe(autoprefixer({
+      browsers: ['last 10 versions'],
+      cascade: false
+    }))
+    .pipe(rename({ dirname: cssAddonsPath }))
+    .pipe(gulp.dest('./dist/'));
+});
+
+
+gulp.task('css-minify', function() {
+    gulp.src(['./dist/css/*.css', '!./dist/css/*.min.css', '!./dist/css/bootstrap.css'])
+      .pipe(cssmin())
+      .pipe(rename({suffix: '.min'}))
+      .pipe(gulp.dest('./dist/css/style.css'));
+
+    gulp.start('css-minify-modules');
+});
+
+gulp.task('css-minify-modules', function() {
+  gulp.src(['./dist/css/modules/*.css', '!./dist/css/modules/*.min.css'])
+    .pipe(cssmin())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest('./dist/css/modules'));
+});
+
+// JavaScript Tasks
+gulp.task('js-build', function() {
+
+  const plugins = getJSModules();
+
+  return gulp.src(plugins.modules)
+    .pipe(concat('mdb.js'))
+    .pipe(gulp.dest('./dist/js/'));
+
+    gulp.start('js-lite-build');
+    gulp.start('js-minify');
+
+});
+
+gulp.task('js-minify', function() {
+  gulp.src(['./dist/js/mdb.js'])
+    .pipe(minify({
+      ext:{
+        // src:'.js',
+        min:'.min.js'
+      },
+      noSource: true,
+    }))
+    .pipe(gulp.dest('./dist/js'));
+});
+
+// Image Compression
+gulp.task('img-compression', function() {
+  gulp.src('./img/*')
+    .pipe(imagemin([
+      imagemin.gifsicle({interlaced: true}),
+      imagemin.jpegtran({progressive: true}),
+      imagemin.optipng({optimizationLevel: 5}),
+      imagemin.svgo({
+        plugins: [
+          {removeViewBox: true},
+          {cleanupIDs: false}
+        ]
+      })
+    ]))
+    .pipe(gulp.dest('./dist/img'));
+});
+
+// Live Server
+// gulp.task('live-server', function() {
+//   browserSync.init({
+//     server: {
+//       baseDir: ".",
+//       directory: true
+//     },
+//     notify: false
+//   });
+//       gulp.watch('*.php').on('change', function () {cwd: './dist/'}, browserSync.reload);
+// });
+
+gulp.task('connect-sync', function() {
+  connect.server({}, function (){
+   browserSync.init({
+     proxy: '192.168.1.114:8889'
+       });
+    });
+
+      gulp.watch('*.php').on('change', function () {cwd: './dist/'}, browserSync.reload);
+    
+});
+
+  
+
+// Watch on everything
+gulp.task('mdb-go', function() {
+  gulp.start('connect-sync');
+  gulp.watch("scss/**/*.scss", ['css-compile']);
+  gulp.watch(["dist/css/*.css", "!dist/css/*.min.css"], ['css-minify']);
+  gulp.watch("js/**/*.js", ['js-build']);
+  gulp.watch(["dist/js/*.js", "!dist/js/*.min.js"], ['js-minify']);
+  gulp.watch("**/*", {cwd: './img/'}, ['img-compression']);
+});
+
+function getJSModules() {
+  delete require.cache[require.resolve('./js/modules.js')];
+  return require('./js/modules');
+}

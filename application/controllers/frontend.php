@@ -381,11 +381,11 @@ class Frontend extends Frontend_Controller
                     
                     $active = '';
                     if($this->_get_purpose() == strtolower($val))$active = 'active';
-                    $options_li.= '<li class="'.$active.' cat_'.$key2.'"><a class="page-link" href="#">'.$val.'</a></li>';
+                    $options_li.= '<li class="'.$active.' cat_'.$key2.'"><a href="#">'.$val.'</a></li>';
                     
                     $checked = '';
                     if($this->_get_purpose() == strtolower($val))$checked = 'checked';
-                    $radio_li.='<label class="checkbox option1">
+                    $radio_li.='<label class="checkbox">
                                 <input type="radio" rel="'.$val.'" name="search_option_'.$row->option_id.'" value="'.$key2.'" '.$checked.'> '.$val.'
                                 </label>';
                 }
@@ -4167,7 +4167,7 @@ class Frontend extends Frontend_Controller
                     if($this->_get_purpose() == strtolower($val))$checked = 'checked';
                     if($o_selected == 'selected="selected"')$checked = 'checked';
                     
-                    $radio_li.='<label class="checkbox option2">
+                    $radio_li.='<label class="checkbox">
                                 <input type="radio" rel="'.$val.'" name="search_option_'.$row->option_id.'" value="'.$key2.'" '.$checked.'> '.$val.'
                                 </label>';
                 }
@@ -4246,16 +4246,13 @@ class Frontend extends Frontend_Controller
         /* [/Define order] */
         
         /* Pagination configuration */ 
-        $config['full_tag_open'] = '<nav aria-label="Page navigation example">
-<ul class="pagination pg-blue pagination-lg justify-content-center">';
-        $config['full_tag_close'] = '</ul></nav>';
-        $config['num_tag_open'] = '<li class="page-item">';
-        $config['num_tag_close'] = '</li>';
+        $config['full_tag_open'] = '<ul class="pagination">';
+        $config['full_tag_close'] = '</ul>';
         $config['base_url'] = $this->data['ajax_load_url'];
         $config['total_rows'] = 200;
         $config['per_page'] = config_item('per_page');
         $config['uri_segment'] = 5;
-        $config['cur_tag_open'] = '<li class="page-item active"><span>';
+        $config['cur_tag_open'] = '<li class="active"><span>';
         $config['cur_tag_close'] = '</span></li>';
         /* End Pagination */
 
@@ -4439,15 +4436,15 @@ class Frontend extends Frontend_Controller
         $config_2['total_rows'] = count($this->data['all_agents']);
         $config_2['per_page'] = $agent_per_page;
         $config_2['uri_segment'] = 4;
-    	$config_2['num_tag_open'] = '<li class="page-item">';
+    	$config_2['num_tag_open'] = '<li>';
     	$config_2['num_tag_close'] = '</li>';
         $config_2['full_tag_open'] = '<ul class="pagination">';
         $config_2['full_tag_close'] = '</ul>';
-        $config_2['cur_tag_open'] = '<li class="page-item active"><span>';
+        $config_2['cur_tag_open'] = '<li class="active"><span>';
         $config_2['cur_tag_close'] = '</span></li>';
-    	$config_2['next_tag_open'] = '<li class="page-item">';
+    	$config_2['next_tag_open'] = '<li>';
     	$config_2['next_tag_close'] = '</li>';
-    	$config_2['prev_tag_open'] = '<li class="page-item">';
+    	$config_2['prev_tag_open'] = '<li>';
     	$config_2['prev_tag_close'] = '</li>';
         /* End Pagination */
 
