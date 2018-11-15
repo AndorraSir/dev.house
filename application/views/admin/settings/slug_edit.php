@@ -36,9 +36,6 @@
         <?php if(config_db_item('slug_enabled') === TRUE): ?>
         <li class="active"><a href="<?php echo site_url('admin/settings/slug')?>"><?php echo lang_check('SEO slugs')?></a></li>
         <?php endif; ?>
-        <?php if(config_db_item('currency_conversions_enabled') === TRUE): ?>
-        <li><a href="<?php echo site_url('admin/settings/currency_conversions')?>"><?php echo lang_check('Currency Conversions')?></a></li>
-        <?php endif; ?>
       </ul>
     </div>
     
