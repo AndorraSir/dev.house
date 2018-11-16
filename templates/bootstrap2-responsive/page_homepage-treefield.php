@@ -92,7 +92,7 @@ foreach ($_treefields as $val) {
         <?php _subtemplate('headers', _ch($subtemplate_header, 'map_and_search')); ?>
 
         <?php _widget('top_ads'); ?>
-        <a name="content" id="content"></a>
+        <a id="content"></a>
         <div class="wrap-content">
             <div class="container">
                 <div class="row-fluid">
@@ -112,13 +112,13 @@ foreach ($_treefields as $val) {
                                                 <div class="tf-title"><a href="<?php _che($item['url']);?>"><?php _che($item['title_chlimit']); ?></a></div>
                                                 <div class="tf-image">
                                                     <a href="<?php _che($item['url']);?>">
-                                                        <img src="<?php echo _simg($item['thumbnail_url'], '275x150'); ?>">
+                                                        <img src="<?php echo _simg($item['thumbnail_url'], '275x150'); ?>" alt=""/>
                                                     </a>
                                                 </div>
                                                 <?php else: ?> 
                                                 <div class="tf-title"><?php _che($item['title_chlimit']); ?></div>
                                                 <div class="tf-image">
-                                                    <img src="<?php echo _simg($item['thumbnail_url'], '275x150'); ?>">
+                                                    <img src="<?php echo _simg($item['thumbnail_url'], '275x150'); ?>" alt=""/>
                                                 </div>
                                                 <?php endif;?>
                                             <div class="tf-description"><?php _che($item['description_chlimit']); ?></div>
@@ -178,7 +178,7 @@ foreach ($_treefields as $val) {
                             </div>
                         </div>
                     </div>
-                    <div class='col-3'>
+                    <div class='span3'>
                         <?php _widget('right_featuredproperties');?>
                     </div>
                 </div>

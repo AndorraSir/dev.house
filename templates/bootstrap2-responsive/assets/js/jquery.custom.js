@@ -31,7 +31,7 @@ $(document).ready(function(){
     });
     
     $('.selectpicker-small').selectpicker({
-        style: 'btn-defaultrrrr'
+        style: 'btn-default'
     });
     
     $("a.developed_by").hover(

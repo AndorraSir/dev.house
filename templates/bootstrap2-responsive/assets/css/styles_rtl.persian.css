@@ -37,13 +37,13 @@ input, button, select, textarea
     margin: 0 0 0 10px;
 }
 
-input.col-3.xPrice 
+input.span3.xPrice 
 {
     margin-right: 0;
 }
 
 
-input.col-3.Bathrooms 
+input.span3.Bathrooms 
 {
     margin-left: 6px;
 }
@@ -218,7 +218,7 @@ a.developed_by
 	float:left;
 }
 
-.container-property .row-fluid .col-3
+.container-property .row-fluid .span3
 {
     margin:0 5px 0 0;
 }

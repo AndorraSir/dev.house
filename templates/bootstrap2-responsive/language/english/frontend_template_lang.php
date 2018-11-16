@@ -11,7 +11,6 @@ $lang[''] = "";
 
 $lang['FirstLast'] = "First and last name";
 $lang['Email'] = "Email";
-$lang['Maintitle'] = "Find your property with House.ad";
 $lang['Phone'] = "Phone";
 $lang['Message'] = "Message";
 $lang['Send'] = "Send";
@@ -24,7 +23,6 @@ $lang['Logo'] = "Logo";
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
-$lang['Contactdetails'] = "Contact details";
 
 $lang['Sale'] = "Sale";
 $lang['Rent'] = "Rent";
@@ -36,7 +34,6 @@ $lang['Sort'] = "Sortiranje";
 $lang['Details'] = "Details";
 $lang['Realestates'] = "Real estates";
 $lang['Results'] = "Results";
-$lang['SearchResults'] = "Search Results";
 $lang['Locationonmap'] = "Location on map";
 $lang['Noestates'] = "No estates found";
 $lang[''] = "";

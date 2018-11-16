@@ -29,25 +29,13 @@
     <link href="assets/css/disable-responsive.css" rel="stylesheet">
 
     
-    <?php 
-    $config_base_url = config_item('base_url');
-    $url_protocol='http://';
-    if(!empty($config_base_url)&& strpos( $config_base_url,'https')!== false){
-        $url_protocol='https://';
-    }
+    <?php load_map_api(config_db_item('map_version'));?>
     
-    $maps_api_key = config_db_item('maps_api_key');
-    $maps_api_key_prepare='';
-    if(!empty($maps_api_key)){
-        $maps_api_key_prepare='&amp;key='.$maps_api_key;
-    }
-    
-    ?>
-    <script type="text/javascript" src="<?php echo $url_protocol;?>maps.google.com/maps/api/js?libraries=places,geometry<?php echo $maps_api_key_prepare; ?>&amp;language={lang_code}"></script>
-    
-    <script src="assets/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="assets/js/jquery-1.8.3.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+    <?php if(config_db_item('map_version') !=='open_street'):?>
     <script src="assets/js/gmap3.js"></script>
+     <?php endif;?>
     <script src="assets/js/bootstrap-select.js"></script>
     <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
     <script src="assets/js/blueimp-gallery.min.js"></script>
@@ -76,7 +64,7 @@
     
     <?php if(config_item('ad_gallery_enabled') === TRUE): ?>
         <link rel="stylesheet" type="text/css" href="assets/js/adgallery/jquery.ad-gallery.css">
-        <script type="text/javascript" src="assets/js/adgallery/jquery.ad-gallery.js"></script>
+        <script src="assets/js/adgallery/jquery.ad-gallery.js"></script>
     <?php endif; ?>
     
     <script src="assets/js/jquery.custom.js"></script>
@@ -96,7 +84,7 @@
   }
 </style>
     
-    <script language="javascript">
+    <script>
     
         var timerMap;
         var ad_galleries;
@@ -110,9 +98,19 @@
         var mapStyle = null;
         var myLocationEnabled = true;
         var c_mapTypeId = "style1"; // google.maps.MapTypeId.ROADMAP;
+        
+        <?php if(config_db_item('map_version') !='open_street'):?>
         var c_mapTypeIds = ["style1",
                             google.maps.MapTypeId.ROADMAP,
-                            google.maps.MapTypeId.HYBRID];          
+                            google.maps.MapTypeId.HYBRID];    
+        <?php endif;?>   
+        var markers = [];
+        var map = '';
+        <?php if(config_db_item('map_version') =='open_street'):?>
+        var clusters ='';
+        clusters = L.markerClusterGroup({spiderfyOnMaxZoom: true, showCoverageOnHover: false, zoomToBoundsOnClick: true});
+        <?php endif;?>
+                        
         //google.maps.MapTypeId.ROADMAP
         //google.maps.MapTypeId.SATELLITE
         //google.maps.MapTypeId.HYBRID
@@ -418,7 +416,7 @@
             /* Date picker end */
             
             /* Edit property */
-            
+            <?php if(config_db_item('map_version') !='open_street'):?>
             // If alredy selected
             if($('#inputGps').length && $('#inputGps').val() != '')
             {
@@ -509,6 +507,8 @@
                 }, 2000);
                 
             });
+            <?php endif;?>
+            
             
             //Typeahead
             
@@ -664,6 +664,7 @@
             $.post("{ajax_load_url}/"+v_pagenum, data,
             function(data){
                 
+                <?php if(config_db_item('map_version') !='open_street'):?>
                 if(mapRefresh)
                 {
                     //Remove all markers
@@ -729,7 +730,7 @@
                         }
                     }
                 }
-
+                <?php endif;?>
                 $(selectorResults).html(data.print);
                     reloadElements();
                 
@@ -1045,9 +1046,36 @@
     </script>
     
     
-    <script language="javascript">
+    <script>
     $(document).ready(function(){
+ <?php if(config_db_item('map_version') =='open_street'):?>
+        var property_map;
+        if($('#propertyLocation').length){
+            property_map = L.map('propertyLocation', {
+                center: [{estate_data_gps}],
+                zoom: {settings_zoom}+6,
+                scrollWheelZoom: false,
+            });     
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(property_map);
+            var positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png').addTo(property_map);
+            var property_marker = L.marker(
+                [{estate_data_gps}],
+                {icon: L.divIcon({
+                        html: '<img src="{estate_data_icon}">',
+                        className: 'open_steet_map_marker',
+                        iconSize: [31, 46],
+                        popupAnchor: [1, -45],
+                        iconAnchor: [15, 45],
+                    })
+                }
+            ).addTo(property_map);
+        
+            property_marker.bindPopup("{estate_data_address}<br />{lang_GPS}: {estate_data_gps}");
+        }
 
+   <?php else:?>
         $('#propertyLocation').gmap3({
          map:{
             options:{
@@ -1078,7 +1106,7 @@
           }
         }
          }});
-
+        <?php endif;?>
     });    
     </script>
     {settings_tracking}
@@ -1092,7 +1120,7 @@
             <div class="span9">
             <h2>{page_title}</h2>
             <?php if(isset($slideshow_property_images[0])): ?>
-            <img src="<?php echo $slideshow_property_images[0]['url']; ?>" />
+            <img src="<?php echo $slideshow_property_images[0]['url']; ?>" alt="" />
             <?php endif; ?>
               <div class="property_content property_content_print">
                 <h2>{lang_Description}</h2>
@@ -1103,7 +1131,7 @@
                 {category_options_21}
                 {is_checkbox}
                 <li>
-                <img src="assets/img/checkbox_{option_value}.png" alt="{option_value}" class="check" />&nbsp;&nbsp;{option_name}&nbsp;&nbsp;{icon}
+                <img src="assets/img/checkbox_{option_value}.png" alt="{option_value}" class="check" alt="" />&nbsp;&nbsp;{option_name}&nbsp;&nbsp;{icon}
                 </li>
                 {/is_checkbox}
                 {/category_options_21}
@@ -1117,7 +1145,7 @@
                 {category_options_52}
                 {is_checkbox}
                 <li>
-                <img src="assets/img/checkbox_{option_value}.png" alt="{option_value}" class="check" />&nbsp;&nbsp;{option_name}&nbsp;&nbsp;{icon}
+                <img src="assets/img/checkbox_{option_value}.png" alt="{option_value}" class="check" alt="" />&nbsp;&nbsp;{option_name}&nbsp;&nbsp;{icon}
                 </li>
                 {/is_checkbox}
                 {/category_options_52}
@@ -1197,7 +1225,7 @@
 
               </div>
             </div>
-            <div class="col-3">
+            <div class="span3">
                   <h2>{lang_Overview}</h2>
                   <div class="property_options">
                     <?php if(!empty($estate_data_address)): ?>
@@ -1243,7 +1271,7 @@
 <div class="wrap-bottom-print">
     <div class="container">
       <div class="row-fluid">
-        <div class="col-3">
+        <div class="span3">
             <table>
                 <tr>
                     <td><i class="icon-map-marker"></i></td>
@@ -1253,7 +1281,7 @@
                 </tr>
             </table>
         </div>
-        <div class="col-3">
+        <div class="span3">
             <table>
                 <tr>
                     <td><i class="icon-phone"></i></td>

@@ -2,7 +2,7 @@
 <html lang="{lang_code}">
   <head>
     <?php _widget('head');?>
-    <script language="javascript">
+    <script>
     $(document).ready(function(){
 
     });    
@@ -15,7 +15,7 @@
 
 <?php _subtemplate('headers', _ch($subtemplate_header, 'empty')); ?>
 
-<a name="content" id="content"></a>
+<a id="content"></a>
 <div class="wrap-content">
     <div class="container">
     
@@ -71,7 +71,7 @@
         </div>
         </div>
         </div>
-        <div class="col-3">
+        <div class="span3">
             <ul class="nav nav-tabs nav-stacked">
             <?php foreach($categories as $id=>$category_name):?>
             <?php if($id != 0): ?>

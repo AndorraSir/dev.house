@@ -2,19 +2,31 @@
 <html lang="{lang_code}">
 <head>
     <?php _widget('head');?>
-    <script language="javascript">
+    <script>
     $(document).ready(function(){
 
 
     });
     </script>
+    
 </head>
 <body>
-<a name="top-page"></a>
     <div class="always-top">
+    <?php $c_code = config_item('codecanyon_code'); if(empty($c_code)): ?>
+    <div class="top-wrapper">
+          <div class="container">
+                Please insert:
+                <pre>$config['codecanyon_username'] = 'your_codecanyon_username';<br />$config['codecanyon_code'] = 'your_purchase_code';</pre>
+                Into your application/config/cms_config.php to remove this message.<br />
+                <a target="_blank" href="https://help.market.envato.com/hc/en-us/articles/202822600-Where-can-I-find-my-Purchase-Code-"><em>Where to find purchase code?</em></a>
+                <br /><br />
+          </div> <!-- /.container -->
+    </div>
+    <?php endif; ?>
+
     <?php if(config_item('cookie_warning_enabled') === TRUE): ?>
 
-    <script type="text/javascript">
+    <script>
 
     function displayNotification(c_action) {
 
@@ -42,7 +54,7 @@
 
     <div class="top-wrapper">
           <div class="container">
-                <script src="assets/js/cookiewarning4.js" language="JavaScript" type="text/javascript"></script>
+                <script src="assets/js/cookiewarning4.js"></script>
           </div> <!-- /.container -->
     </div>
     <?php endif; ?>
@@ -74,7 +86,7 @@
             }
         } 
     ?>
-    <a name="content" id="content"></a>
+    <a id="content"></a>
     <div class="wrap-content">
     <div class="container">
         <div class="row-fluid">
@@ -85,7 +97,7 @@
                     } 
                 ?>
             </div>
-            <div class="col-3">
+            <div class="span3">
                 <?php 
                  foreach($widgets_order->right as $widget_filename){
                      _widget($widget_filename);
@@ -157,7 +169,7 @@
                     <input name="allow_contact" value="1" type="checkbox"> <?php echo lang_check('I allow agent and affilities to contact me'); ?>
                 </label>
                 <button id="unhide-agent-mask" type="button" class="btn"><?php echo lang_check('Submit'); ?></button>
-                <img id="ajax-indicator-masking" src="assets/img/ajax-loader.gif" style="display: none;" />
+                <img id="ajax-indicator-masking" src="assets/img/ajax-loader.gif" style="display: none;" alt="" />
             </div>
         </div>
     </form>
@@ -166,30 +178,6 @@
     <?php if(file_exists(FCPATH.'templates/'.$settings_template.'/assets/js/jquery-contact-tabs/js/jquery.contact.tabs.1.0.js')): ?>
     <div id="contact-tabs"></div>
     <?php endif; ?>
-
-    <?php
-    /* [START] Search background settings */
-    $this->data['search_background'] = 'assets/img/texture.jpg';
-    if(isset($this->data['settings']['search_background']))
-    {
-        if(is_numeric($this->data['settings']['search_background']))
-        {
-            $files_search_background = $this->file_m->get_by(array('repository_id' => $this->data['settings']['search_background']), TRUE);
-            if( is_object($files_search_background) && file_exists(FCPATH.'files/thumbnail/'.$files_search_background->filename))
-            {
-                $this->data['search_background'] = base_url('files/'.$files_search_background->filename);
-            }
-        }
-    }
-    ?>
-    <style>
-    .wrap-search {
-        background-image: url('<?php echo $this->data['search_background']; ?>');   
-    }
-    </style>
-    <?php
-    /* [END] Search background settings */
-    ?>
 
     <?php _widget('custom_javascript');?> 
 </body>

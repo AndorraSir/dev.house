@@ -26,4 +26,4 @@
     
 ?>
 
-<input id="search_option_<?php echo $f_id.$direction; ?>" type="text" class="col-3 field_datepicker <?php echo $class_add; ?>"  style="<?php _che($field->style); ?>" placeholder="<?php echo $placeholder ?><?php echo $suf_pre; ?>"  value="<?php echo search_value($f_id); ?>" />
+<input id="search_option_<?php echo $f_id.$direction; ?>" type="text" class="span3 field_datepicker <?php echo $class_add; ?>"  style="<?php _che($field->style); ?>" placeholder="<?php echo $placeholder ?><?php echo $suf_pre; ?>"  value="<?php echo search_value($f_id); ?>" />

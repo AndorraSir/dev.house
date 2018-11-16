@@ -2,7 +2,7 @@
 <html lang="{lang_code}">
   <head>
     <?php _widget('head');?>
-    <script language="javascript">
+    <script>
     $(document).ready(function(){
         
         $("#search_expert").keyup( function() {
@@ -27,7 +27,7 @@
 
 <?php _subtemplate('headers', _ch($subtemplate_header, 'empty')); ?>
 
-<a name="content" id="content"></a>
+<a id="content"></a>
 <div class="wrap-content">
     <div class="container">
     
@@ -66,7 +66,7 @@
                     <p class="prop-description">
                         <?php if(!empty($row->answer_user_id) && isset($all_experts[$row->answer_user_id])): ?>
                         <a class="image_expert" href="<?php echo site_url('expert/'.$row->answer_user_id.'/'.$lang_code); ?>#content-position">
-                            <img src="<?php echo $all_experts[$row->answer_user_id]['image_url']?>" />
+                            <img src="<?php echo $all_experts[$row->answer_user_id]['image_url']?>"  alt=""/>
                         </a>
                         <?php else:?>
                         <span class="image_expert"> </span>
@@ -84,7 +84,7 @@
         </div>
         </div>
         </div>
-        <div class="col-3">
+        <div class="span3">
         
             <input type="text" placeholder="{lang_Search}" id="search_expert" autocomplete="off"/>
         
@@ -126,7 +126,45 @@
                    </div>
                 </div>
                <?php endif; ?>
+                <?php if(config_db_item('terms_link') !== FALSE): ?>
+                <?php
+                    $site_url = site_url();
+                    $urlparts = parse_url($site_url);
+                    $basic_domain = $urlparts['host'];
+                    $terms_url = config_db_item('terms_link');
+                    $urlparts = parse_url($terms_url);
+                    $terms_domain ='';
+                    if(isset($urlparts['host']))
+                        $terms_domain = $urlparts['host'];
 
+                    if($terms_domain == $basic_domain) {
+                        $terms_url = str_replace('en', $lang_code, $terms_url);
+                    }
+                ?>
+                <div class="" style="width: 160px;padding-top: 10px;">
+                    <input type="checkbox" value="1" name="terms_user" class="terms_user" required="required" style="margin: 0;display: inline-block;width: 20px;"> <a target="_blank" href="<?php echo $terms_url; ?>"><?php echo lang_check('I accept the Terms and Conditions'); ?></a>
+                </div>
+                <?php endif;?>
+                <?php if(config_db_item('privacy_link') !== FALSE  && count($not_logged)>0): ?>
+                    <?php
+
+                        $site_url = site_url();
+                        $urlparts = parse_url($site_url);
+                        $basic_domain = $urlparts['host'];
+                        $privacy_url = config_db_item('privacy_link');
+                        $urlparts = parse_url($privacy_url);
+                        $privacy_domain ='';
+                        if(isset($urlparts['host']))
+                            $privacy_domain = $urlparts['host'];
+
+                        if($privacy_domain == $basic_domain) {
+                            $privacy_url = str_replace('en', $lang_code, $privacy_url);
+                        }
+                    ?>
+                <div class="" style="width: 160px;padding-top: 10px;">
+                    <input type="checkbox" value="1" name="privacy_user" class="privacy_user" required="required" style="margin: 0;display: inline-block;width: 20px;"> <a target="_blank" href="<?php echo $privacy_url; ?>"><?php echo lang_check('I accept the Privacy'); ?></a>
+                </div>
+                <?php endif;?>
                 <br style="clear: both;" />
                 <p style="text-align:right;">
                 <button type="submit" class="btn btn-info">{lang_Send}</button>

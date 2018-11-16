@@ -1,4 +1,4 @@
- <script language="javascript">
+ <script>
     $(document).ready(function(){
         
         $('.menu-onmap li a').click(function () {
@@ -27,67 +27,107 @@
             manualSearch(0);
         });
         
-        $("#wrap-map").gmap3({
-         map:{
-            options:{
-             <?php if(config_item('custom_map_center') === FALSE): ?>
-             center: [{all_estates_center}],
-             <?php else: ?>
-             center: [<?php echo config_item('custom_map_center'); ?>],
-             <?php endif; ?>
-             zoom: {settings_zoom},
-             scrollwheel: scrollWheelEnabled,
-             mapTypeId: c_mapTypeId,
-             mapTypeControlOptions: {
-               mapTypeIds: c_mapTypeIds
-             }
-            }
-         },
-        styledmaptype:{
-          id: "style1",
-          options:{
-            name: "<?php echo lang_check('CustomMap'); ?>"
-          },
-          styles: mapStyle
-        },
-         marker:{
-            values:[
-            {all_estates}
-                {latLng:[{gps}], adr:"{address}", options:{icon: "{icon}"}, data:"<img style=\"width: 150px; height: 100px;\" src=\"{thumbnail_url}\" /><br />{address}<br />{option_2}<br /><span class=\"label label-info\">&nbsp;&nbsp;{option_4}&nbsp;&nbsp;</span><br /><a href=\"{url}\">{lang_Details}</a>"},
-            {/all_estates}
-            ],
-            cluster: clusterConfig,
-        options:{
-          draggable: false
-        },
-        events:{
-          <?php echo map_event(); ?>: function(marker, event, context){
-            var map = $(this).gmap3("get"),
-              infowindow = $(this).gmap3({get:{name:"infowindow"}});
-            if (infowindow){
-              infowindow.open(map, marker);
-              infowindow.setContent('<div style="width:400px;display:inline;">'+context.data+'</div>');
-            } else {
-              $(this).gmap3({
-                infowindow:{
-                  anchor:marker,
-                  options:{disableAutoPan: true, content: '<div style="width:400px;display:inline;">'+context.data+'</div>'}
+        <?php if(config_db_item('map_version') =='open_street'):?>
+        map = L.map('wrap-map', {
+            <?php if(config_item('custom_map_center') === FALSE): ?>
+            center: [{all_estates_center}],
+            <?php else: ?>
+            center: [<?php echo config_item('custom_map_center'); ?>],
+            <?php endif; ?>
+            zoom: {settings_zoom}+1,
+            scrollWheelZoom: scrollWheelEnabled,
+            dragging: !L.Browser.mobile,
+            tap: !L.Browser.mobile
+        });     
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        var positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png').addTo(map);
+        <?php foreach($all_estates as $item): ?>
+            <?php
+                if(!isset($item['gps']))break;
+                if(empty($item['gps']))continue;
+            ?>
+            var marker = L.marker(
+                [<?php _che($item['gps']); ?>],
+                {icon: L.divIcon({
+                        html: '<img src="<?php _che($item['icon'])?>">',
+                        className: 'open_steet_map_marker',
+                        iconSize: [31, 46],
+                        popupAnchor: [1, -35],
+                        iconAnchor: [15, 45],
+                    })
                 }
-              });
-            }
-          },
-          mouseout: function(){
-            //var infowindow = $(this).gmap3({get:{name:"infowindow"}});
-            //if (infowindow){
-            //  infowindow.close();
-            //}
-          }
-        }}});
-        init_gmap_searchbox();
+            )/*.addTo(map)*/;
+            marker.bindPopup("<?php echo _generate_popup($item, true); ?>");
+            clusters.addLayer(marker);
+            markers.push(marker);
+        <?php endforeach; ?>
+            map.addLayer(clusters);
+        <?php else:?>
+        $("#wrap-map").gmap3({
+            map:{
+               options:{
+                <?php if(config_item('custom_map_center') === FALSE): ?>
+                center: [{all_estates_center}],
+                <?php else: ?>
+                center: [<?php echo config_item('custom_map_center'); ?>],
+                <?php endif; ?>
+                zoom: {settings_zoom},
+                scrollwheel: scrollWheelEnabled,
+                mapTypeId: c_mapTypeId,
+                mapTypeControlOptions: {
+                    mapTypeIds: c_mapTypeIds,
+                    position: google.maps.ControlPosition.TOP_RIGHT
+                  }
+               }
+            },
+           styledmaptype:{
+             id: "style1",
+             options:{
+               name: "<?php echo lang_check('CustomMap'); ?>"
+             },
+             styles: mapStyle
+           },
+            marker:{
+               values:[
+               {all_estates}
+                   {latLng:[{gps}], adr:"{address}", options:{icon: "{icon}"}, data:"<img style=\"width: 150px; height: 100px;\" src=\"{thumbnail_url}\" alt=\"\" /><br />{address}<br />{option_2}<br /><span class=\"label label-info\">&nbsp;&nbsp;{option_4}&nbsp;&nbsp;</span><br /><a href=\"{url}\">{lang_Details}</a>"},
+               {/all_estates}
+               ],
+               cluster: clusterConfig,
+               options: markerOptions,
+           events:{
+            <?php echo map_event(); ?>: function(marker, event, context){
+            var map = $(this).gmap3("get"),
+            infowindow = $(this).gmap3({get:{name:"infowindow"}});
+                if (infowindow){
+                  infowindow.open(map, marker);
+                  infowindow.setContent('<div style="width:400px;display:inline;">'+context.data+'</div>');
+                } else {
+                  $(this).gmap3({
+                    infowindow:{
+                      anchor:marker,
+                      options:{disableAutoPan: mapDisableAutoPan, content: '<div style="width:400px;display:inline;">'+context.data+'</div>'}
+                    }
+                  });
+                }
+              },
+              mouseout: function(){
+                //var infowindow = $(this).gmap3({get:{name:"infowindow"}});
+                //if (infowindow){
+                //  infowindow.close();
+                //}
+              }
+            }}
+            });
+            init_gmap_searchbox();
+        <?php endif;?>
     });    
     </script>
-    
+<?php if(config_db_item('map_version') !='open_street'):?>
 <input id="pac-input" class="controls" type="text" placeholder="{lang_Search}" />
+<?php endif;?>
 <div class="wrap-map" id="wrap-map">
 </div>
 <div class="wrap-search">
@@ -104,19 +144,19 @@
         </ul>
         <div class="search-form">
             <form class="form-inline">
-                <input id="search_option_smart" type="text" class="span6" placeholder="{lang_CityorCounty}" />
-                <select id="search_option_2" class="col-3 selectpicker" placeholder="{options_name_2}">
+                <input id="search_option_smart"  value="{search_query}" type="text" class="span6" placeholder="{lang_CityorCounty}" />
+                <select id="search_option_2" class="span3 selectpicker">
                     {options_values_2}
                 </select>
                 
-                <select id="search_option_3" class="col-3 selectpicker nomargin" placeholder="{options_name_3}">
+                <select id="search_option_3" class="span3 selectpicker nomargin">
                     {options_values_3}
                 </select>
                 <div class="form-row-space"></div>
-                <input id="search_option_36_from" type="text" class="col-3 mPrice" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" />
-                <input id="search_option_36_to" type="text" class="col-3 xPrice" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" />
-                <input id="search_option_19" type="text" class="col-3 Bathrooms" placeholder="{options_name_19}" />
-                <input id="search_option_20" type="text" class="col-3" placeholder="{options_name_20}" />
+                <input id="search_option_36_from" type="text" class="span3 mPrice" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" />
+                <input id="search_option_36_to" type="text" class="span3 xPrice" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" />
+                <input id="search_option_19" type="text" class="span3 Bathrooms" placeholder="{options_name_19}" />
+                <input id="search_option_20" type="text" class="span3" placeholder="{options_name_20}" />
                 <div class="form-row-space"></div>
                 
                 <select id="search_category_21" class="span7 selectpicker" title="{options_name_21}" multiple>

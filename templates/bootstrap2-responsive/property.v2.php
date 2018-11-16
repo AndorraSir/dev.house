@@ -363,7 +363,7 @@ if(!empty($estate_data_option_59) && !is_numeric($estate_data_option_59))
   
 {template_header}
 
-<?php if(config_item('map_on_property_enabled') === TRUE): ?>
+<?php if(config_db_item('map_on_property_enabled') === TRUE): ?>
 <?php _widget('top_mapsearch');?>
 
 
@@ -405,7 +405,7 @@ if(!empty($estate_data_option_59) && !is_numeric($estate_data_option_59))
             
               <div class="property_content">
               <div>
-                              <?php if(config_item('ad_gallery_enabled') == TRUE): ?>
+                              <?php if(config_db_item('ad_gallery_enabled') == TRUE): ?>
                               
                 {has_page_images}
                 <div class="ad-gallery" id="gallery">
@@ -745,7 +745,7 @@ if(!empty($estate_data_option_59) && !is_numeric($estate_data_option_59))
 
               </div>
             </div>
-            <div class="col-3">
+            <div class="span3">
                   <h2>{lang_Overview}</h2>
                   <div class="property_options">
                     <p class="bottom-border"><strong>
@@ -913,7 +913,7 @@ if(!empty($estate_data_option_59) && !is_numeric($estate_data_option_59))
                   </div>
                   {/has_agent}
                   
-                  <?php if(file_exists(APPPATH.'controllers/admin/booking.php') && count($is_purpose_rent) && $this->session->userdata('type')=='USER' && config_item('reservations_disabled') === FALSE):?>
+                  <?php if(file_exists(APPPATH.'controllers/admin/booking.php') && count($is_purpose_rent) && $this->session->userdata('type')=='USER' && config_db_item('reservations_disabled') === FALSE):?>
                   <h2>{lang_Bookingform}</h2>
                   <div id="form" class="property-form">
                     {validation_errors}
@@ -936,7 +936,7 @@ if(!empty($estate_data_option_59) && !is_numeric($estate_data_option_59))
                         <label>{lang_Message}</label>
                         <textarea class="{form_error_message}" name="message" rows="3" placeholder="{lang_Message}">{form_value_message}</textarea>
                         
-                        <?php if(config_item('captcha_disabled') === FALSE): ?>
+                        <?php if(config_db_item('captcha_disabled') === FALSE): ?>
                         <label class="captcha"><?php echo $captcha['image']; ?></label>
                         <input class="captcha {form_error_captcha}" name="captcha" type="text" placeholder="{lang_Captcha}" value="" />
                         <br style="clear: both;" />
@@ -964,7 +964,7 @@ if(!empty($estate_data_option_59) && !is_numeric($estate_data_option_59))
                         <label>{lang_Address}</label>
                         <input class="{form_error_address}" name="address" type="text" placeholder="{lang_Address}" value="{form_value_address}" />
                         
-                        <?php if(config_item('reservations_disabled') === FALSE): ?>
+                        <?php if(config_db_item('reservations_disabled') === FALSE): ?>
                         {is_purpose_rent}
                         <label>{lang_FromDate}</label>
                         <input name="fromdate" type="text" id="datetimepicker1" value="{form_value_fromdate}" class="{form_error_fromdate}" placeholder="{lang_FromDate}" />
@@ -975,7 +975,7 @@ if(!empty($estate_data_option_59) && !is_numeric($estate_data_option_59))
                         <label>{lang_Message}</label>
                         <textarea class="{form_error_message}" name="message" rows="3" placeholder="{lang_Message}">{form_value_message}</textarea>
                         
-                        <?php if(config_item('captcha_disabled') === FALSE): ?>
+                        <?php if(config_db_item('captcha_disabled') === FALSE): ?>
                         <label class="captcha"><?php echo $captcha['image']; ?></label>
                         <input class="captcha {form_error_captcha}" name="captcha" type="text" placeholder="{lang_Captcha}" value="" />
                         <br style="clear: both;" />
@@ -1001,7 +1001,7 @@ if(!empty($estate_data_option_59) && !is_numeric($estate_data_option_59))
 
 <?php _widget('custom_javascript');?> 
 
-<?php if(config_item('enable_property_details_on_top') == TRUE): ?>
+<?php if(config_db_item('enable_property_details_on_top') == TRUE): ?>
 <div id="top_content" class="on_top_fixed">
 
 <?php if(!empty($estate_data_option_2)): ?>

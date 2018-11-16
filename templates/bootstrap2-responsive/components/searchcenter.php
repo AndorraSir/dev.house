@@ -1,134 +1,5 @@
 
-<style>
-
-.wrap-map
-{
-    position:relative;
-}
-
-.scentered.wrap-search
-{
-    width:80%;
-    /*top:38%;*/
-    left:60px;
-    position:absolute;
-}
-
-.scentered.wrap-search .container
-{
-    width:auto;
-}
-
-
-
-.scentered.wrap-search .search-form form button#search-start
-{
-    margin-top:0px;
-}
-
-/* Landscape phone to portrait tablet */
-@media (max-width: 1050px) {
-    
-    .scentered.wrap-search
-    {
-        width:80%;
-    }
-
-}
-
-/* Landscape phones and down */
-@media (max-width: 767px) {
-    
-    .scentered.wrap-search
-    {
-        width:90%;
-    }
-    
-    .scentered.wrap-search
-    {
-        top:10px;
-    }
-    
-    .scentered.wrap-search .search-form
-    {
-        margin-top:0px;
-    }
-    
-    .scentered.wrap-search .search-form form input#search_option_smart.span6
-    {
-        width:100%;
-    }
-    
-    .scentered.wrap-search .search-form form .col-3
-    {
-        width:100%;
-    }
-    
-}
-
-@media (max-width: 480px) {
-   
-    .wrap-map, #myCarousel.carousel
-    {
-        height:400px;
-    }
-
-}
-
-.center-search {
-    position: relative;
-}
-
-.center-search #search-save {
-    position: absolute;
-    right: 0;
-    bottom: -35px;
-    border-radius:0 !important;
-    color: #fff;
-    background-color: #5bc0de;
-    border-color: #46b8da;
-}
-
-.center-search #search-save:active, .center-search #search-save:hover {
-    color: #fff;
-    background-color: #31b0d5;
-    border-color: #269abc;
-     border-radius:0 !important;
-}
-
-.center-search #search-save:focus,
-.center-search #search-save:active {
-    outline-offset: 0 !important;
-}
-
-.center-search #search-save {
-    display: inline-block;
-    margin-bottom: 0;
-    font-weight: normal;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    white-space: nowrap;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857;
-    border-radius: 4px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-}
-
-.ajax-indicator {
-    float: right;
-    margin-top: -3px;
-}
-</style>
-
-<script type="text/javascript">
+<script>
 
 $(document).ready(function()
 {
@@ -142,58 +13,46 @@ $(document).ready(function()
 });
 
 </script>
-            
-<div class="wrap-search scentered align-self-center">
-    <div class="slider-info hello">
-        <div class='container'>
-            <h1 class="title c-white text-uppercase">{lang_Maintitle}</h1>                    
-         </div>
-    </div>  
-    <div class="center-search">
-        <ul id="search_option_4" class="menu-onmap tabbed-selector fff">
-            <li class="all-button" style="display:none;"><a href="#"><?php echo lang_check('All'); ?></a></li>
-            {options_values_radio_4}
+
+
+<div class="wrap-search scentered">
+    <div class="container center-search">
+
+        <ul id="search_option_4" class="menu-onmap tabbed-selector">
+            <li class="all-button"><a href="#"><?php echo lang_check('All'); ?></a></li>
+            {options_values_li_4}
         </ul>
         
-        <div class="search-form custom-search-form">
-            <form class="form-group row pl-0 pr-lg-0">
+        <div class="search-form">
+            <form class="form-inline">
             
                 <input id="rectangle_ne" type="text" class="hide" />
                 <input id="rectangle_sw" type="text" class="hide" />
             
-                <div class="col-sm-3 pr-lg-0 mb-lg-0">
-                    <input id="search_option_smart" type="text" class="form-control custom-input" value="{search_query}" placeholder="{lang_CityorCounty}" autocomplete="off" />
-                </div>
-                <div class="col-sm-3 pr-lg-0 mb-lg-0">
-                    <select id="search_option_2" class="form-control selectpicker" placeholder="{options_name_2}">
-                        {options_values_2}
-                    </select>
-                </div>
-                <div class="col-sm-3 pr-lg-0 mb-lg-0">
-                    <select id="search_option_3" class="form-control selectpicker nomargin" placeholder="{options_name_3}">
-                        {options_values_3}
-                    </select>
-                </div>
-                <div class="col-sm-3 mb-lg-0">
-                    <button id="search-start" type="submit" class="btn btn-info">&nbsp;&nbsp;{lang_Search}&nbsp;&nbsp;</button>
-                </div>
-                <img id="ajax-indicator-1" class="ajax-indicator" src="assets/img/ajax-loader.gif"/>
+            
+                <input id="search_option_smart" type="text" class="span6" value="{search_query}" placeholder="{lang_CityorCounty}" autocomplete="off" />
+                <select id="search_option_2" class="span3 selectpicker">
+                    {options_values_2}
+                </select>
+                
+                <button id="search-start" type="submit" class="btn btn-info btn-large">&nbsp;&nbsp;{lang_Search}&nbsp;&nbsp;</button>
+                <img id="ajax-indicator-1" class="ajax-indicator" src="assets/img/ajax-loader.gif" alt=""/>
                 
                 <div class="advanced-form-part hidden">
                 <div class="form-row-space"></div>
-                <input id="search_option_36_from" type="text" class="col-sm-3 mPrice" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_from'); ?>" />
-                <input id="search_option_36_to" type="text" class="col-sm-3 xPrice" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_to'); ?>" />
-                <input id="search_option_19" type="text" class="col-3 Bathrooms" placeholder="{options_name_19}" value="<?php echo search_value(19); ?>" />
-                <input id="search_option_20" type="text" class="col-3" placeholder="{options_name_20}" value="<?php echo search_value(20); ?>" />
+                <input id="search_option_36_from" type="text" class="span3 mPrice" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_from'); ?>" />
+                <input id="search_option_36_to" type="text" class="span3 xPrice" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_to'); ?>" />
+                <input id="search_option_19" type="text" class="span3 Bathrooms" placeholder="{options_name_19}" value="<?php echo search_value(19); ?>" />
+                <input id="search_option_20" type="text" class="span3" placeholder="{options_name_20}" value="<?php echo search_value(20); ?>" />
                 
                 <div class="form-row-space"></div>
                 <?php if(file_exists(APPPATH.'controllers/admin/booking.php')):?>
-                <input id="booking_date_from" type="text" class="col-3 mPrice" placeholder="{lang_Fromdate}" value="<?php echo search_value('date_from'); ?>" />
-                <input id="booking_date_to" type="text" class="col-3 xPrice" placeholder="{lang_Todate}" value="<?php echo search_value('date_to'); ?>" />
+                <input id="booking_date_from" type="text" class="span3 mPrice" placeholder="{lang_Fromdate}" value="<?php echo search_value('date_from'); ?>" />
+                <input id="booking_date_to" type="text" class="span3 xPrice" placeholder="{lang_Todate}" value="<?php echo search_value('date_to'); ?>" />
                 <div class="form-row-space"></div>
                 <?php endif; ?>
                 <?php if(config_db_item('search_energy_efficient_enabled') === TRUE): ?>
-                <select id="search_option_59_to" class="col-3 selectpicker nomargin" placeholder="{options_name_59}">
+                <select id="search_option_59_to" class="span3 selectpicker nomargin">
                     <option value="">{options_name_59}</option>
                     <option value="50">A</option>
                     <option value="90">B</option>

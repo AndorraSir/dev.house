@@ -2,7 +2,7 @@
 <html lang="{lang_code}">
   <head>
    <?php _widget('head');?>
-    <script language="javascript">
+    <script>
     $(document).ready(function(){
         
        $("#route_from_button").click(function () { 
@@ -54,7 +54,7 @@
             </div>
         </div>
     </div>
-    <div class="col-3">
+    <div class="span3">
           <h2>{lang_Expert}</h2>
           <div class="agent">
             <div class="image"><img src="{showroom_image_url}" alt="<?php echo $expert_data['name_surname']; ?>" /></div>
