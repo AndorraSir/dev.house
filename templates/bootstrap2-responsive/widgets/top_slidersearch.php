@@ -24,7 +24,7 @@
                 <?php elseif(!empty($item['title'])): ?>
                     <div class="slider-info">
                         <div class='container'>
-                            <span class="title c-white text-uppercase strong-700"><?php _che($item['title']);?></span>
+                            <span class="title c-white text-uppercase strong-700"><?php _che($item['title']);?>hhh</span>
                             <span class="subtitle-sm"><?php _che($item['description']);?></span>
                              <?php if(!empty($item['link'])):?>
                              <a href="<?php _che($item['link']);?>" class="btn btn-l">
