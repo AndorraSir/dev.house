@@ -261,8 +261,6 @@ class Option_m extends MY_Model {
         {
             $result = $this->get($id);
             
-            if(empty($result)) return false;
-            
             $this->db->select('*');
             $this->db->from($this->_table_name.'_lang');
             $this->db->where('option_id', $id);
@@ -737,27 +735,18 @@ class Option_m extends MY_Model {
                 
                 //Remove childs
                 $this->db->delete($this->_table_name, array('parent_id'=>$id)); 
-                
-                // Delete also from depending
-                $this->db->delete('dependent_field', array('field_id' => $id));
-                
             }
-            
-            // Delete also from depending
-            $this->db->delete('dependent_field', array('field_id' => $id));
             
             //remove all values from current
             $this->db->delete('property_value', array('option_id' => $id));
-            
-            // Delete also treefields if exists
-            $this->load->model('treefield_m');
-            $this->treefield_m->delete($id);
             
             //Remove current option
             $this->db->delete('option_lang', array('option_id' => $id)); 
             parent::delete($id);
             
-
+            // Delete also treefields if exists
+            $this->load->model('treefield_m');
+            $this->treefield_m->delete($id);
         }
     }
     

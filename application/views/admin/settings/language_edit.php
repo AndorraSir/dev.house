@@ -131,15 +131,7 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                  <label class="col-lg-2 control-label">
-                                      <?php echo lang_check('Is RTL')?>
-                                        <div class="tooltip_tree">
-                                            <span class="hintlabel"><i class="icon-question-sign hint" aria-hidden="true"></i></span>
-                                            <span class="tooltiptext">
-                                                <?php echo lang_check("Check this only for Arabic and similar RTL languages");?>
-                                            </span>
-                                        </div>
-                                  </label>
+                                  <label class="col-lg-2 control-label"><?php echo lang_check('Is RTL')?></label>
                                   <div class="col-lg-10">
                                     <?php echo form_checkbox('is_rtl', '1', set_value('is_rtl', $language->is_rtl), 'id="inputRtl"')?>
                                     
@@ -180,52 +172,3 @@
 
    <!-- Mainbar ends -->	    	
    <div class="clearfix"></div>
-   <style>
-    .tooltip_tree {
-        position: relative;
-        display: inline-block;
-    }
-
-    .tooltip_tree .tooltiptext {
-        visibility: hidden;
-        width: 185px;
-        background-color: #0f163c;
-        color: #fff;
-        text-align: left;
-        border-radius: 6px !important;
-        padding: 8px 10px;
-        position: absolute;
-        z-index: 1;
-        bottom: 100%;
-        margin-bottom: 5px;
-        left: 50%;
-        -webkit-transform: translateX(-50%);
-        transform: translateX(-50%);
-    }
-    
-    .tooltip_tree .hintlabel i {
-        color: #0f163c;
-        font-size: 15px;
-    }
-
-    .tooltip_tree:hover .tooltiptext {
-        visibility: visible;
-    }
-
-    .tooltip_tree:hover .tooltiptext .br {
-        margin-bottom: 5px;
-    }
-    
-    .tooltip_tree .hintlabel {
-        color: white;
-        display: inline-block;
-        border-radius: 50% !important;
-        font-size: 11px;
-        width: 15px;
-        height: 15px;
-        text-align: center;
-        margin-left: 5px;
-        cursor: pointer;
-    }
-
-</style>

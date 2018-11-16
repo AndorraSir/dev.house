@@ -40,16 +40,6 @@
             <div class="col-md-12">
 
                 <div class="widget worange">
-                    <form class="search-admin form-inline" action="<?php echo site_url($this->uri->uri_string()); ?>" method="GET" autocomplete="off" style="margin: 10px 0;">
-                        <div class="form-group">
-                            <label class="control-label"><?php echo lang_check('Smart')?></label>
-                            <input class="form-control" name="smart_search" id="smart_search" value="<?php echo set_value_GET('smart_search', '', true); ?>" placeholder="<?php echo lang_check('Property id'); ?>" type="text" />
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" style="height: 17px;display: block;"></label>
-                            <button type="submit" class="btn btn-default" style="padding: 8px 12px;"><i class="icon icon-search"></i>&nbsp;&nbsp;<?php echo lang_check('Search'); ?></button>
-                        </div>
-                    </form>
 
                 <div class="widget-head">
                   <div class="pull-left"><?php echo lang_check('Rates')?></div>

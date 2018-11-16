@@ -11,7 +11,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		  <a href="<?php echo site_url('admin/dashboard')?>" class="navbar-brand"><img src="<?php echo base_url('admin-assets/img/custom/logo.png');?>" width="125"/></a>
+		  <a href="<?php echo site_url('admin/dashboard')?>" class="navbar-brand"><img src="<?php echo base_url('admin-assets/img/custom/logo-system-mini.png');?>" />Real estate <span class="bold">point</span></a>
 		</div>
       <!-- Site name for smallar screens -->
 
@@ -55,7 +55,6 @@
                     <!-- Use hr tag to add border -->
                     <hr />
                   </li>
-                  <?php if(!empty($enquire_3)):?>
                     <?php foreach($enquire_3 as $enquire):?>
                   <li>
                     <!-- List item heading h6 -->
@@ -65,12 +64,6 @@
                     <hr />
                   </li>
                     <?php endforeach;?>    
-                  <?php else:?>
-                      <li>
-                        <p class="label label-info validation"><?php echo lang_check('Messages not found');?></p>
-                        <hr />
-                      </li>
-                  <?php endif;?>
                   <li>
                     <div class="drop-foot">
                       <a href="<?php echo site_url('admin/enquire')?>"><?php echo lang_check('View All');?></a>
@@ -174,16 +167,16 @@
                     {
                         $CI =& get_instance();
                         $CI->load->model('option_m');
-                        $option_treefield = $CI->option_m->get_lang(64);
+                        $option_treefield = $CI->option_m->get(64);
                         if(!empty($option_treefield) && $option_treefield->type == 'TREE')
                         {
-                echo '<li><a href="'.site_url('admin/treefield/edit/64').'">'.$option_treefield->{'option_'.$content_language_id}.'</a></li>';        
+                echo '<li><a href="'.site_url('admin/treefield/edit/64').'">'.lang_check('Treefield values').'</a></li>';        
                         }
                         
-                        $option_treefield = $CI->option_m->get_lang(79);
+                        $option_treefield = $CI->option_m->get(79);
                         if(!empty($option_treefield) && $option_treefield->type == 'TREE')
                         {
-                echo '<li><a href="'.site_url('admin/treefield/edit/79').'">'.$option_treefield->{'option_'.$content_language_id}.'</a></li>';        
+                echo '<li><a href="'.site_url('admin/treefield/edit/79').'">'.lang_check('Categories').'</a></li>';        
                         }
                     }
                 
@@ -230,9 +223,6 @@
                            $this->session->userdata('type') == 'ADMIN' )
                          ):?>
                 <li><a href="<?php echo site_url('admin/estate/removed')?>"><?php echo lang_check('Removed');?></a></li>
-                <?php endif;?>
-                <?php if(!empty($this->data['settings']['word_filtering'])):?>
-                <li><a href="<?php echo site_url('admin/estate/word_filtering')?>"><?php echo lang_check('Word filtering');?></a></li>
                 <?php endif;?>
               </ul>
             </li>
@@ -284,23 +274,7 @@
                       </ul>
                     </li>
                 <?php endif;?>
-                
 
-            <?php endif;?>
-            <?php if(file_exists(APPPATH.'controllers/admin/visits.php') && check_acl('visits')):?>
-                <li class="has_submenu nred<?php echo (strpos($this->uri->uri_string(),'visits')!==FALSE)?' current open':'';?>">
-                  <a href="#">
-                    <!-- Menu name with icon -->
-                    <i class="icon-map-marker"></i> <?php echo lang_check('Visits');?> 
-                    <!-- Icon for dropdown -->
-                    <span class="pull-right"><i class="icon-angle-right"></i></span>
-                  </a>
-
-                  <ul>
-                    <li><a href="<?php echo site_url('admin/visits')?>"><?php echo lang_check('Inbox');?></a></li>
-                    <li><a href="<?php echo site_url('admin/visits/outbox')?>"><?php echo lang_check('Outbox');?></a></li>
-                  </ul>
-                </li>
             <?php endif;?>
 
             <?php if(check_acl('slideshow') && config_db_item('frontend_disabled') === FALSE):?>
@@ -450,7 +424,25 @@
                 </a>
             </li>
             <?php endif;?>
-                        
+            
+            <?php if(check_acl('monetize') && config_db_item('frontend_disabled') === FALSE):?>
+            <li class="has_submenu nred<?php echo (strpos($this->uri->uri_string(),'monetize')!==FALSE)?' current open':'';?>">
+                <a href="#">
+                    <!-- Menu name with icon -->
+                    <i class="icon-usd"></i> <?php echo lang_check('Payments');?>
+                    <!-- Icon for dropdown -->
+                    <span class="pull-right"><i class="icon-angle-right"></i></span>
+                </a>
+              <ul>
+                <li><a href="<?php echo site_url('admin/monetize/payments')?>"><?php echo lang_check('Activations');?></a></li>
+                <li><a href="<?php echo site_url('admin/monetize/payments_featured')?>"><?php echo lang_check('Featured');?></a></li>
+                <?php if(file_exists(APPPATH.'controllers/paymentconsole.php')): ?>
+                <li><a href="<?php echo site_url('admin/monetize/invoices')?>"><?php echo lang_check('Invoices');?></a></li>
+                <?php endif; ?>
+              </ul>
+            </li>
+            <?php endif;?>
+            
             <?php if(file_exists(APPPATH.'controllers/admin/savesearch.php') && check_acl('savesearch')): ?>
             <li class="ngreen<?php echo (strpos($this->uri->uri_string(),'savesearch')!==FALSE)?' current open':'';?>">
                 <a href="<?php echo site_url('admin/savesearch')?>">
@@ -495,16 +487,6 @@
 
   	<!-- Main bar -->
   	<div class="mainbar">
-        <?php if(config_item('results_page_id_enabled')!=FALSE && config_db_item('results_page_id')==FALSE):?>
-        <div class="col-md-12">
-            <br/>
-            <div class="alert alert-danger alert-dismissible fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <?php echo lang_check('Results page not defined, please set results page in settings');?> <a href="<?php echo site_url('admin/settings/system');?>"> <?php echo lang_check('settings->system settings');?>.</a>
-            </div>
-        </div>
-        <?php endif;?>
-            
     <?php $this->load->view($subview)?>
     </div>
 </div>

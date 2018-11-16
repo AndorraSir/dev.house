@@ -86,7 +86,6 @@ class Slug_m extends MY_Model {
                 else if($model_name == 'treefield_m')
                 {
                     if(empty($data_val) && !empty($data_lang['title_'.$lang_id]))$data_val = url_title_cro($data_lang['title_'.$lang_id], 'dash');
-                    if(empty($data_val) && !empty($data_lang['value_'.$lang_id]))$data_val = url_title_cro($data_lang['value_'.$lang_id], 'dash');
                 }
                 else if($model_name == 'estate_m')
                 {

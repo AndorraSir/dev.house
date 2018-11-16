@@ -2,7 +2,6 @@
 
 class Treefield_m extends MY_Model {
     
-    protected $_primary_key = 'id';
     protected $_table_name = 'treefield';
     protected $_order_by = 'treefield.order, treefield.id';
     
@@ -11,8 +10,7 @@ class Treefield_m extends MY_Model {
         'template' => array('field'=>'template', 'label'=>'lang:Template', 'rules'=>'trim|xss_clean'),
         'affilate_price' => array('field'=>'affilate_price', 'label'=>'lang:Affilate price', 'rules'=>'trim|numeric|xss_clean'),
         'repository_id' => array('field'=>'repository_id', 'label'=>'lang:repository_id', 'rules'=>'trim'),
-        'order' => array('field'=>'order', 'label'=>'lang:Order', 'rules'=>'trim|numeric|xss_clean'),
-        'font_icon_code' => array('field'=>'font_icon_code', 'label'=>'lang:Font icon code', 'rules'=>'trim|xss_clean')
+        'order' => array('field'=>'order', 'label'=>'lang:Order', 'rules'=>'trim|numeric|xss_clean')
     );
    
     public $rules_lang = array();
@@ -46,7 +44,6 @@ class Treefield_m extends MY_Model {
         $option = new stdClass();
         $option->parent_id = 0;
         $option->template = 'treefield';
-        $option->font_icon_code = '';
         
         //Add language parameters
         foreach($this->languages as $key=>$value)
@@ -203,7 +200,7 @@ class Treefield_m extends MY_Model {
         }
     }
     
-    public function get_table_tree($lang_id = 2, $field_id=0, $current_id = NULL, $return_print=true, $custom_order='_lang.value', $custom_fields='', $where=NULL)
+    public function get_table_tree($lang_id = 2, $field_id=0, $current_id = NULL, $return_print=true, $custom_order='_lang.value', $custom_fields='')
 	{
         // Fetch pages without parents
         $this->db->select($this->_table_name.'.id, value, level, parent_id, template, body, affilate_price'.$custom_fields);
@@ -214,9 +211,6 @@ class Treefield_m extends MY_Model {
         //if($current_id != NULL)$this->db->where($this->_table_name.'.id !=', $current_id);
         //$this->db->order_by($this->_order_by);
         
-        if($where != NULL)
-            $this->db->where($where);
-
         $this->db->order_by($this->_table_name.$custom_order);
         
         $query = $this->db->get();
@@ -229,11 +223,6 @@ class Treefield_m extends MY_Model {
         // Return key => value pair array
         $array = array();
         
-        if(count($where) > 0 && count($options))
-        {
-            return $options;
-        }
-
         $t_array = array();
         if(count($options))
         {
@@ -483,33 +472,7 @@ class Treefield_m extends MY_Model {
         
         // Save lang data
         $this->db->delete($this->_table_name.'_lang', array('treefield_id' => $treefield_id));
-        if(!function_exists('recursion_save')){
-        function recursion_save ($path, $tree_listings, $parent_lvl, $id, &$ariesInfo){
-            if (isset($tree_listings[$id]) && count($tree_listings[$id]) > 0){
-                foreach ($tree_listings[$id] as $key => $_child) {
-                    $options = $tree_listings[$_child->parent_id][$_child->id];
-
-                    $_parent_lvl = $parent_lvl+1;
-                    $_current_path = $path.' - '.$options->value;
-
-                    $treefield = array();
-
-                    $treefield['id'] = $options->id;
-                    $treefield['level'] = $_parent_lvl;
-                    
-                    $CI=&get_instance();
-                    $CI->load->model('treefield_m');
-                    $treefield['title'] = $options->value;
-                    $treefield['path'] = $_current_path;
-                    $ariesInfo[]=$treefield;
-                    
-                    if (isset($tree_listings[$_child->id]) && count($tree_listings[$_child->id]) > 0){    
-                        recursion_save($_current_path, $tree_listings, $_parent_lvl, $_child->id, $ariesInfo);
-                    }
-                }
-            }
-        };
-        }
+        
         foreach($this->languages as $lang_key=>$lang_val)
         {
             if(is_numeric($lang_key))
@@ -527,68 +490,14 @@ class Treefield_m extends MY_Model {
                         if(substr($data_key,0,$pos) == 'value')
                         {
                             $curr_data_lang['value_path'] = $this->get_path($field_id, $data['parent_id'], $lang_key).$data_val;
-                            
-                            /* updated childs */
-                            $tree_listings = $this->get_table_tree($lang_key, $field_id, NULL, FALSE, '.order', ', value_path');
-                            if(!empty($tree_listings[$treefield_id]) && count($tree_listings[$treefield_id]) > 0){
-                                $result_count = array();
-                                $parent_path =  $curr_data_lang['value_path'];
-                                $parent_lvl =  $data['level'];
-                                $ariesInfo = array();
-                                foreach ($tree_listings[$treefield_id] as $val) {
-                                    $options = $val;
-                                    $treefield = array();
-
-                                    $current_lvl = $parent_lvl+1;
-                                    $current_path = $parent_path.' - '.$options->value;
-
-                                    $treefield['id'] = $val->id;
-                                    $treefield['title'] = $options->value;
-                                    $treefield['path'] = $current_path;
-                                    $treefield['level'] = $current_lvl;
-                                    $ariesInfo[]=$treefield;
-                                    
-                                    if(isset($tree_listings[$val->id]) && count($tree_listings[$val->id]) > 0){
-                                        recursion_save($current_path, $tree_listings, $current_lvl, $val->id, $ariesInfo);
-                                    }     
-                                }
-                                
-                                /* update path */
-                                foreach ($ariesInfo as $key => $value) {
-                                    $data_update = array(
-                                        'value_path'  => $value['path'],
-                                    );
-
-                                    $this->db->where('language_id', $lang_key);
-                                    $this->db->where('treefield_id', $value['id']);
-                                    $this->db->update($this->_table_name.'_lang', $data_update);
-                                }
-
-                            }
-                            /* end updated childs */
-                            
                         }
                     }
                 }
-                
-                /* start updated childs */
-                if(isset($ariesInfo) && !empty($ariesInfo)){
-                    foreach ($ariesInfo as $key => $value) {
-                        $data_update = array(
-                            'level' => $value['level'],
-                        );
-
-                        $this->db->where('id', $value['id']);
-                        $this->db->update($this->_table_name, $data_update);
-                    }
-                }
-                /* end updated childs */
                 
                 $this->db->set($curr_data_lang);
                 $this->db->insert($this->_table_name.'_lang');
             }
         }
-        
         
         if(!empty($treefield_id)) {
             // [Save first image in repository]
@@ -642,32 +551,6 @@ class Treefield_m extends MY_Model {
         }
         
         return NULL;
-    }
-
-    public function get_path_list()
-    {
-        // Fetch pages without parents
-        $this->db->select($this->_table_name.'.id, value, language_id, value_path, level, parent_id');
-        $this->db->from($this->_table_name);
-        $this->db->join($this->_table_name.'_lang', $this->_table_name.'.id = '.$this->_table_name.'_lang.treefield_id');
-        //$this->db->where('language_id', $lang_id);
-        $this->db->order_by($this->_order_by);
-        $query = $this->db->get();
-        $options = $query->result();
-
-        // Return key => value pair array
-        $array = array();
-
-        $t_array = array();
-        if(count($options))
-        {
-            foreach($options as $option)
-            {
-                $t_array[$option->id][$option->language_id] = $option;
-            }
-        }
-
-        return $t_array;
     }
     
     public function get_path($field_id, $treefield_id, $lang_id)
@@ -831,7 +714,7 @@ class Treefield_m extends MY_Model {
         }
     }
     
-    public function delete_value($field_id, $treefield_id, $only_childs = FALSE)
+    public function delete_value($field_id, $treefield_id)
     {
             //Get all childs
             $childs = array();
@@ -844,10 +727,8 @@ class Treefield_m extends MY_Model {
             $this->db->delete('treefield'); 
             
             //Delete current
-            if(!$only_childs){
-                $this->db->delete('treefield_lang', array('treefield_id' => $treefield_id)); 
-                $this->db->delete('treefield', array('id' => $treefield_id)); 
-            }
+            $this->db->delete('treefield_lang', array('treefield_id' => $treefield_id)); 
+            $this->db->delete('treefield', array('id' => $treefield_id)); 
     }
     
 }

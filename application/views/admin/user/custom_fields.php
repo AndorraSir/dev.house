@@ -279,11 +279,12 @@ $(function() {
     if($('#input_custom_fields_code').val() != '')
     {
         first_json = jQuery.parseJSON($('#input_custom_fields_code').val());
+        
         $.each( first_json.PRIMARY, function( key, value ) {
             $('.el_sort[rel='+key+']').data('f_json',value);
             if(key > id_autoincrement)id_autoincrement = parseInt(key)+1;
         });
-        id_autoincrement++;
+        
     }
     
     $( ".el_drag" ).draggable({

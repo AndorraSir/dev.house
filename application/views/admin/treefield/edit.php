@@ -32,14 +32,7 @@
                 <a href="<?php echo site_url('admin/treefield/edit/' . $option->id) . '#edit-form' ?>" class="btn btn-primary" type="button"><i class="icon-plus"></i>&nbsp;&nbsp;<?php echo lang('Add new') ?></a>                
 
                 <?php echo anchor('admin/treefield/import_treefield/' . $option->id, '<i class="icon-arrow-up"></i>&nbsp;&nbsp;' . lang_check('Import from XML'), 'class="btn btn-success pull-right"') ?>
-                
-                <?php if(isset($option->id) && $option->id == 79):?>
-                    <?php echo anchor('admin/treefield/import_vehicle/' . $option->id, lang_check('Import Vehicle'), 'class="btn btn-success pull-right" style="margin-right: 5px;"') ?>
-                <?php endif;?>
-                
-                <?php if(isset($option->id) && $option->id == 64):?>
-                    <?php echo anchor('admin/treefield/generate_geo_map/' . $option->id, lang_check('Generate geo map'), 'class="btn btn-success pull-right" style="margin-right: 5px;"') ?>
-                <?php endif;?>
+                <?php echo anchor('admin/treefield/generate_geo_map/' . $option->id, lang_check('Generate geo map'), 'class="btn btn-success pull-right" style="margin-right: 5px;"') ?>
             </div>
         </div>
 
@@ -104,41 +97,11 @@
                                     </div>
                                 </div>
                             <?php endif; ?>
-                            <?php if (config_item('tree_font_icon_code_list')!==FALSE && !empty(config_item('tree_font_icon_code_list'))): ?>
-                                <div class="form-group">
-                                    <label class="col-lg-3 control-label"><?php echo lang_check('Font icon code') ?></label>
-                                    <div class="col-lg-9">
-                                        <?php
-                                          $icons_code_list =  config_item('tree_font_icon_code_list');
-                                          $icons_code_list = explode(',', $icons_code_list);
-                                          $icons_code_list = array_map('trim', $icons_code_list);
-                                          /*$icons_code_list = array_combine($icons_code_list,$icons_code_list);
-                                          $icons_code_list = array_merge(array(''=>lang_check('Select icon')), $icons_code_list);*/
-                                        ?>
-                                        <select class="form-control selectpicker" name="font_icon_code" id="input_font_icon_code">
-                                            <option value=""><?php echo lang_check('Select icon');?></option>
-                                        <?php foreach ($icons_code_list as $key => $value):?>
-                                            <?php
-                                            $val = $this->input->post('font_icon_code') ? $this->input->post('font_icon_code') : $treefield->font_icon_code;
-                                            ?>
-                                            <option value="<?php echo $value;?>" data-icon="<?php echo $value;?>" <?php echo ($val==$value) ? 'selected="selected"': '';?>><?php echo $value;?></option>
-                                        <?php endforeach;?>
-                                        </select>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
                             <?php if (!empty($treefield->id)): ?>
 
                                 <div class="form-group UPLOAD-FIELD-TYPE">
                                     <label class="col-lg-3 control-label">
-                                        <?php echo lang_check('Images'); ?>
-                                        <div class="tooltip_tree">
-                                            <span class="hintlabel"><i class="icon-question-sign hint" aria-hidden="true"></i></span>
-                                            <span class="tooltiptext">
-                                                <?php echo lang_check("1st image - preview image");?><div class="br"></div>
-                                                <?php echo lang_check("2st image - icon image");?>
-                                            </span>
-                                        </div>
+                                        <?php echo lang_check('Images') ?>
                                         <div class="ajax_loading"> </div>
                                     </label>
                                     <div class="col-lg-9">
@@ -425,13 +388,7 @@ foreach ($this->option_m->languages as $key => $val):$i++; ?>
 
 </div>
 </div>
-<?php if(config_item('tree_font_icon_code_list_css_array')!==FALSE && !empty(config_item('tree_font_icon_code_list_css_array'))):?>
-    <?php foreach (config_item('tree_font_icon_code_list_css_array') as $key => $value):?>
-        <link rel="stylesheet" href="<?php echo $value;?>">
-    <?php endforeach;?>
-<?php endif;?>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
 <script>
     
     /* CL Editor */
@@ -443,57 +400,6 @@ foreach ($this->option_m->languages as $key => $val):$i++; ?>
                 $(this).closest('form').find('input[type="submit"]').click();
             }
         });
-    
-        $('.selectpicker').selectpicker();
     });
     
 </script>
-<style>
-    .tooltip_tree {
-        position: relative;
-        display: inline-block;
-    }
-
-    .tooltip_tree .tooltiptext {
-        visibility: hidden;
-        width: 185px;
-        background-color: #0f163c;
-        color: #fff;
-        text-align: left;
-        border-radius: 6px !important;
-        padding: 8px 10px;
-        position: absolute;
-        z-index: 1;
-        bottom: 100%;
-        margin-bottom: 5px;
-        left: 50%;
-        -webkit-transform: translateX(-50%);
-        transform: translateX(-50%);
-    }
-    
-    .tooltip_tree .hintlabel i {
-        color: #0f163c;
-        font-size: 15px;
-    }
-
-    .tooltip_tree:hover .tooltiptext {
-        visibility: visible;
-    }
-
-    .tooltip_tree:hover .tooltiptext .br {
-        margin-bottom: 5px;
-    }
-    
-    .tooltip_tree .hintlabel {
-        color: white;
-        display: inline-block;
-        border-radius: 50% !important;
-        font-size: 11px;
-        width: 15px;
-        height: 15px;
-        text-align: center;
-        margin-left: 5px;
-        cursor: pointer;
-    }
-
-</style>

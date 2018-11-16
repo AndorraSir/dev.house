@@ -69,8 +69,23 @@
     $lang_code = $CI->language_m->get_code($CI->language_m->get_content_lang());
     ?>
     
-    <?php load_map_api(config_db_item('map_version'));?>
     
+    <?php 
+    $config_base_url = config_item('base_url');
+    $url_protocol='http://';
+    if(!empty($config_base_url)&& strpos( $config_base_url,'https')!== false){
+        $url_protocol='https://';
+    }
+    
+    $maps_api_key = config_db_item('maps_api_key');
+    $maps_api_key_prepare='';
+    if(!empty($maps_api_key)){
+        $maps_api_key_prepare='&amp;key='.$maps_api_key;
+    }
+    
+    ?>
+    <script type="text/javascript" src="<?php echo $url_protocol;?>maps.google.com/maps/api/js?language=<?php echo $lang_code; ?><?php echo $maps_api_key_prepare; ?>&amp;libraries=places,geometry"></script>
+
     <!-- JS -->
     <script src="<?php echo base_url('admin-assets/js/jquery.js')?>"></script> <!-- jQuery -->
     <script src="<?php echo base_url('admin-assets/js/jquery.translator.min.js')?>"></script> <!-- jQuery translate-->
@@ -113,12 +128,8 @@
     <script src="<?php echo base_url('admin-assets/js/filter.js')?>"></script> <!-- Filter for support page -->
     <script src="<?php echo base_url('admin-assets/js/custom.js')?>"></script> <!-- Custom codes -->
     <script src="<?php echo base_url('admin-assets/js/charts.js')?>"></script> <!-- Custom chart codes -->
-    
-    <?php if(config_db_item('map_version') !='open_street'):?>
     <script src="<?php echo base_url('admin-assets/js/gmap3.min.js')?>"></script>
     <script src="<?php echo base_url('admin-assets/js/markerwithlabel.js')?>"></script>
-     <?php endif;?>
-    
     <script src="<?php echo base_url('admin-assets/js/blueimp-gallery.min.js')?>"></script>
     <script src="<?php echo base_url('admin-assets/js/footable/js/footable.js')?>"></script>
     <script src="<?php echo base_url('admin-assets/js/jquery.number.js')?>"></script>
@@ -155,13 +166,7 @@
     var firstSet = false;
     var savedGpsData;
     var rent_inc_id = '55';
-    var map = '';
-    var markers = [];
-    <?php if(config_db_item('map_version') =='open_street'):?>
-    var clusters ='';
-    clusters = L.markerClusterGroup({spiderfyOnMaxZoom: true, showCoverageOnHover: false, zoomToBoundsOnClick: true});
-    <?php endif;?>
-        
+    
     $(function () {
         
         <?php if(config_db_item('price_by_purpose') == TRUE): ?>
@@ -233,87 +238,6 @@
         });
         
         loadjQueryUpload();
-        
-        
-        <?php if(config_db_item('map_version') =='open_street'):?>
-            var edit_map_marker;
-            var edit_map
-            if($('#mapsAddress').length){
-                if($('#inputGps').length && $('#inputGps').val() != '')
-                {
-                    savedGpsData = $('#inputGps').val().split(", ");
-
-                    edit_map = L.map('mapsAddress', {
-                        center: [parseFloat(savedGpsData[0]), parseFloat(savedGpsData[1])],
-                        zoom: 9,
-                    });     
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    }).addTo(edit_map);
-                    var positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png').addTo(edit_map);
-                    edit_map_marker = L.marker(
-                        [parseFloat(savedGpsData[0]), parseFloat(savedGpsData[1])],
-                        {draggable: true}
-                    ).addTo(edit_map);
-
-                    edit_map_marker.on('dragend', function(event){
-                        var marker = event.target;
-                        var location = marker.getLatLng();
-                        var lat = location.lat;
-                        var lon = location.lng;
-                        $('#inputGps').val(lat+', '+lon);
-                        //retrieved the position
-                      });
-
-                    firstSet = true;
-                }
-                else
-                {
-
-                    edit_map = L.map('mapsAddress', {
-                        center: [<?php echo isset($settings['gps'])?$settings['gps']:'45.81, 15.98'?>],
-                        zoom: 9,
-                    });     
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    }).addTo(edit_map);
-                    var positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png').addTo(edit_map);
-                    edit_map_marker = L.marker(
-                        [<?php echo isset($settings['gps'])?$settings['gps']:'45.81, 15.98'?>],
-                        {draggable: true}
-                    ).addTo(edit_map);
-
-                    edit_map_marker.on('dragend', function(event){
-                        var marker = event.target;
-                        var location = marker.getLatLng();
-                        var lat = location.lat;
-                        var lon = location.lng;
-                        $('#inputGps').val(lat+', '+lon);
-                        //retrieved the position
-                    });
-
-                    firstSet = true;
-                }
-
-                $('#inputAddress').keyup(function (e) {
-                clearTimeout(timerMap);
-                timerMap = setTimeout(function () {
-                    $.get('https://nominatim.openstreetmap.org/search?format=json&q='+$('#inputAddress').val(), function(data){
-                        if(data.length && typeof data[0]) {
-                            edit_map_marker.setLatLng([data[0].lat, data[0].lon]).update(); 
-                            edit_map.panTo(new L.LatLng(data[0].lat, data[0].lon));
-                            $('#inputGps').val(data[0].lat+', '+data[0].lon);
-                        } else {
-                            ShowStatus.show('<?php echo str_replace("'", "\'", lang_check('Address not found!')); ?>');
-                            return;
-                        }
-                    });
-                }, 2000);
-                
-            });
-        }
-        <?php else:?>
-
         
         // If alredy selected
         if($('#inputGps').length && $('#inputGps').val() != '')
@@ -421,8 +345,6 @@
             
         });
         
-        <?php endif;?>
-        
         $('#option_sortable').nestedSortable({
             handle: 'div',
             items: 'li',
@@ -519,7 +441,7 @@
             dropedCallback: sortableExpertDroped
         });
         
-        $('.copy_to_next').keydown(function (e) {
+        $('.copy_to_next').keyup(function (e) {
             var element_to = $(this).parent().parent().next('div').find('input');
             
             if(element_to.val() == $(this).val().substr(0,$(this).val().length-1))
@@ -797,15 +719,4 @@
     }
     </style>
     <?php endif;?>
-    
-    <script>
-    var location_hash = '';
-
-    // to top right away
-    if ( window.location.hash ) {
-        location_hash = window.location.hash;
-        window.location.hash ='';
-    };
-
-    </script>
 </head>

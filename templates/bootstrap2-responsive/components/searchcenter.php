@@ -9,7 +9,7 @@
 .scentered.wrap-search
 {
     width:80%;
-    /*top:38%;*/
+    top:38%;
     left:60px;
     position:absolute;
 }
@@ -20,6 +20,11 @@
 }
 
 
+
+.scentered.wrap-search .search-form form .col-3
+{
+    width:30%;
+}
 
 .scentered.wrap-search .search-form form button#search-start
 {
@@ -41,7 +46,7 @@
     
     .scentered.wrap-search
     {
-        width:90%;
+        width:60%;
     }
     
     .scentered.wrap-search
@@ -142,47 +147,38 @@ $(document).ready(function()
 });
 
 </script>
-            
-<div class="wrap-search scentered align-self-center">
-    <div class="slider-info hello">
-        <div class='container'>
-            <h1 class="title c-white text-uppercase">{lang_Maintitle}</h1>                    
-         </div>
-    </div>  
-    <div class="center-search">
-        <ul id="search_option_4" class="menu-onmap tabbed-selector fff">
+
+
+<div class="wrap-search scentered">
+    <div class="container-fluid center-search">
+
+        <ul id="search_option_4" class="menu-onmap tabbed-selector">
             <li class="all-button" style="display:none;"><a href="#"><?php echo lang_check('All'); ?></a></li>
             {options_values_radio_4}
         </ul>
         
         <div class="search-form custom-search-form">
-            <form class="form-group row pl-0 pr-lg-0">
+            <form class="form-inline col-12 pl-0 pr-0">
             
                 <input id="rectangle_ne" type="text" class="hide" />
                 <input id="rectangle_sw" type="text" class="hide" />
             
-                <div class="col-sm-3 pr-lg-0 mb-lg-0">
-                    <input id="search_option_smart" type="text" class="form-control custom-input" value="{search_query}" placeholder="{lang_CityorCounty}" autocomplete="off" />
-                </div>
-                <div class="col-sm-3 pr-lg-0 mb-lg-0">
-                    <select id="search_option_2" class="form-control selectpicker" placeholder="{options_name_2}">
-                        {options_values_2}
-                    </select>
-                </div>
-                <div class="col-sm-3 pr-lg-0 mb-lg-0">
-                    <select id="search_option_3" class="form-control selectpicker nomargin" placeholder="{options_name_3}">
-                        {options_values_3}
-                    </select>
-                </div>
-                <div class="col-sm-3 mb-lg-0">
-                    <button id="search-start" type="submit" class="btn btn-info">&nbsp;&nbsp;{lang_Search}&nbsp;&nbsp;</button>
-                </div>
+            
+                <input id="search_option_smart" type="text" class="col-4 form-control custom-input" value="{search_query}" placeholder="{lang_CityorCounty}" autocomplete="off" />
+                <select id="search_option_2" class="col-3 selectpicker" placeholder="{options_name_2}">
+                    {options_values_2}
+                </select>
+                 <select id="search_option_3" class="col-3 selectpicker nomargin" placeholder="{options_name_3}">
+                    {options_values_3}
+                </select>
+                
+                <button id="search-start" type="submit" class="btn btn-info btn-large">&nbsp;&nbsp;{lang_Search}&nbsp;&nbsp;</button>
                 <img id="ajax-indicator-1" class="ajax-indicator" src="assets/img/ajax-loader.gif"/>
                 
                 <div class="advanced-form-part hidden">
                 <div class="form-row-space"></div>
-                <input id="search_option_36_from" type="text" class="col-sm-3 mPrice" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_from'); ?>" />
-                <input id="search_option_36_to" type="text" class="col-sm-3 xPrice" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_to'); ?>" />
+                <input id="search_option_36_from" type="text" class="col-3 mPrice" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_from'); ?>" />
+                <input id="search_option_36_to" type="text" class="col-3 xPrice" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_to'); ?>" />
                 <input id="search_option_19" type="text" class="col-3 Bathrooms" placeholder="{options_name_19}" value="<?php echo search_value(19); ?>" />
                 <input id="search_option_20" type="text" class="col-3" placeholder="{options_name_20}" value="<?php echo search_value(20); ?>" />
                 

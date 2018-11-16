@@ -47,14 +47,6 @@
                       </thead>
                       <tbody>
                             <tr>
-                            	<td><?php _l('Find unused images'); ?></td>
-                              <td><a href="<?php echo site_url('admin/benchmarktool/unused_images/0')?>" class="btn btn-info btn-sm"><?php _l('Run tool'); ?></a></td>
-                            </tr>
-                            <tr>
-                            	<td><?php _l('Find missing translation definitions'); ?></td>
-                              <td><a href="<?php echo site_url('admin/benchmarktool/translation_definitions/')?>" class="btn btn-info btn-sm"><?php _l('Run tool'); ?></a></td>
-                            </tr>
-                            <tr>
                             	<td><?php _l('Generate fake properties'); ?> x100</td>
                                 <td><a href="<?php echo site_url('admin/benchmarktool/fake_listings/100')?>" class="btn btn-info btn-sm"><?php _l('Run tool'); ?></a></td>
                             </tr>
@@ -77,10 +69,6 @@
                             <tr>
                             	<td><?php _l('Generate script archive');echo ' CLASSIFIEDS '.$settings['template']; ?></td>
                                 <td><a href="<?php echo site_url('admin/benchmarktool/generate_script_classifieds/'.$settings['template'])?>" class="btn btn-info btn-sm"><?php _l('Run tool'); ?></a></td>
-                            </tr>
-                            <tr>
-                            	<td><?php _l('Generate script LOCAL');echo ' LOCAL '.$settings['template']; ?></td>
-                                <td><a href="<?php echo site_url('admin/benchmarktool/generate_script_local/'.$settings['template'])?>" class="btn btn-info btn-sm"><?php _l('Run tool'); ?></a></td>
                             </tr>
                       </tbody>
                     </table>

@@ -6,7 +6,6 @@ class Settings extends Admin_Controller {
 		parent::__construct();
         $this->load->model('settings_m');
         $this->data['settings'] = $this->settings_m->get_fields();
-        $this->data['content_language_id'] = $this->language_m->get_content_lang();
 	}
     
     public function contact()
@@ -45,22 +44,10 @@ class Settings extends Admin_Controller {
     {
         // Set up the form
         $rules = $this->settings_m->rules_system;
-        
-        if(config_item('results_page_id_enabled')!=FALSE)
-        {
-            $rules['results_page_id'] = array('field'=>'results_page_id', 'label'=>'lang:Results page', 'rules'=>'trim|required');
-        }
-        
         $this->form_validation->set_rules($rules);
         
         $this->load->model('payments_m');
         $this->data['currencies'] = $this->payments_m->currencies;
-        
-        $this->load->model('page_m');
-        $this->data['pages_no_parents'] = $this->page_m->get_no_parents_news($this->data['content_language_id'], 'Select page', $id);
-        unset($this->data['pages_no_parents'][0]);
-        
-        $this->data['pages_no_parents']=array(''=>lang_check('Select page')) + $this->data['pages_no_parents'];
         
         // Process the form
         if($this->form_validation->run() == TRUE)

@@ -330,7 +330,7 @@
                                 </div>
                                 <?php endif; ?>
                                 
-                                <?php if((config_db_item('clickatell_api_id') != '' || config_db_item('clickatell_api_key') != '') && file_exists(APPPATH.'controllers/admin/savesearch.php')): ?>
+                                <?php if(config_db_item('clickatell_api_id') != '' && file_exists(APPPATH.'controllers/admin/savesearch.php')): ?>
                                 <div class="form-group">
                                   <label class="col-lg-2 control-label"><?php echo lang_check('SMS notifications enabled')?></label>
                                   <div class="col-lg-10">
@@ -384,7 +384,7 @@ custom_fields_print('custom_fields_code');
                 </div>
 
                 <div class="widget-content">
-                  <div class="padd">
+                  <div class="padd" style="padding-bottom: 0px;padding-left:25px;">
                   <span class="label label-info"><?php _l('Profile gallery instructions');?></span>
                   </div>  
                   <div class="padd">

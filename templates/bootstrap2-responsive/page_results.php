@@ -82,7 +82,7 @@
             <p class="bottom-border"><strong class="f_<?php echo _ch($item['is_featured']); ?>"><?php echo _ch($item['address']); ?></strong></p>
             <p class="bottom-border"><?php echo _ch($options_name_2); ?> <span><?php echo _ch($item['option_2']); ?></span></p>
             <p class="bottom-border"><?php echo _ch($options_name_3); ?> <span><?php echo _ch($item['option_3']); ?></span></p>
-            <p class="bottom-border"><span>m2</span> <span><?php echo _ch($item['option_19']); ?></span></p>
+            <p class="bottom-border"><?php echo _ch($options_name_19); ?> <span><?php echo _ch($item['option_19']); ?></span></p>
             <?php if(!empty($item['icons'])):?>
             <p class="prop-icons">
                 <?php 

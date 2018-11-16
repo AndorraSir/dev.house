@@ -887,7 +887,7 @@ class Cronjob extends CI_Controller
         $this->load->model('settings_m');
         $this->load->model('user_m');
         
-        if((config_db_item('clickatell_api_id') != '' || config_db_item('clickatell_api_key') != '') && file_exists(APPPATH.'controllers/admin/savesearch.php') &&
+        if(config_db_item('clickatell_api_id') != '' && file_exists(APPPATH.'controllers/admin/savesearch.php') &&
            $user->research_sms_notifications == 1 && !empty($user->phone) )
         {
             $this->load->library('clickatellapi');
@@ -1233,7 +1233,7 @@ class Cronjob extends CI_Controller
                 }
                 
                 // Send SMS notification
-                if((config_db_item('clickatell_api_id') != '' || config_db_item('clickatell_api_key') != '') && file_exists(APPPATH.'controllers/admin/savesearch.php') &&
+                if(config_db_item('clickatell_api_id') != '' && file_exists(APPPATH.'controllers/admin/savesearch.php') &&
                    $user->research_sms_notifications == 1 && !empty($user->phone) )
                 {
                     $return_sms = $this->clickatellapi->send_sms($sms_message, $user->phone);

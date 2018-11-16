@@ -69,17 +69,6 @@ CKEDITOR.dtd.a.p = 1;
 CKEDITOR.config.protectedSource.push(/<i[^>]*><\/i>/g);
 CKEDITOR.config.extraAllowedContent = 'p(*)[*]{*};div(*)[*]{*};li(*)[*]{*};ul(*)[*]{*}';
 CKEDITOR.dtd.$removeEmpty['i'] = false;
-
-
-// *only* if we have anchor on the url
-if(typeof location_hash !== 'undefined' && location_hash != '' && $(location_hash).length ) {
-    setTimeout( function() { 
-        $('html, body').animate({
-            scrollTop: ($(location_hash).offset().top-100) + 'px'
-        }, 1000, 'swing');
-    }, 1000);
-    // smooth scroll to the anchor id
-}
 </script>
 
 </body>

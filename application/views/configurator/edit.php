@@ -21,13 +21,7 @@
 </div>
 
 <div class="">
-    
-<?php if(!function_exists('curl_version') || !function_exists('curl_exec')):?>
-    <div class="alert alert-danger"><?php echo lang_check('CURL is required for some script functionalities, please enable')?></div>
-<?php endif;?>
-
 <div class="alert alert-info"><?php echo lang_check('start_configuration')?></div>
-
 <?php if(isset($warning_sqlite)):?>
 <div class="alert alert-warning"><?php echo $warning_sqlite?></div>
 <?php endif;?>
@@ -41,13 +35,6 @@
         <label class="control-label" for="app_type"><?php echo lang_check('app_type')?></label>
         <div class="controls">
             <?php echo form_dropdown('app_type', $l_type_options, 'cms');?>
-        </div>
-    </div>
-
-    <div class="control-group warning">
-        <label class="control-label" for="your_email"><?php echo lang_check('Your email')?></label>
-        <div class="controls">
-            <?php echo form_input('your_email', set_value('your_email', ''))?>
         </div>
     </div>
     

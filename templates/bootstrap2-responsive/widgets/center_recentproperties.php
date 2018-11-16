@@ -14,10 +14,10 @@
         <span class="pull-left hide" style="padding-top: 5px;">{lang_OrderBy}&nbsp;&nbsp;&nbsp;</span>
     </div>
 <br style="clear:both;">
-    <div class="">
+    <div class="row">
         {has_no_results}
         <ul class="thumbnails">
-        <li class="col-sm-12">
+        <li class="col-12">
         <div class="alert alert-success">
         {lang_Noestates}
         </div>

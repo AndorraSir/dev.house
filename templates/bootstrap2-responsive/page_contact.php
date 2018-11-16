@@ -3,7 +3,7 @@
   <head>
     <?php _widget('head');?>    
     <script>
-        $(document).ready(function(){
+    $(document).ready(function(){
 
         <?php if(config_db_item('map_version') =='open_street'):?>
 
@@ -86,123 +86,97 @@
 <?php _subtemplate('headers', _ch($subtemplate_header, 'empty')); ?>
 
 <a id="content"></a>
-<div class="wrap-content pt-5">       
-    <div class="container " id="contactMap">
-       
-    </div>
-    <div class="container hide">
-        <div class="row">
-         <h1>{page_title}</h1>
-        </div>
-    </div>
-
+<div class="wrap-content">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-
-                <h2 id="form">{lang_Contactform}</h2>
-                <div id="contactForm"  class="contact-form">
-                {has_settings_email}
-
-                {validation_errors}
-                {form_sent_message}
-                <form method="post" action="{page_current_url}#form">
-                    
-                    <!-- The form name must be set so the tags identify it -->
-                    <input type="hidden" name="form" value="contact" />
-
-                            <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group {form_error_firstname}">
-                                    <div class="controls">
-                                        <div class="input-prepend input-block-level">
-                                            <span class="add-on"><i class="icon-user"></i></span>
-                                            <input class="form-control input-block-level" id="firstname" name="firstname" type="text" placeholder="{lang_FirstLast}" value="{form_value_firstname}" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group {form_error_email}">
-                                    <div class="controls">
-                                        <div class="input-prepend input-block-level">
-                                            <span class="add-on"><i class="icon-envelope"></i></span>
-                                            <input class="form-control  input-block-level" id="email" name="email" type="text" placeholder="{lang_Email}" value="{form_value_email}" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group {form_error_phone}">
-                                    <div class="controls">
-                                        <div class="input-prepend input-block-level">
-                                            <span class="add-on"><i class="icon-phone"></i></span>
-                                            <input class="form-control input-block-level" id="phone" name="phone" type="text" placeholder="{lang_Phone}" value="{form_value_phone}" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php if(config_item('captcha_disabled') === FALSE ): ?>
-                                <div class="form-group"  style="display: none;">
-                                    <?php echo $captcha['image']; ?>
-                                    <input class="captcha" name="captcha" type="text" placeholder="{lang_Captcha}" value="" />
-                                    <input class="hidden" name="captcha_hash" type="text" value="<?php echo $captcha_hash; ?>" />
-                                </div>
-                                <?php endif; ?>
-                                
-                                <?php if(config_item('recaptcha_site_key') !== FALSE): ?>
-                                    <div class="form-group" >
-                                        <label class="control-label captcha"></label>
-                                        <div class="controls">
-                                            <?php _recaptcha(true); ?>
-                                       </div>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if(config_db_item('terms_link') !== FALSE): ?>
-                                    <button class="btn btn-info" type="submit" style="margin-top: 10px;">{lang_Send}</button>
-                                <?php endif; ?>
-                            </div>
-                            <div class="span-mini"></div>
-                            <div class="col-sm-6">
-                                <div class="control-group {form_error_message}">
-                                    <div class="controls">
-                                        <textarea id="message" name="message" rows="4" class="form-control input-block-level" type="text" placeholder="{lang_Message}">{form_value_message}</textarea>
-                                    </div>
-                                </div>
-                                                                
-                                <?php if(config_db_item('terms_link') !== FALSE): ?>
-                                <div class="control-group">
-                                    <div class="controls text-right">
-                                        <a target="_blank" href="<?php echo config_db_item('terms_link'); ?>"><?php echo lang_check('I accept the Terms and Conditions'); ?></a>
-                                        <input type="checkbox" value="1" name="terms" required="required"  style="margin: 0;"> 
-                                    </div>
-                                </div>
-                                <?php else: ?>
-                                    <button class="btn btn-info pull-right" type="submit">{lang_Send}</button>
-                                <?php endif; ?>
-                            </div>
-                            </div>
-                </form>
-                {/has_settings_email}
-                </div>
-            </div>
-            <div class="col-sm-6 property_content">
-            <h2>{lang_Contactdetails}</h2>
-            {page_body}
-            </div>
-        </div>
-    </div>
-    <div class="container mb-4">
-        <h2>{lang_Locationonmap}</h2>
-    </div>
-    <div class="container-fluid p-0">
+        <h2>{page_title}</h2>
+        <div class="property_content">
+        {page_body}
+        
         {has_settings_gps}
-            <div class="container-fluid p-0">
-                {has_settings_gps}
-               <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="350" id="gmap_canvas" src="https://maps.google.com/maps?q=Av.%20de%20Joan%20Mart%C3%AD%2C%20102%2C%20AD200%20Encamp%2C%20Andorra&t=&z=11&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.pureblack.de">pureblack.de</a></div><style>.mapouter{text-align:right;height:350px;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:350px;width:100%;}</style></div>
-                {/has_settings_gps}
-            </div>
+        <h2>{lang_Locationonmap}</h2>
+        <div id="contactMap">
+        </div>
         {/has_settings_gps}
-    </div>
-    <div class="container pt-4 hide">
-
+        
+        {has_settings_email}
         <h2 id="form">{lang_Contactform}</h2>
-     
+        <div id="contactForm"  class="contact-form">
+        {validation_errors}
+        {form_sent_message}
+        <form method="post" action="{page_current_url}#form">
+            
+            <!-- The form name must be set so the tags identify it -->
+            <input type="hidden" name="form" value="contact" />
+
+                    <div class="row-fluid">
+                    <div class="span5">
+                        <div class="control-group {form_error_firstname}">
+                            <div class="controls">
+                                <div class="input-prepend input-block-level">
+                                    <span class="add-on"><i class="icon-user"></i></span>
+                                    <input class="input-block-level" id="firstname" name="firstname" type="text" placeholder="{lang_FirstLast}" value="{form_value_firstname}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group {form_error_email}">
+                            <div class="controls">
+                                <div class="input-prepend input-block-level">
+                                    <span class="add-on"><i class="icon-envelope"></i></span>
+                                    <input class="input-block-level" id="email" name="email" type="text" placeholder="{lang_Email}" value="{form_value_email}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group {form_error_phone}">
+                            <div class="controls">
+                                <div class="input-prepend input-block-level">
+                                    <span class="add-on"><i class="icon-phone"></i></span>
+                                    <input class="input-block-level" id="phone" name="phone" type="text" placeholder="{lang_Phone}" value="{form_value_phone}" />
+                                </div>
+                            </div>
+                        </div>
+                        <?php if(config_item('captcha_disabled') === FALSE ): ?>
+                        <div class="control-group" >
+                            <?php echo $captcha['image']; ?>
+                            <input class="captcha" name="captcha" type="text" placeholder="{lang_Captcha}" value="" />
+                            <input class="hidden" name="captcha_hash" type="text" value="<?php echo $captcha_hash; ?>" />
+                        </div>
+                        <?php endif; ?>
+                        
+                        <?php if(config_item('recaptcha_site_key') !== FALSE): ?>
+                            <div class="control-group" >
+                                <label class="control-label captcha"></label>
+                                <div class="controls">
+                                    <?php _recaptcha(true); ?>
+                               </div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if(config_db_item('terms_link') !== FALSE): ?>
+                            <button class="btn btn-info" type="submit" style="margin-top: 10px;">{lang_Send}</button>
+                        <?php endif; ?>
+                    </div>
+                    <div class="span-mini"></div>
+                    <div class="span6">
+                        <div class="control-group {form_error_message}">
+                            <div class="controls">
+                                <textarea id="message" name="message" rows="4" class="input-block-level" type="text" placeholder="{lang_Message}">{form_value_message}</textarea>
+                            </div>
+                        </div>
+                                                        
+                        <?php if(config_db_item('terms_link') !== FALSE): ?>
+                        <div class="control-group">
+                            <div class="controls text-right">
+                                <a target="_blank" href="<?php echo config_db_item('terms_link'); ?>"><?php echo lang_check('I accept the Terms and Conditions'); ?></a>
+                                <input type="checkbox" value="1" name="terms" required="required"  style="margin: 0;"> 
+                            </div>
+                        </div>
+                        <?php else: ?>
+                            <button class="btn btn-info pull-right" type="submit">{lang_Send}</button>
+                        <?php endif; ?>
+                    </div>
+                    </div>
+		</form>
+        </div>
+        {/has_settings_email}
         
        <?php _widget('center_imagegallery');?>
         
@@ -217,6 +191,7 @@
         </ul>
         {/has_page_documents}
         </div>
+    </div>
 </div>
     
 <?php _subtemplate('footers', _ch($subtemplate_footer, 'standard')); ?>

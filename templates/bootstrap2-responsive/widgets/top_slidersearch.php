@@ -6,7 +6,7 @@
     {/slideshow_images}
     </ol>
     <!-- Carousel items -->
-    <div class="carousel-inner gggg">
+    <div class="carousel-inner">
         <?php foreach ($slideshow_images as $key => $item):?>
             <div class="item <?php _che($item['first_active']);?>">
             <div class="cont">

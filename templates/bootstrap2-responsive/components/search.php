@@ -84,9 +84,7 @@
 <?php endif; ?>
 
 <div class="wrap-search scentered">
-                    
-
-    <div class="container center-search bg-light-grey">
+    <div class="container center-search">
 
         <ul id="search_option_4" class="menu-onmap tabbed-selector">
             <li class="all-button" style="display:none;"><a href="#"><?php echo lang_check('All'); ?></a></li>
@@ -94,27 +92,21 @@
         </ul>
         
         <div class="search-form custom-search-form">
-            <form class="form-inline col-sm-12 pl-0 pr-0">
+            <form class="form-inline col-12 pl-0 pr-0">
             
                 <input id="rectangle_ne" type="text" class="hide" />
                 <input id="rectangle_sw" type="text" class="hide" />
             
-                <div class="col-sm-3 pr-lg-0 mb-lg-0">
-                    <input id="search_option_smart" type="text" class="form-control custom-input" value="{search_query}" placeholder="{lang_CityorCounty}" autocomplete="off" />
-                </div>
-                <div class="col-sm-3 pr-lg-0 mb-lg-0">
-                    <select id="search_option_2" class="form-control selectpicker" placeholder="{options_name_2}">
-                        {options_values_2}
-                    </select>
-                </div>    
-                <div class="col-sm-3 pr-lg-0 mb-lg-0">
-                     <select id="search_option_3" class="form-control selectpicker nomargin" placeholder="{options_name_3}">
-                        {options_values_3}
-                    </select>
-                </div>
-                <div class="col-sm-3 pr-lg-0 mb-lg-0">
-                    <button id="search-start" type="submit" class="btn btn-info">&nbsp;&nbsp;{lang_Search}&nbsp;&nbsp;</button>
-                </div>
+            
+                <input id="search_option_smart" type="text" class="col-4 form-control custom-input" value="{search_query}" placeholder="{lang_CityorCounty}" autocomplete="off" />
+                <select id="search_option_2" class="col-3 selectpicker" placeholder="{options_name_2}">
+                    {options_values_2}
+                </select>
+                 <select id="search_option_3" class="col-3 selectpicker nomargin" placeholder="{options_name_3}">
+                    {options_values_3}
+                </select>
+                
+                <button id="search-start" type="submit" class="btn btn-info btn-large">&nbsp;&nbsp;{lang_Search}&nbsp;&nbsp;</button>
                 <img id="ajax-indicator-1" class="ajax-indicator" src="assets/img/ajax-loader.gif"/>
                 
                 <div class="advanced-form-part hidden">
