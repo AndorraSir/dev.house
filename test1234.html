@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/style-min.css">
+
+	 <script type="text/javascript">
+
+	 	var name = "Juan";
+	 	var currentSaldo = 350;
+
+	 	function sayHello() {
+	 		var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			var s = today.getSeconds();
+
+			if (h <= 12){
+				document.body.style.backgroundColor = "red";
+			}
+			else{
+				document.body.style.backgroundColor = "blue";
+			}
+
+			alert('Hello ' + name + " " + h + ":" + m + ":" + s );
+		}
+		function sayGoodbye() {
+	 		var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			var s = today.getSeconds();
+
+			if (h == "12:00"){
+				document.body.style.backgroundColor = "red";
+			}
+			else{
+				document.body.style.backgroundColor = "white";
+			}
+
+			alert('Goodbye ' + name + " " + h + ":" + m + ":" + s );
+		}
+
+		function getSaldo() {
+	 		var inputSaldo = document.getElementById('saldo').value;
+	 		var saldoResults = document.getElementsByTagName('saldoResults').value;
+			if (inputSaldo < currentSaldo){
+				alert("OK");
+			}
+			else{
+				alert("Sorry not enough");
+			}
+		}
+	 </script>
+</head>
+
+<body id="top">
+	
+<br/><br/><br/><br/>
+
+	<section class="section">
+		<div class="container">
+			<div class="row">
+				<div class="twelve columns" id="container">
+					<h2>Pruebas</span></h2>
+					<p><input type="text" name="name" placeholder="Type something">
+						<br>  
+        				<button onclick="sayHello()" class="button btn__primary" >Click me to say hello</button>
+					</p>
+					<p> 
+						<button onclick="sayGoodbye()" class="button btn__primary" >Click me to say bye</button>
+					</p>
+					<p> 
+						<input type="text" id="saldo" placeholder="How much do you want to withdraw?">
+						<br>  
+						<button onclick="getSaldo()" class="button btn__primary" >Check saldo</button>
+						<input type="text" name="saldoResults" >
+
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	
+</body>
+
+
+</html>

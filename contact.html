@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<meta charset="utf-8">
+	<title>Contact Mona Fouad, Freelance Frontend Developer and UI Designer</title>
+	<meta name="description" content="Contact Mona Fouad, Freelance Frontend Developer and UI Designer based in Barcelona" />
+	<meta name="keywords" content="front end, ux ui, ui design, ui ux, website design, web design company, website designer, ui designer, app design inspiration, interface design, freelance developer, front end developer, web designer freelance, freelance front end developer, frontend web development, designer freelance, web ui design"
+	/>
+	<meta name="author" content="mona fouad" />
+
+	<!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+
+	<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/style-min.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
+
+	<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<link rel="icon" type="image/png" href="favicon.ico">
+
+	<!--[if lt IE 9]>
+     <link rel="stylesheet" href="/css/ie.css" media="screen">
+     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+     <script type="text/javascript" src="/js/selectivizr-min.js"></script>
+     <![endif]-->
+
+	<script>
+		(function(i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r;
+			i[r] = i[r] || function() {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date();
+			a = s.createElement(o),
+				m = s.getElementsByTagName(o)[0];
+			a.async = 1;
+			a.src = g;
+			m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+		ga('create', 'UA-87253238-1', 'auto');
+		ga('send', 'pageview');
+
+	</script>
+</head>
+<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link rel="icon" type="image/png" href="favicon.ico">
+
+<!--[if lt IE 9]>
+	 <link rel="stylesheet" href="/css/ie.css" media="screen">
+	 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	 <script type="text/javascript" src="/js/selectivizr-min.js"></script>
+	 <![endif]-->
+
+</head>
+
+<body id="top">
+	<header class="header">
+		<nav id="main-menu">
+			<a id="MenuToggle" class="menu-button" href="#"><i class="fa fa-bars"></i></a>
+			<a href="http://www.monafouad.com" class="nav__logo-link">
+				<div class="nav__logo"></div>
+			</a>
+			<ul id="jqmenu" class="menu">
+				<li class="first"><a href="index.html#services" data-section="#services">WHAT I DO</a></li>
+				<li class="left"><a href="index.html#process" data-section="#process">THE PROCESS</a></li>
+				<li class="right"><a href="index.html#work" data-section="#work">WORK</a></li>
+				<li class="btn__main">
+					<a id="btn-contact" href="contact.html" class="button btn__primary" data-section="#">
+						CONTACT ME<i class="fa fa-chevron-right icon-sm" aria-hidden="true">
+					</i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<section id="contact_intro" class="section section__bg-grey first-content">
+		<div class="container">
+			<div class="row">
+				<div class="twelve columns">
+					<h1>LET'S  <span class="red-bold">JOIN FORCES</span></h1>
+					<p>
+						Like what you see and have a specific project in mind? Contact me, I would love to hear about it!
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="contact" class="section">
+		<div class="container">
+			<div class="row">
+				<div class="twelve columns">
+					<h2>CONTACT <span class="red-bold">ME</span></h2>
+					<p>Get in touch! You may drop me a line at <a href="mailto:hello@monafouad.com">hello@monafouad.com</a>, or use the contact form below.
+				</div>
+				<div class="contact_container">
+					<form name="contact-form" id="contactForm" action="sendemail.php" method="POST">
+						<div class="row">
+							<div class="input-field one-half column">
+								<label for="name" data-error="wrong" data-success="right">Name</label>
+								<input type="text" name="name" class="validate" id="name">
+							</div>
+							<div class="input-field one-half column">
+								<label class="sr-only" for="email" data-error="wrong" data-success="right">Email</label>
+								<label for="email" data-error="wrong" data-success="right">Email</label>
+								<input id="email" type="email" name="email" class="validate">
+							</div>
+						</div>
+
+						<div class="row input-field">
+							<label for="message">Message</label>
+							<textarea name="message" id="message" class="materialize-textarea validate"></textarea>
+						</div>
+						<a id="btn-contact" href="javascript:document.getElementById('contactForm').submit();" class="button btn__primary" data-section="#">SUBMIT<i class="fa fa-chevron-right icon-sm" aria-hidden="true"></i>
+						</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer class="footer">
+		<div class="container">
+			<div class="fixed-action-btn">
+				<a href="#top" class="page-scroll" data-section="#top">
+					<i class="fa fa-chevron-circle-up icon-lg"></i>
+				</a>
+			</div>
+			<div class="row">
+				Made by ME © 2016
+			</div>
+			<div class="row">
+				<ul>
+					<li>
+						<a href="https://www.linkedin.com/in/mona-fouad-a15b4422" target="_blank">
+							<i class="fa fa-linkedin icon-lg"></i></a>
+					</li>
+					<li>
+						<a href="https://plus.google.com/u/0/109594638066008520016" target="_blank">
+							<i class="fa fa-google-plus icon-lg"></i></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+
+
+</body>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/scripts.js"></script>
+<script type="text/javascript" src="js/enquire.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+
+
+</html>

@@ -1,0 +1,682 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<!-- utf-8 works for most cases -->
+	<meta name="viewport" content="width=device-width">
+	<!-- Forcing initial-scale shouldn't be necessary -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Use the latest (edge) version of IE rendering engine -->
+	<title></title>
+	<!-- the <title> tag shows on email notifications on Android 4.4. -->
+	<style type="text/css">
+		/* ensure that clients don't add any padding or spaces around the email design and allow us to style emails for the entire width of the preview pane */
+		/* 3 equal-width columns Layout Pattern CSS */
+
+		@media only screen and (max-width: 599px) {
+			td[class="pattern"] table {
+				width: 100%;
+			}
+			td[class="pattern"] .col {
+				width: 30%;
+			}
+			td[class="pattern"] .col-left {
+				width: 40%;
+			}
+			table[class="sm-hide"],
+			td[class="sm-hide"],
+			span[class="sm-hide"],
+			tr[class="sm-hide"] {
+				display: none !important;
+			}
+			td[class="no-padding"] {
+				padding: 0px !important;
+			}
+		}
+
+		@media only screen and (max-width: 500px) {
+			td[class="pattern"] .col,
+			td[class="pattern"] .col-left {
+				width: 100%;
+				display: block;
+			}
+		}
+
+		body,
+		#bodyTable {
+			height: 100% !important;
+			width: 100% !important;
+			margin: 0;
+			padding: 0;
+		}
+		/* Ensures Webkit- and Windows-based clients don't automatically resize the email text. */
+
+		body,
+		table,
+		td,
+		p,
+		a,
+		li,
+		blockquote {
+			-ms-text-size-adjust: 100%;
+			-webkit-text-size-adjust: 100%;
+		}
+		/* Forces Yahoo! to display emails at full width */
+
+		.thread-item.expanded .thread-body .body,
+		.msg-body {
+			width: 100% !important;
+			display: block !important;
+		}
+		/* Forces Hotmail to display emails at full width */
+
+		.ReadMsgBody .ExternalClass {
+			width: 100%;
+			background-color: #f4f4f4;
+		}
+		/* Forces Hotmail to display normal line spacing. */
+
+		.ExternalClass,
+		.ExternalClass p,
+		.ExternalClass span,
+		.ExternalClass font,
+		.ExternalClass td,
+		.ExternalClass div {
+			line-height: 100%;
+		}
+		/* Resolves webkit padding issue. */
+
+		table {
+			border-spacing: 0;
+		}
+		/* Resolves the Outlook 2007, 2010, and Gmail td padding issue, and removes spacing around tables that Outlook adds. */
+
+		table,
+		td {
+			border-collapse: collapse;
+			mso-table-lspace: 0pt;
+			mso-table-rspace: 0pt;
+		}
+		/* Corrects the way Internet Explorer renders resized images in emails. */
+
+		img {
+			-ms-interpolation-mode: bicubic;
+		}
+		/* Ensures images don't have borders or text-decorations applied to them by default. */
+
+		img,
+		a img {
+			border: 0;
+			outline: none;
+			text-decoration: none;
+		}
+		/* Styles Yahoo's auto-sensing link color and border */
+
+		.yshortcuts a {
+			border-bottom: none !important;
+		}
+		/* Styles the tel URL scheme */
+
+		a[href^=tel] {
+			color: #000000 !important;
+		}
+		/* Media queries for when the viewport is smaller than the default email width but not too narrow. */
+
+		@media screen and (min-device-width:600px) {
+			td[class="hh-spacer"] {
+				display: none;
+			}
+			td[class="col-border"] {
+				border-right: 1px dotted #ffffff !important;
+			}
+		}
+
+		@media screen and (max-device-width: 600px),
+		screen and (max-width: 600px) {
+			/* Constrains email width for small screens */
+			table[class="email-container"] {
+				width: 100% !important;
+			}
+			p[class="col-max-width"] {
+				max-width: 200px;
+				margin-left: auto !important;
+				margin-right: auto !important;
+			}
+			/* Constrains tables for small screens */
+			table[class="fluid"] {
+				width: 100% !important;
+			}
+			td[class="hh-spacer"] {
+				display: block !important;
+				border-top: 1px dotted #ffffff;
+				padding-top: 20px;
+				width: 200px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			/* Forces images to resize to full width of their container */
+			img[class="fluid"],
+			img[class="force-col-center"] {
+				width: 100% !important;
+				max-width: 100% !important;
+				height: auto !important;
+			}
+			/* And centers these ones */
+			img[class="force-col-center"] {
+				margin: auto !important;
+			}
+			/* Forces table cells into rows */
+			td[class="force-col"],
+			td[class="force-col-center"],
+			td[class="force-col-margin"] {
+				display: block !important;
+				width: 100% !important;
+				clear: both;
+			}
+			td[class="force-col-margin"] {
+				margin-top: 10px!important;
+				clear: both;
+				padding-left: 0px !important;
+			}
+			/* And centers these ones */
+			td[class="force-col-center"] {
+				text-align: center !important;
+			}
+			/* Forces table cells into rows */
+			/* Floats a previously stacked image to the left */
+			img[class="col-3-img-l"] {
+				float: left;
+				margin: 0 15px 15px 0;
+			}
+			/* Floats a previously stacked image to the right */
+			img[class="col-3-img-r"] {
+				float: right;
+				margin: 0 0 15px 15px;
+			}
+			/* Makes buttons full width */
+			table[class="button"] {
+				width: 100% !important;
+			}
+			td[class="col-border"] {
+				border-right: 0px!important;
+			}
+		}
+		/* Media queries for when the viewport is narrow. */
+		/* Rules prefixed with 'hh-' (for 'handheld') repeat much of what's above, but these don't trigger until the smaller screen width. */
+
+		@media screen and (max-device-width: 425px),
+		screen and (max-width: 425px) {
+			/* Helper only visible on handhelds. All styles are inline along with a `display:none`, which this class overrides */
+			div[class="hh-visible"] {
+				display: block !important;
+			}
+			/* Center stuff */
+			div[class="hh-center"] {
+				text-align: center;
+				width: 100% !important;
+			}
+			td[class="border"] {
+				border-right: 0px!important;
+			}
+			/* Constrain tables for small screens */
+			table[class="hh-fluid"] {
+				width: 100% !important;
+			}
+			/* Force images to resize to full width of their container */
+			img[class="hh-fluid"],
+			img[class="hh-force-col-center"] {
+				width: 100% !important;
+				max-width: 100% !important;
+				height: auto !important;
+			}
+			/* And center these ones */
+			img[class="hh-force-col-center"] {
+				margin: auto !important;
+			}
+			/* Force table cells into rows */
+			td[class="hh-force-col"],
+			td[class="hh-force-col-center"] {
+				display: block !important;
+				width: 100% !important;
+				clear: both;
+			}
+			/* And center these ones */
+			td[class="hh-force-col-center"] {
+				text-align: center !important;
+			}
+			/* Stack the previously floated images */
+			img[class="col-3-img-l"],
+			img[class="col-3-img-r"] {
+				float: none !important;
+				margin: 15px auto !important;
+				text-align: center !important;
+			}
+		}
+
+	</style>
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="#E4E4E4" style="margin:0; padding:0; -webkit-text-size-adjust:none; -ms-text-size-adjust:none;">
+	<table cellpadding="0" cellspacing="0" border="0" height="100%" width="100%" bgcolor="#E4E4E4" id="bodyTable">
+		<tr>
+			<td>
+
+				<!-- CSS Image background in Outlook : BEGIN -->
+				<!-- Best used with absolute image paths -->
+				<!--[if gte mso 9]>
+  <v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
+    <v:fill type="tile" color="#f4f4f4" src="assets/nice_snow.png">
+  </v:background>
+<![endif]-->
+				<!-- CSS Image background in Outlook : END -->
+
+				<!-- Logo Left, Nav Right, 100% Nav Bar : BEGIN -->
+				<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center" bgcolor="#E4E4E4" style="text-align: center;">
+					<tr>
+						<td>
+							<table border="0" width="600" cellpadding="0" cellspacing="0" align="center" style="margin: auto;" class="email-container">
+								<tr>
+									<td height="10" style="font-size: 0; line-height: 0;">&nbsp;</td>
+								</tr>
+								<tr class="sm-hide">
+									<td class="hh-force-col-center" valign="middle" style="text-align: left;font-family:Arial; padding: 10px 0 0px 0px;">
+										<a href="#" style="color: #7f7f7f;font-family: Arial, sans-serif; font-size:12px;" target="_blank"> Visualizar esta pagina en el navegador</a>
+									</td>
+									<td class="hh-force-col-center" valign="middle" style="padding: 10px 0 0px 0px;text-align: right;font-family: Brandon Grotesque;">
+										<span><a href="#" style="color: #7f7f7f;font-family: Arial, sans-serif; font-size:12px;" target="_blank">Mi cuenta</a>&nbsp;&nbsp;|
+										<a href="#" style="color: #7f7f7f;font-family: Arial, sans-serif; font-size:12px;" target="_blank">Darte de baja</a>&nbsp;&nbsp;
+									</td>
+								</tr>
+								<tr>
+									<td height="10" style="font-size: 0; line-height: 0;">&nbsp;</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+				<!-- Logo Left, Nav Right, 100% Nav Bar : END -->
+
+
+				<!-- Email Container : BEGIN -->
+				<!-- This table wraps the whole body email within it's width (600px), sets the background color (white) and border (thin, gray, solid) -->
+				<table border="0" width="600" cellpadding="0" cellspacing="0" align="center" bgcolor="#E4E4E4" style="border: 1px solid #e5e5e5;margin: auto;" class="email-container">
+
+					<!-- Single Fluid Image, No Crop : BEGIN -->
+					<tr>
+						<td style="background: #ffffff;text-align: center;padding: 10px 20px;">
+							<a href="#" target="_blank"><img src="http://animation1.pierreetvacances.com/es/newsletters/297x56-logo-pierre-et-vacances-01.jpg" alt="Logo" height="auto" width="320" border="0" style="" class="fluid"></a>
+						</td>
+					</tr>
+
+					<tr>
+						<td style="background: #FFFFFF;">
+							<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center" class="sm-hide">
+								<tr>
+									<td style="padding: 10px;font-size: 13px; font-family:Brandon Grotesque,sans-serif; line-height: 22px; color: #919191;text-align: center;background: #ffffff;font-weight: bold;">
+										<a href="http://www.pierreetvacances.com/es-es/ofertas-vacaciones_ms?hc=ONT24&duree=7&dated=2017-04-08&utm_source=Clickpoint&utm_medium=Online_Partners&utm_campaign=SemanaSanta" target="_blank" style="color: #919191;text-decoration: none;padding:5px;">MEJORES OFERTAS</a>|
+										<a href="http://www.pierreetvacances.com/es-es/apartamentos-vacaciones-espana_ms?hc=ONT24&duree=7&dated=2017-04-08&utm_source=Clickpoint&utm_medium=Online_Partners&utm_campaign= SemanaSanta" target="_blank" style="color: #919191;text-decoration: none;padding:5px;">ESPA&Ntilde;A </a>|
+										<a href="http://www.pierreetvacances.com/es-es/apartamentos-vacaciones-francia_ms?hc=ONT24&duree=7&dated=2017-04-08&utm_source=Clickpoint&utm_medium=Online_Partners&utm_campaign=SemanaSanta" target="_blank" style="color: #919191;text-decoration: none;padding:5px;">FRANCIA </a>|
+										<a href="http://www.pierreetvacances.com/es-es/alquiler-vacaciones-playas_om?hc=ONT24&duree=7&dated=2017-04-08&utm_source=Clickpoint&utm_medium=Online_Partners&utm_campaign=SemanaSanta" target="_blank" style="color: #919191;text-decoration: none;padding:5px;">MAR</a>|
+										<a href="http://www.pierreetvacances.com/es-es/semana-santa_om?hc=ONT24&duree=7&dated=2017-04-08&utm_source=Clickpoint&utm_medium=Online_Partners&utm_campaign=SemanaSanta" target="_blank" style="color: #F3A342;text-decoration: none;padding:5px;font-weight: bold; font-size:18px;">SEMANA SANTA</a>										|
+										<a href="http://www.pierreetvacances.com/es-es/ofertas-ultima-hora-espana_om?hc=ONT24&duree=7&dated=2017-04-08&utm_source=Clickpoint&utm_medium=Online_Partners&utm_campaign=SemanaSanta" target="_blank" style="color: #919191;text-decoration: none;padding:5px;">ULTIMA HORA</a>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+
+					<tr>
+						<td style="background: #939393;text-align: center;">
+							<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center" class="sm-hide">
+								<tr>
+									<td style="padding: 3px; font-family:Brandon Grotesque, sans-serif; font-size: 12px; line-height: 22px; color: #ffffff;letter-spacing: 0.5px;">
+										INFORMATION & RESERVAS <span style="text-decoration: underline;font-weight: bold;font-size: 16px;">900901355</span> <span style="font-size: 11px; font-style:italic">- De lunes a viernes de 08:30 a19:00- sabadad de 9:00h a 19:00h</span>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+
+					<tr>
+						<td style="padding: 15px 0 0; font-family:Brandon Grotesque, sans-serif; font-size: 16px; line-height: 30px; color: #ffffff;text-align: center;">
+							<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center">
+								<tr>
+									<td width="60%" class="force-col-center">
+										<a href="http://www.pierreetvacances.com/es-es/semana-santa_om?hc=ONT24&duree=7&dated=2017-04-08&utm_source=Clickpoint&utm_medium=Online_Partners&utm_campaign=SemanaSanta" target="_blank">
+											<img src="http://animation1.pierreetvacances.com/es/newsletters/371x229-main-banner-01.jpg" alt="" border="0" width="100%" height="auto"></a>
+									</td>
+									<td valign="top" width="40%" class="force-col-center" style="padding:0px;">
+										<table border="0" cellpadding="10" cellspacing="0" width="100%">
+											<tr>
+												<td valign="top" style="background: #42539d;padding:0px;">
+													<h3 style="border-bottom: 1px solid #ffffff;margin: 10px 10px 0px;font-size: 25px;display:inline-block;padding-bottom:5px;">SEMANA SANTA</h3>
+													<p style="margin-bottom: 0;padding-bottom: 5px; font-size:12px"> HASTA UN </p>
+													<span style="font-size: 73px; font-weight: bold; display: inline-block; padding-bottom: 5px;">-30%*</span>
+													<p style="margin-bottom: 0;padding-bottom: 10px;font-size:12px;margin-top:4px;">EN TU ESTANCIA</p>
+												</td>
+											</tr>
+											<tr>
+												<td valign="middle" style="background-color: #F6A242;color:#fff; padding:10px 5px;">
+													<a href="http://www.pierreetvacances.com/es-es/semana-santa_om?hc=ONT24&duree=7&dated=2017-04-08&utm_source=Clickpoint&utm_medium=Online_Partners&utm_campaign=SemanaSanta" target="_blank" style="color:#fff;font-size:20px; font-weight: bold;letter-spacing:1px; text-decoration:none;width:100%; display:block;"><span style="display:inline-block;">RESERVA YA</span><img src="http://animation1.pierreetvacances.com/es/newsletters/22x22-cta-button-01.jpg" alt="" width="20" height="auto" border="0" style="display:inline-block;padding-left:5px;margin-bottom:-2px;"></a>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding-top:20px; font-family:Brandon Grotesque, sans-serif; font-size: 14px; line-height: 22px; color: #666666;background: #E4E4E4;">
+							<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center">
+								<tr>
+									<td valign="top" width="48%" style="text-align: center;padding-right: 10px;" class="force-col-center">
+										<table border="0" cellpadding="10" cellspacing="0" width="100%">
+											<tr>
+												<td valign="top" style="padding:0px;" class="force-col-center">
+													<a href="http://www.pierreetvacances.com/es-es/fp_ONT_alquiler-apartamentos-apartamentos-andorra-el-tarter?hc=ONT24&duree=7&dated=2017-04-08 &utm_source=Clickpoint&utm_medium=Online_Partners&utm_campaign=Tarter" target="_blank"><img src="http://animation1.pierreetvacances.com/es/newsletters/290x174-andorra-tarter-01.jpg" alt="" border="0" width="100%"></a> <br>
+
+												</td>
+											</tr>
+											<tr>
+												<td valign="top" style="background-color:#fff;border-top:5px solid #42539d" bgcolor=“#ffffff>
+													<p style="color: #41539B; font-weight:bold;margin:0px; padding:5px 0px; font-size:16px;">Andorra</p>
+													<h2 style="margin: 0;padding:0;padding-bottom:10px;color: #41539B;text-align:center;">APARTAMENTOS <br> ANDORRA EL TARTER</h2>
+													<img src="images/border-blue.png">
+													<p style="padding:0px; padding-top:10px;margin:0px;font-size:16px; font-weight:normal; line-height:18px; padding-bottom:10px;">Ofrece una gran variedad de actividades para todas las edades y acceso a Grandvalira, el complejo de esqu&iacute; m&aacute; s grande de los Pirineos.</p>
+												</td>
+											</tr>
+											<tr>
+												<td valign="middle" style="background-color: #F6A242;color:#fff; padding:10px 5px;">
+													<a href="http://www.pierreetvacances.com/es-es/fp_ONT_alquiler-apartamentos-apartamentos-andorra-el-tarter?hc=ONT24&duree=7&dated=2017-04-08 &utm_source=Clickpoint&utm_medium=Online_Partners&utm_campaign=Tarter" target="_blank" style="color:#fff;font-size:20px; font-weight: bold;letter-spacing:1px; text-decoration:none;width:100%; display:block;"><span style="display:inline-block;">RESERVA YA</span><img src="http://animation1.pierreetvacances.com/es/newsletters/22x22-cta-button-01.jpg" alt="" width="20" height="auto" border="0" style="display:inline-block;padding-left:5px;margin-bottom:-2px;"></a>
+												</td>
+											</tr>
+										</table>
+									</td>
+									<td valign="top" width="48%" style="text-align: center;padding-left:10px;" class="force-col-margin">
+
+										<table border="0" cellpadding="10" cellspacing="0" width="100%">
+											<tr>
+												<td valign="top" style="padding:0px;" class="force-col-center">
+													<a href="http://www.pierreetvacances.com/es-es/fp_BVL_alquiler-apartamentos-bonmont-bonavista?hc=BVL25&duree=7&dated=2017-04-08&utm_source=Clickpoint&utm_medium=Online_Partners&utm_campaign=Bonmont" target="_blank">
+														<img src="http://animation1.pierreetvacances.com/es/newsletters/290x174-cataluna-bonavista-01.jpg" alt="" width="100%" border="0"></a>
+
+												</td>
+											</tr>
+											<tr>
+												<td valign="top" style="background-color:#fff;border-top:5px solid #42539d" bgcolor=“#ffffff>
+
+													<p style="color: #41539B; font-weight:bold;margin:0px; padding:5px 0px; font-size:16px;">Catalu&ntilde;a</p>
+													<h2 style="margin: 0;padding:0;padding-bottom:10px;color: #41539B;text-align:center;">RESORT BONAVISTA<br>DE BONMONT</h2>
+													<img src="images/border-blue.png">
+													<p style="padding:0px; padding-top:10px;margin:0px;font-size:16px; font-weight:normal; line-height:18px; padding-bottom:10px;">Disfruta de este resort de la costa catalana, entre el mar y la monta&ntilde;a, con un parque acu&aacute; tico y junto al campo de golf de Bonmont.</p>
+												</td>
+											</tr>
+											<tr>
+												<td valign="middle" style="background-color: #F6A242;color:#fff; padding:10px 5px;">
+													<a href="http://www.pierreetvacances.com/es-es/fp_BVL_alquiler-apartamentos-bonmont-bonavista?hc=BVL25&duree=7&dated=2017-04-08&utm_source=Clickpoint&utm_medium=Online_Partners&utm_campaign=Bonmont" target="_blank" style="color:#fff;font-size:20px; font-weight: bold;letter-spacing:1px; text-decoration:none;width:100%; display:block;"><span style="display:inline-block;">RESERVA YA</span><img src="http://animation1.pierreetvacances.com/es/newsletters/22x22-cta-button-01.jpg" alt="" width="20" height="auto" border="0" style="display:inline-block;padding-left:5px;margin-bottom:-2px;"></a>
+												</td>
+											</tr>
+										</table>
+
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding-top:20px; font-family:Brandon Grotesque, sans-serif; font-size: 14px; line-height: 22px; color: #666666;background: #E4E4E4;">
+							<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center">
+								<tr>
+									<td valign="top" width="48%" style="text-align: center;padding-right: 10px;" class="force-col-center">
+										<table border="0" cellpadding="10" cellspacing="0" width="100%">
+											<tr>
+												<td valign="top" style="padding:0px;" class="force-col-center">
+													<a href="http://www.pierreetvacances.com/es-es/fp_EWL_alquiler-apartamentos-apartamentos-sevilla?hc=ONT24&duree=7&dated=2017-04-08&utm_source=Clickpoint&utm_medium=Online_Partners&utm_campaign=Sevilla" target="_blank">
+														<img src="http://animation1.pierreetvacances.com/es/newsletters/290x174-andalucia-sevilla-01.jpg" alt="" width="100%" border="0"></a>
+												</td>
+											</tr>
+											<tr>
+												<td valign="top" style="background-color:#fff;border-top:5px solid #42539d" bgcolor=“#ffffff>
+													<p style="color: #41539B; font-weight:bold;margin:0px; padding:5px 0px; font-size:16px;">Andalucia</p>
+													<h2 style="margin: 0;padding:0;padding-bottom:10px;color: #41539B;text-align:center;">APARTAMENTOS<br>SEVILLA</h2>
+													<img src="images/border-blue.png">
+													<p style="padding:0px; padding-top:10px;margin:0px;font-size:16px; font-weight:normal; line-height:18px; padding-bottom:10px;">Complejo nuevo y funcional, situado en el barrio de Triana, a 15 minutos a pie del casco antiguo.</p>
+												</td>
+											</tr>
+											<tr>
+												<td valign="middle" style="background-color: #F6A242;color:#fff; padding:10px 5px;">
+													<a href="http://www.pierreetvacances.com/es-es/fp_EWL_alquiler-apartamentos-apartamentos-sevilla?hc=ONT24&duree=7&dated=2017-04-08&utm_source=Clickpoint&utm_medium=Online_Partners&utm_campaign=Sevilla" target="_blank" style="color:#fff;font-size:20px; font-weight: bold;letter-spacing:1px; text-decoration:none;width:100%; display:block;"><span style="display:inline-block;">RESERVA YA</span><img src="http://animation1.pierreetvacances.com/es/newsletters/22x22-cta-button-01.jpg" alt="" width="20" height="auto" border="0" style="display:inline-block;padding-left:5px;margin-bottom:-2px;"></a>
+												</td>
+											</tr>
+										</table>
+
+
+									</td>
+									<td valign="top" width="48%" style="text-align: center;padding-left:10px;" class="force-col-margin">
+										<table border="0" cellpadding="10" cellspacing="0" width="100%">
+											<tr>
+												<td valign="top" style="padding:0px;" class="force-col-center">
+													<img src="http://animation1.pierreetvacances.com/es/newsletters/290x174-andalucia-costadelsol-01.jpg" alt="" width="100%">
+
+												</td>
+											</tr>
+											<tr>
+												<td valign="top" style="background-color:#fff;border-top:5px solid #42539d" bgcolor=“#ffffff>
+													<p style="color: #41539B; font-weight:bold;margin:0px; padding:5px 0px; font-size:16px;">Andalucia</p>
+													<h2 style="margin: 0;padding:0;padding-bottom:10px;color: #41539B;text-align:center;">RESORT TERRAZAS<br>COSTA DEL SOL</h2>
+													<img src="images/border-blue.png">
+													<p style="padding:0px; padding-top:10px;margin:0px;font-size:16px; font-weight:normal; line-height:18px; padding-bottom:10px;">Complejo nuevo y funcional, situado en el barrio de Triana, a 15 minutos a pie del casco antiguo.</p>
+												</td>
+											</tr>
+											<tr>
+												<td valign="middle" style="background-color: #F6A242;color:#fff; padding:10px 5px;">
+													<a href="#" target="_blank" style="color:#fff;font-size:20px; font-weight: bold;letter-spacing:1px; text-decoration:none;width:100%; display:block;"><span style="display:inline-block;">RESERVA YA</span><img src="http://animation1.pierreetvacances.com/es/newsletters/22x22-cta-button-01.jpg" alt="" width="20" height="auto" border="0" style="display:inline-block;padding-left:5px;margin-bottom:-2px;"></a>
+												</td>
+											</tr>
+										</table>
+
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td style="">
+							<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center">
+								<tr>
+									<td style="padding:0px; font-family:Brandon Grotesque, sans-serif; font-size: 13px; line-height: 22px; color: #7f7f7f;">
+										<p>*Precios por noche</p>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+
+						<td style="text-align: center; padding-bottom:20px; " class="pattern">
+							<table border="0" cellspacing="0" class="columns-container" style="background: #939393;color: #ffffff;">
+								<tr>
+									<td width="260" style="font-family:Brandon Grotesque, sans-serif; font-size: 13px; font-weight:black;color: #ffffff; text-align:center; padding-top:20px;padding-bottom:20px;" valign="top" class="force-col">
+										<table border="0" cellpadding="0" cellspacing="0" class="columns-container" style="width:100%;border-right:1px dotted #fff;">
+											<tr>
+												<td style="text-align:center; padding-bottom:10px; padding-top:0px;">
+													<h3 style="font-size:16px; margin-top:0px;margin-bottom:10px;padding-top:0px;">INFORMACION & RESERVAS</h3>
+													<img src="images/border-white.png">
+												</td>
+											</tr>
+											<tr>
+												<td valign="middle" style="vertical-align: middle; padding-bottom:5px;">
+													<img src="http://animation1.pierreetvacances.com/es/newsletters/39x38-button-phone-01.jpg" alt="" width="40" style="margin-bottom:-10px; padding-right:5px;"> <span style="color:#fff;font-weight:bold;font-size:22px; text-decoration:underline;">900.901.355</span>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<p style="color: #D5D5D5;padding:0px;margin:0px;"><span style="font-weight:bold">LLAMA GRATIS</span><br> <span style="font-style:italic"> De lunes a viernes de 8h30 a 19h <br> Sabados de 9h a 19h</span></p>
+												</td>
+											</tr>
+										</table>
+
+									</td>
+									<td style="font-size: 0; line-height: 0; display: none;" class="hh-spacer">&nbsp;</td>
+									<td width="180" valign="top" style="font-family:Brandon Grotesque, sans-serif; font-size: 13px; color: #ffffff; text-align:center; padding-top:20px;padding-bottom:20px;" class="force-col">
+										<table border="0" cellpadding="0" cellspacing="0" class="columns-container" style="width:100%;">
+											<tr>
+												<td style="text-align:center; padding-bottom:20px; padding-top:0px;">
+													<h3 style="margin-top:0px;padding-top:0px;margin-bottom:10px;">LA COMUNIDAD</h3>
+													<img src="images/border-white.png">
+												</td>
+											</tr>
+											<tr>
+												<td valign="middle" style="vertical-align: middle; ">
+													<a href="#" target="_blank"><img src="http://animation1.pierreetvacances.com/es/newsletters/39x38-button-facebook-01.jpg" alt="Facebook" width="40" height="40" style="padding-right:5px;"></a>
+													<a href="#" target="_blank"><img src="http://animation1.pierreetvacances.com/es/newsletters/39x38-button-twitter-01.jpg" alt="Twitter" width="40" height="40" style="padding-right:5px;"></a>
+													<a href="#" target="_blank"><img src="http://animation1.pierreetvacances.com/es/newsletters/39x38-button-youtube-01.jpg" alt="Pinterest" width="40" height="40"></a>
+												</td>
+											</tr>
+										</table>
+									</td>
+									<td style="font-size: 0; line-height: 0; display: none;" class="hh-spacer">&nbsp;</td>
+									<td width="150" style="font-family:Brandon Grotesque, sans-serif; font-size: 13px; line-height: 22px;color: #ffffff; text-align:center; padding-top:20px;padding-bottom:20px;" class="force-col">
+										<table border="0" cellpadding="0" cellspacing="0" class="columns-container" style="width:100%; border-left:1px dotted #fff;">
+											<tr>
+												<td style="text-align:center; padding-bottom:20px; padding-top:0px;">
+													<h3 style="font-size:16px;margin-top:0px;margin-bottom:10px;padding-top:0px;">A TU SERVICIO</h3>
+													<img src="images/border-white.png">
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<a href="#" target="_blank" style="color: #ffffff;font-family: Brandon Grotesque,sans-serif; font-size:16px;">Mi espacio</a><br>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<a href="#" target="_blank" style="color: #ffffff;font-family: Brandon Grotesque,sans-serif;font-size:16px;">Mis newsletter</a> <br>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<a href="#" target="_blank" style="color: #ffffff;font-family: Brandon Grotesque,sans-serif;font-size:16px;">Mi perfil</a>
+												</td>
+											</tr>
+											<tr>
+												<td style="height:10px;">
+													&nbsp; </td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td style="background: #42539d;">
+							<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center">
+								<tr>
+									<td style="padding:10px 30px;text-align: center; font-family:Brandon Grotesque, sans-serif; font-size: 13px; line-height: 22px; color: #ffffff;">
+										<h2>LOS COMPROMISOS DE PIERRE &VACANCES</h2>
+										<img src="images/border-white.png">
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding:10px 20px 20px 20px;background: #42539d;text-align: center;" class="pattern">
+							<table border="0" cellpadding="0" cellspacing="0" class="columns-container" style="width:100%">
+								<tr>
+									<td width="170" style="padding:0px;margin:0px;font-family:Brandon Grotesque, sans-serif; font-size: 16px; line-height: 22px;color: #ffffff;" valign="top" class="force-col">
+										<table border="0" cellpadding="0" cellspacing="0" width="100%" class="columns-container" style="padding-bottom:20px;">
+											<tr>
+												<td>
+													<img src="http://animation1.pierreetvacances.com/es/newsletters/87x87-icon-lugares-01.jpg" alt="alt text" align="center" height="100" width="100" border="0">
+												</td>
+											</tr>
+											<tr>
+												<td style="margin: 0; height:160px;" class="col-border" width="100%">
+													<h4 style="margin:0px 0 10px; padding-top:10px;font-size:18px;">LUGARES <br/>EXCEPCIONALES</h4>
+													<p style="margin: 0; padding:0 15px 10px 15px;" class="col-max-width">* de 350 destinos en Espa&ntilde;a, Francia y extranjero</p>
+
+												</td>
+											</tr>
+										</table>
+									</td>
+									<td style="font-size: 0; line-height: 0; display: none;" class="hh-spacer">&nbsp;</td>
+									<td width="180" style="font-family:Brandon Grotesque, sans-serif; font-size: 16px; line-height: 20px;color: #ffffff;" valign="top" class="force-col">
+										<table border="0" cellpadding="0" cellspacing="0">
+											<tr>
+												<td>
+													<img src="http://animation1.pierreetvacances.com/es/newsletters/87x87-icon-wifi-01.jpg" alt="alt text" align="center" height="100" width="100" border="0">
+												</td>
+											</tr>
+											<tr>
+												<td class="col-border" style="height:160px;" width="100%">
+													<h4 style="margin:0px 0 10px; font-size:18px;padding-top:10px">WIFI GRATIS</h4>
+													<p style="margin: 0;padding:0 15px 10px 15px;" class="col-max-width">Apartamentos, estudios <br/>y casas totalmente equipados con WiFi GRATIS.</p>
+												</td>
+											</tr>
+										</table>
+									</td>
+									<td style="font-size: 0; line-height: 0; display: none;" class="hh-spacer">&nbsp;</td>
+									<td width="170" style="font-family:Brandon Grotesque, sans-serif; font-size: 16px; line-height: 22px;color: #ffffff;" valign="top" class="force-col">
+
+										<table border="0" cellpadding="0" cellspacing="0">
+											<tr>
+												<td>
+													<img src="http://animation1.pierreetvacances.com/es/newsletters/87x87-icon-mismo-dia-01.jpg" alt="alt text" align="center" height="100" width="100" border="0">
+												</td>
+											</tr>
+											<tr>
+												<td style="margin: 0 0 10px; height:160px;padding-top:10px;" class="columns-container" width="100%">
+													<h4 style="margin:0px 0 10px;font-size:18px; padding-top:10px">RESERVA<br/> EL MISMO DIA</h4>
+													<p style="margin: 0;padding:0 15px 10px 15px;" class="col-max-width">Puedes llegar y partir el dia que tú quieras! Reserva para el mismo d&iacute;a hasta las 17h.
+													</p>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+
+					<tr>
+						<td style="">
+							<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center">
+								<tr>
+									<td style="padding:0; font-family:Arial, sans-serif; font-size: 13px; line-height: 15px; color: #7f7f7f;font-weight: normal;">
+										<p>
+											Oferta v&aacute;lida en una selecci&oacute;n de complejos y tipolog&iacute;as de www.pierreetvacances.com, hasta agotamiento del stock de apartamentos dispuestos a este efecto. Oferta v&aacute;lida s&oacute;lo en el alojamiento (tasas no incluidas, prestaciones
+											anexas y gastos de desplazamiento). Oferta no retroactiva ni acumulable con otras ofertas promocionales o descuentos.
+										</p>
+										<p> Conforme a la ley francesa de Inform&aacute;tica y libertad del 6 de enero 1978 modificada, dispone de un derecho de acceso, modificaci&oacute;n, rectificaci&oacute;n y supresi&oacute;n de los datos que lo identifican, y tambi&eacute;n tiene
+											el derecho de oponerse al tratamiento de dichos datos para fines comerciales. Para ponerte en contacto con nosotros, utiliza la secci&oacute;n Contacto en nuestra P&aacute;gina Web. Rogamos no contestar a este mensaje. PV-CP DISTRIBUTION ,
+											SA capital de 6.055.935 € , cede principal: l'Artois, Espace Pont de Flandre - 11, rue de Cambrai 75947 Paris cedex 19, RCS Paris N314 283 326 - Licencia de agente de viajes n°IM075110024 . Garant&iacute;a financiera : B.E.S.V. - R.C.P. : RSA.
+											Creditos fotograficos : Verny Pierrick, Bergoend Eric, Jupiterimages
+										</p>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+				<!-- Email Container : END -->
+
+				<!-- Footer : BEGIN -->
+				<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center" class="email-container">
+					<tr>
+						<td style="text-align: center;padding: 20px;font-family:Arial, sans-serif; font-size: 13px; line-height: 18px;color: #7f7f7f;">
+							<a href="#" target="_blank" style="color: #7f7f7f;font-weight: normal;">Darte de baja</a>&nbsp;&nbsp; |&nbsp;&nbsp;
+							<a href="#" target="_blank" style="color: #7f7f7f;font-weight: normal;">Contacto</a>
+						</td>
+					</tr>
+				</table>
+				<!-- Footer : END -->
+			</td>
+		</tr>
+	</table>
+</body>
+
+</html>

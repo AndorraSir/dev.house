@@ -1,6 +1,4 @@
 User-agent: *
-Disallow: /admin/
-Disallow: /admin-assets/
-Disallow: /frontend/
-
-
+Disallow: /cgi-bin/
+Disallow: /images/
+Disallow: /pages/thankyou.html
