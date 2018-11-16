@@ -60,9 +60,7 @@
 .widget-searchvisual input {
     margin-right: 6px;
 }
-#search_option_smart {
-    width: 100%;
-}
+
 
 
 @media (max-width: 767px) {
@@ -93,12 +91,8 @@ ul.menu-onmap{
     padding-left: 0px;
     label{
         margin-right:20px;
-        text-transform: capitalize;
         input{
             color:#908E91;
-        }
-        &:nth-child(3n+3){
-            display: none;
         }
     }
 }
@@ -115,18 +109,21 @@ ul.menu-onmap li.active
     opacity: 1;
 }
 
-ul.menu-onmap li.active a{
+ul.menu-onmap li.active a
+{
     font-weight: bold;
     color: black;
     padding: 15px 30px;
 }
 
-ul.menu-onmap li.active a:hover{
+ul.menu-onmap li.active a:hover
+{
     color: black;
     text-decoration: underline;
 }
 
-ul.menu-onmap li{
+ul.menu-onmap li
+{
     float: left;
     border-bottom: none;
     margin-top: 5px;
@@ -161,32 +158,26 @@ ul.menu-onmap li a:hover
     }
 }
 
-.slider-info{
-    position: absolute;
-    display: block;
-    top: 30%;
-    width:100%;
-    text-align: center;
-}
-
-
 
 .wrap-search{
     width: 100%;
     z-index: 999;
 }
 
+.search-form{
+/*    margin-top: 150px;
+*/}
 .tabbed-selector li:last-child{
     display: none;
 }
 .center-search{
-    top:50px;
-    background-color:rgba(255, 255, 255, 0.7);
-    padding:1rem;
+    top:155px;
+    background-color:rgba(255, 255, 255, 0.5)!important;
+    padding:1rem 2rem;
 }
 .custom-search-form {
-    form div{
-        margin-bottom: 1rem;
+    .form-inline{
+        
     }
     .dropdown-toggle::after{
         position:absolute;
@@ -194,7 +185,7 @@ ul.menu-onmap li a:hover
         top:20px;
     }
     .custom-input{
-       box-shadow:  0 2px 2px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+       box-shadow:  0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
        height:45px;
        margin-right:10px;
     }
@@ -202,29 +193,6 @@ ul.menu-onmap li a:hover
         padding:0.5rem;
     }
     .btn-info{
-        background-color: #00c851 !important;
-        width:100%;
-        margin:0px;
+        background-color: #F5A623 !important;
     }
-}
-.bg-light-grey{
-    background-color:#eaeaea;
-    #wrap-map-1{
-        display:none;
-    }
-}
-
-.bootstrap-select.btn-group .btn .filter-option{
-    text-transform:capitalize;
-    font-weight:300;
-    font-size:16px;
-    color: #999;
-
-    li a{
-        color: #999;
-        padding:10px;
-    }
-}
-.bootstrap-select:not([class*=span]){
-    width:100% !important;
 }

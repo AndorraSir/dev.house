@@ -38,12 +38,7 @@ class Configurator extends MY_Controller
                      'field'   => 'app_type',
                      'label'   => 'lang:app_type',
                      'rules'   => 'required'
-                  ),  
-               array(
-                    'field'   => 'your_email',
-                    'label'   => 'lang:Your email',
-                    'rules'   => 'required'
-                 ),
+                  ),   
                array(
                      'field'   => 'mysql_db_name',
                      'label'   => 'lang:mysql_db_name',
@@ -98,7 +93,7 @@ class Configurator extends MY_Controller
                      'field'   => 'codecanyon_username',
                      'label'   => 'lang:codecanyon_username',
                      'rules'   => 'required'
-                  ),               
+                  ),
                array(
                      'field'   => 'codecanyon_code',
                      'label'   => 'lang:codecanyon_code',
@@ -162,10 +157,7 @@ class Configurator extends MY_Controller
                             }
                            } 
                         }  
-                        
-                        $sql = "set global sql_mode= REPLACE(@@SQL_MODE, 'ONLY_FULL_GROUP_BY', '')";
-                        $this->db->query($sql);
-                        
+                              
                         // Update agent, admin, other passwords
                         $data_db_update = array(
                                        'password' => substr(md5(time()+rand(0,1000)),0,5)
@@ -462,11 +454,10 @@ class Configurator extends MY_Controller
        
         $purchase_code = $str;
         $codecanyon_username = $this->input->post('codecanyon_username');
-        $your_email = $this->input->post('your_email');
         $my_url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         
         // jSON URL which should be requested
-        $json_url = 'http://iwinter.com.hr/real-estate/check_purchase.php?purchase_code='.$purchase_code.'&username='.$codecanyon_username.'&email='.$your_email.'&url='.$my_url;
+        $json_url = 'http://iwinter.com.hr/real-estate/check_purchase.php?purchase_code='.$purchase_code.'&username='.$codecanyon_username.'&url='.$my_url;
         
         // Initializing curl
         $ch = curl_init( $json_url );

@@ -35,6 +35,13 @@
         <li><a href="<?php echo site_url('admin/settings/language')?>"><?php echo lang('Languages')?></a></li>
         <li><a href="<?php echo site_url('admin/settings/template')?>"><?php echo lang('Template')?></a></li>
         <li class="active"><a href="<?php echo site_url('admin/settings/system')?>"><?php echo lang('System settings')?></a></li>
+        <li><a href="<?php echo site_url('admin/settings/addons')?>"><?php echo lang_check('Addons')?></a></li>
+        <?php if(config_db_item('slug_enabled') === TRUE): ?>
+        <li><a href="<?php echo site_url('admin/settings/slug')?>"><?php echo lang_check('SEO slugs')?></a></li>
+        <?php endif; ?>
+        <?php if(config_db_item('currency_conversions_enabled') === TRUE): ?>
+        <li><a href="<?php echo site_url('admin/settings/currency_conversions')?>"><?php echo lang_check('Currency Conversions')?></a></li>
+        <?php endif; ?>
       </ul>
     </div>
     
@@ -78,34 +85,27 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                  <label class="col-lg-2 control-label" for="inputZoom_dashboard"><?php echo lang_check('Zoom index dashboard')?></label>
-                                  <div class="col-lg-10">
-                                    <?php echo form_input('zoom_dashboard', set_value('zoom_dashboard', isset($settings['zoom_dashboard'])?$settings['zoom_dashboard']:''), 'class="form-control" id="inputZoom_dashboard" placeholder="'.lang('Zoom index dashboard').'"')?>
-                                  </div>
-                                </div>
-                                
-                                <div class="form-group hide">
                                   <label class="col-lg-2 control-label"><?php echo lang('PayPal payment email')?></label>
                                   <div class="col-lg-10">
                                     <?php echo form_input('paypal_email', set_value('paypal_email', isset($settings['paypal_email'])?$settings['paypal_email']:''), 'class="form-control" id="inputPayPalEmail" placeholder="'.lang('PayPal payment email').'"')?>
                                   </div>
                                 </div>
                                 
-                                <div class="form-group hide">
+                                <div class="form-group">
                                   <label class="col-lg-2 control-label"><?php echo lang_check('Enable payments')?></label>
                                   <div class="col-lg-10">
                                     <?php echo form_checkbox('payments_enabled', '1', set_value('payments_enabled', isset($settings['payments_enabled'])?$settings['payments_enabled']:'0'), 'id="input_payments_enabled"')?>
                                   </div>
                                 </div>
                                 
-                                <div class="form-group hide">
+                                <div class="form-group">
                                   <label class="col-lg-2 control-label"><?php echo lang_check('Activation price')?></label>
                                   <div class="col-lg-10">
                                     <?php echo form_input('activation_price', set_value('activation_price', isset($settings['activation_price'])?$settings['activation_price']:''), 'class="form-control" id="inputActivationPrice" placeholder="'.lang_check('Activation price').'"')?>
                                   </div>
                                 </div>
                                 
-                                <div class="form-group hide">
+                                <div class="form-group">
                                   <label class="col-lg-2 control-label"><?php echo lang_check('Featured price')?></label>
                                   <div class="col-lg-10">
                                     <?php echo form_input('featured_price', set_value('featured_price', isset($settings['featured_price'])?$settings['featured_price']:''), 'class="form-control" id="inputFeaturedPrice" placeholder="'.lang_check('Activation price').'"')?>
@@ -144,7 +144,7 @@
                                   </div>
                                 </div> 
                                 
-                                <div class="form-group hide">
+                                <div class="form-group">
                                   <label class="col-lg-2 control-label"><?php echo lang_check('Payu first key')?></label>
                                   <div class="col-lg-10">
                                     <?php echo form_input('payu_api_key_1', set_value('payu_api_key_1', 
@@ -153,7 +153,7 @@
                                   </div>
                                 </div> 
                                 
-                                <div class="form-group hide">
+                                <div class="form-group">
                                   <label class="col-lg-2 control-label"><?php echo lang_check('Payu second key')?></label>
                                   <div class="col-lg-10">
                                     <?php echo form_input('payu_api_key_2', set_value('payu_api_key_2', 
@@ -162,7 +162,7 @@
                                   </div>
                                 </div> 
                                 
-                                <div class="form-group hide">
+                                <div class="form-group">
                                   <label class="col-lg-2 control-label"><?php echo lang_check('Payu authorisation key')?></label>
                                   <div class="col-lg-10">
                                     <?php echo form_input('payu_api_auth_key', set_value('payu_api_auth_key', 
@@ -175,7 +175,7 @@
                                 
                                 <?php endif; ?>
                                 
-                                <div class="form-group hide">
+                                <div class="form-group">
                                   <label class="col-lg-2 control-label"><?php echo lang_check('Default PayPal currency code')?></label>
                                   <div class="col-lg-10">
                                     <?php echo form_dropdown('default_currency', $currencies, set_value('default_currency', isset($settings['default_currency'])?$settings['default_currency']:''), 'class="form-control"')?>
@@ -244,21 +244,13 @@
                                   </div>
                                 </div>
                                 
-                                <div class="form-group hide">
+                                <div class="form-group">
                                   <label class="col-lg-2 control-label"><?php echo lang_check('Withdrawal payment details')?></label>
-                                  <div class="col-lg-10 hide">
+                                  <div class="col-lg-10">
                                     <?php echo form_textarea('withdrawal_details', set_value('withdrawal_details', isset($settings['withdrawal_details'])?$settings['withdrawal_details']:''), 'placeholder="'.lang_check('Withdrawal payment details').'" rows="3" class="form-control"')?>
                                   </div>
                                 </div>
-                                <?php if(config_item('results_page_id_enabled')!=FALSE): ?>
-                                <div class="form-group">
-                                  <label class="col-lg-2 control-label"><?php echo lang_check('Results page')?>*</label>
-                                  <div class="col-lg-10">
-                                    <?php echo form_dropdown('results_page_id', $pages_no_parents, set_value('results_page_id', isset($settings['results_page_id'])?$settings['results_page_id']:''), 'class="form-control"')?>
-                                  </div>
-                                </div>
-                                <?php endif; ?>
-                    
+                                
                                 <?php if(false): ?>
                                 <div class="form-group">
                                   <label class="col-lg-2 control-label"><?php echo lang_check('Enable masking')?></label>
@@ -301,13 +293,6 @@
                                   </div>
                                 </div>
                                 <?php endif; ?> 
-                    
-                                <div class="form-group">
-                                  <label class="col-lg-2 control-label"><?php echo lang_check('Word filtering')?></label>
-                                  <div class="col-lg-10">
-                                    <?php echo form_input('word_filtering', set_value('word_filtering', isset($settings['word_filtering'])?$settings['word_filtering']:''), 'class="form-control" id="inputword_filtering" placeholder="'.lang_check('Word filtering').'"')?>
-                                  </div>
-                                </div>
                                 
                                 <div class="form-group">
                                   <label class="col-lg-2 control-label"><?php echo lang_check('Walkscore enabled')?></label>
@@ -350,21 +335,9 @@
                                     <?php echo form_checkbox('multilang_on_qs', '1', set_value('multilang_on_qs', isset($settings['multilang_on_qs'])?$settings['multilang_on_qs']:'0'), 'id="input_multilang_on_qs"')?>
                                   </div>
                                 </div>
-                               <?php if(file_exists(APPPATH.'libraries/Clickatellapi.php')): ?>
-                                <div class="form-group">
-                                  <label class="col-lg-2 control-label"><?php echo lang_check('Clickatell api key')?> (<?php echo lang_check('Define only one field api key or appi id')?>)</label>
-                                  <div class="col-lg-10">
-                                    <?php echo form_input('clickatell_api_key', set_value('clickatell_api_key', isset($settings['clickatell_api_key'])?$settings['clickatell_api_key']:''), 'class="form-control" id="inputclickatell_api_key" placeholder="'.lang_check('Clickatell api key').'"')?>
-                                  </div>
-                                </div>
-                                <?php endif;?>
-                                <div class="form-group">
-                                  <label class="col-lg-2 control-label"><?php _l('Open street map (instead google map)');?></label>
-                                  <div class="col-lg-10">
-                                    <?php echo form_checkbox('map_version', 'open_street', set_value('map_version', isset($settings['map_version'])?$settings['map_version']:'0'), 'id="input_map_version"')?>
-                                  </div>
-                                </div>
+                                 
                                 <hr />
+
                                 <div class="form-group">
                                   <div class="col-lg-offset-2 col-lg-10">
                                     <?php echo form_submit('submit', lang('Save'), 'class="btn btn-primary"')?>

@@ -33,7 +33,7 @@ $(document).ready(function() {
 		
 		$('a[href^=#]').bind('click touchstart',function(){
 			hash = $(this).attr('href');
-			/*$.scrollTo.window().queue([]).stop();*/
+			$.scrollTo.window().queue([]).stop();
 			goTo(hash);
 			return false;
 		});

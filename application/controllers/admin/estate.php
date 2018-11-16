@@ -12,8 +12,6 @@ class Estate extends Admin_Controller
         
         // Get language for content id to show in administration
         $this->data['content_language_id'] = $this->language_m->get_content_lang();
-        $this->data['listing_uri'] = config_item('listing_uri');
-            if(empty($this->data['listing_uri']))$this->data['listing_uri'] = 'property';
 	}
     
     public function index($pagination_offset=0)
@@ -56,101 +54,19 @@ class Estate extends Admin_Controller
             }
         }
         // [/AGENT_COUNTY_AFFILIATE]
-        
-        $type_field = 'field_2';
-        if($this->data['settings']['template'] == 'local')
-            $type_field = 'json_object';
 
-        prepare_search_query_GET(array($type_field, 'field_4'), array('property.id', 'address', 'search_values'));
-        
-        // Fetch all estates
-        $config['total_rows'] = $this->estate_m->count_get_by($where, false, NULL, 'property.id DESC', 
-                                                              NULL, $search_array, NULL, TRUE);
-        
-        $this->data['languages'] = $this->language_m->get_form_dropdown('language');
-        $this->data['available_agent'] = $this->user_m->get_form_dropdown('name_surname'/*, array('type'=>'AGENT')*/);
-
-        $config['base_url'] = site_url('admin/estate/index');
-        $config['uri_segment'] = 4;
-        //$config['total_rows'] = count($this->data['estates']);
-        $config['per_page'] = 20;
-        $config['full_tag_open'] = '<ul class="pagination">';
-        $config['full_tag_close'] = '</ul>';
-        $config['cur_tag_open'] = '<li class="active"><a href="#">';
-        $config['additional_query_string'] = regenerate_query_string();
-        
-        $this->pagination->initialize($config);
-        $this->data['pagination'] = $this->pagination->create_links();
-        
-        /* user type = ADMIN, search by AGENT/User name enabled */
-        if($this->session->userdata('type') == 'ADMIN'){
-            prepare_search_query_GET(array($type_field, 'field_4', 'name_surname'), array('property.id', 'property.address', 'search_values'));
-
-            if($this->input->get_post('name_surname')) {
-                $this->db->select('user.name_surname');
-                $this->db->join('property_user', $this->estate_m->get_table_name().'.id = property_user.property_id', 'left');
-                $this->db->join('user', 'property_user.user_id = user.id', 'left');
-            }
-        } else {
-            prepare_search_query_GET(array($type_field, 'field_4'), array('property.id', 'address', 'search_values'));
-        }
-        
-        $order_by = 'property.id DESC';
-        if($this->input->get('order_by'))
-            $order_by = $this->input->get('order_by');
-        
-        $this->data['estates'] = $this->estate_m->get_by($where, false, $config['per_page'], $order_by, 
-                                               $pagination_offset, $search_array, NULL, TRUE);
-        
-        // Load view
-		$this->data['subview'] = 'admin/estate/index';
-        $this->load->view('admin/_layout_main', $this->data);
-	}
-        
-    public function word_filtering($pagination_offset=0) {
-        $this->load->library('pagination');
-        $where = array();
-        $search_array = array();
-        
-        $where['language_id']  = $this->data['content_language_id'];
-        
-        if(empty($this->data['settings']['word_filtering'])) {
-            redirect('admin/estate/');
-        }
-        
-        $word_filtering=$this->data['settings']['word_filtering'];
-
-       
-        
-        $val = explode(',', $word_filtering);
-        if(is_array($val) && !empty($val)){
-        $query ='';
-        foreach ($val as $key => $val_parse) {
-        $val_parse = trim($val_parse);
-        if(empty($val_parse)) continue;
-
-        if(empty($query)) 
-                $query.='(';
-        else
-                $query.=' OR ';
-
-        $query .="(json_object LIKE '%$val_parse%')";
-        }
-        if(!empty($query)){
-                $query .=')';
-                $this->db->where($query);
-            }
-        }
         prepare_search_query_GET(array('field_2', 'field_4'), array('property.id', 'address', 'search_values'));
         
         // Fetch all estates
         $config['total_rows'] = $this->estate_m->count_get_by($where, false, NULL, 'property.id DESC', 
                                                               NULL, $search_array, NULL, TRUE);
-        
+                                                              
+//        echo $this->db->last_query();
+//        exit('OK');
         $this->data['languages'] = $this->language_m->get_form_dropdown('language');
         $this->data['available_agent'] = $this->user_m->get_form_dropdown('name_surname'/*, array('type'=>'AGENT')*/);
 
-        $config['base_url'] = site_url('admin/estate/word_filtering');
+        $config['base_url'] = site_url('admin/estate/index');
         $config['uri_segment'] = 4;
         //$config['total_rows'] = count($this->data['estates']);
         $config['per_page'] = 20;
@@ -175,34 +91,13 @@ class Estate extends Admin_Controller
             prepare_search_query_GET(array('field_2', 'field_4'), array('property.id', 'address', 'search_values'));
         }
         
-        
-        $val = explode(',', $word_filtering);
-        if(is_array($val) && !empty($val)){
-        $query ='';
-        foreach ($val as $key => $val_parse) {
-        $val_parse = trim($val_parse);
-        if(empty($val_parse)) continue;
-
-        if(empty($query)) 
-                $query.='(';
-        else
-                $query.=' OR ';
-
-        $query .="(json_object LIKE '%$val_parse%')";
-        }
-        if(!empty($query)){
-                $query .=')';
-                $this->db->where($query);
-            }
-        }
-        
         $this->data['estates'] = $this->estate_m->get_by($where, false, $config['per_page'], 'property.id DESC', 
                                                $pagination_offset, $search_array, NULL, TRUE);
         
         // Load view
-        $this->data['subview'] = 'admin/estate/word_filtering';
+		$this->data['subview'] = 'admin/estate/index';
         $this->load->view('admin/_layout_main', $this->data);
-    }
+	}
     
     public function contracted($pagination_offset=0)
 	{
@@ -403,6 +298,21 @@ class Estate extends Admin_Controller
             
                     // [/AGENT_COUNTY_AFFILIATE]
                 }
+                // [AGENCY AGENT]
+                else if(config_db_item('agency_agent_enabled') === TRUE)
+                {
+                    $user_owner = $this->user_m->get($this->data['estate']->agent);
+                    
+                    if(isset($user_owner->agency_id) && $user_owner->agency_id == $this->session->userdata('id'))
+                    {
+                        // OK
+                    }
+                    else
+                    {
+                        redirect('admin/estate');
+                    }
+                }
+                // [/AGENCY AGENT]
                 else
                 {
                     redirect('admin/estate');
@@ -418,20 +328,6 @@ class Estate extends Admin_Controller
                 
                 // Update page with new repository_id
                 $this->estate_m->save(array('repository_id'=>$repository_id), $this->data['estate']->id);
-            }
-            
-            
-            if(config_item('plan_gallery_enabled') == TRUE){
-                $planimages_repository_id = $this->data['estate']->planimages_repository_id;
-                if(empty($planimages_repository_id))
-                {
-                    // Create repository
-                    $planimages_repository_id = $this->repository_m->save(array('name'=>'estate_m'));
-
-                    // Update page with new repository_id
-                    $this->estate_m->save(array('planimages_repository_id'=>$planimages_repository_id), $this->data['estate']->id);
-                    $this->data['estate']->planimages_repository_id = $planimages_repository_id;
-                }
             }
         }
         else
@@ -522,31 +418,6 @@ class Estate extends Admin_Controller
             }
         }
         
-        // Fetch all files by repository_id
-        if(isset($planimages_repository_id))
-        {
-            $files = $this->file_m->get_by(array('repository_id'=>$planimages_repository_id));
-            foreach($files as $key=>$file)
-            {
-                $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/_blank.png');
-                $file->zoom_enabled = false;
-                $file->download_url = base_url('files/'.$file->filename);
-                $file->delete_url = site_url_q('files/upload/rep_'.$file->repository_id, '_method=DELETE&amp;file='.rawurlencode($file->filename));
-    
-                if(file_exists(FCPATH.'/files/thumbnail/'.$file->filename))
-                {
-                    $file->thumbnail_url = base_url('files/thumbnail/'.$file->filename);
-                    $file->zoom_enabled = true;
-                }
-                else if(file_exists(FCPATH.'admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png'))
-                {
-                    $file->thumbnail_url = base_url('admin-assets/img/icons/filetype/'.get_file_extension($file->filename).'.png');
-                }
-                
-                $this->data['files'][$file->repository_id][] = $file;
-            }
-        }
-        
         // Set up the form
         $rules = $this->estate_m->rules;
         $this->form_validation->set_rules(array_merge($rules, $rules_dynamic));
@@ -561,8 +432,9 @@ class Estate extends Admin_Controller
                 redirect('admin/estate/edit/'.$id);
                 exit();
             }
-            
-            $data = $this->estate_m->array_from_post(array('gps', 'date', 'date_modified', 'address', 'is_featured', 'is_activated', 'is_visible', 'id_transitions'));
+
+            $data = $this->estate_m->array_from_post(array('gps', 'date', 'date_modified', 'address', 'is_featured', 'is_activated', 'id_transitions','is_visible'));
+
             $dynamic_data = $this->estate_m->array_from_post(array_keys($rules_dynamic));
             
             // AGENT_LIMITED don't have permission to change this fields...
@@ -605,15 +477,6 @@ class Estate extends Admin_Controller
                         }
                     }
                 }
-                
-                if(isset($options_data[$option_id]['DATETIME']) && !empty($val)){
-                    
-                    if((bool)strtotime($val)) {
-                        /*echo $key.'='.$val.'<br>';*/
-                        $timestamp = strtotime($val);
-                        $dynamic_data[$key] = date('Y-m-d H:i:s', $timestamp);;
-                    }
-                }
             }
             
             if($this->session->userdata('type') != 'ADMIN')
@@ -635,6 +498,12 @@ class Estate extends Admin_Controller
                 $data['date_modified'] = date('Y-m-d H:i:s');
             }
             
+            if(isset($user_owner->agency_id) && $user_owner->agency_id == $this->session->userdata('id'))
+            {
+                // If agency edit agent listing, date_modified is updated
+                $data['date_modified'] = date('Y-m-d H:i:s');
+            }
+            
             /* [Auto move gps coordinates few meters away if same exists in database] */
             $estate_same_coordinates = $this->estate_m->get_by(array('gps'=>$data['gps']), TRUE);
 
@@ -651,14 +520,6 @@ class Estate extends Admin_Controller
             
             $insert_id = $this->estate_m->save($data, $id);
             
-            if(empty($insert_id))
-            {
-                echo '$insert_id is empty, ERROR IN QUERY: <br />';
-                echo $this->db->last_query().'<br />';
-                echo $this->db->_error_message();
-                exit();
-            }
-
             // add insert to search_values
             if(is_numeric($insert_id))
             {
@@ -677,10 +538,17 @@ class Estate extends Admin_Controller
             else
             {
                 $data['agent'] = $this->input->post('agent');
-            }           
+            }
             
             // Save dynamic options
             $dynamic_data['agent'] = $data['agent'];
+            
+            if(isset($user_owner->agency_id) && $user_owner->agency_id == $this->session->userdata('id'))
+            {
+                // If agency edit agent listing, they can't change ownership
+                unset($data['agent'], $dynamic_data['agent']);
+            }
+            
             $this->estate_m->save_dynamic($dynamic_data, $insert_id);
 
             $this->load->library('sitemap');
@@ -710,6 +578,7 @@ class Estate extends Admin_Controller
                 $this->email->message($message);
                 $this->email->send();
             }
+
             if(ENVIRONMENT != 'development' && count($this->data['estate']))
             if(isset($data['is_activated']) && $data['is_activated'] == 1 && $this->data['estate']->is_activated == 0)
             {
@@ -730,7 +599,7 @@ class Estate extends Admin_Controller
                     
                     $data_m = array();
                     $data_m['subject'] = lang_check('New activated property');
-                    $data_m['link'] = '<a href="'. slug_url($this->data['listing_uri'].'/'.$insert_id.'/').'">'.lang_check('Property preview link').'</a>';
+                    $data_m['link'] = '<a href="'.site_url('property/'.$insert_id.'/').'">'.lang_check('Property preview link').'</a>';
                     $message = $this->load->view('email/waiting_for_activation_user', array('data'=>$data_m), TRUE);
                     
                     $this->email->message($message);
@@ -797,6 +666,7 @@ class Estate extends Admin_Controller
         {
             $update_data['is_activated']    = 1;
             $update_data['date_repost']     = date('Y-m-d H:i:s');
+            $update_data['date_renew']      = date('Y-m-d H:i:s');
             $update_data['date_modified']   = date('Y-m-d H:i:s');
             $update_data['date_alert']      = date('Y-m-d H:i:s');
         }
@@ -805,6 +675,7 @@ class Estate extends Admin_Controller
             $update_data['is_activated']    = 1;
             $update_data['date_repost']     = date('Y-m-d H:i:s');
             $update_data['date_modified']   = date('Y-m-d H:i:s');
+            $update_data['date_renew']      = date('Y-m-d H:i:s');
         }
         else
         {
@@ -930,7 +801,7 @@ class Estate extends Admin_Controller
                 
                 $data_m = array();
                 $data_m['subject'] = lang_check('New activated property');
-                $data_m['link'] = '<a href="'. slug_url($this->data['listing_uri'].'/'.$insert_id.'/').'">'.lang_check('Property preview link').'</a>';
+                $data_m['link'] = '<a href="'.site_url('property/'.$insert_id.'/').'">'.lang_check('Property preview link').'</a>';
                 $message = $this->load->view('email/waiting_for_activation_user', array('data'=>$data_m), TRUE);
                 
                 $this->email->message($message);
@@ -1153,7 +1024,7 @@ class Estate extends Admin_Controller
             $id = $this->dependentfield_m->save($data, $id);
             
             $this->session->set_flashdata('message', 
-                    '<p class="label label-success validation">'.lang_check('Changes saved').'</p>');
+                    '<p class="label label-success validation">'.lang_check('Changes saved').$message_mail.'</p>');
             
             if(empty($id))
                 $this->output->enable_profiler(TRUE);
@@ -1837,8 +1708,6 @@ class Estate extends Admin_Controller
             
             $lang_id =  $this->language_m->get_default_id();
             $this->form_validation->set_rules('xml_url', "lang: XML Url", 'trim|required');
-            $this->form_validation->set_rules('xml_offset', "lang: Offset", 'trim|numeric');
-            $this->form_validation->set_rules('xml_limit', "lang: LImit", 'trim|numeric');
             
             
             if($this->form_validation->run() == TRUE) {
@@ -1868,17 +1737,7 @@ class Estate extends Admin_Controller
                    $google_gps = true;
                 } 
                 
-                $offset= false;
-                if($this->input->post('xml_offset') && !empty($this->input->post('xml_offset'))){
-                   $offset = $this->input->post('xml_offset');
-                } 
-                
-                $limit = false;
-                if($this->input->post('xml_limit') && !empty($this->input->post('xml_limit'))){
-                   $limit = $this->input->post('xml_limit');
-                } 
-                
-                $result_import = $this->xml2u->import($url, $overwrite_existing, $activated, $google_gps, $this->input->post('max_images'), $this->input->post('user_id'), $offset, $limit);
+                $result_import = $this->xml2u->import($url, $overwrite_existing, $activated, $google_gps, $this->input->post('max_images'));
                 $this->data['imports']= $result_import['info'];
                 $this->data['skipped']= $result_import['count_skip'];
                 $this->data['count_exists_overwrite']= $result_import['count_exists_overwrite'];
@@ -2105,260 +1964,24 @@ class Estate extends Admin_Controller
             $this->load->view('admin/_layout_main', $this->data);
         }
         
-    public function clone_listing($listing_id = NULL) 
-	{
-        // If limit reached, error/warning!
-        $this->load->model('packages_m');
-        $this->load->model('treefield_m');
-        
-        $user = $this->user_m->get($this->session->userdata('id'));
-        if(empty($listing_id)){
-            $this->session->set_flashdata('error', 
-                    lang_check('Clone not create, listing missing'));
-            redirect('admin/estate');
-            exit();
-        }
-        /* fetch data */
-        $estate_data = $this->estate_m->get_dynamic($listing_id);
-        if(empty($estate_data)){
-            $this->session->set_flashdata('error', 
-                    lang_check('Clone not create, listing missing'));
-            redirect('admin/estate');
-            exit();
-        }
-        
-        $_POST = (array) $estate_data;
-        $this->data['estate'] = $this->estate_m->get_new();
-        $id = NULL;
-        /* end fetch data */
-        
-        if(file_exists(APPPATH.'controllers/admin/packages.php'))
-        if($user->package_id > 0 && $this->session->userdata('type') == 'AGENT')
+    public function _checkavailable($field_id)
+    {
+        $total_count = $this->db->count_all_results('dependent_field');
+        if($total_count == 0)
         {
-            $package = $this->packages_m->get($user->package_id);
-            $listing_num = $this->packages_m->get_curr_listings(array('user_id'=>$user->id));
-            
-            if(config_item('enable_num_amenities_listing') == true)
-                $this->data['package_num_amenities_limit'] = $package->num_amenities_limit;
-            
-            if(isset($listing_num[$user->id]))
-            {
-                if($listing_num[$user->id] >= $package->num_listing_limit && !$id)
-                {
-                    $this->session->set_flashdata('error', 
-                            lang_check('Num listings max. reached for your package'));
-                    redirect('admin/estate');
-                    exit();
-                }
-                else if($package->package_days > 0 && strtotime($user->package_last_payment)<=time())
-                {
-                    $this->session->set_flashdata('error', 
-                            lang_check('Date for your package expired, please extend'));
-                    redirect('admin/estate');
-                    exit();
-                }
-            }
+            return TRUE;
         }
-       
-        // Pages for dropdown
-        $this->data['languages'] = $this->language_m->get_form_dropdown('language');
         
-        // Get available agents
-        $this->data['available_agent'] = $this->user_m->get_form_dropdown('name_surname', array('type'=>'AGENT'));
+        $this->db->where('field_id', $field_id);
+        $query = $this->db->get('dependent_field');
         
-        $this->data['available_agent'][''] = lang_check('Current user');
-        
-        // Get all options
-        foreach($this->option_m->languages as $key=>$val){
-            $this->data['options_lang'][$key] = $this->option_m->get_lang(NULL, FALSE, $key);
-        }
-        $this->data['options'] = $this->option_m->get_lang(NULL, FALSE, $this->data['content_language_id']);
-        
-        // Id's for key adjustments 
-        // TODO: better solution needed, this is just hotfix
-        $options = $this->data['options'];
-        $this->data['options'] = array();
-        foreach($options as $option_key=>$option_row)
+        if ($query->num_rows() > 0)
         {
-            $this->data['options'][$option_row->option_id] = $option_row;
+            return TRUE;
         }
-        
-        // For other langs
-        foreach($this->option_m->languages as $key=>$val){
-            $options_key = $this->data['options_lang'][$key];
-            $this->data['options_lang'][$key] = array();
-            foreach($options_key as $option_key=>$option_row)
-            {
-                $this->data['options_lang'][$key][$option_row->option_id] = $option_row;
-            }
-        }
-        // End id's for key adjustments
-        
-        $options_data = array();
-        foreach($this->option_m->get() as $key=>$val)
-        {
-            $options_data[$val->id][$val->type] = 'true';
-        }
-        
-        // Add rules for dynamic options
-        $rules_dynamic = array();
-        foreach($this->option_m->languages as $key_lang=>$val_lang){
-            foreach($this->data['options'] as $key_option=>$val_option){
-                $rules_dynamic['option'.$val_option->id.'_'.$key_lang] = 
-                    array('field'=>'option'.$val_option->id.'_'.$key_lang, 'label'=>$val_option->option, 'rules'=>'trim');
-                //if($id == NULL)$this->data['estate']->{'option'.$val_option->id.'_'.$key_lang} = '';
-                if(!isset($this->data['estate']))$this->data['estate']->{'option'.$val_option->id.'_'.$key_lang} = '';
-            }
-            
-            if(config_db_item('slug_enabled') === TRUE)
-            {
-                $rules_dynamic['slug_'.$key_lang] = 
-                    array('field'=>'slug_'.$key_lang, 'label'=>'lang:URI slug', 'rules'=>'trim');
-            }
-        }
-        
-        // Set up the form
-        $rules = $this->estate_m->rules;
-        $this->form_validation->set_rules(array_merge($rules, $rules_dynamic));
-        
-        // Process the form
-        if($this->form_validation->run() == TRUE)
-        {
-            if($this->config->item('app_type') == 'demo')
-            {
-                $this->session->set_flashdata('error', 
-                        lang_check('Data editing disabled in demo'));
-                redirect('admin/estate/edit/'.$id);
-                exit();
-            }
-            
-            $data = $this->estate_m->array_from_post(array('gps', 'date', 'date_modified', 'address', 'is_featured', 'is_activated', 'id_transitions'));
-            $dynamic_data = $this->estate_m->array_from_post(array_keys($rules_dynamic));
-            
-            // AGENT_LIMITED don't have permission to change this fields...
-            if($this->session->userdata('type') == 'AGENT_LIMITED')
-            {
-                unset($data['is_activated'],
-                      $data['is_featured']
-                );
-                
-                $data['is_activated'] = 0;
-            }
-            
-            if(empty($data['id_transitions']))
-            {
-                $data['id_transitions'] = NULL;
-            }
-            
-            $data['search_values'] = $data['address'];
-            foreach($dynamic_data as $key=>$val)
-            {
-                $pos = strpos($key, '_');
-                $option_id = substr($key, 6, $pos-6);
-                $language_id = substr($key, $pos+1);
-                
-                if(!isset($options_data[$option_id]['TEXTAREA']) && !isset($options_data[$option_id]['CHECKBOX'])){
-                    $data['search_values'].=' '.$val;
-                }
-                
-                // TODO: test check, values for each language for selected checkbox
-                if(isset($options_data[$option_id]['CHECKBOX'])){
-                    if($val == 'true')
-                    {
-                        foreach($this->option_m->languages as $key_lang=>$val_lang){
-                            foreach($this->data['options_lang'][$key_lang] as $key_option=>$val_option){
-                                if($val_option->id == $option_id && $language_id == $key_lang)
-                                {
-                                    $data['search_values'].=' true'.$val_option->option;
-                                }
-                            }
-                        }
-                    }
-                }
-                
-                if(isset($options_data[$option_id]['DATETIME']) && !empty($val)){
-                    
-                    if((bool)strtotime($val)) {
-                        /*echo $key.'='.$val.'<br>';*/
-                        $timestamp = strtotime($val);
-                        $dynamic_data[$key] = date('Y-m-d H:i:s', $timestamp);;
-                    }
-                }
-            }
-            
-            if($this->session->userdata('type') != 'ADMIN')
-            {
-                // only admin can manually change modify date
-                unset($data['date_modified']);
-            }
-            
-            if($id === NULL)
-            {
-                $data['date_modified'] = date('Y-m-d H:i:s');
-            }
-            elseif($this->data['estate']->agent != $this->session->userdata('id'))
-            {
-                // If admin/agent/... modify property from other user, date_modified is not changed
-            }
-            else
-            {
-                $data['date_modified'] = date('Y-m-d H:i:s');
-            }
-            
-            /* [Auto move gps coordinates few meters away if same exists in database] */
-            $estate_same_coordinates = $this->estate_m->get_by(array('gps'=>$data['gps']), TRUE);
 
-            if(is_object($estate_same_coordinates) && !empty($estate_same_coordinates))
-            {
-                $same_gps = explode(', ', $estate_same_coordinates->gps);
-                // $same_gps[0] && $same_gps[1] available
-                $rand_lat = rand(1, 9);
-                $rand_lan = rand(1, 9);
-                
-                $data['gps'] = ($same_gps[0]+0.0001*$rand_lat).', '.($same_gps[1]+0.0001*$rand_lan);
-            }
-            /* [/Auto move gps coordinates few meters away if same exists in database] */
-            
-            $insert_id = $this->estate_m->save($data, $id);
-            
-            // add insert to search_values
-            if(is_numeric($insert_id))
-            {
-                $update_data = array();
-                $update_data['search_values'] = 'id: '.$id.$data['search_values'];
-                
-                $this->estate_m->save($update_data, $insert_id);
-            }
-            
-            if( $this->session->userdata('type') != 'ADMIN' && 
-                $this->session->userdata('type') != 'AGENT_ADMIN' && 
-                $this->session->userdata('type') != 'AGENT_COUNTY_AFFILIATE')
-            {
-                $data['agent'] = $this->session->userdata('id');
-            }
-            else
-            {
-                $data['agent'] = $this->input->post('agent');
-            }           
-            
-            // Save dynamic options
-            $dynamic_data['agent'] = $data['agent'];
-            $this->estate_m->save_dynamic($dynamic_data, $insert_id);
-
-            $this->load->library('sitemap');
-            $this->sitemap->generate_sitemap();
-            
-            
-            $this->session->set_flashdata('message', 
-                    '<p class="label label-success validation">'.lang_check('Clone created').'</p>');
-            
-            redirect('admin/estate/edit/'.$insert_id);
-        }
-        
-        // Load the view
-            $this->data['subview'] = 'admin/estate/edit';
-        $this->load->view('admin/_layout_main', $this->data);
-    
-        }
+        $this->form_validation->set_message('_checkavailable', lang_check('Dependent fields issue'));
+        return FALSE;
+    }
         
 }

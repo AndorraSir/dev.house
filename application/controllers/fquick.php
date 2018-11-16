@@ -115,7 +115,7 @@ class Fquick extends Frontend_Controller
         // Add rules for dynamic options
         $rules_dynamic = array();
         foreach($this->option_m->languages as $key_lang=>$val_lang){
-            if(config_db_item('multilang_on_qs') == 0 && $this->language_m->get_default_id() != $key_lang)
+            if(config_item('multilang_on_qs') == 0 && $this->language_m->get_default_id() != $key_lang)
             {
                 continue;
             }

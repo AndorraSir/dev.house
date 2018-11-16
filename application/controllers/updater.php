@@ -99,14 +99,7 @@ class Updater extends MY_Controller
         {
             $this->data['script_version_db'] = '1.6.2';
         }
-        if ($this->db->table_exists('visits'))
-        {
-           $this->data['script_version_db'] = '1.6.3';
-        }
-        if ($this->db->table_exists('widget_options'))
-        {
-           $this->data['script_version_db'] = '1.6.4';
-        }
+        
         
         /* [END] Define db version */
         
@@ -154,14 +147,6 @@ class Updater extends MY_Controller
         {
             $this->data['update_to_version'] = '1.6.2';
         }
-        if($this->data['script_version_db'] == '1.6.2' && !is_numeric($update_version))
-        {
-            $this->data['update_to_version'] = '1.6.3';
-        }
-        if($this->data['script_version_db'] == '1.6.3' && !is_numeric($update_version))
-        {
-            $this->data['update_to_version'] = '1.6.4';
-        }
 
         /* [END] Run update for specific version */
         
@@ -183,184 +168,8 @@ class Updater extends MY_Controller
         
 		// Load the view
 		$this->load->view('configurator/update_index', $this->data);
-    }
+	}
     
-    private function update_164()
-    {
-        $version = '1.6.4';
-        $previous_version = '1.6.3';
-        
-        $update_output = '';
-        
-        if($this->data['script_version_db'] != $previous_version)
-        {
-            $update_output.= lang_check('Wrong script version or already updated!');
-            return $update_output;
-        }
-        
-        // Run sql import file
-        if(!file_exists(FCPATH.'sql_scripts/update-'.$version.'.sql'))
-        {
-            $update_output.= '<br />Missing file: sql_scripts/update-'.$version.'.sql';
-            return $update_output;
-        }
-        
-        $db_error = '';
-        
-        /* [Additional check for virtual form search */
-//        $query = $this->db->get_where('forms_search', array('id' => 3), 1);
-//        if ($query->num_rows() == 0)
-//        {
-//            $this->db->query('INSERT INTO `forms_search` (`id`, `theme`, `form_name`, `type`, `fields_order_primary`, `fields_order_secondary`) VALUES '.
-//                             '(3, \'bootstrap2-responsive\', \'Bootstrap-search\', \'MAIN\', \'{  "PRIMARY": {  "C_PURPOSE":{"direction":"NONE", "style":"", "class":"", "id":"NONE", "type":"C_PURPOSE"} ,"TREE_64":{"direction":"NONE", "style":"", "class":"", "id":"64", "type":"TREE"} ,"SMART_SEARCH":{"direction":"NONE", "style":"", "class":"", "id":"NONE", "type":"SMART_SEARCH"} ,"DROPDOWN_2":{"direction":"NONE", "style":"", "class":"", "id":"2", "type":"DROPDOWN"} ,"DROPDOWN_3":{"direction":"NONE", "style":"", "class":"", "id":"3", "type":"DROPDOWN"} }, "SECONDARY": {  "INPUTBOX_19":{"direction":"NONE", "style":"", "class":"", "id":"19", "type":"INPUTBOX"} ,"INPUTBOX_20":{"direction":"NONE", "style":"", "class":"", "id":"20", "type":"INPUTBOX"} ,"INPUTBOX_36_FROM":{"direction":"FROM", "style":"", "class":"", "id":"36", "type":"INPUTBOX"} ,"INPUTBOX_36_TO":{"direction":"TO", "style":"", "class":"", "id":"36", "type":"INPUTBOX"} ,"CHECKBOX_11":{"direction":"NONE", "style":"", "class":"", "id":"11", "type":"CHECKBOX"} ,"CHECKBOX_29":{"direction":"NONE", "style":"", "class":"", "id":"29", "type":"CHECKBOX"} ,"CHECKBOX_22":{"direction":"NONE", "style":"", "class":"", "id":"22", "type":"CHECKBOX"} ,"CHECKBOX_32":{"direction":"NONE", "style":"", "class":"", "id":"32", "type":"CHECKBOX"} ,"CHECKBOX_25":{"direction":"NONE", "style":"", "class":"", "id":"25", "type":"CHECKBOX"} ,"CHECKBOX_30":{"direction":"NONE", "style":"", "class":"", "id":"30", "type":"CHECKBOX"} ,"CHECKBOX_27":{"direction":"NONE", "style":"", "class":"", "id":"27", "type":"CHECKBOX"} ,"CHECKBOX_33":{"direction":"NONE", "style":"", "class":"", "id":"33", "type":"CHECKBOX"} ,"CHECKBOX_28":{"direction":"NONE", "style":"", "class":"", "id":"28", "type":"CHECKBOX"} ,"CHECKBOX_23":{"direction":"NONE", "style":"", "class":"", "id":"23", "type":"CHECKBOX"} } }\', \'0\');');
-//            if($this->db->_error_message() != '')
-//                $db_error.= '<br />'.$this->db->_error_message();
-//        } 
-
-        /* [Additional check for column issue in script] */
-        
-        if (!$this->db->field_exists('id_trans_text', 'property'))
-        {
-            $this->db->query('ALTER TABLE `property` ADD `id_trans_text` VARCHAR(60) NULL AFTER `id_transitions`;');
-            if($this->db->_error_message() != '')
-                $db_error.= '<br />'.$this->db->_error_message();
-        }
-
-        if (!$this->db->field_exists('listing_id', 'file'))
-        {
-            $this->db->query('ALTER TABLE `file` ADD `listing_id` INT(11) NULL DEFAULT NULL AFTER `link`;');
-            if($this->db->_error_message() != '')
-                $db_error.= '<br />'.$this->db->_error_message();
-        }
-
-        $fields = $this->db->field_data('token_api');
-        foreach ($fields as $field)
-        {
-                if($field->name == 'id')
-                {
-                    if($field->primary_key != 1)
-                    {
-                        $this->db->query('ALTER TABLE `token_api` ADD PRIMARY KEY(`id`);');
-                        if($this->db->_error_message() != '')
-                            $db_error.= '<br />'.$this->db->_error_message();
-
-                        break;
-                    }
-                }
-        }
-        
-        $sql=file_get_contents(FCPATH.'sql_scripts/update-'.$version.'.sql');
-        $sql = str_replace('"dont run this file manually!"', '', $sql);
-
-          foreach (explode(";", $sql) as $sql) 
-           {
-             $sql = trim($sql);
-              //echo  $sql.'<br/>============<br/>';
-                if($sql) 
-              {
-                if(empty($db_error))
-                {
-                    $this->db->query($sql);
-                    if($this->db->_error_message() != '')
-                        $db_error.= '<br />'.$this->db->_error_message();
-                }
-                else
-                {
-                    break;
-                }
-               } 
-          }
-        
-        if(!empty($db_error))
-            $update_output.=$db_error.'<br />';
-          
-        // Execute db_structure modifications
-//        $this->fix_gps($update_output);
-//        $this->fix_image_filename($update_output);
-//        $this->fix_data_structure($update_output);
-
-        if(empty($update_output))
-            $update_output.=lang_check('Completed successfully to db version: ').$version;
-        
-        return $update_output;
-    }
-    
-    private function update_163()
-    {
-        $version = '1.6.3';
-        $previous_version = '1.6.2';
-        
-        $update_output = '';
-        
-        if($this->data['script_version_db'] != $previous_version)
-        {
-            $update_output.= lang_check('Wrong script version or already updated!');
-            return $update_output;
-        }
-        
-        // Run sql import file
-        if(!file_exists(FCPATH.'sql_scripts/update-'.$version.'.sql'))
-        {
-            $update_output.= '<br />Missing file: sql_scripts/update-'.$version.'.sql';
-            return $update_output;
-        }
-        
-        $db_error = '';
-        
-        /* [Additional check for virtual form search */
-//        $query = $this->db->get_where('forms_search', array('id' => 3), 1);
-//        if ($query->num_rows() == 0)
-//        {
-//            $this->db->query('INSERT INTO `forms_search` (`id`, `theme`, `form_name`, `type`, `fields_order_primary`, `fields_order_secondary`) VALUES '.
-//                             '(3, \'bootstrap2-responsive\', \'Bootstrap-search\', \'MAIN\', \'{  "PRIMARY": {  "C_PURPOSE":{"direction":"NONE", "style":"", "class":"", "id":"NONE", "type":"C_PURPOSE"} ,"TREE_64":{"direction":"NONE", "style":"", "class":"", "id":"64", "type":"TREE"} ,"SMART_SEARCH":{"direction":"NONE", "style":"", "class":"", "id":"NONE", "type":"SMART_SEARCH"} ,"DROPDOWN_2":{"direction":"NONE", "style":"", "class":"", "id":"2", "type":"DROPDOWN"} ,"DROPDOWN_3":{"direction":"NONE", "style":"", "class":"", "id":"3", "type":"DROPDOWN"} }, "SECONDARY": {  "INPUTBOX_19":{"direction":"NONE", "style":"", "class":"", "id":"19", "type":"INPUTBOX"} ,"INPUTBOX_20":{"direction":"NONE", "style":"", "class":"", "id":"20", "type":"INPUTBOX"} ,"INPUTBOX_36_FROM":{"direction":"FROM", "style":"", "class":"", "id":"36", "type":"INPUTBOX"} ,"INPUTBOX_36_TO":{"direction":"TO", "style":"", "class":"", "id":"36", "type":"INPUTBOX"} ,"CHECKBOX_11":{"direction":"NONE", "style":"", "class":"", "id":"11", "type":"CHECKBOX"} ,"CHECKBOX_29":{"direction":"NONE", "style":"", "class":"", "id":"29", "type":"CHECKBOX"} ,"CHECKBOX_22":{"direction":"NONE", "style":"", "class":"", "id":"22", "type":"CHECKBOX"} ,"CHECKBOX_32":{"direction":"NONE", "style":"", "class":"", "id":"32", "type":"CHECKBOX"} ,"CHECKBOX_25":{"direction":"NONE", "style":"", "class":"", "id":"25", "type":"CHECKBOX"} ,"CHECKBOX_30":{"direction":"NONE", "style":"", "class":"", "id":"30", "type":"CHECKBOX"} ,"CHECKBOX_27":{"direction":"NONE", "style":"", "class":"", "id":"27", "type":"CHECKBOX"} ,"CHECKBOX_33":{"direction":"NONE", "style":"", "class":"", "id":"33", "type":"CHECKBOX"} ,"CHECKBOX_28":{"direction":"NONE", "style":"", "class":"", "id":"28", "type":"CHECKBOX"} ,"CHECKBOX_23":{"direction":"NONE", "style":"", "class":"", "id":"23", "type":"CHECKBOX"} } }\', \'0\');');
-//            if($this->db->_error_message() != '')
-//                $db_error.= '<br />'.$this->db->_error_message();
-//        } 
-
-        /* [Additional check for column issue in script] */
-        if (!$this->db->field_exists('listing_id', 'file'))
-        {
-            $this->db->query('ALTER TABLE `file` ADD `listing_id` INT(11) NULL DEFAULT NULL AFTER `link`;');
-            if($this->db->_error_message() != '')
-                $db_error.= '<br />'.$this->db->_error_message();
-        }
-        
-        $sql=file_get_contents(FCPATH.'sql_scripts/update-'.$version.'.sql');
-        $sql = str_replace('"dont run this file manually!"', '', $sql);
-
-          foreach (explode(";", $sql) as $sql) 
-           {
-             $sql = trim($sql);
-              //echo  $sql.'<br/>============<br/>';
-                if($sql) 
-              {
-                if(empty($db_error))
-                {
-                    $this->db->query($sql);
-                    if($this->db->_error_message() != '')
-                        $db_error.= '<br />'.$this->db->_error_message();
-                }
-                else
-                {
-                    break;
-                }
-               } 
-          }
-        
-        if(!empty($db_error))
-            $update_output.=$db_error.'<br />';
-          
-        // Execute db_structure modifications
-//        $this->fix_gps($update_output);
-//        $this->fix_image_filename($update_output);
-//        $this->fix_data_structure($update_output);
-
-        if(empty($update_output))
-            $update_output.=lang_check('Completed successfully to db version: ').$version;
-        
-        return $update_output;
-    }
-
     private function update_162()
     {
         $version = '1.6.2';
@@ -373,14 +182,6 @@ class Updater extends MY_Controller
             $update_output.= lang_check('Wrong script version or already updated!');
             return $update_output;
         }
-
-        // Run copy geo map
-        $this->load->model('settings_m');
-        $this->settings = $this->settings_m->get_fields();
-        if(file_exists(FCPATH.'templates/'.$this->settings['template'].'/files/treefield_64_map.svg') && !file_exists(FCPATH.'files/treefield_64_map.svg'))
-        {
-            copy(FCPATH.'templates/'.$this->settings['template'].'/files/treefield_64_map.svg', FCPATH.'files/treefield_64_map.svg');
-        }
         
         // Run sql import file
         if(!file_exists(FCPATH.'sql_scripts/update-'.$version.'.sql'))
@@ -390,14 +191,6 @@ class Updater extends MY_Controller
         }
         
         $db_error = '';
-
-        /* [Additional check for column issue in script] */
-        if (!$this->db->field_exists('listing_id', 'file'))
-        {
-            $this->db->query('ALTER TABLE `file` ADD `listing_id` INT(11) NULL DEFAULT NULL AFTER `link`;');
-            if($this->db->_error_message() != '')
-                $db_error.= '<br />'.$this->db->_error_message();
-        }
         
         /* [Additional check for virtual form search */
 //        $query = $this->db->get_where('forms_search', array('id' => 3), 1);

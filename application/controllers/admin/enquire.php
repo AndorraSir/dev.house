@@ -107,8 +107,6 @@ class Enquire extends Admin_Controller
                 unset($data['agent_id']);
             
             $this->enquire_m->save($data, $id);
-            $this->session->set_flashdata('message', 
-                    '<p class="label label-success validation">'.lang_check('Changes saved').'</p>');
             redirect('admin/enquire');
         }
         

@@ -58,6 +58,6 @@
         init_gmap_searchbox();
     });    
     </script>
-<div class="wrap-map fixed-map" id="wrap-map">
+<div class="wrap-map" id="wrap-map">
 </div>
 {template_search}

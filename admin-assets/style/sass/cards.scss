@@ -2,26 +2,15 @@ ul.cards{
 	li{
 		list-style: none;
 		 color:#908E91;
-    	font-size:16px;
-	}
-	.card-title {
-	    margin-bottom: 0.5rem;
-	    font-family: 'Lato';
-	    font-size: 18px;
-	    text-transform: uppercase;
+    font-size:16px;
 	}
 }
-.custom_card{
-    border:0px;
-    margin-bottom: 2rem;
+.card{
+	color:#908E91;
+    font-size:16px !important;
+    font-weight:200 !important;
 	img{
 		width:100%;
-		object-fit:cover;
-	}
-	.prop-icons{
-		img{
-			width:auto;
-		}
 	}
 
 	.prop-description{
@@ -35,27 +24,6 @@ ul.cards{
 	}
 	.prop-details{
 		margin-bottom:0px;
-	}
-	.btn-info{
-		background-color: #F5A623 !important;
-	}
-	.details{
-		span{
-			text-transform:uppercase;
-			display:block;
-			text-align:center;
-			font-size:14px;
-			margin-bottom:10px;
-		}
-	}
-	.prop-address{
-		span{
-			text-transform:uppercase;
-			display:block;
-			text-align:left;
-			font-size:14px;
-			margin-bottom:10px;
-		}
 	}
 
 }

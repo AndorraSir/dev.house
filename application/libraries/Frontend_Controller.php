@@ -104,7 +104,6 @@ class Frontend_Controller extends MY_Controller
         
         /* [START] Fetch logo URL */
         $this->data['website_logo_url'] = 'assets/img/logo.png';
-        $this->data['website_logo_url_inverted'] = 'assets/img/logo_white.png';
         if(isset($this->data['settings']['website_logo']))
         {
             if(is_numeric($this->data['settings']['website_logo']))
@@ -154,7 +153,6 @@ class Frontend_Controller extends MY_Controller
         $this->data['has_extra_js'] = array();
         if($this->uri->segment(2) == 'editproperty' ||
            $this->uri->segment(2) == 'myprofile' ||
-           $this->uri->segment(2) == 'edit_visit' ||
            $this->uri->segment(2) == 'submission' )
             $this->data['has_extra_js'][] = array('count'=>'1');
         
@@ -222,10 +220,6 @@ class Frontend_Controller extends MY_Controller
         else if($this->data['page_id'] == 'login' || 
                 $this->data['page_id'] == 'myproperties' ||
                 $this->data['page_id'] == 'myprofile' ||
-                $this->data['page_id'] == 'myvisits' ||
-                $this->data['page_id'] == 'myvisits_inbox' ||
-                $this->data['page_id'] == 'edit_visit' ||
-                $this->data['page_id'] == 'cancel_visit' ||
                 $this->data['page_id'] == 'myrates' ||
                 $this->data['page_id'] == 'editrate' ||
                 $this->data['page_id'] == 'deleterate' ||
@@ -278,6 +272,7 @@ class Frontend_Controller extends MY_Controller
         
         
         
+        
         if(config_db_item('multi_domains_enabled') === TRUE && empty($this->data['lang_code']))
         {
             foreach($this->language_m->db_languages_code_obj as $lang_obj)
@@ -300,17 +295,7 @@ class Frontend_Controller extends MY_Controller
         }
 
         
-        if(!empty($this->data['page_id']) && $this->data['page_id'] =='inc_widget_preview')
-        {
-            // Get first menu item page
-            $first_page = $this->page_m->get_first();
-            
-            if(!empty($first_page))
-                $this->data['page_id'] = $first_page->id;
-            
-            $this->data['widget_preview'] = true;
-        }
-        elseif(empty($this->data['page_id']))
+        if(empty($this->data['page_id']))
         {
             // Get first menu item page
             $first_page = $this->page_m->get_first();
@@ -584,10 +569,8 @@ class Frontend_Controller extends MY_Controller
         }
         // [/agent_direct feature]
                 
-        $this->data['search_query'] = $this->input->get('search', TRUE);
-        if(!empty($this->data['search_query']))
-            $this->data['search_query'] = htmlentities($this->data['search_query']);
-        
+        $this->data['search_query'] = $this->input->get('search');
+
         if(empty($this->data['search_query']))
             $this->data['search_query'] = '';
         
@@ -696,38 +679,20 @@ class Frontend_Controller extends MY_Controller
         }
         /* [/CAPTCHA Helper] */
 
-        // Check login and fetch user id
-        $this->load->library('session');
-        $this->load->model('user_m');
-        /* if google api key not avaible */
-        if($this->user_m->loggedin() == TRUE && $this->session->userdata('type')=='ADMIN' && empty($this->data['settings_maps_api_key'])){
-        ?> 
-        <div class="alert alert-warning alert-dismissible fade in">
-          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-           <?php echo lang_check('To use script please enter google maps api key in ');?> <a href="<?php echo site_url('admin/settings/system');?>"> <?php echo lang_check('settings->system settings, add key');?>.</a> <a href="http://iwinter.com.hr/support/?p=17200"><strong><?php echo lang_check('All details here');?></strong></a>
-        </div>
-        <?php
-        }
+    
         
-    }
+        
+	}
     
     public function generate_results_array(&$results_obj, &$results_array, &$options_name)
     {
         $this->load->model('favorites_m');
         $favorites_list = array();
         
-        // Check login and fetch user id
-        $this->load->library('session');
-        $this->load->model('user_m');
-        if($this->user_m->loggedin() == TRUE)
-        {
-            $_favorites_list = $this->favorites_m->get_by(array('user_id'=>$this->session->userdata('id')));
-            foreach ($_favorites_list as $key => $value) {
-                $favorites_list[$value->property_id] = true;
-            }
+        $_favorites_list = $this->favorites_m->get_by(array('user_id'=>$this->session->userdata('id')));
+        foreach ($_favorites_list as $key => $value) {
+            $favorites_list[$value->property_id] = true;
         }
-        
-        
         foreach($results_obj as $key=>$estate_arr)
         {
             $estate = array();

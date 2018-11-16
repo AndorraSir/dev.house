@@ -1,0 +1,10 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2018-09-12 13:25:34 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-09-12 13:25:36 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-09-12 13:25:43 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-09-12 13:25:43 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-09-12 13:25:56 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-09-12 13:25:57 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-09-12 14:26:19 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-09-12 14:26:22 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73

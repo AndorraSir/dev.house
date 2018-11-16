@@ -194,25 +194,5 @@ if ( ! function_exists('redirect_html'))
 	}
 }
 
-/**
- * Site URL
- *
- * Create a local URL based on your basepath. Segments can be passed via the
- * first parameter either as a string or an array.
- *
- * @access	public
- * @param	string
- * @return	string
- */
-if ( ! function_exists('site_url') && config_item('json_url_encoding')==TRUE)
-{
-	function site_url($uri = '')
-	{
-            $uri = str_replace('}', '%7D', $uri);
-            $uri = str_replace('{', '%7B', $uri);
-            
-            $CI =& get_instance();
-            return $CI->config->site_url($uri);
-	}
-}
+
 ?>

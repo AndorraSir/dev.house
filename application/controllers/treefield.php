@@ -430,10 +430,6 @@ class Treefield extends Frontend_Controller
         
         $search_array = $search_json;
         
-        if(empty($search_array)) {
-            $search_array = new stdClass();
-        }
-        
         if(!empty($this->data['search_query']))
         {
             $search_array->search_option_smart = 
@@ -442,7 +438,7 @@ class Treefield extends Frontend_Controller
         
 
         // add treefield value
-        $search_array->{'v_search_option_'.$field_id} = $this->data['value_path'].' - ';
+        $search_array['v_search_option_'.$field_id] = $this->data['value_path'].' - ';
         //$search_array['v_search_option_88'] = $this->data['value_path'].' - ';
         
         if(!empty($lang_purpose))

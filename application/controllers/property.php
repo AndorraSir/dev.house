@@ -627,14 +627,6 @@ class Property extends Frontend_Controller
                 }
                 
                 $this->reviews_m->save($data);
-                
-                $reviews_all = $this->reviews_m->get_listing(array('listing_id'=>$property_id));
-                $avarage_stars = intval($this->reviews_m->get_avarage_rating($property_id)+0.5);
-                
-                /* save avarage_stars into db tabe property  */
-                $data = array('avarage_rating'=>$avarage_stars);
-                $this->estate_m->save($data, $property_id);
-                
             }
             
             $this->data['reviews_validation_errors'] = validation_errors();
@@ -805,13 +797,6 @@ class Property extends Frontend_Controller
                         $data_r['total_price'] = $booking_price;
                         
                         $this->session->set_flashdata('data_r', serialize($data_r));
-                        
-                        $data_contact_r = array();
-                        $data_contact_r['name_surname'] = $data_t['firstname'];
-                        $data_contact_r['phone'] = $data_t['phone'];
-                        $data_contact_r['mail'] = $data_t['email'];
-                        $data_contact_r['address'] = $data_t['address'];
-                        $this->session->set_flashdata('data_contact_r', serialize($data_contact_r));
                         redirect('frontend/login_book/'.$this->data['lang_code']);
                     }
                 }

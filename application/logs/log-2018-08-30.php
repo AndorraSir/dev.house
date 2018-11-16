@@ -1,0 +1,11 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2018-08-30 10:11:25 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-08-30 10:11:25 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-08-30 10:11:29 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-08-30 10:11:38 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-08-30 10:13:45 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-08-30 10:13:47 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-08-30 10:13:57 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-08-30 10:13:59 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-08-30 10:14:14 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73

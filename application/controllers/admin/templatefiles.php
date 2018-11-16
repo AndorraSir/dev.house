@@ -9,8 +9,7 @@ class Templatefiles extends Admin_Controller
 
         // Get language for content id to show in administration
         $this->data['content_language_id'] = $this->language_m->get_content_lang();
-        $this->data['content_language_code'] = $this->language_m->get_code($this->data['content_language_id']);
-
+        
         $this->data['template_css'] = base_url('templates/'.$this->data['settings']['template']).'/'.config_item('default_template_css');
 	}
     
@@ -67,8 +66,6 @@ class Templatefiles extends Admin_Controller
     
     public function edit($filename = NULL, $foldername = NULL, $subfoldername = NULL)
 	{
-        $this->load->helper('security');
-        
 	    // Fetch a page or set a new one
 	    if(empty($filename))
         {
@@ -102,13 +99,7 @@ class Templatefiles extends Admin_Controller
         $this->data['filename'] = $filename;
         
         $this->data['file_content'] = file_get_contents($file_path);
-        
-        $this->load->model('language_m');
-        $language_current = $this->language_m->get_name($this->data['content_language_id']);
-        
-        $path_current = FCPATH.'templates/'.$this->data['settings']['template'].'/language/'.$language_current.'/frontend_template_lang.php';
-        include $path_current;
-        $this->data['language_translations_content'] = $lang;
+
         
         // Set up the form
         $rules = array();
@@ -126,99 +117,15 @@ class Templatefiles extends Admin_Controller
                 exit();
             }
             
-            if(isset($_POST['lang']) && !empty($_POST['lang'])) {
-                /* add ore replace new translate text */
-                $lang_post = $_POST['lang'];
-                foreach ($lang_post as $key => $value) {
-                    $key = trim($key,'"');
-                    $key = trim($key,"'");
-                    
-                    if(isset($this->data['language_translations_content'][$key])) {
-                        $this->data['language_translations_content'][$key] = $value;
-                    } else {
-                        $this->data['language_translations_content'][$key] = $value;
-                    }
-                }
-                /* end add ore replace new translate text */
-                
-                // Save file
-                $file_content = '<?php '."\n\n";
-
-                $previous = 't';
-                foreach($this->data['language_translations_content'] as $key=>$val)
-                {
-                    $lang_val = $val;
-
-                    $lang_val = xss_clean($lang_val);
-                    $lang_val = str_replace('"', '\"', $lang_val);
-                    $lang_val = str_replace('$', '\\$', $lang_val);
-
-                    $key = str_replace('\'', '\\\'', $key);
-                    $key = str_replace('$', '\\$', $key);
-
-                    if(empty($previous) && !empty($lang_val))
-                        $file_content.= "\n";
-
-                    $file_content.= '$lang[\''.$key.'\'] = "'.$lang_val.'";'."\n";
-                    $previous = $lang_val;
-                }
-                $file_content.= "\n".'?>';
-
-                $message = '';
-                if (!$handle = fopen($path_current, 'w')) {
-                     $message = lang('cannot_open_file')." ($path_current)";
-                     exit;
-                }
-
-                // Write $somecontent to our opened file.
-                if (fwrite($handle, $file_content) === FALSE) {
-                    $message = lang('cannot_write_file')." ($path_current)";
-                    exit;
-                }
-
-                fclose($handle);
-            }
+            $data = $_POST['file_content'];
             
-            if(isset($_POST['widget_options']) && !empty($_POST['widget_options'])) {
-                $widget_name = str_replace('.php', '', $filename);
-                $widget_options = $_POST['widget_options'];
-                $this->load->model('widgetoptions_m');
-                foreach ($widget_options as $option => $value) {
-                    $option_name = $option;
-                    foreach ($value as $p_id => $v) {
-                        $page_id = $p_id;
-                        $data = array(
-                            'page_id'=>$page_id,
-                            'widget_name'=>$widget_name,
-                            'option_name'=>$option_name,
-                            'template'=>$this->data['settings']['template'],
-                        );
-                        
-                        $data_lang = array();
-                        foreach ($v as $l_id => $string) {
-                            $data_lang['value_'.$l_id] = $string;
-                        }
-                        $insert = $this->widgetoptions_m->save_option_with_lang($data, $data_lang, $option_name, $widget_name, $page_id, $this->data['settings']['template']);
-                    }
-                }
-                
-            }
-            
-            $data = trim($_POST['file_content']);
-            
-            if(!empty($data) && $this->data['file_content'] !==$data){
+            if(!empty($data))
                 file_put_contents($file_path, $data);
-            }
             
             $this->session->set_flashdata('message', 
                     '<p class="label label-success validation">'.lang_check('Changes saved').'</p>');
             
-            $path = '';
-            if(!empty($filename)) $path .='/'.$filename;
-            if(!empty($foldername)) $path .='/'.$foldername;
-            if(!empty($subfoldername)) $path .='/'.$subfoldername;
-            
-            redirect('admin/templatefiles/edit'.$path);
+            redirect('admin/templatefiles');
         }
         
         // Load the view

@@ -1,0 +1,15 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2018-10-23 10:53:39 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-10-23 10:53:40 --> Severity: Notice  --> Undefined variable: website_logo_url_inverted /Applications/MAMP/htdocs/codecanyon/templates/bootstrap2-responsive/widgets/footer_logo.php 3
+ERROR - 2018-10-23 10:53:41 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-10-23 10:53:48 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-10-23 10:53:49 --> Severity: Notice  --> Undefined variable: website_logo_url_inverted /Applications/MAMP/htdocs/codecanyon/templates/bootstrap2-responsive/widgets/footer_logo.php 3
+ERROR - 2018-10-23 10:53:50 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-10-23 10:53:53 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-10-23 10:53:55 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-10-23 10:53:56 --> Severity: Notice  --> Undefined variable: website_logo_url_inverted /Applications/MAMP/htdocs/codecanyon/templates/bootstrap2-responsive/widgets/footer_logo.php 3
+ERROR - 2018-10-23 10:53:57 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-10-23 10:54:14 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2018-10-23 10:54:15 --> Severity: Notice  --> Undefined variable: website_logo_url_inverted /Applications/MAMP/htdocs/codecanyon/templates/bootstrap2-responsive/widgets/footer_logo.php 3
+ERROR - 2018-10-23 10:54:16 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/codecanyon/system/database/drivers/mysql/mysql_driver.php 73

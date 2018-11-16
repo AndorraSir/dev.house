@@ -151,7 +151,7 @@
                 <div class="form-row-space"></div>
                 <input id="search_option_36_from" type="text" class="col-3 mPrice" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_from'); ?>" />
                 <input id="search_option_36_to" type="text" class="col-3 xPrice" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_to'); ?>" />
-                <input id="search_option_19" type="text" class="col-sm-3 Bathrooms" placeholder="{options_name_19}" value="<?php echo search_value(19); ?>" />
+                <input id="search_option_19" type="text" class="col-3 Bathrooms" placeholder="{options_name_19}" value="<?php echo search_value(19); ?>" />
                 <input id="search_option_20" type="text" class="col-3" placeholder="{options_name_20}" value="<?php echo search_value(20); ?>" />
                 <div class="form-row-space"></div>
                 <?php if(file_exists(APPPATH.'controllers/admin/booking.php')):?>

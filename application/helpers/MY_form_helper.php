@@ -429,91 +429,6 @@ if ( ! function_exists('form_dropdown'))
 	}
 }
 
-if ( ! function_exists('form_treefield'))
-{
-	function form_treefield($name = '', $table, $selected = NULL, 
-                            $column = 'value', $language_id=NULL, $field_prefix = 'field_',
-                            $clear_dependent_fields=false, $empty_value='', $field_id=1, $extra="")
-	{
-        $CI =& get_instance();
-
-	    static $called = 0;
-        
-        $model_name = $table;
-        $table_name = str_replace('_m', '', $table);
-        
-        $attribute_id = 'id'.$table_name;
-        
-        if(substr($model_name, -2, 2) == '_m')
-        {
-            $CI->load->model($model_name);
-            
-            $attribute_id = $CI->$model_name->get_primary_key();
-        }
-        
-		if(empty($selected))
-            $selected='';
-        
-		$form = '<input name="'.$name.'" value="'.$selected.'" type="text" id="'.$name.'" '.$extra.' readonly/>';
-        
-        $skip_id = '';
-//        if(isset($_GET['id']))
-//        {
-//            $skip_id = $_GET['id'];
-//        }
-        
-        //load javascript library
-        if($called==0)
-        {
-            //echo '<script src="'.plugins_url('SW_Win_Classified/assets/js/winter_treefield/winter.js').'"></script>';
-            //echo '<link rel="stylesheet" href="'.plugins_url('SW_Win_Classified/assets/js/winter_treefield/winter.css').'"> </script>';
-        }
-        
-        /*
-        $CI->load->model('dependentfield_m');
-        $all_fields = $CI->dependentfield_m->get_by(array('field_id'=>$field_id));
-        
-        $gen_js_array = array();
-        
-        foreach($all_fields as $key=>$field)
-        {
-            $gen_js_array[$field->treefield_id] = explode(',', $field->hidden_fields_list);
-        }
-        
-        $dependent_fields_json = json_encode($gen_js_array);
-        */
-
-
-        ?>
-<script>
-
-jQuery(document).ready(function($) {
-    $('#<?php echo $name;?>').winterTreefield({
-        ajax_url: '<?php echo site_url('api/treefieldid');?>',
-        ajax_param: { 
-                      "page": 'frontendajax_treefieldid',
-                      "action": 'ci_action',
-                      "table": '<?php echo $table; ?>',
-                      "field_id": '<?php echo $field_id; ?>',
-                      "empty_value": '<?php echo $empty_value; ?>'
-                    },
-        attribute_id: '<?php echo $attribute_id; ?>',
-        language_id: '<?php echo $language_id; ?>',
-        attribute_value: '<?php echo $column; ?>',
-        skip_id: '<?php echo $skip_id; ?>',
-        empty_value: ' - ',
-        callback_selected: function(key) {
-            $('#search_option_<?php echo $field_id;?>').trigger("change");
-        }
-    });
-});
-</script>
-        <?php
-        $called++;
-		return $form;
-	}
-}
-
 function _recaptcha($is_compact=false, $style="", $load_script=true)
 {
     if(config_item('recaptcha_site_key') !== FALSE)
@@ -942,18 +857,7 @@ function postCURL($_url, $_param){
     return $output;
 }
     
-function file_get_contents_curl($url) {
-    $ch = curl_init();
-
-    curl_setopt($ch, CURLOPT_HEADER, 0);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); //Set cURL to return the data instead of printing it to the browser.
-    curl_setopt($ch, CURLOPT_URL, $url);
-
-    $data = curl_exec($ch);
-    curl_close($ch);
-
-    return $data;
-}
+    
 
 
 /* End of file form_helper.php */

@@ -62,7 +62,7 @@ class Forms extends Admin_Controller
             }
             else
             {
-                //$this->output->enable_profiler(TRUE);
+                $this->output->enable_profiler(TRUE);
             }
         }
         

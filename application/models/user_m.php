@@ -76,7 +76,7 @@ class User_m extends MY_Model {
             $this->user_type_color['AGENT_COUNTY_AFFILIATE'] = 'warning';
         }
         
-        if((config_db_item('clickatell_api_id') != '' || config_db_item('clickatell_api_key') != '') && file_exists(APPPATH.'controllers/admin/savesearch.php'))
+        if(config_db_item('clickatell_api_id') != '' && file_exists(APPPATH.'controllers/admin/savesearch.php'))
         {
             $this->rules_admin['research_sms_notifications'] = array('field'=>'research_sms_notifications', 'label'=>'lang:SMS notifications enabled', 'rules'=>'trim|xss_clean');
         }
@@ -255,20 +255,6 @@ class User_m extends MY_Model {
         $query = $this->db->get();
         $results = $query->result();
         
-        if(count($results) > 0)
-        {
-            return true;
-        }
-        
-        $this->db->select('planimages_repository_id, property_id, user_id');
-        $this->db->from('property_user');
-        $this->db->join('property', 'property_user.property_id = property.id');
-        $this->db->where('planimages_repository_id', $repository_id);
-        $this->db->where('user_id', $user_id);
-        
-        $query = $this->db->get();
-        $results = $query->result();
-
         if(count($results) > 0)
         {
             return true;

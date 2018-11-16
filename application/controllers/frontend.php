@@ -370,7 +370,7 @@ class Frontend extends Frontend_Controller
                     if($this->_get_purpose() == strtolower($val))$selected = 'selected';
                     if(empty($val))
                     {
-                        $options='<option value="'.$val.'" '.$selected.'>'.lang_check('Any').'</option>';
+                        $options.='<option value="'.$val.'" '.$selected.'>'.lang_check('Any').'</option>';
                     }
                     else
                     {
@@ -385,7 +385,7 @@ class Frontend extends Frontend_Controller
                     
                     $checked = '';
                     if($this->_get_purpose() == strtolower($val))$checked = 'checked';
-                    $radio_li.='<label class="checkbox option1">
+                    $radio_li.='<label class="checkbox">
                                 <input type="radio" rel="'.$val.'" name="search_option_'.$row->option_id.'" value="'.$key2.'" '.$checked.'> '.$val.'
                                 </label>';
                 }
@@ -396,283 +396,6 @@ class Frontend extends Frontend_Controller
         }
     }
     
-    public function myvisits()
-    {
-        $this->check_login();
-        $this->load_head_data();
-        
-         if(file_exists(APPPATH.'controllers/admin/visits.php')) {
-            $this->session->set_flashdata('error', 
-                    lang_check('Visits module not install'));
-            redirect('frontend');
-            exit();
-         }
-        
-        $this->data['user'] = $this->user_m->get_array($this->session->userdata('id'));
-        
-        // Main page data
-        $this->data['page_navigation_title'] = lang_check('My submited visits');
-        $this->data['page_title'] = lang_check('My submited visits');
-        $this->data['page_body']  = '';
-        $this->data['page_description']  = '';
-        $this->data['page_keywords']  = '';
-        
-        $this->data['content_language_id'] = $this->data['lang_id'];
-        $this->load->model('visits_m');
-	    // Fetch all estates
-        $this->data['estates'] = $this->estate_m->get_join();
-        $this->data['languages'] = $this->language_m->get_form_dropdown('language');
-        $this->data['available_agent'] = $this->user_m->get_form_dropdown('name_surname', array('type'=>'USER'));
-        
-        // For compatibility with old template versions
-        $this->data['options'] = $this->option_m->get_options($this->data['content_language_id'], array(), array(), $this->data['estates']);
-        
-        // filter for show only confirmed
-        
-        $this->data['visits'] = $this->visits_m->get_myout(NULL,0, array('date_visit >'=> date('Y-m-d H:i:s'),'date_confirmed !='=> 'NULL'));
-        
-        
-        // Get templates
-        $templatesDirectory = opendir(FCPATH.'templates/'.$this->data['settings_template'].'/components');
-        // get each template
-        $template_prefix = 'page_';
-        while($tempFile = readdir($templatesDirectory)) {
-            if ($tempFile != "." && $tempFile != ".." && strpos($tempFile, '.php') !== FALSE) {
-                if(substr_count($tempFile, $template_prefix) == 0)
-                {
-                    $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
-                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
-                    $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
-                }
-            }
-        }
-
-        $output = $this->parser->parse($this->data['settings_template'].'/myvisits.php', $this->data, TRUE);
-        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
-    }
-    
-    public function myvisits_inbox()
-    {
-        $this->check_login();
-        $this->load_head_data();
-        
-        $this->data['user'] = $this->user_m->get_array($this->session->userdata('id'));
-        
-        // Main page data
-        $this->data['page_navigation_title'] = lang_check('My submited visits');
-        $this->data['page_title'] = lang_check('My submited visits');
-        $this->data['page_body']  = '';
-        $this->data['page_description']  = '';
-        $this->data['page_keywords']  = '';
-        
-        $this->data['content_language_id'] = $this->data['lang_id'];
-        $this->load->model('visits_m');
-	    // Fetch all estates
-        $this->data['estates'] = $this->estate_m->get_join();
-        $this->data['languages'] = $this->language_m->get_form_dropdown('language');
-        $this->data['available_agent'] = $this->user_m->get_form_dropdown('name_surname', array('type'=>'USER'));
-        
-        // For compatibility with old template versions
-        $this->data['options'] = $this->option_m->get_options($this->data['content_language_id'], array(), array(), $this->data['estates']);
-        
-        $this->data['visits'] = $this->visits_m->get(NULL,0, array('date_visit >'=> date('Y-m-d H:i:s')));
-        
-        
-        // Get templates
-        $templatesDirectory = opendir(FCPATH.'templates/'.$this->data['settings_template'].'/components');
-        // get each template
-        $template_prefix = 'page_';
-        while($tempFile = readdir($templatesDirectory)) {
-            if ($tempFile != "." && $tempFile != ".." && strpos($tempFile, '.php') !== FALSE) {
-                if(substr_count($tempFile, $template_prefix) == 0)
-                {
-                    $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
-                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
-                    $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
-                }
-            }
-        }
-
-        $output = $this->parser->parse($this->data['settings_template'].'/myvisits_inbox.php', $this->data, TRUE);
-        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
-    }
-    
-    public function edit_visit()
-    {
-        
-        $this->check_login();
-        $this->load_head_data();
-        $this->load->model('visits_m');
-        $this->load->model('estate_m');
-        $this->load->model('user_m');
-        
-        $this->data['user'] = $this->user_m->get_array($this->session->userdata('id'));
-        
-        // Main page data
-        $this->data['page_navigation_title'] = lang_check('Edit visit');
-        $this->data['page_title'] = lang_check('Edit visit');
-        $this->data['page_body']  = '';
-        $this->data['page_description']  = '';
-        $this->data['page_keywords']  = '';
-        
-        $this->data['content_language_id'] = $this->data['lang_id'];
-	    // Fetch all estates
-        $this->data['estates'] = $this->estate_m->get_join();
-        $this->data['languages'] = $this->language_m->get_form_dropdown('language');
-        $this->data['available_agent'] = $this->user_m->get_form_dropdown('name_surname', array('type'=>'USER'));
-        
-        $estates = $this->estate_m->get_by(array());
-        $this->data['estates_list'] = array();
-        foreach($estates as $key=>$estate)
-        {
-            $this->data['estates_list'][$estate->id] = $estate->id.'. '.$this->estate_m->get_field_from_listing($estate, 10);
-        }
-        
-        $users_list = $this->user_m->get_by(array());
-        $this->data['users_list'] = array();
-        foreach($users_list as $key=>$user)
-        {
-            $this->data['users_list'][$user->id] = $user->name_surname;
-        }
-        
-        // Fetch a user or set a new one
-        $id = NULL;
-        if($this->uri->segment(4) != '')
-        {
-            $id = $this->uri->segment(4);
-        }
-        
-        
-        if($id)
-        {
-            $this->data['listing'] = $this->visits_m->get($id);
-            
-            if(count($this->data['listing']) == 0)
-            {
-                $this->session->set_flashdata('error', 
-                        lang_check('Visit could not be found'));
-                redirect('frontend/myvisits');
-                exit();
-            }
-
-            if(!empty($this->data['listing']->date_confirmed))
-                $this->data['listing']->confirmed = '1';
-            else
-                $this->data['listing']->confirmed = '';
-                
-            //Check if user have permissions
-            if($this->session->userdata('type') != 'ADMIN' && $this->session->userdata('type') != 'AGENT_ADMIN')
-            {
-                if($this->estate_m->check_user_permission($this->data['listing']->property_id, 
-                                         $this->session->userdata('id')) > 0)
-                {
-                }
-                else
-                {
-                    
-                    redirect('frontend/myvisits');
-                }
-            }
-        }
-        else
-        {
-            /*$this->data['listing'] = $this->visits_m->get_new();
-            $this->data['listing']->confirmed = '';*/
-            
-            $this->session->set_flashdata('error', 
-                    lang_check('You can only edit'));
-            redirect('frontend/myvisits');
-            exit();
-        }
-        $this->data['content_language_id'] = $this->language_m->get_content_lang();
-        
-        // Set up the form
-        $rules = $this->visits_m->rules_admin;
-
-        $this->form_validation->set_rules($rules);
-
-        // Process the form
-        if($this->form_validation->run() == TRUE)
-        {
-            if($this->config->item('app_type') == 'demo')
-            {
-                $this->session->set_flashdata('error', 
-                        lang('Visits editing disabled in demo'));
-                redirect('frontend/edit_visit/'.$this->data['lang_code'].'/'.$id);
-                exit();
-            }
-            
-            $data = $this->visits_m->array_from_post(array('property_id', 'message', 
-                                                         'client_id','confirmed'));
-            
-            if($id == NULL)
-                $data['date_created'] = date('Y-m-d H:i:s');
-            
-            if($data['confirmed'] == '1')
-                $data['date_confirmed'] = date('Y-m-d H:i:s');
-            
-            unset($data['confirmed']);
-            
-            $insert_id=$this->visits_m->save($data, $id);
-            
-            if(empty($insert_id)) {
-                echo 'QUERY: '.$this->db->last_query();
-                echo '<br />';
-                echo 'ERROR: '.$this->db->_error_message();
-                exit();
-            }
-            
-            $this->session->set_flashdata('message', 
-                    '<p class="alert alert-success validation">'.lang_check('Changes saved').'</p>');
-            //redirect('admin/visits');
-        }
-        
-        // Get templates
-        $templatesDirectory = opendir(FCPATH.'templates/'.$this->data['settings_template'].'/components');
-        // get each template
-        $template_prefix = 'page_';
-        while($tempFile = readdir($templatesDirectory)) {
-            if ($tempFile != "." && $tempFile != ".." && strpos($tempFile, '.php') !== FALSE) {
-                if(substr_count($tempFile, $template_prefix) == 0)
-                {
-                    $template_output = $this->parser->parse($this->data['settings_template'].'/components/'.$tempFile, $this->data, TRUE);
-                    //$template_output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $template_output);
-                    $this->data['template_'.substr($tempFile, 0, -4)] = $template_output;
-                }
-            }
-        }
-
-        $output = $this->parser->parse($this->data['settings_template'].'/edit_visit.php', $this->data, TRUE);
-        echo str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
-    }
-    
-        
-    public function cancel_visit()
-    {
-        $this->check_login();
-        
-        if($this->config->item('app_type') == 'demo')
-        {
-            $this->session->set_flashdata('error', 
-                    lang_check('Editing disabled in demo'));
-            redirect('frontend/myvisits/'.$this->data['lang_code']);
-            exit();
-        }
-        
-        $id = NULL;
-        if($this->uri->segment(4) != '')
-        {
-            $id = $this->uri->segment(4);
-        }
-         $this->load->model('visits_m');
-        // Fetch a page or set a new one
-        if($id)
-        {
-            $this->visits_m->cancel($id);
-        }           
-
-        redirect('frontend/myvisits_inbox/'.$this->data['lang_code']);
-    }
     
     public function myproperties()
     {
@@ -1145,80 +868,6 @@ class Frontend extends Frontend_Controller
         redirect('frontend/myproperties/'.$this->data['lang_code']);
     }
     
-    public function pause_property()
-    {
-        
-        $this->check_login();
-        
-        if($this->config->item('app_type') == 'demo')
-        {
-            $this->session->set_flashdata('error', 
-                    lang_check('Data editing disabled in demo'));
-            redirect('frontend/myproperties/'.$this->data['lang_code']);
-            exit();
-        }
-        
-        $id = NULL;
-        if($this->uri->segment(4) != '')
-        {
-            $id = $this->uri->segment(4);
-        }
-        
-	    // Fetch a page or set a new one
-	    if($id)
-        {
-            $this->data['estate'] = $this->estate_m->get_dynamic_array($id);
-            
-            if(count($this->data['estate']) > 0)
-            {
-                //Check if user have permissions
-                if($this->data['estate']['agent'] == $this->session->userdata('id'))
-                {
-                    $this->estate_m->change_visible_properties($id, 0);
-                }
-            }
-        }           
-
-        redirect('frontend/myproperties/'.$this->data['lang_code']);
-    }
-    
-    public function unpause_property()
-    {
-        
-        $this->check_login();
-        
-        if($this->config->item('app_type') == 'demo')
-        {
-            $this->session->set_flashdata('error', 
-                    lang_check('Data editing disabled in demo'));
-            redirect('frontend/myproperties/'.$this->data['lang_code']);
-            exit();
-        }
-        
-        $id = NULL;
-        if($this->uri->segment(4) != '')
-        {
-            $id = $this->uri->segment(4);
-        }
-        
-	    // Fetch a page or set a new one
-	    if($id)
-        {
-            $this->data['estate'] = $this->estate_m->get_dynamic_array($id);
-            
-            if(count($this->data['estate']) > 0)
-            {
-                //Check if user have permissions
-                if($this->data['estate']['agent'] == $this->session->userdata('id'))
-                {
-                    $this->estate_m->change_visible_properties($id, 1);
-                }
-            }
-        }           
-
-        redirect('frontend/myproperties/'.$this->data['lang_code']);
-    }
-    
     public function report_deleteproperty()
     {
         $this->check_login();
@@ -1414,7 +1063,7 @@ class Frontend extends Frontend_Controller
             }
             
             if($this->data['user_data']['phone'] != $data['phone'] && !empty($data['phone']) &&
-               (config_db_item('clickatell_api_id') != FALSE || config_db_item('clickatell_api_key') != FALSE) && config_db_item('phone_verification_enabled') === TRUE &&
+               config_db_item('clickatell_api_id') != FALSE && config_db_item('phone_verification_enabled') === TRUE &&
                file_exists(APPPATH.'libraries/Clickatellapi.php'))
             {
                 $data['phone_verified'] = 0;
@@ -1555,21 +1204,6 @@ class Frontend extends Frontend_Controller
                 // Update page with new repository_id
                 $this->estate_m->save(array('repository_id'=>$repository_id), $this->data['estate']['id']);
             }
-            
-            
-                        
-            if(config_item('plan_gallery_enabled') == TRUE){
-                $planimages_repository_id = $this->data['estate']['planimages_repository_id'];
-                if(empty($planimages_repository_id))
-                {
-                    // Create repository
-                    $planimages_repository_id = $this->repository_m->save(array('name'=>'estate_m'));
-
-                    // Update page with new repository_id
-                    $this->estate_m->save(array('planimages_repository_id'=>$planimages_repository_id), $this->data['estate']['id']);
-                    $this->data['estate']['planimages_repository_id'] = $planimages_repository_id;
-                }
-            }
         }
         else
         {            
@@ -1640,7 +1274,6 @@ class Frontend extends Frontend_Controller
             
             $this->data['files'][$file->repository_id][] = $file;
         }
-        
         
         // Set up the form
         $rules = $this->estate_m->rules;
@@ -1986,7 +1619,7 @@ class Frontend extends Frontend_Controller
                 $data_m = array();
                 $data_m['subject'] = lang_check('New not-activated property from user');
                 $data_m['name_surname'] = $this->session->userdata('username');
-                $data_m['link'] = '<a href="'. slug_url('frontend/'.$this->data['listing_uri'].'/'.$this->data['lang_code'].'/'.$insert_id).'">'.lang_check('Property edit link').'</a>';
+                $data_m['link'] = '<a href="'.site_url('frontend/editproperty/'.$this->data['lang_code'].'/'.$insert_id).'">'.lang_check('Property edit link').'</a>';
                 $message = $this->load->view('email/waiting_for_activation_user', array('data'=>$data_m), TRUE);
                 
                 $this->email->message($message);
@@ -2120,20 +1753,14 @@ class Frontend extends Frontend_Controller
                         // Check if email already exists
                         if($this->user_m->if_exists($data['user_profile']['email']) === TRUE)
                         {
-                            $this->facebook->destroySession();
-                            
-                            $this->session->set_flashdata('error', 
-                                    lang_check('Email already exists in database, please contact administrator or reset password'));
-                            
-                            redirect('frontend/login/'.$this->data['lang_code']); 
-                            exit();
+                            exit('Email already exists in database, please contact administrator or reset password');
                         }
                         
                         // Register user
                         $data_f['username'] = $data['user_profile']['email'];
                         $data_f['mail'] = $data['user_profile']['email'];
                         $data_f['password'] = $this->user_m->hash($data['user_profile']['id']);
-                        $data_f['facebook_id'] = $data['user_profile']['id'];
+                        $data_f['facebook_id'] = $data['user_profile']['link'];
                         $data_f['type'] = 'USER';
                         $data_f['name_surname'] = $data['user_profile']['name'];
                         $data_f['activated'] = '1';
@@ -2560,7 +2187,7 @@ class Frontend extends Frontend_Controller
                 }
 
                 if(!empty($data['phone']) && !empty($user_id) &&
-                   (config_db_item('clickatell_api_id') != FALSE || config_db_item('clickatell_api_key') != FALSE) && config_db_item('phone_verification_enabled') === TRUE &&
+                   config_db_item('clickatell_api_id') != FALSE && config_db_item('phone_verification_enabled') === TRUE &&
                    file_exists(APPPATH.'libraries/Clickatellapi.php'))
                 {
                     $data['phone_verified'] = 0;
@@ -3228,10 +2855,6 @@ class Frontend extends Frontend_Controller
         
         $this->data['reservation'] = $data_r;
         
-        $data_contact_r = unserialize($this->session->flashdata('data_contact_r'));
-        $this->session->keep_flashdata('data_contact_r');
-        $this->data['data_contact_r'] = $data_contact_r;
-        
         $this->load_head_data();
         $this->data['content_language_id'] = $this->data['lang_id'];
         
@@ -3523,14 +3146,6 @@ class Frontend extends Frontend_Controller
         $this->data['order_livingarea_selected'] = '';
         if($order=='livingArea')
             $this->data['order_livingarea_selected'] = 'selected';
-            
-        $this->data['order_viewsASC_selected'] = '';
-        if($order=='counter_views ASC')
-            $this->data['order_viewsASC_selected'] = 'selected';
-            
-        $this->data['order_viewsDESC_selected'] = '';
-        if($order=='counter_views DESC')
-            $this->data['order_viewsDESC_selected'] = 'selected';
         /* End define order */
         
         /* Define view */
@@ -3863,8 +3478,7 @@ class Frontend extends Frontend_Controller
         
         $output = $this->parser->parse($this->data['settings_template'].'/results.php', $this->data, TRUE);
         $output = str_replace('assets/', base_url('templates/'.$this->data['settings_template']).'/assets/', $output);
-        if(function_exists('mb_convert_encoding'))
-            $output = mb_convert_encoding($output, "UTF-8", "auto");
+        
         header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/json');
         echo json_encode(array('results'=>$this->data['results_json'], 'results_center'=>$results_center, 'print' => $output, 'order'=>$order, 'lang_id'=>$lang_id, 'total_rows'=>$config['total_rows']));
@@ -3958,7 +3572,7 @@ class Frontend extends Frontend_Controller
         // [JSON_SEARCH]
         // Example: ?search={"search_option_smart": "zagreb"}
         $search_json = NULL;
-        if(isset($_GET['search']))$search_json = json_decode($this->input->get_post('search', TRUE));
+        if(isset($_GET['search']))$search_json = json_decode($_GET['search']);
         
         if($search_json !== FALSE && $search_json !== NULL)
         {
@@ -3969,7 +3583,7 @@ class Frontend extends Frontend_Controller
             {
                 foreach($search_json as $key=>$val)
                 {
-                    $tmp_post = htmlentities($val);
+                    $tmp_post = $val;
                     if(!empty($tmp_post) && strrpos($key, 'tion_') > 0){
                         $post_option[substr($key, strrpos($key, 'tion_')+5)] = $tmp_post;
                         $post_option_sum.=$tmp_post.' ';
@@ -3995,10 +3609,6 @@ class Frontend extends Frontend_Controller
             $this->data['search_query'] = '';
             if(!empty($post_option['smart']))
                 $this->data['search_query'] = $post_option['smart'];
-                   
-            $this->data['search_option_location'] = '';
-            if(!empty($post_option['location']))
-                $this->data['search_option_location'] = $post_option['location'];
         }
 
         $this->g_post_option = &$post_option;
@@ -4148,7 +3758,7 @@ class Frontend extends Frontend_Controller
                     
                     if(empty($val))
                     {
-                        $options_h='<option value="'.$val.'" '.$selected.'>'.lang_check('Any').'</option>';
+                        $options_h.='<option value="'.$val.'" '.$selected.'>'.lang_check('Any').'</option>';
                     }
                     else
                     {
@@ -4167,7 +3777,7 @@ class Frontend extends Frontend_Controller
                     if($this->_get_purpose() == strtolower($val))$checked = 'checked';
                     if($o_selected == 'selected="selected"')$checked = 'checked';
                     
-                    $radio_li.='<label class="checkbox option2">
+                    $radio_li.='<label class="checkbox">
                                 <input type="radio" rel="'.$val.'" name="search_option_'.$row->option_id.'" value="'.$key2.'" '.$checked.'> '.$val.'
                                 </label>';
                 }
@@ -4228,14 +3838,6 @@ class Frontend extends Frontend_Controller
         $this->data['order_livingarea_selected'] = '';
         if($order=='livingArea')
             $this->data['order_livingarea_selected'] = 'selected';
-        
-        $this->data['order_viewsASC_selected'] = '';
-        if($order=='counter_views ASC')
-            $this->data['order_viewsASC_selected'] = 'selected';
-            
-        $this->data['order_viewsDESC_selected'] = '';
-        if($order=='counter_views DESC')
-            $this->data['order_viewsDESC_selected'] = 'selected';
             
         if(count($this->data['is_purpose_rent']) > 0)
         {
@@ -4882,11 +4484,6 @@ class Frontend extends Frontend_Controller
             
             $this->data['template_data'] = $this->customtemplates_m->get($template_id);
             $this->data['widgets_order'] = json_decode($this->data['template_data']->widgets_order);
-        }
-        
-        if(isset($this->data['widget_preview']) && $this->data['widget_preview']) {
-            $this->temp_data['page']->template = 'inc_widget_preview';
-            $this->data['widget_preview_file'] = $this->uri->segment(3);
         }
         
         $output = $this->parser->parse($this->data['settings_template'].'/'.$this->temp_data['page']->template.'.php', $this->data, TRUE);

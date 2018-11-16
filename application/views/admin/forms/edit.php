@@ -386,7 +386,7 @@ foreach($obj_widgets->SECONDARY as $key=>$obj)
 
 $(function() {
     
-    <?php if(isset($fields_value_json) && !empty($fields_value_json)):?>
+    <?php if(!empty($fields_value_json)):?>
     $('#widgets_order_json').val('<?php echo $fields_value_json; ?>');
     <?php endif;?>
     
@@ -427,7 +427,6 @@ $(function() {
         
         if(ui.draggable.attr('f_type') != 'INPUTBOX' && ui.draggable.attr('f_type') != 'DROPDOWN' && 
            ui.draggable.attr('f_type') != 'CHECKBOX' && ui.draggable.attr('f_type') != 'BREAKLINE' &&
-           ui.draggable.attr('f_type') != 'C_PRICE_RANGE' && ui.draggable.attr('f_type') != 'C_YEAR_RANGE' &&
            ui.draggable.attr('f_type') != 'DROPDOWN_MULTIPLE')
         {
             
@@ -529,7 +528,7 @@ $(function() {
 });
 
 function filterInput(input){
-    return input.replace(/[^a-zA-Z0-9:;\-_ ]/g, '');
+    return input.replace(/[^a-zA-Z0-9:;-]/g, '');
 }
 
 function define_popup_trigers()

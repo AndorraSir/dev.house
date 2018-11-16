@@ -62,24 +62,6 @@
                             </div>
                         </div>  
                         <div class="form-group">
-                          <label class="col-lg-2 control-label"><?php _l('User');?></label>
-                          <div class="col-lg-10">
-                            <?php echo form_dropdown_ajax('user_id', 'user_m', $this->input->post('user_id') ? $this->input->post('user_id') : $this->session->userdata('id'), 'username');?>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-lg-2 control-label"><?php echo lang('Offset')?> (<?php echo lang_check('option');?>)</label>
-                          <div class="col-lg-10">
-                            <?php echo form_input('xml_offset', $this->input->post('xml_offset'), 'class="form-control" id="inputxml_offset" placeholder="'.lang_check('Offset').'"')?>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-lg-2 control-label"><?php echo lang('Limit')?> (<?php echo lang_check('option');?>)</label>
-                          <div class="col-lg-10">
-                            <?php echo form_input('xml_limit', $this->input->post('xml_limit'), 'class="form-control" id="inputxml_limit" placeholder="'.lang('Limit').'"')?>
-                          </div>
-                        </div>
-                        <div class="form-group">
                             <label class="col-lg-2 control-label" for="inputOverwrite"><?php echo lang_check('Overwrite existing')?></label>
                           <div class="col-lg-10">
                           <?php echo form_checkbox('overwrite_existing', '1', false, 'id="inputOverwrite"')?>

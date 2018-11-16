@@ -1,4 +1,5 @@
-<div class="col-sm-4 text-center">
+<div class="col-4">
+    <br />
     <table>
         <tr>
             <td><i class="icon-map-marker icon-white"></i></td>
