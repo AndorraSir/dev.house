@@ -1,0 +1,31 @@
+
+.span12 {
+    width: 1170px;
+}
+
+.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+    width: 1170px;
+}
+
+.head-wrapper, .wrap-map, .wrap-search, .wrap-content, .wrap-content2, .wrap-bottom
+{
+    min-width: 1170px;
+}
+
+.col-3 {
+    width: 270px;
+}
+
+.col-3 {
+    width: 270px;
+}
+
+input.col-3, textarea.col-3, .uneditable-input.col-3 {
+    width: 256px;
+}
+
+input.span6, textarea.span6, .uneditable-input.span6 {
+    width: 530px;
+}
+
+
