@@ -9,7 +9,7 @@
  ?>
 
 
-<script>
+<script language="javascript">
     $(document).ready(function(){
         
         $('.menu-onmap li a').click(function () {
@@ -38,110 +38,76 @@
             manualSearch(0);
         });
         
-        <?php if(config_db_item('map_version') =='open_street'):?>
-        map = L.map('wrap-map', {
-            <?php if(config_item('custom_map_center') === FALSE): ?>
-            center: [{all_estates_center}],
-            <?php else: ?>
-            center: [<?php echo config_item('custom_map_center'); ?>],
-            <?php endif; ?>
-            zoom: {settings_zoom}+1,
-            scrollWheelZoom: scrollWheelEnabled,
-            dragging: !L.Browser.mobile,
-            tap: !L.Browser.mobile
-        });     
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-        var positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png').addTo(map);
-        
-        <?php foreach($all_estates as $item): ?>
-            <?php
-                if(!isset($item['gps']))break;
-                if(empty($item['gps']))continue;
-            ?>
-            var marker = L.marker(
-                [<?php _che($item['gps']); ?>],
-                {icon: L.divIcon({
-                        html: '<img src="<?php _che($item['icon'])?>">',
-                        className: 'open_steet_map_marker',
-                        iconSize: [31, 46],
-                        popupAnchor: [1, -35],
-                        iconAnchor: [15, 45],
-                    })
-                }
-            )/*.addTo(map)*/;
-            marker.bindPopup("<?php echo _generate_popup($item, true); ?>");
-            clusters.addLayer(marker);
-            markers.push(marker);
-        <?php endforeach; ?>
-            map.addLayer(clusters);
-        <?php else:?>
         $("#wrap-map").gmap3({
-            map:{
-               options:{
-                <?php if(config_item('custom_map_center') === FALSE): ?>
-                center: [{all_estates_center}],
-                <?php else: ?>
-                center: [<?php echo config_item('custom_map_center'); ?>],
-                <?php endif; ?>
-                zoom: {settings_zoom},
-                scrollwheel: scrollWheelEnabled,
-                mapTypeId: c_mapTypeId,
-                mapTypeControlOptions: {
-                    mapTypeIds: c_mapTypeIds,
-                    position: google.maps.ControlPosition.TOP_RIGHT
-                  }
-               }
-            },
-           styledmaptype:{
-             id: "style1",
-             options:{
-               name: "<?php echo lang_check('CustomMap'); ?>"
-             },
-             styles: mapStyle
-           },
-            marker:{
-               values:[
-               {all_estates}
-                   {latLng:[{gps}], adr:"{address}", options:{icon: "{icon}"}, data:"<img style=\"width: 150px; height: 100px;\" src=\"{thumbnail_url}\" alt=\"\" /><br />{address}<br />{option_2}<br /><span class=\"label label-info\">&nbsp;&nbsp;{option_4}&nbsp;&nbsp;</span><br /><a href=\"{url}\">{lang_Details}</a>"},
-               {/all_estates}
-               ],
-               cluster: clusterConfig,
-               options: markerOptions,
-           events:{
-            <?php echo map_event(); ?>: function(marker, event, context){
+         map:{
+            options:{
+             <?php if(config_item('custom_map_center') === FALSE): ?>
+             center: [{all_estates_center}],
+             <?php else: ?>
+             center: [<?php echo config_item('custom_map_center'); ?>],
+             <?php endif; ?>
+             zoom: {settings_zoom},
+             scrollwheel: scrollWheelEnabled,
+             mapTypeId: c_mapTypeId,
+             mapTypeControlOptions: {
+               mapTypeIds: c_mapTypeIds
+             }
+            }
+         },
+        styledmaptype:{
+          id: "style1",
+          options:{
+            name: "<?php echo lang_check('CustomMap'); ?>"
+          },
+          styles: mapStyle
+        },
+         marker:{
+            values:[
+            {all_estates}
+                {latLng:[{gps}], adr:"{address}", options:{icon: "{icon}"}, data:"<img style=\"width: 150px; height: 100px;\" src=\"{thumbnail_url}\" /><br />{address}<br />{option_2}<br /><span class=\"label label-info\">&nbsp;&nbsp;{option_4}&nbsp;&nbsp;</span><br /><a href=\"{url}\">{lang_Details}</a>"},
+            {/all_estates}
+            ],
+            cluster: clusterConfig,
+        options:{
+          draggable: false
+        },
+        events:{
+          <?php echo map_event(); ?>: function(marker, event, context){
             var map = $(this).gmap3("get"),
-            infowindow = $(this).gmap3({get:{name:"infowindow"}});
-                if (infowindow){
-                  infowindow.open(map, marker);
-                  infowindow.setContent('<div style="width:400px;display:inline;">'+context.data+'</div>');
-                } else {
-                  $(this).gmap3({
-                    infowindow:{
-                      anchor:marker,
-                      options:{disableAutoPan: mapDisableAutoPan, content: '<div style="width:400px;display:inline;">'+context.data+'</div>'}
-                    }
-                  });
+              infowindow = $(this).gmap3({get:{name:"infowindow"}});
+            if (infowindow){
+              infowindow.open(map, marker);
+              infowindow.setContent('<div style="width:400px;display:inline;">'+context.data+'</div>');
+            } else {
+              $(this).gmap3({
+                infowindow:{
+                  anchor:marker,
+                  options:{disableAutoPan: true, content: '<div style="width:400px;display:inline;">'+context.data+'</div>'}
                 }
-              },
-              mouseout: function(){
-                //var infowindow = $(this).gmap3({get:{name:"infowindow"}});
-                //if (infowindow){
-                //  infowindow.close();
-                //}
-              }
-            }}
-            });
-            init_gmap_searchbox();
-        <?php endif;?>
+              });
+            }
+          },
+          mouseout: function(){
+            //var infowindow = $(this).gmap3({get:{name:"infowindow"}});
+            //if (infowindow){
+            //  infowindow.close();
+            //}
+          }
+        }}});
+        init_gmap_searchbox();
     });    
     </script>
+    <style>
+        .scale-conteiner .scale-form input {
+            font-size: 12px;
+        }
+        
+        
+    </style>
     
-<?php if(config_db_item('map_version') !='open_street'):?>
+    
+    
 <input id="pac-input" class="controls" type="text" placeholder="{lang_Search}" />
-<?php endif;?>
-
 <div class="wrap-map" id="wrap-map">
 </div>
 <div class="wrap-search">
@@ -158,11 +124,11 @@
         </ul>
         <div class="search-form">
             <form class="form-inline">
-                <input id="search_option_smart"  value="{search_query}" type="text" class="span6" placeholder="{lang_CityorCounty}" />
-                <select id="search_option_2" class="span3 selectpicker">
+                <input id="search_option_smart" type="text" class="span6" placeholder="{lang_CityorCounty}" />
+                <select id="search_option_2" class="col-3 selectpicker" placeholder="{options_name_2}">
                     {options_values_2}
                 </select>
-                <select id="search_category_21" class="span3 selectpicker custom-select nomargin" title="{options_name_21}" multiple style="margin-top:5px;">
+                <select id="search_category_21" class="col-3 selectpicker custom-select nomargin" title="{options_name_21}" multiple style="margin-top:5px;">
                     <option value="true{options_name_11}">{options_name_11}</option>
                     <option value="true{options_name_22}">{options_name_22}</option>
                     <option value="true{options_name_25}">{options_name_25}</option>
@@ -181,7 +147,7 @@
                     </div>
                     <div class='row-fluid scale-form'>
                         <input id="search_option_36_from" type="text" class="span5 minScale mPrice scale-input" data-suffix='{options_suffix_36}' data-prefix='{options_prefix_36}'  value="<?php echo search_value('36_from'); ?>"  placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})"/>
-                        <img src="assets/img/glyphicons/glyphicons-434-minus.png" class="scale-icon-minus" alt=""/>
+                        <img src="assets/img/glyphicons/glyphicons-434-minus.png" class="scale-icon-minus"/>
                         <input id="search_option_36_to" type="text" class="span5 maxScale xPrice scale-input" data-suffix='{options_suffix_36}' data-prefix='{options_prefix_36}' value="<?php echo search_value('36_to'); ?>"  placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})"/>
                     </div>
                     <div class='row-fluid'>
@@ -189,7 +155,7 @@
                     </div>
                 </div>
                 </div>
-                <select id="search_option_19_from" class="span3 selectpicker  ">
+                <select id="search_option_19_from" class="col-3 selectpicker  " placeholder="{options_name_19}">
                         <option value="">{options_name_19}</option>
                         <option value="1">1+</option>
                         <option value="2">2+</option>
@@ -198,7 +164,7 @@
                         <option value="5">5+</option>
                         <option value="6">6+</option>
                 </select>
-                <select id="search_option_20_from" class="span3 selectpicker  ">
+                <select id="search_option_20_from" class="col-3 selectpicker  " placeholder="{options_name_20}">
                         <option value="">{options_name_20}</option>
                         <option value="1">1+</option>
                         <option value="2">2+</option>
@@ -271,10 +237,9 @@
                              }
                             value--;
                          }
-                         
-                        $(object+' .maxScale').val(prefix+$.number(value, 0, ',', '.')+infinity1+suffix+infinity2);
+                         $(object+' .maxScale').val(prefix+$.number(value)+infinity1+suffix+infinity2);
                 } else {
-                        $(object+' .minScale').val(prefix+$.number(parseInt(values[handle]),  0, ',', '.')+suffix);
+                         $(object+' .minScale').val(prefix+$.number(parseInt(values[handle]))+suffix);
                 }
                 if(values[0]!='' && values[1]!=''){
                 if( $(object+' .mPrice').val()=='' ||  $(object+' .maxScale').val()=='' ||

@@ -131,10 +131,10 @@ input.span6, textarea.span6, .uneditable-input.span6 {
         display:block;
     }
     
-    #search_option_smart, input.span3.mPrice, 
-    input.span3.xPrice, .search-form input, 
-    .search-form select, input.span3.Bathrooms,
-    .search-form div.bootstrap-select.span3.btn-group
+    #search_option_smart, input.col-3.mPrice, 
+    input.col-3.xPrice, .search-form input, 
+    .search-form select, input.col-3.Bathrooms,
+    .search-form div.bootstrap-select.col-3.btn-group
     {
         width: 100%;
         margin: 5px auto;

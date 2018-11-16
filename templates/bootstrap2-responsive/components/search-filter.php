@@ -1,5 +1,5 @@
 <?php if(config_item('tree_field_enabled') === TRUE):?>
-<script>
+<script language="javascript">
     
     /* [START] TreeField */
 
@@ -136,31 +136,31 @@
                 <!-- [END] TreeSearch -->
             
                 <input id="search_option_smart" type="text" class="span6" value="{search_query}" placeholder="{lang_CityorCounty}" autocomplete="off" />
-                <select id="search_option_2" class="span3 selectpicker">
+                <select id="search_option_2" class="col-3 selectpicker" placeholder="{options_name_2}">
                     {options_values_2}
                 </select>
-                <select id="search_option_3" class="span3 selectpicker nomargin">
+                <select id="search_option_3" class="col-3 selectpicker nomargin" placeholder="{options_name_3}">
                     {options_values_3}
                 </select>
                 
                 <!-- example datetime field, required class .field_datepicker
-                <input id="search_option_2" type="text" class="span3 field_datepicker" placeholder="{options_name_2}" value="<?php echo search_value('search_option_2'); ?>" />
+                <input id="search_option_2" type="text" class="col-3 field_datepicker" placeholder="{options_name_2}" value="<?php echo search_value('search_option_2'); ?>" />
                 -->
                 
                 <div class="advanced-form-part hidden">
                 <div class="form-row-space"></div>
-                <input id="search_option_36_from" type="text" class="span3 mPrice" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_from'); ?>" />
-                <input id="search_option_36_to" type="text" class="span3 xPrice" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_to'); ?>" />
-                <input id="search_option_19" type="text" class="span3 Bathrooms" placeholder="{options_name_19}" value="<?php echo search_value(19); ?>" />
-                <input id="search_option_20" type="text" class="span3" placeholder="{options_name_20}" value="<?php echo search_value(20); ?>" />
+                <input id="search_option_36_from" type="text" class="col-3 mPrice" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_from'); ?>" />
+                <input id="search_option_36_to" type="text" class="col-3 xPrice" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_to'); ?>" />
+                <input id="search_option_19" type="text" class="col-sm-3 Bathrooms" placeholder="{options_name_19}" value="<?php echo search_value(19); ?>" />
+                <input id="search_option_20" type="text" class="col-3" placeholder="{options_name_20}" value="<?php echo search_value(20); ?>" />
                 <div class="form-row-space"></div>
                 <?php if(file_exists(APPPATH.'controllers/admin/booking.php')):?>
-                <input id="booking_date_from" type="text" class="span3 mPrice" placeholder="{lang_Fromdate}" value="<?php echo search_value('date_from'); ?>" />
-                <input id="booking_date_to" type="text" class="span3 xPrice" placeholder="{lang_Todate}" value="<?php echo search_value('date_to'); ?>" />
+                <input id="booking_date_from" type="text" class="col-3 mPrice" placeholder="{lang_Fromdate}" value="<?php echo search_value('date_from'); ?>" />
+                <input id="booking_date_to" type="text" class="col-3 xPrice" placeholder="{lang_Todate}" value="<?php echo search_value('date_to'); ?>" />
                 <div class="form-row-space"></div>
                 <?php endif; ?>
                 <?php if(config_db_item('search_energy_efficient_enabled') === TRUE): ?>
-                <select id="search_option_59_to" class="span3 selectpicker nomargin">
+                <select id="search_option_59_to" class="col-3 selectpicker nomargin" placeholder="{options_name_59}">
                     <option value="">{options_name_59}</option>
                     <option value="50">A</option>
                     <option value="90">B</option>
@@ -218,7 +218,7 @@
                 <button id="search-save" type="button" class="btn btn-warning btn-large">{lang_SaveResearch}</button>
                 <?php endif; ?>
                 
-                <img id="ajax-indicator-1" src="assets/img/ajax-loader.gif" alt=""/>
+                <img id="ajax-indicator-1" src="assets/img/ajax-loader.gif" />
             </form>
         </div>
     </div>

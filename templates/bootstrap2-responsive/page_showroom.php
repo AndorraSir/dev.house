@@ -2,7 +2,7 @@
 <html lang="{lang_code}">
   <head>
     <?php _widget('head');?>
-    <script>
+    <script language="javascript">
     $(document).ready(function(){
         
         $("#search_showroom").keyup( function() {
@@ -26,7 +26,7 @@
 
 <?php _subtemplate('headers', _ch($subtemplate_header, 'empty')); ?>
 
-<a id="content"></a>
+<a name="content" id="content"></a>
 <div class="wrap-content">
     <div class="container">
     
@@ -82,7 +82,7 @@
         </div>
         </div>
         </div>
-        <div class="span3">
+        <div class="col-3">
         
             <input type="text" placeholder="{lang_Search}" id="search_showroom" autocomplete="off"/>
         

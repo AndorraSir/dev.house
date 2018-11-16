@@ -2,7 +2,7 @@
 <html lang="{lang_code}">
   <head>
     <?php _widget('head');?>
-    <script>
+    <script language="javascript">
     $(document).ready(function(){
 
     });    
@@ -15,14 +15,14 @@
 
 <?php _subtemplate('headers', _ch($subtemplate_header, 'empty')); ?>
 
-<a id="content"></a>
+<a name="content" id="content"></a>
 <div class="wrap-content">
     <div class="container container-property">
         <div class="row-fluid">
             <div class="span9">
                 <h2>{page_title}</h2>
                 <div class="property_content">
-                <div class="page_content">{page_body}</div>
+                {page_body}
                 <?php _widget('center_imagegallery');?>
                 {has_page_documents}
                 <h2>{lang_Filerepository}</h2>
@@ -36,7 +36,7 @@
                 {/has_page_documents}
                 </div>
             </div>
-            <div class="span3">
+            <div class="col-3">
                 <?php _widget('right_agents'); ?>  
             </div>
         </div>

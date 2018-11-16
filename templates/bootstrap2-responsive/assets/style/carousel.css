@@ -1,0 +1,97 @@
+#myCarousel {
+  height: 80vh;
+  overflow: hidden; }
+  @media screen and (max-width: 767px) {
+    #myCarousel {
+      height: 400px !important; } }
+  #myCarousel .carousel-inner > .item > img {
+    width: 100%;
+    min-height: 100%; }
+  #myCarousel .slider-size {
+    height: 100%; }
+
+@media screen and (max-width: 767px) {
+  #myCarousel {
+    height: 400px; } }
+
+.propertyCarousel #myCarousel {
+  height: 70vh;
+  overflow: hidden;
+  margin-bottom: 2rem; }
+  @media (max-width: 767px) {
+    .propertyCarousel #myCarousel {
+      height: 400px; } }
+  .propertyCarousel #myCarousel .carousel-inner > .item > img {
+    width: 100%;
+    min-height: 100%; }
+  .propertyCarousel #myCarousel .slider-size {
+    height: 100%; }
+
+.wrap-map {
+  width: 100%; }
+
+.carousel-inner {
+  height: 100%; }
+
+.li-list .prop-description {
+  min-height: 32px; }
+
+.carousel .item .cont img {
+  height: 100%;
+  max-height: 700px;
+  filter: brightness(80%); }
+
+.slider-info .title {
+  font-size: 48px;
+  font-family: 'Playfair Display', serif;
+  color: #fff;
+  text-align: center; }
+  @media screen and (max-width: 767px) {
+    .slider-info .title {
+      font-size: 18px; } }
+
+.wrap-map img.ajax-indicator {
+  width: auto; }
+
+.wrap-map img {
+  width: 100%;
+  object-fit: cover;
+  filter: brightness(60%); }
+  @media screen and (max-width: 767px) {
+    .wrap-map img {
+      width: auto;
+      height: 100%; } }
+
+#myCarousel > .carousel-inner > .item > img {
+  width: 100%;
+  min-height: 100%; }
+
+.carousel-inner {
+  height: 100%; }
+
+.carousel-control-prev {
+  opacity: 0.8; }
+  .carousel-control-prev .arrow-left {
+    background: url("../img/icons/left-chevron.svg") no-repeat center;
+    background-size: contain;
+    height: 200px;
+    width: 70px; }
+
+.carousel-control-next {
+  opacity: 0.8; }
+  .carousel-control-next .arrow-right {
+    background: url("../img/icons/right-chevron.svg") no-repeat center;
+    background-size: contain;
+    height: 200px;
+    width: 70px; }
+
+.carousel .item .slider-info {
+  border-bottom: none;
+  padding: 11px 30px 11px 30px;
+  display: block;
+  font-weight: normal;
+  color: white;
+  width: 100%;
+  bottom: 315px; }
+  .carousel .item .slider-info .container {
+    background: rgba(0, 0, 0, 0) !important; }

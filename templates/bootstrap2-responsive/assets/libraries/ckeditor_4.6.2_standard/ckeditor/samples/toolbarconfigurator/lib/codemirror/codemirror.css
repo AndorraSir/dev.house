@@ -23,7 +23,7 @@
 /* GUTTER */
 
 .CodeMirror-gutters {
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #1a1a1a;
   background-color: #f7f7f7;
   white-space: nowrap;
 }

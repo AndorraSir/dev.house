@@ -17,7 +17,7 @@
 
 <?php _widget('top_ads');?>
 <a id="content"></a>
-<div class="wrap-content">
+<div class="wrap-content pt-5">
     <div class="container">
     
         <h2>{page_title}</h2>

@@ -2,7 +2,7 @@
 <html lang="{lang_code}">
   <head>
     <?php _widget('head');?>
-    <script>
+    <script language="javascript">
     $(document).ready(function(){
         
 
@@ -16,7 +16,7 @@
 {template_header}
 
 
-<a id="content"></a>
+<a name="content" id="content"></a>
 <div class="wrap-content">
     <div class="container">
         <div class="row-fluid">
@@ -79,11 +79,11 @@
     <?php endforeach; ?>
     
     <h2><?php _l('Price range'); ?></h2>
-                <input name="search_option_36_from" id="search_option_36_from" type="text" class="span3 mPrice DECIMAL" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_from'); ?>" />
-                <input name="search_option_36_to" id="search_option_36_to" type="text" class="span3 xPrice DECIMAL" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_to'); ?>" />
+                <input name="search_option_36_from" id="search_option_36_from" type="text" class="col-3 mPrice DECIMAL" placeholder="{lang_Fromprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_from'); ?>" />
+                <input name="search_option_36_to" id="search_option_36_to" type="text" class="col-3 xPrice DECIMAL" placeholder="{lang_Toprice} ({options_prefix_36}{options_suffix_36})" value="<?php echo search_value('36_to'); ?>" />
     
     <h2><?php _l('Size range'); ?></h2>
-                <select name="search_option_3" id="search_option_3" class="span3 selectpicker nomargin">
+                <select name="search_option_3" id="search_option_3" class="col-3 selectpicker nomargin" placeholder="{options_name_3}">
                     {options_values_3}
                 </select>
     
@@ -126,8 +126,18 @@
 
     </div>                   
 <?php echo form_close()?>
+                    
+<style>
 
-<script>
+#treefield_table tbody tr:hover
+{
+    background:#FCF8E3;
+}
+
+</style>
+
+
+<script language="javascript">
     
 // init copy features
 $(document).ready(function(){

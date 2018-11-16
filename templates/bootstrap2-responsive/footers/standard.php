@@ -1,6 +1,6 @@
 <div class="wrap-bottom">
     <div class="container">
-      <div class="row-fluid footer-row">
+      <div class="row footer-row">
           <?php _widget('footer_logo');?>
           <?php _widget('footer_contactus');?>
           <?php _widget('footer_share');?>
@@ -52,7 +52,7 @@
                 <input name="allow_contact" value="1" type="checkbox"> <?php echo lang_check('I allow agent and affilities to contact me'); ?>
             </label>
             <button id="unhide-agent-mask" type="button" class="btn"><?php echo lang_check('Submit'); ?></button>
-            <img id="ajax-indicator-masking" src="assets/img/ajax-loader.gif" style="display: none;" alt="" />
+            <img id="ajax-indicator-masking" src="assets/img/ajax-loader.gif" style="display: none;" />
         </div>
     </div>
 </form>
@@ -63,4 +63,31 @@
 <?php if(file_exists(FCPATH.'templates/'.$settings_template.'/assets/js/jquery-contact-tabs/js/jquery.contact.tabs.1.0.js')): ?>
 <div id="contact-tabs"></div>
 <?php endif; ?>
+
+
+<?php
+/* [START] Search background settings */
+$this->data['search_background'] = 'assets/img/texture.jpg';
+if(isset($this->data['settings']['search_background']))
+{
+    if(is_numeric($this->data['settings']['search_background']))
+    {
+        $files_search_background = $this->file_m->get_by(array('repository_id' => $this->data['settings']['search_background']), TRUE);
+        if( is_object($files_search_background) && file_exists(FCPATH.'files/thumbnail/'.$files_search_background->filename))
+        {
+            $this->data['search_background'] = base_url('files/'.$files_search_background->filename);
+        }
+    }
+}
+
+?>
+<style>
+.wrap-search {
+    background-image: url('<?php echo $this->data['search_background']; ?>');   
+}
+</style>
+<?php
+/* [END] Search background settings */
+?>
+
 

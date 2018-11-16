@@ -12,6 +12,7 @@
 <?php endif;?>
 
 <?php _widget('top_ads');?>
+<a name="content" id="content"></a>
 <div class="wrap-content">
     <div class="container container-property">
         <div class="row-fluid">
@@ -63,7 +64,7 @@
                 
               </div>
             </div>
-            <div class="span3">
+            <div class="col-3">
                   {has_agent}
                   <h2>{lang_Agent}</h2>
                   <div class="agent">
@@ -71,7 +72,7 @@
                     <div class="name"><a href="{agent_url}#content">{agent_name_surname}</a></div>
                     <div class="phone">{agent_phone}</div>
                     
-                    <div class="mail"><a href="mailto:{agent_mail}?subject=<?php echo urlencode(lang_check('Estateinqueryfor'));?>:<?php echo urlencode(_ch($page_title));?>">{agent_mail}</a></div>
+                    <div class="mail"><a href="mailto:{agent_mail}?subject={lang_Estateinqueryfor}: {estate_data_id}, {page_title}">{agent_mail}</a></div>
                         <ul class="social social-boxed">
                             <?php if(!empty($agent_profile['facebook_link'])): ?>
                                 <li><a href="<?php echo $agent_profile['facebook_link']; ?>"><i class="fa fa-facebook"></i></a></li>
@@ -139,46 +140,6 @@
                         </div>
                        <?php endif; ?>
                         
-                        
-                        <?php if(config_db_item('terms_link') !== FALSE): ?>
-                                                        <?php
-                                    $site_url = site_url();
-                                    $urlparts = parse_url($site_url);
-                                    $basic_domain = $urlparts['host'];
-                                    $terms_url = config_db_item('terms_link');
-                                    $urlparts = parse_url($terms_url);
-                                    $terms_domain ='';
-                                    if(isset($urlparts['host']))
-                                        $terms_domain = $urlparts['host'];
-
-                                    if($terms_domain == $basic_domain) {
-                                        $terms_url = str_replace('en', $lang_code, $terms_url);
-                                    }
-                                ?>
-                        <div class="" style="width: 160px;padding-top: 10px;">
-                            <input type="checkbox" value="1" name="terms_user" class="terms_user" required="required" style="margin: 0;display: inline-block;width: 20px;"> <a target="_blank" href="<?php echo $terms_url; ?>"><?php echo lang_check('I accept the Terms and Conditions'); ?></a>
-                        </div>
-                        <?php endif;?>
-                        <?php if(config_db_item('privacy_link') !== FALSE  && count($not_logged)>0): ?>
-                            <?php
-
-                                 $site_url = site_url();
-                                 $urlparts = parse_url($site_url);
-                                 $basic_domain = $urlparts['host'];
-                                 $privacy_url = config_db_item('privacy_link');
-                                 $urlparts = parse_url($privacy_url);
-                                 $privacy_domain ='';
-                                 if(isset($urlparts['host']))
-                                     $privacy_domain = $urlparts['host'];
-
-                                 if($privacy_domain == $basic_domain) {
-                                     $privacy_url = str_replace('en', $lang_code, $privacy_url);
-                                 }
-                             ?>
-                        <div class="" style="width: 160px;padding-top: 10px;">
-                            <input type="checkbox" value="1" name="privacy_user" class="privacy_user" required="required" style="margin: 0;display: inline-block;width: 20px;"> <a target="_blank" href="<?php echo $privacy_url; ?>"><?php echo lang_check('I accept the Privacy'); ?></a>
-                        </div>
-                        <?php endif;?>
                         <br style="clear: both;" />
                         <p style="text-align:right;">
                         <button type="submit" class="btn btn-info">{lang_Send}</button>

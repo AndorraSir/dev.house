@@ -934,48 +934,10 @@ function reset_events_<?php echo $val_option['id'].'_'.$key; ?>(){
                                 </div>
                                 
                                 <?php if(config_db_item('terms_link') !== FALSE): ?>
-                                <?php
-                                    $site_url = site_url();
-                                    $urlparts = parse_url($site_url);
-                                    $basic_domain = $urlparts['host'];
-                                    $terms_url = config_db_item('terms_link');
-                                    $urlparts = parse_url($terms_url);
-                                    $terms_domain ='';
-                                    if(isset($urlparts['host']))
-                                        $terms_domain = $urlparts['host'];
-
-                                    if($terms_domain == $basic_domain) {
-                                        $terms_url = str_replace('en', $lang_code, $terms_url);
-                                    }
-                                ?>
                                 <div class="control-group">
-                                  <label class="control-label"><a target="_blank" href="<?php echo $terms_url; ?>"><?php echo lang_check('I Agree To The Terms & Conditions'); ?></a></label>
+                                  <label class="control-label"><a target="_blank" href="<?php echo config_db_item('terms_link'); ?>"><?php echo lang_check('I Agree To The Terms & Conditions'); ?></a></label>
                                   <div class="controls">
                                     <?php echo form_checkbox('option_agree_terms', 'true', set_value('option_agree_terms', false), 'class="ezdisabled" id="inputOption_terms"')?>
-                                  </div>
-                                </div>
-                                <?php endif; ?>
-                                
-                                <?php if(config_db_item('privacy_link') !== FALSE && count($not_logged)>0): ?>
-                                                            <?php
-
-                                $site_url = site_url();
-                                $urlparts = parse_url($site_url);
-                                $basic_domain = $urlparts['host'];
-                                $privacy_url = config_db_item('privacy_link');
-                                $urlparts = parse_url($privacy_url);
-                                $privacy_domain ='';
-                                if(isset($urlparts['host']))
-                                    $privacy_domain = $urlparts['host'];
-
-                                if($privacy_domain == $basic_domain) {
-                                    $privacy_url = str_replace('en', $lang_code, $privacy_url);
-                                }
-                            ?>
-                                <div class="control-group">
-                                  <label class="control-label"><a target="_blank" href="<?php echo $privacy_url; ?>"><?php echo lang_check('I Agree The Privacy'); ?></a></label>
-                                  <div class="controls">
-                                    <?php echo form_checkbox('option_privacy_link', 'true', set_value('option_privacy_link', false), 'class="ezdisabled" id="inputOption_privacy_link"')?>
                                   </div>
                                 </div>
                                 <?php endif; ?>

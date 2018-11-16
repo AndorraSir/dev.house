@@ -1,5 +1,5 @@
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     
     <title>{page_title}</title>
     <meta name="description" content="{page_description}" />
@@ -24,63 +24,83 @@
     <?php endif;endforeach;endif; ?>
 
     <!-- Le styles -->
-    <link href="assets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     
-    <?php if(config_item('disable_responsive') === TRUE): ?>
-    <?php else: ?>
-    <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <?php endif; ?>
-
     <link href="assets/css/styles.css" rel="stylesheet">
-    
-    <?php if(config_item('disable_responsive') === TRUE): ?>
-    <?php else: ?>
-    <link href="assets/css/enable-responsive.css" rel="stylesheet">
-    <?php endif; ?>
+    <link href="assets/css/custom.css" rel="stylesheet">
+
+
+    <link href="assets/style/style.css" rel="stylesheet">
+    <link href="assets/style/custom.css" rel="stylesheet">
+    <link href="assets/style/cards.css" rel="stylesheet">
+    <link href="assets/style/footer.css" rel="stylesheet">
+    <link href="assets/style/searchform.css" rel="stylesheet">
+    <link href="assets/style/navbar.css" rel="stylesheet">
+    <link href="assets/style/carousel.css" rel="stylesheet"> 
+    <link href="assets/style/property.css" rel="stylesheet"> 
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i,900,900i|Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet">
+
+
+   <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/css/mdb.min.css" rel="stylesheet">
+            
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.10/js/mdb.min.js"></script>
     
     <link href="assets/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="assets/css/blueimp-gallery.min.css" rel="stylesheet">
     <link href="assets/css/jquery.cleditor.css" rel="stylesheet">
-    <link href="assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-    {is_rtl}
-    <link href="assets/css/styles_rtl.css" rel="stylesheet">
-    {/is_rtl}
-    {has_color}
-    <link href="assets/css/styles_{color}.css" rel="stylesheet">
-    {/has_color}
+    <link href="assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet"> 
+
     
-    <?php if(config_item('disable_responsive') === TRUE): ?>
-    <link href="assets/css/disable-responsive.css" rel="stylesheet">
-    <?php else: ?>
-    <?php endif; ?>
     
-    <link href="assets/css/custom.css" rel="stylesheet">
-   
-    <?php load_map_api(config_db_item('map_version'));?>
+    <?php 
+    $config_base_url = config_item('base_url');
+    $url_protocol='http://';
+    if(!empty($config_base_url)&& strpos( $config_base_url,'https')!== false){
+        $url_protocol='https://';
+    }
     
-    <script src="assets/js/jquery-1.8.3.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <?php if(config_db_item('map_version') !='open_street'):?>
+    $maps_api_key = config_db_item('maps_api_key');
+    $maps_api_key_prepare='';
+    if(!empty($maps_api_key)){
+        $maps_api_key_prepare='&amp;key='.$maps_api_key;
+    }
+    
+    ?>
+    <script type="text/javascript" src="<?php echo $url_protocol;?>maps.google.com/maps/api/js?libraries=places,geometry<?php echo $maps_api_key_prepare; ?>&amp;language={lang_code}"></script>
+
+
+
     <script src="assets/js/gmap3.js"></script>
-     <?php endif;?>
     <script src="assets/js/bootstrap-select.js"></script>
-    
+    <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
     <script src="assets/js/blueimp-gallery.min.js"></script>
     <script src="assets/js/jquery.helpers.js"></script>
     <script src="assets/js/jquery.placeholder.min.js"></script>
-    
-    <script src="assets/js/jquery.number.js"></script>
-    <script src="assets/js/jquery.h5validate.js"></script>
+     
+
+
+    <script type="text/javascript" src="assets/js/jquery.number.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.h5validate.js"></script>
     
     <?php if(file_exists(FCPATH.'templates/'.$settings_template.'/assets/js/dpejes/dpe.js')): ?>
     <script src="assets/js/dpejes/dpe.js"></script>
     <?php endif; ?>
     
     <?php if(file_exists(FCPATH.'templates/'.$settings_template.'/assets/js/jquery-contact-tabs/js/jquery.contact.tabs.1.0.js')): ?>
-        <script src="assets/js/jquery-contact-tabs/js/jquery.contact.tabs.1.0.js"></script>
+        <script src="assets/js/jquery-contact-tabs/js/jquery.contact.tabs.1.0.js" type="text/javascript"></script>
         <link href="assets/js/jquery-contact-tabs/css/dcjct.css" rel="stylesheet" type="text/css" />
-        <script>
+        <script type="text/javascript">
         
         $(document).ready(function($){
         	$('#contact-tabs').dcContactTabs({
@@ -148,10 +168,10 @@
     <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
     <!--[if gte IE 8]><script src="assets/js/cors/jquery.xdr-transport.js')?>"></script><![endif]-->
     {/has_extra_js}
-    <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+    
     <?php if(config_item('ad_gallery_enabled') === TRUE): ?>
         <link rel="stylesheet" type="text/css" href="assets/js/adgallery/jquery.ad-gallery.css" />
-        <script src="assets/js/adgallery/jquery.ad-gallery.js"></script>
+        <script type="text/javascript" src="assets/js/adgallery/jquery.ad-gallery.js"></script>
     <?php endif; ?>
     
     <?php if(config_db_item('agent_masking_enabled') == TRUE || config_db_item('report_property_enabled') == TRUE): ?>
@@ -165,7 +185,7 @@
     
     <script src="assets/js/jquery.custom.js"></script>
     
-    <script>
+    <script language="javascript">
         
         var timerMap;
         var ad_galleries;
@@ -181,26 +201,17 @@
         var scrollWheelEnabled = false;
         var myLocationEnabled = true;
         var rectangleSearchEnabled = true;
-        <?php if(config_db_item('map_version') !='open_street'):?>
         var c_mapTypeId = "style1"; // google.maps.MapTypeId.ROADMAP;
         var c_mapTypeIds = ["style1",
                             google.maps.MapTypeId.ROADMAP,
-                            google.maps.MapTypeId.HYBRID];    
-        <?php endif;?>             
-                      
+                            google.maps.MapTypeId.HYBRID];          
         //google.maps.MapTypeId.ROADMAP
         //google.maps.MapTypeId.SATELLITE
         //google.maps.MapTypeId.HYBRID
         //google.maps.MapTypeId.TERRAIN
         
         var selectorResults = '.results-properties-list';
-        var markers = [];
-        var map = '';
-        <?php if(config_db_item('map_version') =='open_street'):?>
-        var clusters ='';
-        clusters = L.markerClusterGroup({spiderfyOnMaxZoom: true, showCoverageOnHover: false, zoomToBoundsOnClick: true});
-        <?php endif;?>
-             
+
         $(document).ready(function()
         {
             // Cluster config start //
@@ -419,7 +430,7 @@
             // Filters Start //
             
             $(".checkbox_am").click((function(){
-                var option_id = $(this).attr('data-option_id');
+                var option_id = $(this).attr('option_id');
                 
                 if($(this).prop('checked'))
                 {
@@ -433,7 +444,7 @@
             }));
             
             $(".input_am").focusout((function(){
-                var option_id = $(this).attr('data-option_id');
+                var option_id = $(this).attr('option_id');
                 
                 if($(this).hasClass('multi_am')) {
                     $("#search_option_"+option_id+"_multi").val($(this).val());
@@ -445,13 +456,13 @@
             }));
             
             $(".input_am_from").focusout((function(){
-                var option_id = $(this).attr('data-option_id');
+                var option_id = $(this).attr('option_id');
                 $("#search_option_"+option_id+"_from").val($(this).val());
                 //console.log(option_id);
             }));
             
             $(".input_am_to").focusout((function(){
-                var option_id = $(this).attr('data-option_id');
+                var option_id = $(this).attr('option_id');
                 
                 $("#search_option_"+option_id+"_to").val($(this).val());
                 //console.log(option_id);
@@ -494,10 +505,7 @@
             $('#myCarousel').carousel();        
             
             $('#search-start-map').click(function () { 
-              $('#wrap-map-1').attr('id', 'wrap-map').empty();
-              if(!map)
-                  map ='init';
-              
+                $('#wrap-map-1').attr('id', 'wrap-map');
               manualSearch(0, false);
               return false;
             });
@@ -716,86 +724,6 @@
             /* Edit property */
             
             // If alredy selected
-            
-            <?php if(config_db_item('map_version') =='open_street'):?>
-            var edit_map_marker;
-            var edit_map
-            if($('#mapsAddress').length){
-                if($('#inputGps').length && $('#inputGps').val() != '')
-                {
-                    savedGpsData = $('#inputGps').val().split(", ");
-
-                    edit_map = L.map('mapsAddress', {
-                        center: [parseFloat(savedGpsData[0]), parseFloat(savedGpsData[1])],
-                        zoom: {settings_zoom}+1,
-                    });     
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    }).addTo(edit_map);
-                    var positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png').addTo(edit_map);
-                    edit_map_marker = L.marker(
-                        [parseFloat(savedGpsData[0]), parseFloat(savedGpsData[1])],
-                        {draggable: true}
-                    ).addTo(edit_map);
-
-                    edit_map_marker.on('dragend', function(event){
-                        var marker = event.target;
-                        var location = marker.getLatLng();
-                        var lat = location.lat;
-                        var lon = location.lng;
-                        $('#inputGps').val(lat+', '+lon);
-                        //retrieved the position
-                      });
-
-                    firstSet = true;
-                }
-                else
-                {
-
-                    edit_map = L.map('mapsAddress', {
-                        center: [{settings_gps}],
-                        zoom: {settings_zoom}+1,
-                    });     
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    }).addTo(edit_map);
-                    var positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png').addTo(edit_map);
-                    edit_map_marker = L.marker(
-                        [{settings_gps}],
-                        {draggable: true}
-                    ).addTo(edit_map);
-
-                    edit_map_marker.on('dragend', function(event){
-                        var marker = event.target;
-                        var location = marker.getLatLng();
-                        var lat = location.lat;
-                        var lon = location.lng;
-                        $('#inputGps').val(lat+', '+lon);
-                        //retrieved the position
-                    });
-
-                    firstSet = true;
-                }
-
-                $('#inputAddress').keyup(function (e) {
-                clearTimeout(timerMap);
-                timerMap = setTimeout(function () {
-                    $.get('https://nominatim.openstreetmap.org/search?format=json&q='+$('#inputAddress').val(), function(data){
-                        if(data.length && typeof data[0]) {
-                            edit_map_marker.setLatLng([data[0].lat, data[0].lon]).update(); 
-                            edit_map.panTo(new L.LatLng(data[0].lat, data[0].lon));
-                            $('#inputGps').val(data[0].lat+', '+data[0].lon);
-                        } else {
-                            ShowStatus.show('<?php echo str_replace("'", "\'", lang_check('Address not found!')); ?>');
-                            return;
-                        }
-                    });
-                }, 2000);
-                
-            });
-            }
-            <?php else:?>
-            
             if($('#inputGps').length && $('#inputGps').val() != '')
             {
                 savedGpsData = $('#inputGps').val().split(", ");
@@ -924,7 +852,6 @@
                 
             });
             
-            <?php endif;?>
             //Typeahead
             
             $('#search_option_smart').typeahead({
@@ -1081,7 +1008,7 @@
             var v_order = $('.selectpicker-small').val();
             
             // View List/Grid
-            var v_view = $('.view-type.active').attr('data-ref');          
+            var v_view = $('.view-type.active').attr('ref');          
             
             //Define default data values for search
             var data = {
@@ -1236,7 +1163,7 @@
                         
                         if($(this).hasClass('ck'))
                         {
-                            $("input.checkbox_am[data-option_id='"+m_id+"']").prop('checked', false);
+                            $("input.checkbox_am[option_id='"+m_id+"']").prop('checked', false);
                         }
                         
                         manualSearch(0);
@@ -1284,7 +1211,7 @@
                 }
             
                 if(self.length)
-                    data[_option]=parseInt($.number(data[_option].replace(_prefix, "").replace(_prefix, "").replace(/\./g, ",")).replace(/,/g,""));
+                    data[_option]=parseInt($.number(data[_option].replace(_prefix, "").replace(_prefix, "")).replace(",", ""));
                 
                 if(data[_option]=='0')
                  data[_option]='';
@@ -1351,64 +1278,8 @@
             $.post("{ajax_load_url}/"+v_pagenum, data,
             function(data){
                 
-                if(mapRefresh && map)
+                if(mapRefresh)
                 {
-                    <?php if(config_db_item('map_version') =='open_street'):?>
-                    if(map=="init") {       
-                        map = L.map('wrap-map', {
-                            <?php if(config_item('custom_map_center') === FALSE): ?>
-                            center: [{all_estates_center}],
-                            <?php else: ?>
-                            center: [<?php echo config_item('custom_map_center'); ?>],
-                            <?php endif; ?>
-                            zoom: {settings_zoom}+1,
-                            scrollWheelZoom: scrollWheelEnabled,
-                            dragging: !L.Browser.mobile,
-                            tap: !L.Browser.mobile
-                        });     
-                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        }).addTo(map);
-
-                        var positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png').addTo(map);
-                        map.addLayer(clusters);
-                    }
-                                
-                    //Loop through all the markers and remove
-                    for (var i = 0; i < markers.length; i++) {
-                        clusters.removeLayer(markers[i]);
-                    }
-                    markers = [];
-
-                    if(data.results.length > 0)
-                    {
-                        $.each(data.results, function(index, listing) {
-                            /* fix if missing latLng */
-                            if(typeof listing.latLng == 'undefined'){
-                                return;
-                            }
-                            
-                            var marker = L.marker(
-                                [listing.latLng[0], listing.latLng[1]],
-                                {icon: L.divIcon({
-                                        html: '<img src="'+listing.options.icon+'">',
-                                        className: 'open_steet_map_marker '+data.results[index].options.cssclass,
-                                        iconSize: [31, 46],
-                                        popupAnchor: [1, -35],
-                                        iconAnchor: [15, 45],
-                                    })
-                                }
-                            )/*.addTo(map)*/;
-
-                            marker.bindPopup(listing.data);
-                            clusters.addLayer(marker);
-                            markers.push(marker);
-                        })
-                        
-                        map.setView(new L.LatLng(data.results_center[0], data.results_center[1]), {settings_zoom}+1);
-                    }
-                    <?php else:?>
-
                     //Remove all markers
                     $("#wrap-map").gmap3({
                         clear: {
@@ -1472,15 +1343,13 @@
                             init_gmap_searchbox();
                         }
                     }
-                    
-                    <?php endif;?>
                 }
                 
                 $(selectorResults).html(data.print);
                     reloadElements();
                 
                 $("#ajax-indicator-1").hide();
-                if(scroll_enabled != false && $(scroll_enabled).length)
+                if(scroll_enabled != false)
                     $(document).scrollTop( $(scroll_enabled).offset().top );
                 
 //                $(selectorResults).hide(1000,function(){
@@ -1810,46 +1679,6 @@
                 map.fitBounds(bounds);
                 var zoom = map.getZoom();
                 map.setZoom(zoom > zoomOnMapSearch ? zoomOnMapSearch : zoom);
-                
-                if(true){
-                    map_rectangle = map;
-                    if(rectangle != null) {
-                        $('#rectangle_ne').val('');
-                        $('#rectangle_sw').val('');
-                        infoWindow_rectangle.setMap(null);
-                        rectangle.setMap(null);
-                        rectangle = null;
-                    }
-                    var map_zoom = map.getZoom();
-                    var map_center = map.getCenter();
-
-                    var size_index = 0.4;
-
-                    if(map_zoom > 11)
-                      size_index = 0.02
-
-                    var bounds = new google.maps.LatLngBounds(
-                        new google.maps.LatLng(map_center.lat()-(size_index/2), map_center.lng()-size_index),
-                        new google.maps.LatLng(map_center.lat()+(size_index/2), map_center.lng()+size_index)
-                    );
-                    // Define the rectangle and set its editable property to true.
-                    rectangle = new google.maps.Rectangle({
-                      bounds: bounds,
-                      editable: true,
-                          draggable: true
-                    });
-                    rectangle.setMap(map);
-                    // Add an event listener on the rectangle.
-                    google.maps.event.addListener(rectangle, 'bounds_changed', showNewRect);
-                    // Define an info window on the map.
-                    infoWindow_rectangle = new google.maps.InfoWindow();
-                    // define first rectangle dimension
-                    var ne = rectangle.getBounds().getNorthEast();
-                    var sw = rectangle.getBounds().getSouthWest();
-                    $('#rectangle_ne').val(ne.lat() + ', ' + ne.lng());
-                    $('#rectangle_sw').val(sw.lat() + ', ' + sw.lng());
-                }
-                
             }, function(error) {
                 console.log(error);
             });
@@ -2012,8 +1841,8 @@
                 $.each(data.counters, function( index, obj ) {
                   //console.log(obj.option_id);
                   var m_id = obj.option_id;
-                  if(!$("input.checkbox_am[data-option_id='"+m_id+"']").is(":checked"))
-                  $("input.checkbox_am[data-option_id='"+m_id+"']").parent().find('span').html('&nbsp('+obj.count+')');
+                  if(!$("input.checkbox_am[option_id='"+m_id+"']").is(":checked"))
+                  $("input.checkbox_am[option_id='"+m_id+"']").parent().find('span').html('&nbsp('+obj.count+')');
                 });
 
             }, "json");
@@ -2021,27 +1850,3 @@
         
     </script>
     {settings_tracking}
-    
-    <?php
-    /* [START] Search background settings */
-    $this->data['search_background'] = 'assets/img/texture.jpg';
-    if(isset($this->data['settings']['search_background']))
-    {
-        if(is_numeric($this->data['settings']['search_background']))
-        {
-            $files_search_background = $this->file_m->get_by(array('repository_id' => $this->data['settings']['search_background']), TRUE);
-            if( is_object($files_search_background) && file_exists(FCPATH.'files/thumbnail/'.$files_search_background->filename))
-            {
-                $this->data['search_background'] = base_url('files/'.$files_search_background->filename);
-            }
-        }
-    }
-    ?>
-    <style>
-    .wrap-search {
-        background-image: url('<?php echo $this->data['search_background']; ?>');   
-    }
-    </style>
-    <?php
-    /* [END] Search background settings */
-    ?>

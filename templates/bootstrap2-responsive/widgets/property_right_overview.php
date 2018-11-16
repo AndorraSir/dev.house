@@ -1,25 +1,15 @@
-<h2>{lang_Overview}</h2>
+<h4>{lang_Overview}</h4>
 <div class="property_options">
-  <?php if(!empty($estate_data_address)): ?>
-  <p class="bottom-border"><strong>
-  {lang_Address}
-  </strong> <span>{estate_data_address}</span>
-  <br style="clear: both;" />
-  </p>
-  <?php endif; ?>
   {category_options_1}
   {is_text}
-  <p class="bottom-border"><strong>{option_name}:</strong> <span>{option_prefix} {option_value} {option_suffix}</span><br style="clear: both;" /></p>
+  <span><strong>{option_name}:</strong> <span>{option_prefix} {option_value} {option_suffix}</span><br style="clear: both;" /></span>
   {/is_text}
-  {is_dropdown}
-  <p class="bottom-border"><strong>{option_name}:</strong> <span class="label label-success">&nbsp;&nbsp;{option_value}&nbsp;&nbsp;</span></p>
-  {/is_dropdown}
   {is_checkbox}
   <img src="assets/img/checkbox_{option_value}.png" alt="{option_value}" />&nbsp;&nbsp;{option_name}
   {/is_checkbox}
   {/category_options_1}
   <?php if(!empty($estate_data_option_64) && isset($this->treefield_m)): ?>
-  <p class="bottom-border">
+  <div class="bottom-border wtf">
       <strong><?php echo $options_name_64; ?>:</strong>
       <span>
       <?php
@@ -44,7 +34,7 @@
       ?>
       </span>
       <br style="clear: both;" />
-  </p>
+  </div>
   <?php endif;?>
   <?php
       foreach($category_options_1 as $key=>$row)
@@ -75,28 +65,9 @@
       }
   ?>
 
-  <?php if(!empty($estate_data_counter_views)): ?>
-  <p class="bottom-border">
-      <strong>{lang_ViewsCounter}:</strong>
-      <span>{estate_data_counter_views}</span>
-  </p>
-  <?php endif;?>
+  
 
-  <?php if(!empty($estate_data_option_56)): ?>
-  <p class="bottom-border">
-      <strong>{lang_Pro}:</strong>
-      <span class="review_stars_<?php echo $estate_data_option_56; ?>"> </span>
-  </p>
-  <?php endif;?>
-
-  <?php if(!empty($avarage_stars) && file_exists(APPPATH.'controllers/admin/reviews.php') && $settings_reviews_enabled): ?>
-  <p class="bottom-border">
-      <strong>{lang_Users}:</strong>
-      <span class="review_stars_<?php echo $avarage_stars; ?>"> </span>
-  </p>
-  <?php endif;?>
-
-  <p style="text-align:right;">
-      <a target="_blank" class="btn" href="{estate_data_printurl}"><i class="icon-print"></i>&nbsp;{lang_PrintVersion}</a>
+  <p style="text-align:right;" style="display:none">
+      <a target="_blank" class="btn hide" href="{estate_data_printurl}"><i class="icon-print"></i>&nbsp;{lang_PrintVersion}</a>
   </p>
 </div>

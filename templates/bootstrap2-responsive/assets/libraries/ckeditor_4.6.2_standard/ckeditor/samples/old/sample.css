@@ -38,7 +38,7 @@ body {
 code
 {
 	background: #f3f3f3;
-	border: 1px solid #ddd;
+	border: 1px solid #1a1a1a;
 	padding: 1px 4px;
 	border-radius: 3px;
 }
@@ -196,7 +196,7 @@ pre.samples
 
 #outputSample thead th
 {
-	color: #dddddd;
+	color: #1a1a1addd;
 	background-color: #999999;
 	padding: 4px;
 	white-space: nowrap;
@@ -243,7 +243,7 @@ label
    added to it, so we can style it differently. */
 .cke_editable.cke_editable_inline.cke_focus
 {
-	box-shadow: inset 0px 0px 20px 3px #ddd, inset 0 0 1px #000;
+	box-shadow: inset 0px 0px 20px 3px #1a1a1a, inset 0 0 1px #000;
 	outline: none;
 	background: #eee;
 	cursor: text;
