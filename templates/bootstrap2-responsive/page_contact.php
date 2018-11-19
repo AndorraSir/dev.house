@@ -87,18 +87,16 @@
 
 <a id="content"></a>
 <div class="wrap-content pt-5">       
-    <div class="container " id="contactMap">
-       
-    </div>
-    <div class="container hide">
-        <div class="row">
+   
+    <div class="container">
+        <div class="row pb-5">
          <h1>{page_title}</h1>
         </div>
     </div>
 
     <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
+        <div class="row pb-4">
+            <div class="col-sm-6 pl-0">
 
                 <h2 id="form">{lang_Contactform}</h2>
                 <div id="contactForm"  class="contact-form">
@@ -181,14 +179,16 @@
                 {/has_settings_email}
                 </div>
             </div>
-            <div class="col-sm-6 property_content">
+            <div class="col-sm-6 property_content pt-0">
             <h2>{lang_Contactdetails}</h2>
             {page_body}
             </div>
         </div>
     </div>
     <div class="container mb-4">
-        <h2>{lang_Locationonmap}</h2>
+        <div class="row">
+            <h2>{lang_Locationonmap}</h2>
+        </div>
     </div>
     <div class="container-fluid p-0">
         {has_settings_gps}
