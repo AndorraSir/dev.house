@@ -417,6 +417,90 @@
     />
 </url>
 <url>
+	<loc>http://localhost:8888/dev.house/index.php/es/167/blblb</loc>
+	<lastmod>2018-12-06T17:06:59+01:00</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="http://localhost:8888/dev.house/index.php/en/167/blblb"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/167/blblb"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/167/blblb"
+    />
+</url>
+<url>
+	<loc>http://localhost:8888/dev.house/index.php/en/167/blblb</loc>
+	<lastmod>2018-12-06T17:06:59+01:00</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="es"
+        href="http://localhost:8888/dev.house/index.php/es/167/blblb"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/167/blblb"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/167/blblb"
+    />
+</url>
+<url>
+	<loc>http://localhost:8888/dev.house/index.php/fr/167/blblb</loc>
+	<lastmod>2018-12-06T17:06:59+01:00</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="es"
+        href="http://localhost:8888/dev.house/index.php/es/167/blblb"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="http://localhost:8888/dev.house/index.php/en/167/blblb"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="cat"
+        href="http://localhost:8888/dev.house/index.php/cat/167/blblb"
+    />
+</url>
+<url>
+	<loc>http://localhost:8888/dev.house/index.php/cat/167/blblb</loc>
+	<lastmod>2018-12-06T17:06:59+01:00</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>0.5</priority>
+    <xhtml:link
+        rel="alternate"
+        hreflang="es"
+        href="http://localhost:8888/dev.house/index.php/es/167/blblb"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="http://localhost:8888/dev.house/index.php/en/167/blblb"
+    />
+    <xhtml:link
+        rel="alternate"
+        hreflang="fr"
+        href="http://localhost:8888/dev.house/index.php/fr/167/blblb"
+    />
+</url>
+<url>
 	<loc>http://localhost:8888/dev.house/index.php/property/30/es/son_oliva</loc>
 	<lastmod>2017-04-18T01:05:23+02:00</lastmod>
 	<changefreq>monthly</changefreq>
