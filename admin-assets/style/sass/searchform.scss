@@ -189,7 +189,7 @@ ul.menu-onmap li a:hover
         top:20px;
     }
     .custom-input{
-       box-shadow:  0 2px 2px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+      /* box-shadow:  0 2px 2px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);*/
        height:45px;
        margin-right:10px;
     }
@@ -222,4 +222,10 @@ ul.menu-onmap li a:hover
 }
 .bootstrap-select:not([class*=span]){
     width:100% !important;
+}
+.form-search .bootstrap-select.btn-group, .form-inline .bootstrap-select.btn-group, .form-horizontal .bootstrap-select.btn-group{
+    margin-bottom:8px;
+}
+.form-search .bootstrap-select.btn-group, .form-inline .bootstrap-select.btn-group, .form-horizontal .bootstrap-select.btn-group{
+    padding:10px;
 }

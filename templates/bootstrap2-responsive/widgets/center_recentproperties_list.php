@@ -27,7 +27,7 @@
       </div>
     <ul class="pl-0">
     <?php foreach($results as $key=>$item): ?>
-      <li class="row list-results">
+      <li class="row card list-results hoverable">
         <div class="col-sm-4 pl-0 f_<?php echo _ch($item['is_featured']); ?>">
            <img alt="" data-src=""  class="img-fluid" src="<?php echo _simg($item['thumbnail_url']); ?>" />
             <?php if(!empty($item['option_4'])):?>

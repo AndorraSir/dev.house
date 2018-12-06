@@ -86,7 +86,7 @@
     border-radius:0 !important;
     color: #fff;
     background-color: #5bc0de;
-    border-color: #46b8da;
+    border: 2px solid #46b8da;
 }
 
 .center-search #search-save:active, .center-search #search-save:hover {
@@ -124,7 +124,8 @@
 
 .ajax-indicator {
     float: right;
-    margin-top: -3px;
+    margin-top: 30px;
+    margin:auto;
 }
 </style>
 
@@ -161,23 +162,22 @@ $(document).ready(function()
                 <input id="rectangle_ne" type="text" class="hide" />
                 <input id="rectangle_sw" type="text" class="hide" />
             
-                <div class="col-sm-3 pr-lg-0 mb-lg-0">
+                <div class="col-sm-12 col-md-3 pr-lg-0 mb-lg-0">
                     <input id="search_option_smart" type="text" class="form-control custom-input" value="{search_query}" placeholder="{lang_CityorCounty}" autocomplete="off" />
                 </div>
-                <div class="col-sm-3 pr-lg-0 mb-lg-0">
+                <div class="col-sm-12 col-md-3 pr-lg-0 mb-lg-0">
                     <select id="search_option_2" class="form-control selectpicker" placeholder="{options_name_2}">
                         {options_values_2}
                     </select>
                 </div>
-                <div class="col-sm-3 pr-lg-0 mb-lg-0">
+                <div class="col-sm-12 col-md-3 pr-lg-0 mb-lg-0">
                     <select id="search_option_3" class="form-control selectpicker nomargin" placeholder="{options_name_3}">
                         {options_values_3}
                     </select>
                 </div>
-                <div class="col-sm-3 mb-lg-0">
+                <div class="col-sm-12 col-md-3 mb-lg-0">
                     <button id="search-start" type="submit" class="btn btn-info">&nbsp;&nbsp;{lang_Search}&nbsp;&nbsp;</button>
                 </div>
-                <img id="ajax-indicator-1" class="ajax-indicator" src="assets/img/ajax-loader.gif"/>
                 
                 <div class="advanced-form-part hidden">
                 <div class="form-row-space"></div>
@@ -247,13 +247,15 @@ $(document).ready(function()
                 <div id="tags-filters-disabled">
                 </div>
             </form>
-        </div>
+        </div>                
+
     <?php if(file_exists(APPPATH.'controllers/admin/savesearch.php')): ?>
     <button id="search-save" type="button" class="btn btn-info"><i class="icon-bookmark"></i>{lang_SaveResearch}</button>
     <?php endif; ?>
     </div>
     
 </div>
+<img id="ajax-indicator-1" class="ajax-indicator" src="assets/img/ajax-loader.gif"/>
 
 
 

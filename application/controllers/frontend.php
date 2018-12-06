@@ -4249,13 +4249,13 @@ class Frontend extends Frontend_Controller
         $config['full_tag_open'] = '<nav aria-label="Page navigation example">
 <ul class="pagination pg-blue pagination-lg justify-content-center">';
         $config['full_tag_close'] = '</ul></nav>';
-        $config['num_tag_open'] = '<li class="page-item">';
+        $config['num_tag_open'] = '<li class="page-item hoverable">';
         $config['num_tag_close'] = '</li>';
         $config['base_url'] = $this->data['ajax_load_url'];
         $config['total_rows'] = 200;
         $config['per_page'] = config_item('per_page');
         $config['uri_segment'] = 5;
-        $config['cur_tag_open'] = '<li class="page-item active"><span>';
+        $config['cur_tag_open'] = '<li class="page-item hoverable active"><span>';
         $config['cur_tag_close'] = '</span></li>';
         /* End Pagination */
 

@@ -73,7 +73,7 @@ class Xml2u {
         
         $this->dom=new DOMDocument();
         $this->dom->load($filename);
-        $xml_properties= $this->dom->getElementsByTagName('referencias')->item(0);
+        $xml_properties= $this->dom->getElementsByTagName('producto')->item(0);
         
         if(!$xml_properties || !$xml_properties->hasChildNodes()) {
             $this->CI->session->set_flashdata('error', 
@@ -89,7 +89,7 @@ class Xml2u {
         /* start add new estate */
         
         $info=array();
-        foreach ($xml_properties->getElementsByTagName('referencia') as $key => $xml_property) {
+        foreach ($xml_properties->getElementsByTagName('inmueble') as $key => $xml_property) {
             //sleep(7);
             $is_exists = false;
             
@@ -115,8 +115,8 @@ class Xml2u {
             
             if(!$developer_mode){
                 if(!$overwrite){
-                $id_transitions=trim(str_replace('-','', $this->get_XmlValue($xml_property, 'referencia id', '')));
-                $query = $this->CI->db->get_where('property', array('id_transitions' =>$id_transitions));
+                $id_transitions=trim(str_replace('-','', $this->get_XmlValue($xml_property, 'id_inmueble', '')));
+                $query = $this->CI->db->get_where('inmueble', array('id_transitions' =>$id_transitions));
                     if($query->row()) {
                         $result= $query->result()[0];
                         $_count_skip++;

@@ -20,7 +20,7 @@ if(isset($columns) && $columns == 3)
 
 
 <li class="col-sm-4">
-    <div class="p-0 custom_card hoverable f_<?php echo _ch($item['is_featured']); ?>">
+    <div class="p-0 card custom_card hoverable f_<?php echo _ch($item['is_featured']); ?>">
       <h3 class="card-title" style="display:none"><?php echo _ch($item['option_10']); ?>&nbsp;</h3>
       <img alt="300x200" data-src="holder.js/300x200" src="<?php echo _simg($item['thumbnail_url'], '300x200'); ?>"  alt=""/>
       <?php if(!empty($item['option_4'])):?>

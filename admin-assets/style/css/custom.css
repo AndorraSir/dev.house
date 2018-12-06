@@ -70,7 +70,8 @@ li.dropdown.active > .dropdown-toggle {
   margin-bottom: 4rem;
   background-color: #fff;
   color: #908E91;
-  font-size: 16px; }
+  font-size: 16px;
+  border: 1px solid #eaeaea; }
   .list-results:hover {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); }
   .list-results h3 {
@@ -185,3 +186,6 @@ i.load-indicator {
     padding: 0.5rem 1rem; }
     .pagination .page-item a {
       color: #5C96BE; }
+
+.property_content {
+  border: 1px solid #eaeaea; }
