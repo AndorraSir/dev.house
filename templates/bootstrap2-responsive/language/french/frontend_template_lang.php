@@ -55,6 +55,13 @@ $lang['Username'] = "Nombre de usuario";
 $lang['Password'] = "Contraseńa";
 $lang['Confirmpassword'] = "Confirma Contraseńa";
 
+$lang['Importe'] = "Cantidad";
+$lang['Anos'] = "Años";
+$lang['Interes'] = "Interes";
+$lang['Calculate'] = "Calcular";
+$lang['CalculatorTitle'] = "Calculadora de hipotecas";
+$lang['InitialCapital'] = "Capital inicial";
+$lang['MonthlyInstallments'] = "Cuotas mensuales";
 
 $lang['Register'] = "Crear cuenta";
 $lang['Thanks on registration, you can login now'] = "Gracias por haberte registrado, ahora puedes iniciar sesion";

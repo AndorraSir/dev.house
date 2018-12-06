@@ -101,6 +101,14 @@ $lang['Please check GPS coordinates'] = "Please check GPS coordinates";
 $lang['News'] = "News";
 $lang['Latestnews'] = "Latest News";
 
+$lang['Importe'] = "Amount";
+$lang['Anos'] = "Years";
+$lang['Interes'] = "Interest";
+$lang['Calculate'] = "Calculate";
+$lang['CalculatorTitle'] = "Mortgage Calculator";
+$lang['InitialCapital'] = "Initial capital";
+$lang['MonthlyInstallments'] = "Monthly installments";
+
 
 $lang['cal_su']			= "Su";
 $lang['cal_mo']			= "Mo";
