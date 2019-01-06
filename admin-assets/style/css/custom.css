@@ -141,6 +141,9 @@ li.dropdown.active > .dropdown-toggle {
   background: white;
   display: block; }
 
+.contact .property_content {
+  border: 0; }
+
 .contact-form .control-group {
   margin-bottom: 0px; }
 
@@ -162,6 +165,7 @@ i.load-indicator {
 
 .wrap-content h2, .wrap-content2 h2 {
   font-size: 28px;
+  margin-bottom: 30px;
   color: #767577;
   font-weight: 300;
   font-family: 'Lato', sans-serif; }
@@ -188,4 +192,4 @@ i.load-indicator {
       color: #5C96BE; }
 
 .property_content {
-  border: 1px solid #eaeaea; }
+  /*	border: 1px solid #eaeaea;*/ }

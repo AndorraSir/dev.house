@@ -391,7 +391,7 @@
             <div class="carousel-inner">
               <?php foreach ($slideshow_property_images as $key => $file):?>
               <div class="item <?php _che($file['first_active']);?>" data-link="<?php echo $file['url']; ?>">
-                <div style="background:url('<?php echo _simg($file['url'], '870x469'); ?>') center center; background-size:cover;" class="slider-size">
+                <div style="background:url('<?php echo _simg($file['url'], '870x469'); ?>') center center;" class="slider-size">
                 </div>
               </div>
               <?php endforeach; ?>
@@ -966,7 +966,7 @@
             </div>
         </div>
       </div>
-      <div class="map-container">
+      <div class="map-container" style="display:none;">
         <div id="propertyLocation">
         </div>
       </div>

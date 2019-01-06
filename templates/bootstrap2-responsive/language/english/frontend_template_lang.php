@@ -101,14 +101,17 @@ $lang['Please check GPS coordinates'] = "Please check GPS coordinates";
 $lang['News'] = "News";
 $lang['Latestnews'] = "Latest News";
 
-$lang['Importe'] = "Amount";
-$lang['Anos'] = "Years";
-$lang['Interes'] = "Interest";
+$lang['deuda'] = "Amount";
+$lang['anos'] = "Years";
+$lang['interes'] = "Interest";
+$lang['intereses'] = "Interest";
 $lang['Calculate'] = "Calculate";
-$lang['CalculatorTitle'] = "Mortgage Calculator";
-$lang['InitialCapital'] = "Initial capital";
-$lang['MonthlyInstallments'] = "Monthly installments";
-
+$lang['mes'] = "Month";
+$lang['amortizacion'] = "Amortizacion";
+$lang['capital_pendiente'] = "Capital pendiente";
+$lang['CalculatorTitle'] = "Mortgage calculator";
+$lang['InitialCapital'] = "Capital inicial";
+$lang['MonthlyInstallments'] = "Cuotas mensuales";
 
 $lang['cal_su']			= "Su";
 $lang['cal_mo']			= "Mo";

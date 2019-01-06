@@ -55,10 +55,14 @@ $lang['Username'] = "Nombre de usuario";
 $lang['Password'] = "Contraseńa";
 $lang['Confirmpassword'] = "Confirma Contraseńa";
 
-$lang['Importe'] = "Cantidad";
-$lang['Anos'] = "Años";
-$lang['Interes'] = "Interes";
+$lang['deuda'] = "Cantidad";
+$lang['anos'] = "Años";
+$lang['interes'] = "Interes";
+$lang['intereses'] = "Intereses";
 $lang['Calculate'] = "Calcular";
+$lang['mes'] = "Mes";
+$lang['amortizacion'] = "Amortizacion";
+$lang['capital_pendiente'] = "Capital pendiente";
 $lang['CalculatorTitle'] = "Calculadora de hipotecas";
 $lang['InitialCapital'] = "Capital inicial";
 $lang['MonthlyInstallments'] = "Cuotas mensuales";

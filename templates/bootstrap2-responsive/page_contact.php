@@ -94,7 +94,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container contact">
         <div class="row pb-4">
             <div class="col-sm-6 pl-0">
 
@@ -179,7 +179,7 @@
                 {/has_settings_email}
                 </div>
             </div>
-            <div class="col-sm-6 property_content pt-0">
+            <div class="col-sm-6 contact property_content pt-0">
             <h2>{lang_Contactdetails}</h2>
             {page_body}
             </div>
