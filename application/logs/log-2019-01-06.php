@@ -58,3 +58,298 @@ ERROR - 2019-01-06 17:39:16 --> Severity: 8192  --> mysql_pconnect(): The mysql 
 ERROR - 2019-01-06 17:39:19 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
 ERROR - 2019-01-06 17:41:01 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
 ERROR - 2019-01-06 17:41:05 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:08:14 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:08:19 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:08:20 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:14:49 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:14:58 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:15:06 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:15:06 --> Severity: Notice  --> Undefined variable: template_css /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 158
+ERROR - 2019-01-06 18:15:07 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:20:45 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:20:46 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:20:46 --> Severity: Notice  --> Undefined variable: template_css /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 158
+ERROR - 2019-01-06 18:20:48 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:22:26 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:22:26 --> Severity: Notice  --> Undefined variable: template_css /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 158
+ERROR - 2019-01-06 18:22:28 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:22:35 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:22:36 --> Severity: Notice  --> Undefined variable: template_css /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 158
+ERROR - 2019-01-06 18:22:38 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:22:51 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:23:20 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:23:32 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:23:32 --> Severity: Notice  --> Undefined variable: template_css /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 158
+ERROR - 2019-01-06 18:23:33 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:23:46 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:23:47 --> Severity: Notice  --> Undefined variable: template_css /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 158
+ERROR - 2019-01-06 18:23:49 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:24:19 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:24:50 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:24:50 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:25:03 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:25:12 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:25:15 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:25:15 --> Severity: Notice  --> Undefined variable: template_css /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 158
+ERROR - 2019-01-06 18:25:16 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:25:25 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 18:25:26 --> Severity: Notice  --> Undefined variable: template_css /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 158
+ERROR - 2019-01-06 18:25:27 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:25:39 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:25:39 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:27:10 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:27:11 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:27:26 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:27:30 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:27:37 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:27:38 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:27:40 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:27:45 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:27:45 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:27:47 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:28:29 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:28:41 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 18:28:46 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:27:24 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:27:30 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:27:37 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:27:43 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:27:43 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:27:47 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:34:33 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:34:39 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:34:42 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:34:54 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:35:01 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:35:02 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:35:10 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:35:10 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:35:18 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:35:19 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:47:24 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:47:24 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:47:32 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:47:38 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:47:39 --> Severity: Notice  --> Undefined variable: template_css /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 158
+ERROR - 2019-01-06 19:47:40 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:47:46 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined index: preview_id /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 134
+ERROR - 2019-01-06 19:47:48 --> Severity: Notice  --> Undefined variable: template_css /Applications/MAMP/htdocs/dev.house/application/views/admin/estate/import_xml2u.php 158
+ERROR - 2019-01-06 19:47:48 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 20:02:57 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2019-01-06 20:02:57 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /Applications/MAMP/htdocs/dev.house/system/database/drivers/mysql/mysql_driver.php 91
