@@ -447,7 +447,7 @@ class Xml2u {
             $xml_description =  $xml_property->getElementsByTagName('Description')->item(0);
             
             //category
-            $options_data['option4'] = $this->get_XmlValue($xml_property,'category');
+//            $options_data['option4'] = $this->get_XmlValue($xml_property,'category');
             
             //propertyType
             $options_data['option2'] = $this->get_XmlValue($xml_description,'propertyType');

@@ -391,7 +391,7 @@
             <div class="carousel-inner">
               <?php foreach ($slideshow_property_images as $key => $file):?>
               <div class="item <?php _che($file['first_active']);?>" data-link="<?php echo $file['url']; ?>">
-                <div style="background:url('<?php echo _simg($file['url'], '870x469'); ?>') center center;" class="slider-size">
+                <div style="background:url('<?php echo _simg($file['url'], '870x469'); ?>') center center #fff;" class="slider-size">
                 </div>
               </div>
               <?php endforeach; ?>
@@ -424,8 +424,9 @@
           
           <?php endif; ?>
           <?php _widget('report_property');?>
-          
+          <div class="row">
           <h4>{lang_Description}</h4>
+            </div>
           {page_body}
           <div class="row">
             <div class="visible-phone col-sm-6" style="display:none">
